@@ -26,11 +26,11 @@ import time
 # store the URL in url as  
 # parameter for urlopen
 
-# take_input = input("Please enter the url of the Reddit thread:")
+take_input = input("Please enter the url of the Reddit thread:")
 
-# url = take_input.strip() + ".json"
+url = take_input.strip() + ".json"
 
-url = "https://www.reddit.com/r/AITAH/comments/1b06vi7/my_childs_teacher_made_a_sexual_comment_towards/.json"
+# url = "https://www.reddit.com/r/AITAH/comments/1b06vi7/my_childs_teacher_made_a_sexual_comment_towards/.json"
 
 title = url.split("/")[-2]
   
@@ -239,8 +239,6 @@ for f in poster_code:
         parse_for_body = splitted[0].split(" selftext: ")
         body = parse_for_body[-1]
         split = splitted[-1].split(",")
-
-        print(body)
 
         def OG_filtering_values (codes: list) -> parsed_values:
             og = []
