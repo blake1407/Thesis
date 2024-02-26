@@ -81,6 +81,8 @@ class parsed_values:
 
 og_post_with_table = []
 og_post_without_table = []
+split = []
+splitted = []
 
 for f in poster_code:
     """
@@ -178,73 +180,46 @@ for f in poster_code:
     
         splitted_code = f.split(",")
 
-        def OG_filtering_values (codes: list) -> parsed_values:
-            og = []
-            a = ""
-            p_i = ""
-            for code in codes:
-                wanted_value = code.split(":")
-
-                if wanted_value[0] == " author":
-                    a = wanted_value[1].strip()
-
-                elif wanted_value[0] == " author_fullname":
-                    a_f = wanted_value[1].strip()
-
-                elif wanted_value[0] == " name":
-                    n = wanted_value[1].strip()
-
-                elif wanted_value[0] == " created":
-                    x = wanted_value[1].strip()
-                    converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
-
-                elif wanted_value[0] == " ups":
-                    u = str(wanted_value[1].strip())
-
-                elif wanted_value[0] == " downs":
-                    d = str(wanted_value[1].strip())
-        
-            og = parsed_values(a, a_f, n, p_i, converted_time, u, d, og_essay)
-            return og
-        og_post_with_table = OG_filtering_values(splitted_code)
-
     else:
         splitted = f.split(" , user_reports: [], ")
         parse_for_body = splitted[0].split(" selftext: ")
         body = parse_for_body[-1]
         split = splitted[-1].split(",")
 
-        def OG_filtering_values (codes: list) -> parsed_values:
-            og = []
-            a = ""
-            p_i = ""
-            for code in codes:
-                wanted_value = code.split(":")
 
-                if wanted_value[0] == " author":
-                    a = wanted_value[1].strip()
+def OG_filtering_values (codes: list) -> parsed_values:
+    og = []
+    a = ""
+    p_i = ""
+    for code in codes:
+        wanted_value = code.split(":")
 
-                elif wanted_value[0] == " author_fullname":
-                    a_f = wanted_value[1].strip()
+        if wanted_value[0] == " author":
+            a = wanted_value[1].strip()
 
-                elif wanted_value[0] == " name":
-                    n = wanted_value[1].strip()
+        elif wanted_value[0] == " author_fullname":
+            a_f = wanted_value[1].strip()
 
-                elif wanted_value[0] == " created":
-                    x = wanted_value[1].strip()
-                    converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
+        elif wanted_value[0] == " name":
+            n = wanted_value[1].strip()
 
-                elif wanted_value[0] == " ups":
-                    u = str(wanted_value[1].strip())
+        elif wanted_value[0] == " created":
+            x = wanted_value[1].strip()
+            converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
 
-                elif wanted_value[0] == " downs":
-                    d = str(wanted_value[1].strip())
-        
-            og = parsed_values(a, a_f, n, p_i, converted_time, u, d, body)
-            return og
-        
-        og_post_without_table = OG_filtering_values(split)
+        elif wanted_value[0] == " ups":
+            u = str(wanted_value[1].strip())
 
+        elif wanted_value[0] == " downs":
+            d = str(wanted_value[1].strip())
+
+    og = parsed_values(a, a_f, n, p_i, converted_time, u, d, og_essay)
+    return og
+
+if bool(splitted_code):
+    og_post_with_table = OG_filtering_values(splitted_code)
+if bool(split):
+    og_post_without_table = OG_filtering_values(split)
 
 """
 
