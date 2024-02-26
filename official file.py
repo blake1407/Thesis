@@ -26,6 +26,8 @@ import time
 # store the URL in url as  
 # parameter for urlopen     
 url = "https://www.reddit.com/r/ForTheKing/comments/18g811y/class_base_stat_and_starting_equipment_infodump/.json"
+
+title = url.split("/")[-2]
   
 # store the response of URL 
 response = urlopen(url) 
@@ -126,9 +128,6 @@ unwanted_value = ['Code     ', ' likes', ' suggested_sort', ' banned_at_utc', ' 
                   ' subreddit_type', ' created', ' subreddit_name_prefixed', ' controversiality', ' depth',
                   ' author_flair_background_color', ' collapsed_because_crowd_control']
 
-columns = ["Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Upvote", "Downvote", "Body"]
-rows = []
-
 @dataclass 
 class parsed_values:
     author: str
@@ -150,15 +149,17 @@ def filtering_values(codes: list) -> list:
     Returns:
         list: list of class parsed_values for each person.
     '''
-
     one_person = []
     everyone = []
+
     for code in codes[:-1]:
+
         a_count = 0
         a_f_count = 0
         c_t_count = 0
         u = ""
         helpme = []
+
         for values in code:
             for value in values: 
                 wanted_value = value.split(":")
@@ -199,10 +200,57 @@ def filtering_values(codes: list) -> list:
         b = b1 + b2
         
         one_person = parsed_values(a, a_f, n, p_i, converted_time, u, d, b)
-        everyone.append(one_person)
+        everyone.append([one_person])
     return everyone
 
 sorted_into_class = filtering_values(code_parser(code_body))
 
+def prep_for_rows (values: list) -> list:
+    '''
+    This functions converts the parsed_value list of each commentor (sorted_into_class) 
+    and return a list of rows value in order to be converted into csv.
+    
+    Args:
+        values (list): list output from filtering_values(code_parser(code_body)) function
+                    - sorted_into_class
+    Returns:
+        list: list of ordered parsed_values for each person to be converted into csv.
+                example: [[author, author_fullname, name,...], [author, author_fullname, name,...]]
+    '''
+    everyone = []
+    for value in values:
+        one_person = []
+        for v in value:
+            one_person.append(v.author)
+            one_person.append(v.author_fullname)
+            one_person.append(v.name)
+            one_person.append(v.parent_id)
+            one_person.append(v.created_time)
+            one_person.append(v.upvote)
+            one_person.append(v.downvote)
+            one_person.append(v.body)
+        everyone.append(one_person)
+    return everyone
+
+columns = ["Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Upvote", "Downvote", "Body"]
+
+rows = prep_for_rows(sorted_into_class)
+
+def create_table(c: list, r:list):
+    columns = c
+    rows = r
+    filename = 'Comments - ' + title + '.csv'
+    with open(filename, 'w') as file:
+        for column in columns:
+            file.write(str(column)+', ')
+        file.write('\n')
+        for row in rows:
+            for x in row:
+                file.write(str(x)+', ')
+            file.write('\n')
+
+create_table(columns, rows)
 
 
+
+        
