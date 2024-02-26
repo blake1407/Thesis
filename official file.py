@@ -24,8 +24,11 @@ import pandas as pd
 import time
 
 # store the URL in url as  
-# parameter for urlopen     
-url = "https://www.reddit.com/r/ForTheKing/comments/18g811y/class_base_stat_and_starting_equipment_infodump/.json"
+# parameter for urlopen
+
+take_input = input("Please enter the url of the Reddit thread:")
+
+url = take_input.strip() + ".json"
 
 title = url.split("/")[-2]
   
@@ -76,7 +79,18 @@ def remove_extras(x):
     '''
     y = x.replace("'", "").replace("}}]", "").replace("}}", "").replace("\\n\\n", "").replace('\'', "'").replace(" \'", "'").replace(":\'", "").strip()
     return y
-                                                                                          
+
+def remove_utfextras(x):
+    '''
+    This function removes misread symbols of utf-8 encoding.
+    
+    Args:
+        x (str): any string.
+    Returns:
+        str: corrected string.
+    '''
+    y = x.replace("â€œ", "\"").replace('â€¢', '·').replace("â€", "\"").replace("â€™", "'").replace('â€', "'").replace("Â£", "£")
+    return y                                                                                       
 
 def code_parser(codes: list) -> list:
     '''
@@ -126,7 +140,7 @@ unwanted_value = ['Code     ', ' likes', ' suggested_sort', ' banned_at_utc', ' 
                   ' author_patreon_flair', ' body_html', ' body', ' collapsed', ' gildings', ' collapsed_reason',
                   ' associated_award', ' author_premium', ' link_id', ' unrepliable_reason', ' score_hidden',
                   ' subreddit_type', ' created', ' subreddit_name_prefixed', ' controversiality', ' depth',
-                  ' author_flair_background_color', ' collapsed_because_crowd_control']
+                  ' author_flair_background_color', ' collapsed_because_crowd_control', ' link_flair_template_id']
 
 @dataclass 
 class parsed_values:
@@ -240,17 +254,15 @@ def create_table(c: list, r:list):
     columns = c
     rows = r
     filename = 'Comments - ' + title + '.csv'
-    with open(filename, 'w') as file:
+    with open(filename, 'w', encoding="utf-8") as file:
         for column in columns:
             file.write(str(column)+', ')
         file.write('\n')
         for row in rows:
             for x in row:
-                file.write(str(x)+', ')
+                file.write((x)+', ')
             file.write('\n')
 
 create_table(columns, rows)
 
-
-
-        
+print("Congrats! " +  title + " has been parsed!")
