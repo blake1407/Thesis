@@ -63,7 +63,7 @@ def remove_extras(x):
     Returns:
         str: corrected string.
     '''
-    y = x.replace("'", "").replace("}}]", "").replace("}}", "").replace("\\n\\n", "").replace('\'', "'").replace(" \'", "'").replace(":\'", "").strip()
+    y = x.replace("'", "").replace("}}]", "").replace("}}", "").replace("\\n\\n", "").replace('\'', "'").replace(" \'", "'").replace(":\'", "").replace("\\", "").strip()
     return y
 
 poster_body = unescaped.split("-- SC_OFF --")[0]
@@ -304,7 +304,7 @@ def remove_utfextras(x):
     Returns:
         str: corrected string.
     '''
-    y = x.replace("â€œ", "\"").replace('â€¢', '·').replace("â€", "\"").replace("â€™", "'").replace('â€', "'").replace("Â£", "£")
+    y = x.replace("â€œ", "\"").replace('â€¢', '·').replace("â€", "\"").replace("â€™", "'").replace('â€', "'").replace("Â£", "£").replace("Äô", "'")
     return y                                                                                       
 
 def code_parser(codes: list) -> list:
@@ -442,7 +442,7 @@ def create_table(c: list, r:list):
     filename = title + "'s post.csv"
     with open(filename, 'w', encoding="utf-8") as file:
         for column in columns:
-            file.write(str(column)+', ')
+            file.write(remove_utfextras(str(column))+', ')
         file.write('\n')
         for row in rows:
             for x in row:
