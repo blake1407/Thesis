@@ -1,3 +1,5 @@
+#test for better body parser
+
 # import urllib library 
 from urllib.request import urlopen 
 
@@ -26,11 +28,11 @@ import time
 # store the URL in url as  
 # parameter for urlopen
 
-take_input = input("Please enter the url of the Reddit thread:")
+# take_input = input("Please enter the url of the Reddit thread:")
 
-url = take_input.strip() + ".json"
+# url = take_input.strip() + ".json"
 
-# url = "https://www.reddit.com/r/AITAH/comments/1b06vi7/my_childs_teacher_made_a_sexual_comment_towards/.json"
+url = "https://www.reddit.com/r/Brazil/comments/16r1mj2/brazil_politics_can_i_get_a_quick_overview/.json"
 
 title = url.split("/")[-2]
   
