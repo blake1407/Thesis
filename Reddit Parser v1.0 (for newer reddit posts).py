@@ -1,12 +1,8 @@
 # import urllib library 
 from urllib.request import urlopen 
 
-#import beautifulsoup
-from bs4 import BeautifulSoup 
-
 #html parser
 from html.parser import HTMLParser
-from html.entities import name2codepoint
 
 #import dataclass
 from dataclasses import dataclass
@@ -26,11 +22,11 @@ import time
 # store the URL in url as  
 # parameter for urlopen
 
-take_input = input("Please enter the url of the Reddit thread:")
+# take_input = input("Please enter the url of the Reddit thread:")
 
-url = take_input.strip() + ".json"
+# url = take_input.strip() + ".json"
 
-# url = "https://www.reddit.com/r/AITAH/comments/1b06vi7/my_childs_teacher_made_a_sexual_comment_towards/.json"
+url = "https://www.reddit.com/r/Brazil/comments/yhtimr/lula_stages_astonishing_comeback_to_beat_farright/.json"
 
 title = url.split("/")[-2]
   
@@ -82,7 +78,6 @@ def find_subreddit_name(ogpost: list) -> str:
     return subreddit_name
 
 subreddit_name = find_subreddit_name(poster_code)
-print(subreddit_name)
 
 @dataclass 
 class parsed_values:
@@ -92,33 +87,12 @@ class parsed_values:
     name: str
     parent_id: str
     created_time: str
-    upvote: str
-    downvote: str
+    score: str
+    upvote_ratio: float
     body: str
 
-unwanted_value = ['Code     ', ' likes', ' suggested_sort', ' banned_at_utc', ' view_count', ' archived', 
-                  ' no_follow', ' is_crosspostable', ' pinned', ' over_18', ' all_awardings', ' awarders', 
-                  ' media_only', ' can_gild', ' spoiler', ' locked', ' author_flair_text', ' treatment_tags', 
-                  ' visited', ' removed_by', ' num_reports', ' distinguished', ' subreddit_id', ' author_is_blocked', 
-                  ' mod_reason_by', ' removal_reason', ' link_flair_background_color', ' id', ' is_robot_indexable', 
-                  ' num_duplicates', ' report_reasons', ' author', ' discussion_type', ' num_comments', ' send_replies', 
-                  ' media', ' contest_mode', ' author_patreon_flair', ' author_flair_text_color', ' permalink', 
-                  ' whitelist_status', ' stickied', ' url', ' subreddit_subscribers', ' num_crossposts', 
-                  ' mod_reports', ' is_video', ' before', ' {kind', ' data: {after', ' dist', ' modhash', ' geo_filter', 
-                  ' children', ' data', ' approved_at_utc', ' author_is_blocked', ' comment_type', ' awarders', 
-                  ' mod_reason_by', ' banned_by', ' author_flair_type', ' total_awards_received', ' subreddit', 
-                  ' author_flair_template_id', ' likes', ' replies', ' data', ' dist', ' modhash', ' geo_filter', 
-                  ' children', ' data', ' approved_at_utc', ' author_is_blocked', ' comment_type', ' awarders', 
-                  ' mod_reason_by', ' banned_by', ' author_flair_type', ' total_awards_received', ' subreddit', 
-                  ' author_flair_template_id', ' likes', ' replies', ' user_reports', ' saved', ' id', ' banned_at_utc', 
-                  ' mod_reason_title', ' gilded', ' archived', ' collapsed_reason_code', ' no_follow', ' author', 
-                  ' can_mod_post', ' created_utc', ' send_replies', ' parent_id', ' score', ' author_fullname', 
-                  ' removal_reason', ' approved_by', ' mod_note', ' all_awardings', ' edited', ' top_awarded_type', 
-                  ' author_flair_css_class', ' name', ' is_submitter', ' downs', ' author_flair_richtext', 
-                  ' author_patreon_flair', ' body_html', ' body', ' collapsed', ' gildings', ' collapsed_reason',
-                  ' associated_award', ' author_premium', ' link_id', ' unrepliable_reason', ' score_hidden',
-                  ' subreddit_type', ' created', ' subreddit_name_prefixed', ' controversiality', ' depth',
-                  ' author_flair_background_color', ' collapsed_because_crowd_control', ' link_flair_template_id']
+f = open('unwanted_values.txt', 'r')
+unwanted_value = f.read()
 
 og_post_with_table = []
 og_post_without_table = []
@@ -166,6 +140,7 @@ for f in poster_code:
 
         table = check_for_tables(poster_post)[0]
         essays = check_for_tables(poster_post)[1:]
+        # print(table)
 
         def get_columns(line: str, number: int) -> list:
             columns = []
@@ -197,12 +172,12 @@ for f in poster_code:
                         file.write(str(x)+', ')
                     file.write('\n')
 
-        def table_to_csv(table: str):
-            splitted_text = table.split("\\n")
-            create_table(splitted_text)
-            print("Table " + title + " has been created!")
+        # def table_to_csv(table: str):
+        #     splitted_text = table.split("\\n")
+        #     create_table(splitted_text)
+        #     print("Table " + title + " has been created!")
 
-        table_to_csv(table)
+        # table_to_csv(table)
 
         def essay_body (essays: list) -> str:
             """
@@ -223,6 +198,7 @@ for f in poster_code:
             og = []
             a = ""
             p_i = ""
+            d = 0
             for code in codes:
                 wanted_value = code.split(":")
 
@@ -239,13 +215,13 @@ for f in poster_code:
                     x = wanted_value[1].strip()
                     converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
 
-                elif wanted_value[0] == " ups":
+                elif wanted_value[0] == " score":
                     u = str(wanted_value[1].strip())
 
-                elif wanted_value[0] == " downs":
+                elif wanted_value[0] == " upvote_ratio":
                     d = str(wanted_value[1].strip())
         
-            og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, u, d, og_essay)
+            og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, u, d, '"' + og_essay + '"')
             return og
         og_post_with_table = OG_filtering_values(splitted_code)
 
@@ -277,10 +253,10 @@ for f in poster_code:
                     x = wanted_value[1].strip()
                     converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
 
-                elif wanted_value[0] == " ups":
+                elif wanted_value[0] == " score":
                     u = str(wanted_value[1].strip())
 
-                elif wanted_value[0] == " downs":
+                elif wanted_value[0] == " upvote_ratio":
                     d = str(wanted_value[1].strip())
         
             og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, u, d, '"' + body + '"')
@@ -358,7 +334,7 @@ def filtering_values(codes: list) -> list:
         everyone.append([og_post_without_table])
 
     for code in codes[:-1]:
-
+        a = ""
         a_count = 0
         a_f_count = 0
         c_t_count = 0
@@ -389,11 +365,11 @@ def filtering_values(codes: list) -> list:
                 elif wanted_value[0] == " parent_id":
                     p_i = (wanted_value[1].strip())
 
-                elif wanted_value[0] == " ups":
+                elif wanted_value[0] == " score":
                     u = str(wanted_value[1].strip())
 
-                elif wanted_value[0] == " downs":
-                    d = str(wanted_value[1].strip())
+                # elif wanted_value[0] == " downs":
+                #     d = str(wanted_value[1].strip())
                 
                 elif wanted_value[0] == " body" or wanted_value[0] not in unwanted_value:
                     if wanted_value[0] == " body":
@@ -404,7 +380,7 @@ def filtering_values(codes: list) -> list:
                     b2 = "".join(helpme)
         b = '"' + b1 + b2 + '"'
         
-        one_person = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, u, d, b)
+        one_person = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, u, 0, b)
         everyone.append([one_person])
     return everyone
 
@@ -432,13 +408,13 @@ def prep_for_rows (values: list) -> list:
             one_person.append(v.name)
             one_person.append(v.parent_id)
             one_person.append(v.created_time)
-            one_person.append(v.upvote)
-            one_person.append(v.downvote)
+            one_person.append(v.score)
+            one_person.append(v.upvote_ratio)
             one_person.append(v.body)
         everyone.append(one_person)
     return everyone
 
-columns = ["Subreddit Name", "Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Upvote", "Downvote", "Body"]
+columns = ["Subreddit Name", "Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Score", "Upvote Ratio", "Body"]
 
 rows = prep_for_rows(sorted_into_class)
 
@@ -452,7 +428,7 @@ def create_table(c: list, r:list):
         file.write('\n')
         for row in rows:
             for x in row:
-                file.write((x)+', ')
+                file.write(str(x)+', ')
             file.write('\n')
 
 create_table(columns, rows)
