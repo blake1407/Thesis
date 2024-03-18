@@ -29,7 +29,7 @@ from ast import literal_eval
 
 # url = take_input.strip() + ".json"
 
-url = "https://www.reddit.com/r/Brazil/comments/yhtimr/lula_stages_astonishing_comeback_to_beat_farright/.json"
+url = "https://www.reddit.com/r/AmItheAsshole/comments/10pkki0/aita_for_telling_my_sil_we_werent_going_to_cater/.json"
 # url = "https://www.reddit.com/r/ForTheKing/comments/bup98d/lore_store_unlocks_verified/.json"
 
 title = url.split("/")[-2]
@@ -91,6 +91,7 @@ class parsed_values:
     name: str
     parent_id: str
     created_time: str
+    depth: int
     score: str
     upvote_ratio: float
     body: str
@@ -101,149 +102,26 @@ unwanted_value = f.read()
 og_post_with_table = []
 og_post_without_table = []
 
-# for f in poster_code:
-#     """
-#     If it does starts with "[{kind: ", then the post has no tables.
-#     Therefore, if it doesnt, it does have a table.
-#     """
-#     if not f.startswith("[{kind: ") or not f.startswith("{'kind': "):
-
-#         poster_post = poster_body.split("&#x200B;")[:-1]
-
-#         def check_for_tables (sections: list) -> list:
-#             '''
-#             This function checks whether OG post has a table.
-#             If there's a table, it will be return as the first index of
-#             the output list. Otherwise, the essay portion will be separated
-#             for each paragraph in the output list.  
-            
-#             Args:
-#                 sections (str): (poster_post) parsed code of the OG post.
-#             Returns:
-#                 list: list separated by paragraph.
-#             '''
-#             all = []
-#             table = []
-#             essay = []
-#             together = []
-#             for section in sections:
-#                 all.append(section.split("\\n\\n"))
-#             for a in all:
-#                 for each in a:
-#                     if each.startswith("|") and each.endswith("|"):
-#                         table.append(each)
-#                     else:
-#                         essay.append(each)
-#             if len(table) >= 1:
-#                 together = table + essay
-#             else:
-#                 together.append(essay)
-#             return together
-
-#         check_for_tables(poster_post)
-
-#         table = check_for_tables(poster_post)[0]
-#         essays = check_for_tables(poster_post)[1:]
-
-#         def get_columns(line: str, number: int) -> list:
-#             columns = []
-#             items = line[number].split("|")
-#             for item in items:
-#                 if item != "" and item != ":-": 
-#                     columns.append(item)
-#             return columns
-
-#         def get_line_data(data: str):
-#             data_list = []
-#             for i in range(len(data)-1):
-#                 column = get_columns(data, i)
-#                 if len(column)>0:
-#                     data_list.append(column)
-#             return data_list
-
-#         def create_table(data: str):
-#             splitted_lines = get_line_data(data)
-#             header = splitted_lines[0]
-#             data = splitted_lines[1:]
-#             filename = title + "'s table.csv"
-#             with open(filename, 'w') as file:
-#                 for header in header:
-#                     file.write(str(header)+', ')
-#                 file.write('\n')
-#                 for row in data:
-#                     for x in row:
-#                         file.write(str(x)+', ')
-#                     file.write('\n')
-
-#         def table_to_csv(table: str):
-#             splitted_text = table.split("\\n")
-#             create_table(splitted_text)
-#             print("Table " + title + " has been created!")
-        
-#         if len(table)>0:
-#             table_to_csv(table)
-
-#         def essay_body (essays: list) -> str:
-#             """
-#             Return the OG Post essay portion as a string.
-#             """
-#             fixed = ""
-#             for essay in essays:
-#                 if not essay.startswith("[{'kind'"):
-#                     e = essay.replace("**", "")
-#                     fixed += e
-#             return fixed
-
-#         og_essay = essay_body(essays)
-#         print(poster_body)
-    
-#         splitted_code = f.split(",")
-
-#         def OG_filtering_values (codes: list) -> parsed_values:
-#             og = []
-#             a = ""
-#             p_i = ""
-#             d = 0
-#             url = ""
-#             for code in codes:
-#                 wanted_value = code.split(":")
-
-#                 if wanted_value[0] == " author":
-#                     a = wanted_value[1].strip()
-
-#                 elif wanted_value[0] == " author_fullname":
-#                     a_f = wanted_value[1].strip()
-
-#                 elif wanted_value[0] == " name":
-#                     n = wanted_value[1].strip()
-
-#                 elif wanted_value[0] == " created":
-#                     x = wanted_value[1].strip()
-#                     converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
-
-#                 elif wanted_value[0] == " score":
-#                     u = str(wanted_value[1].strip())
-
-#                 elif wanted_value[0] == " upvote_ratio":
-#                     d = str(wanted_value[1].strip())
-                
-#                 elif wanted_value[0] == " url_overridden_by_dest":
-#                     url = "https:" + str(wanted_value[-1])
-        
-#             og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, u, d, '"' + url + og_essay + '"')
-#             return og
-#         og_post_with_table = OG_filtering_values(splitted_code)
-
-    # else:
 body = ""
 splitted = poster_body.split("'user_reports': []")
 parse_for_body = splitted[0].split("'selftext': ")
-body = parse_for_body[-1]
+body = remove_extras(parse_for_body[-1])
 if body.endswith(", "):
     body = body[:-2]
 if body.endswith(","):
     body = body[:-1]
 split = splitted[-1].split(",")
+
+
+new_op_body = ""
+if body.startswith('"'):
+    body = body[1:]
+new_op_body += body
+if not body.endswith('"'):
+    new_op_body += '"'
+if body.endswith('""'):
+    new_op_body = new_op_body[:-2]
+
 
 def OG_filtering_values (codes: list) -> parsed_values:
     og = []
@@ -264,6 +142,9 @@ def OG_filtering_values (codes: list) -> parsed_values:
             x = wanted_value[1].strip()
             converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
 
+        elif wanted_value[0] == " 'depth'":
+            depth = str(wanted_value[1].strip())
+
         elif wanted_value[0] == " 'score'":
             u = str(wanted_value[1].strip())
 
@@ -275,8 +156,192 @@ def OG_filtering_values (codes: list) -> parsed_values:
             if url[-1] == "'":
                 url = url[:-1]
         
-    og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, u, d, '"'  + url + "\n" + body + '"')
+    og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, 0, u, d, '"'  + url + " " + new_op_body)
     return og
 
 og_post_without_table = OG_filtering_values(split)
 
+code_body = []
+
+class MyHTMLParser(HTMLParser):
+
+    def handle_data(self, data):
+        if len(data) > 4:
+            if data.startswith("', '") or data.endswith("'body_html': '"):
+                # print("Code     :" + data)
+                code_body.append("Code     :" + data)
+            # else: 
+                # print("Data     :" + data)
+
+parser = MyHTMLParser()
+parsed = parser.feed(unescaped)   
+
+def get_comments_body (body: str) -> str:
+    split_head = body.split(" 'body': ")
+    split_tail = split_head[-1].split(", 'edited': ")
+    return remove_extras(split_tail[0])
+
+def code_parser(codes: list) -> list:
+    '''
+    This function plugs in the code_body list and parse them into
+    [[[a: ..],[b: ..],[c: ..],[d: ..]], [[a: ..],[b: ..],[c: ..],[d: ..]]]
+    
+    Args:
+        codes (str): list output from the html parser - code_body in this case.
+    Returns:
+        list: list of parsed value per person in the format above.
+    '''
+
+    raw = []
+    rows = []
+    for code in codes:
+        values = [remove_extras(code)]
+        raw.append(values)
+    for r in raw:
+        row = []
+        for values in r:
+            value = values.strip().split(",")
+            for v in value:
+                V = v.split(",")
+                row.append(V)
+        rows.append(row)
+    return rows
+
+def filtering_values(code_bodies: list) -> list:
+    '''
+    This function takes the value from code_parser(code_body) and filter them to 
+    the defined class parsed_values. If no value is found, "" will be used.
+    
+    Args:
+        codes (str): list output from the code_parser(code_body) in this case.
+    Returns:
+        list: list of class parsed_values for each person.
+    '''
+    one_person = []
+    everyone = []
+    all_comments = []
+
+    if bool(og_post_with_table):
+        everyone.append([og_post_with_table])
+    elif bool(og_post_without_table):
+        everyone.append([og_post_without_table])
+
+    codes = code_parser(code_bodies)
+    for code in codes[1:]:
+        a = ""
+        a_count = 0
+        a_f_count = 0
+        c_t_count = 0
+        u = ""
+        for values in code:
+            for value in values: 
+                wanted_value = value.split(":")
+
+                if wanted_value[0] == " author":
+                    a = wanted_value[1].strip()
+                    a_count += 1
+
+                elif wanted_value[0] == " author_fullname":
+                    a_f = wanted_value[1].strip()
+                    a_count +=1
+
+                elif wanted_value[0] == " name":
+                    n = wanted_value[1].strip()
+                
+                elif wanted_value[0] == " parent_id":
+                    p_i = (wanted_value[1].strip())
+
+                elif wanted_value[0] == " created_utc":
+                    x = wanted_value[1].strip()
+                    converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
+                    c_t_count += 1
+
+                elif wanted_value[0] == " depth":
+                    depth = (wanted_value[1].strip())
+
+                elif wanted_value[0] == " score":
+                    u = str(wanted_value[1].strip())
+
+        one_person = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, depth, u, 0, "")
+        everyone.append([one_person])
+    return everyone
+
+sorted_into_class = filtering_values(code_body)
+
+def fill_in_bodies(filtered: list) -> list:
+    all_comments = []
+    for code in code_body:
+        all_comments.append(get_comments_body(code))
+    for people, comments in zip(filtered[1:-1], all_comments[1:-1]):
+        for person in people:
+            if not person.body.startswith('"') and not comments.startswith('"'): 
+                person.body += '"'
+            person.body += comments
+            if not person.body.endswith('"'):
+                person.body += '"'
+
+sorted_into_class = filtering_values(code_body)
+fill_in_bodies(sorted_into_class)
+
+
+#filter for only comments with a score of >=1000!!
+def filter_for_1000_score (old_list: list) -> list:
+    new_list = []
+    for items in old_list:
+        for item in items:
+            if bool(item.score) and int(item.score) >= 1000:
+                new_list.append(items)
+    return new_list
+
+above_1000_list = filter_for_1000_score(sorted_into_class)
+
+
+def prep_for_rows (values: list) -> list:
+    '''
+    This functions converts the parsed_value list of each commentor (sorted_into_class) 
+    and return a list of rows value in order to be converted into csv.
+    
+    Args:
+        values (list): list output from filtering_values(code_parser(code_body)) function
+                    - sorted_into_class
+    Returns:
+        list: list of ordered parsed_values for each person to be converted into csv.
+                example: [[r/ name, author, author_fullname, name,...], [r/ name, author, author_fullname, name,...]]
+    '''
+    everyone = []
+    for value in values:
+        one_person = []
+        for v in value:
+            one_person.append(v.subreddit)
+            one_person.append(v.author)
+            one_person.append(v.author_fullname)
+            one_person.append(v.name)
+            one_person.append(v.parent_id)
+            one_person.append(v.created_time)
+            one_person.append(v.depth)
+            one_person.append(v.score)
+            one_person.append(v.upvote_ratio)
+            one_person.append(v.body)
+        everyone.append(one_person)
+    return everyone
+
+
+columns = ["Subreddit Name", "Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Depth", "Score", "Upvote Ratio", "Body"]
+
+rows = prep_for_rows(above_1000_list)
+
+def create_table(c: list, r:list):
+    columns = c
+    rows = r
+    filename = title + "'s post.csv"
+    with open(filename, 'w', encoding="UTF-8") as file:
+        for column in columns:
+            file.write(str(column)+', ')
+        file.write('\n')
+        for row in rows:
+            for x in row:
+                file.write(str(x)+', ')
+            file.write('\n')
+
+create_table(columns, rows)
+print("Post " + title + " has been parsed!")
