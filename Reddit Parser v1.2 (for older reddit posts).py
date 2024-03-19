@@ -22,6 +22,11 @@ import time
 #import literal_eval
 from ast import literal_eval
 
+#import csv, os, datetime for the log file
+import csv
+import os
+from datetime import datetime
+
 # store the URL in url as  
 # parameter for urlopen
 
@@ -122,18 +127,27 @@ if not body.endswith('"'):
 if body.endswith('""'):
     new_op_body = new_op_body[:-2]
 
+op_date_posted = ""
+op_likes = 0
+op_name = ""
+op_id = 0
 
 def OG_filtering_values (codes: list) -> parsed_values:
+    global op_date_posted, op_likes, op_name, op_id
     og = []
     a = ""
     p_i = ""
+    a_f = ""
+    n = ""
     for code in codes:
         wanted_value = code.split(":")
         if wanted_value[0] == " 'author'":
             a = wanted_value[1].strip()
+            op_name = a
 
         elif wanted_value[0] == " 'author_fullname'":
             a_f = wanted_value[1].strip()
+            op_id = a_f
 
         elif wanted_value[0] == " 'name'":
             n = wanted_value[1].strip()
@@ -141,12 +155,14 @@ def OG_filtering_values (codes: list) -> parsed_values:
         elif wanted_value[0] == " 'created'":
             x = wanted_value[1].strip()
             converted_time = str(time.strftime("%D %H:%M", time.localtime(float(x))))
+            op_date_posted = converted_time
 
         elif wanted_value[0] == " 'depth'":
             depth = str(wanted_value[1].strip())
 
         elif wanted_value[0] == " 'score'":
             u = str(wanted_value[1].strip())
+            op_likes = int(wanted_value[1].strip())
 
         elif wanted_value[0] == " 'upvote_ratio'":
             d = str(wanted_value[1].strip())
@@ -160,7 +176,6 @@ def OG_filtering_values (codes: list) -> parsed_values:
     return og
 
 og_post_without_table = OG_filtering_values(split)
-
 code_body = []
 
 class MyHTMLParser(HTMLParser):
@@ -233,6 +248,9 @@ def filtering_values(code_bodies: list) -> list:
         a_f_count = 0
         c_t_count = 0
         u = ""
+        a_f = ""
+        n = ""
+        converted_time = ""
         for values in code:
             for value in values: 
                 wanted_value = value.split(":")
@@ -345,3 +363,42 @@ def create_table(c: list, r:list):
 
 create_table(columns, rows)
 print("Post " + title + " has been parsed!")
+
+highest_depth_likes = 0
+#find for highest depth
+def find_highest_depth (above1000: list) -> int:
+    global highest_depth_likes
+    highest = 0
+    for items in above1000:
+        for item in items:
+            if int(item.depth) > highest:
+                highest = int(item.depth)
+                highest_depth_likes = int(item.score)
+    return highest
+    
+highest_depth = find_highest_depth(above_1000_list)
+
+def update_log(log_file):
+    # Get current date and time
+    now = datetime.now()
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+
+    # Check if log file exists
+    file_exists = os.path.isfile(log_file)
+
+    # Open log file in append mode
+    with open(log_file, 'a', newline='') as file:
+        writer = csv.writer(file)
+
+        # Write header if log file is newly created
+        if not file_exists:
+            writer.writerow(["Scrape Time", "Subreddit Name", "Post Title", "Post Link", "Poster Account", "Poster ID", "Date Posted", "OP no of Likes", "Total Comments", "No of Comments >1000", "Highest Depth", "Highest Depth no of Likes"])
+
+        # Write current date and time along with an event description
+        writer.writerow([current_time, subreddit_name, title, take_input + " ", op_name, op_id, op_date_posted, op_likes, len(sorted_into_class), len(above_1000_list), highest_depth, highest_depth_likes])
+
+    print("Log file updated successfully.")
+
+if __name__ == "__main__":
+    log_file = "log.csv"
+    update_log(log_file)
