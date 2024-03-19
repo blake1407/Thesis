@@ -25,11 +25,11 @@ from ast import literal_eval
 # store the URL in url as  
 # parameter for urlopen
 
-# take_input = input("Please enter the url of the Reddit thread:")
+take_input = input("Please enter the url of the Reddit thread:")
 
-# url = take_input.strip() + ".json"
+url = take_input.strip() + ".json"
 
-url = "https://www.reddit.com/r/AmItheAsshole/comments/10pkki0/aita_for_telling_my_sil_we_werent_going_to_cater/.json"
+# url = "https://www.reddit.com/r/AmItheAsshole/comments/10pkki0/aita_for_telling_my_sil_we_werent_going_to_cater/.json"
 # url = "https://www.reddit.com/r/ForTheKing/comments/bup98d/lore_store_unlocks_verified/.json"
 
 title = url.split("/")[-2]
