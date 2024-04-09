@@ -68,7 +68,7 @@ def remove_extras(x):
     Returns:
         str: corrected string.
     '''
-    y = x.replace("'", "").replace("}}]", "").replace("}}", "").replace("\\n\\n", "").replace('\'', "'").replace(" \'", "'").replace(":\'", "").replace("\\", "").replace("> ", "").strip()
+    y = x.replace("'", "").replace("}}]", "").replace("}}", "").replace("\\n\\n", ".").replace('\'', "'").replace(" \'", "'").replace(":\'", "").replace("\\", "").replace("> ", "").strip()
     return y
 
 poster_body = str(literal_eval(unescaped)[0])
@@ -402,3 +402,5 @@ def update_log(log_file):
 if __name__ == "__main__":
     log_file = "log.csv"
     update_log(log_file)
+
+f.close()
