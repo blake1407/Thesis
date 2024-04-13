@@ -1,6 +1,14 @@
 import csv 
 import os
+   
+import pandas as pd 
+import spacy 
+import requests 
+from bs4 import BeautifulSoup
 
+"""
+First, I'm gonna get the entire corpus from the "Reddit Post Parsed" folder.
+"""
 all_post_titles = []
 expected_no_comments = 0
 corpus = ""
@@ -22,10 +30,13 @@ with open('log.csv', mode = 'r') as file:
 #loop to open all post titles in create one big corpus of all comments
 def create_corpus(titles: list) -> str:
     """
-    This function takes in a list of posts titles in the folder "Reddit Post Parsed"
-    and loops through each csv file to filter for proper comments, that are not urls
+    This function takes in a list of posts titles in the 
+    folder "Reddit Post Parsed" and loops through each 
+    csv file to filter for proper comments, that are not urls
     and deleted to return the corpus.
-    Comments that are just links will be appended to the list "comment_urls"!
+
+    Comments that are just links will be 
+    appended to the list "comment_urls"!
     """
     global corpus
     global comment_urls
@@ -62,5 +73,42 @@ def create_corpus(titles: list) -> str:
                 
 create_corpus(all_post_titles)
 
-print(corpus)
-print(comment_urls)
+# print(corpus)
+# print(comment_urls)
+
+"""
+NER for names using spaCy!
+"""
+nlp = spacy.load("en_core_web_sm")
+pd.set_option("display.max_rows", 200)
+ 
+NER_output = []
+doc = nlp(corpus)
+
+for ent in doc.ents:
+    # The output displayed the names of the entities and their predicted labels.
+    if ent.text not in NER_output:
+        NER_output.append(ent.text)
+
+# Find noun phrases in the corpus
+# print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
+
+# Find verbs in the corpus
+# print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
+
+# print(NER_output)
+filtered_corpus = ""
+def remove_output_from_corpus() -> str:
+    global NER_output
+    global corpus
+    global filtered_corpus
+    filtered_corpus = corpus
+    for entity in NER_output:
+        filtered_corpus = filtered_corpus.replace(entity, "")
+
+remove_output_from_corpus()
+
+filtered_doc = nlp(filtered_corpus)
+remained_nouns = [chunk.text for chunk in filtered_doc.noun_chunks]
+
+print(remained_nouns)

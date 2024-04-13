@@ -9,7 +9,7 @@ Keyword used:
 II. Library required for the NER file: 
 1. Natural Language Toolkit
 2. spaCy, including the "en_core_web_sm" model.
-To install all of them, run the following code in the terminal (without the "$"):
+To install all of them, run each of the code in the terminal (without the "$"):
 $ pip install spacy
 $ pip install nltk
 $ python -m spacy download en_core_web_sm
