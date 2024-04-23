@@ -6,6 +6,13 @@ import spacy
 import requests 
 from bs4 import BeautifulSoup
 
+#Sentence Tokenization using sent_tokenize
+from nltk.tokenize import sent_tokenize
+
+#Detect language using detect_langs
+import langdetect
+from langdetect import detect_langs
+
 """
 First, I'm gonna get the entire corpus from the "Reddit Post Parsed" folder.
 """
@@ -67,7 +74,7 @@ def create_corpus(titles: list) -> str:
                 comment_urls.append(comment.strip())
             else:
                 count_proper_comments += 1 
-                corpus = corpus + " " + comment.strip()[1:-1] 
+                corpus = corpus + " " + comment.replace("**", "").replace("#", "").strip()[1:-1] 
     print(f'Number of comments yielded for the corpus (that are not urls or deleted): {count_proper_comments}.') 
     print(f'Number of removed/deleted comments (has been filetered from corpus): {no_deleted_comments}.')                  
                 
@@ -79,13 +86,55 @@ create_corpus(all_post_titles)
 """
 NER for names using spaCy!
 """
+# Load the spaCy English model
 nlp = spacy.load("en_core_web_sm")
 pd.set_option("display.max_rows", 200)
  
 NER_output = []
+
+# Process the text using spaCy
 doc = nlp(corpus)
 
-for ent in doc.ents:
+sentence_tokens = sent_tokenize(corpus)
+
+#sort into english, spanish, or mixed sentences
+en_sentences = ""
+mixed_sentences = ""
+es_sentences = ""
+
+def filter_languages():
+    global sentence_tokens
+    global en_sentences
+    global mixed_sentences
+    global es_sentences
+    for token in sentence_tokens:
+        detected_lang = langdetect.detect_langs(token)
+        #if only one language is detected
+        if len(detected_lang) == 1:
+            for lang in detected_lang: 
+                if lang.lang == 'en' and lang.prob > 0.5:
+                    en_sentences = en_sentences + " " + token
+                if lang.lang == 'es' and lang.prob > 0.5:
+                    es_sentences = es_sentences + " " + token
+        #if more than one language is detected
+        if len(detected_lang) > 1:
+            mixed_sentences = mixed_sentences + " " + token 
+
+filter_languages()
+en_doc = nlp(en_sentences)
+es_doc = nlp(es_sentences)
+mixed_doc = nlp(mixed_sentences)
+
+en_lemmatized_tokens = [token.lemma_ for token in en_doc]
+en_lemmatized_text = ' '.join(en_lemmatized_tokens)
+
+es_lemmatized_tokens = [token.lemma_ for token in es_doc]
+es_lemmatized_text = ' '.join(es_lemmatized_tokens)
+
+mixed_lemmatized_tokens = [token.lemma_ for token in mixed_doc]
+mixed_lemmatized_text = ' '.join(mixed_lemmatized_tokens)
+
+for ent in nlp(en_lemmatized_text).ents:
     # The output displayed the names of the entities and their predicted labels.
     if ent.text not in NER_output:
         NER_output.append(ent.text)
@@ -96,7 +145,7 @@ for ent in doc.ents:
 # Find verbs in the corpus
 # print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
 
-# print(NER_output)
+print(NER_output)
 filtered_corpus = ""
 def remove_output_from_corpus() -> str:
     global NER_output
