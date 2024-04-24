@@ -6,6 +6,13 @@ import spacy
 import requests 
 from bs4 import BeautifulSoup
 
+#Sentence Tokenization using sent_tokenize
+from nltk.tokenize import sent_tokenize
+
+#Detect language using detect_langs
+import langdetect
+from langdetect import detect_langs
+
 """
 First, I'm gonna get the entire corpus from the "Reddit Post Parsed" folder.
 """
@@ -67,7 +74,7 @@ def create_corpus(titles: list) -> str:
                 comment_urls.append(comment.replace('"', "").strip())
             else:
                 count_proper_comments += 1 
-                corpus = corpus + " " + comment.strip()[1:-1] 
+                corpus = corpus + " " + comment.replace("**", "").replace("#", "").strip()[1:-1] 
     print(f'Number of comments yielded for the corpus (that are not urls or deleted): {count_proper_comments}.') 
     print(f'Number of removed/deleted comments (has been filetered from corpus): {no_deleted_comments}.')                  
                 
@@ -79,14 +86,17 @@ create_corpus(all_post_titles)
 """
 NER for names using spaCy!
 """
+# Load the spaCy English model
 nlp = spacy.load("en_core_web_sm")
 pd.set_option("display.max_rows", 200)
  
 NER_output = []
+
+# Process the text using spaCy
 doc = nlp(corpus)
 
 for ent in doc.ents:
-    # The output displayed the names of the entities and their predicted labels. !!!!!!!!!(sort for person names)
+    # The output displayed the names of the entities and their predicted labels.
     if ent.text not in NER_output:
         NER_output.append(ent.text,  ent.label)
 print(NER_output)
@@ -97,7 +107,7 @@ print(NER_output)
 # Find verbs in the corpus
 # print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
 
-
+# print(NER_output)
 filtered_corpus = ""
 def remove_output_from_corpus() -> str:
     #remove already found NER output from the general corpus.
