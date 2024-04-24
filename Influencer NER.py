@@ -64,7 +64,7 @@ def create_corpus(titles: list) -> str:
                 no_deleted_comments +=1
                 comment = ""
             if comment.strip().startswith('"https:'):
-                comment_urls.append(comment.strip())
+                comment_urls.append(comment.replace('"', "").strip())
             else:
                 count_proper_comments += 1 
                 corpus = corpus + " " + comment.strip()[1:-1] 
@@ -86,9 +86,10 @@ NER_output = []
 doc = nlp(corpus)
 
 for ent in doc.ents:
-    # The output displayed the names of the entities and their predicted labels.
+    # The output displayed the names of the entities and their predicted labels. !!!!!!!!!(sort for person names)
     if ent.text not in NER_output:
-        NER_output.append(ent.text)
+        NER_output.append(ent.text,  ent.label)
+print(NER_output)
 
 # Find noun phrases in the corpus
 # print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
@@ -96,9 +97,10 @@ for ent in doc.ents:
 # Find verbs in the corpus
 # print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
 
-# print(NER_output)
+
 filtered_corpus = ""
 def remove_output_from_corpus() -> str:
+    #remove already found NER output from the general corpus.
     global NER_output
     global corpus
     global filtered_corpus
@@ -109,6 +111,18 @@ def remove_output_from_corpus() -> str:
 remove_output_from_corpus()
 
 filtered_doc = nlp(filtered_corpus)
+#find reminaing noun phrases
 remained_nouns = [chunk.text for chunk in filtered_doc.noun_chunks]
 
 print(remained_nouns)
+
+corpus_remained_nouns = remained_nouns.join()
+
+Lula = ["Luiz Inácio Lula da Silva", "Luiz Inacio Lula da Silva", "da Silva"]
+Bolsonaro = ["Jair Bolsonaro", "Bolsonaro", "Lula"]
+
+# def names_in_urls() -> list:
+#     global comment_urls
+#     for comment in comment_urls:
+
+# names_in_urls()

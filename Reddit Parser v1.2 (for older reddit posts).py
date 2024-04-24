@@ -3,23 +3,12 @@ from urllib.request import urlopen
 
 #html parser
 from html.parser import HTMLParser
-
-#import dataclass
 from dataclasses import dataclass
-
-# import json 
 import json 
-
-#import html
 import html
-
-#import pandas
 import pandas as pd
-
-#import time
 import time
-
-#import literal_eval
+import re
 from ast import literal_eval
 
 #import csv, os, datetime for the log file
@@ -30,11 +19,11 @@ from datetime import datetime
 # store the URL in url as  
 # parameter for urlopen
 
-take_input = input("Please enter the url of the Reddit thread:")
+# take_input = input("Please enter the url of the Reddit thread:")
 
-url = take_input.strip() + ".json"
+# url = take_input.strip() + ".json"
 
-# url = "https://www.reddit.com/r/AmItheAsshole/comments/10pkki0/aita_for_telling_my_sil_we_werent_going_to_cater/.json"
+url = "https://www.reddit.com/r/AmItheAsshole/comments/10pkki0/aita_for_telling_my_sil_we_werent_going_to_cater/.json"
 # url = "https://www.reddit.com/r/ForTheKing/comments/bup98d/lore_store_unlocks_verified/.json"
 
 title = url.split("/")[-2]
@@ -58,6 +47,29 @@ code section of the OG's post, only the replies.
 """
 unescaped = html.unescape(data_json)
 
+#stole from Richa's code, remove emojis from text
+def deEmojify(text):
+    emoj = re.compile("["
+        u"\U0001F600-\U0001F64F"  # emoticons
+        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+        u"\U0001F680-\U0001F6FF"  # transport & map symbols
+        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+        u"\U00002500-\U00002BEF"  # chinese char
+        u"\U00002702-\U000027B0"
+        u"\U000024C2-\U0001F251"
+        u"\U0001f926-\U0001f937"
+        u"\U00010000-\U0010ffff"
+        u"\u2640-\u2642" 
+        u"\u2600-\u2B55"
+        u"\u200d"
+        u"\u23cf"
+        u"\u23e9"
+        u"\u231a"
+        u"\ufe0f"  # dingbats
+        u"\u3030"
+                      "]+", re.UNICODE)
+    return re.sub(emoj, '', text)
+
 def remove_extras(x):
     '''
     This function removes the extras character leftover from
@@ -68,8 +80,31 @@ def remove_extras(x):
     Returns:
         str: corrected string.
     '''
-    y = x.replace("'", "").replace("}}]", "").replace("}}", "").replace("\\n\\n", ".").replace('\'', "'").replace(" \'", "'").replace(":\'", "").replace("\\", "").replace("> ", "").strip()
-    return y
+    #remove html tidbits 
+    x = x.replace("'", "")
+    x = x.replace("}}]", "")
+    x = x.replace("}}", "")
+    x = x.replace("\\n\\n", ".")
+    x = x.replace('\'', "'")
+    x = x.replace(" \'", "'")
+    x = x.replace(":\'", "")
+    x = x.replace("\\", "")
+    x = x.replace("> ", "")
+    x = x.replace("..", "")
+    x = x.replace("**", "")
+    x = x.replace("---", " ")
+    #remove emojis
+    x = deEmojify(x)
+    #remove user handles
+    x = re.sub('@[^\s]+','',x)
+    #regex to remove URLs
+    x = re.sub(r'(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', '', x)
+    #remove unk tokens
+    x = re.sub('unk', '', x)
+    #removing anything that's not alphabets
+    # x = re.sub('[^A-Z a-z]+', '', x)
+    x = x.strip()
+    return x
 
 poster_body = str(literal_eval(unescaped)[0])
 poster_code = remove_extras(poster_body)
@@ -290,6 +325,7 @@ def fill_in_bodies(filtered: list) -> list:
     all_comments = []
     for code in code_body:
         all_comments.append(get_comments_body(code))
+        print(get_comments_body(code))
     for people, comments in zip(filtered[1:-1], all_comments[1:-1]):
         for person in people:
             if not person.body.startswith('"') and not comments.startswith('"'): 
@@ -300,7 +336,6 @@ def fill_in_bodies(filtered: list) -> list:
 
 sorted_into_class = filtering_values(code_body)
 fill_in_bodies(sorted_into_class)
-
 
 #filter for only comments with a score of >=1000!!
 def filter_for_1000_score (old_list: list) -> list:
@@ -399,8 +434,8 @@ def update_log(log_file):
 
     print("Log file updated successfully.")
 
-if __name__ == "__main__":
-    log_file = "log.csv"
-    update_log(log_file)
+# if __name__ == "__main__":
+#     log_file = "log.csv"
+#     update_log(log_file)
 
 f.close()
