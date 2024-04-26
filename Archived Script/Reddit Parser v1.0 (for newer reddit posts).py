@@ -26,7 +26,7 @@ import time
 
 # url = take_input.strip() + ".json"
 
-url = "https://www.reddit.com/r/Brazil/comments/yhtimr/lula_stages_astonishing_comeback_to_beat_farright/.json"
+url = "https://www.reddit.com/r/AmItheAsshole/comments/wyjbjs/aita_for_not_taking_down_my_video_that_was_a_gift/.json"
 
 title = url.split("/")[-2]
   

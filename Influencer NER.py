@@ -3,11 +3,17 @@ import os
    
 import pandas as pd 
 import spacy 
+# spacy.cli.download("pt_core_news_sm")
+# spacy.cli.download("es_core_news_sm")
+
 import requests 
 from bs4 import BeautifulSoup
+from dataclasses import dataclass
 
 #Sentence Tokenization using sent_tokenize
 from nltk.tokenize import sent_tokenize
+import nltk.data
+# nltk.download('punkt')
 
 #Detect language using detect_langs
 import langdetect
@@ -87,19 +93,55 @@ create_corpus(all_post_titles)
 NER for names using spaCy!
 """
 # Load the spaCy English model
-nlp = spacy.load("en_core_web_sm")
+en_nlp = spacy.load("en_core_web_sm")
+pt_nlp = spacy.load('pt_core_news_sm')
 pd.set_option("display.max_rows", 200)
  
+#separate into tokenized sentences
+tokenizer = nltk.data.load('tokenizers/punkt/PY3/english.pickle')
+sentences = tokenizer.tokenize(corpus)
+
+#Sentences with more than one languages detected
+mixed_s = []
+en_s = []
+es_s = []
+pt_s = []
+
+for sentence in sentences:
+    #benchmark is with a language probablity over 0.5
+    score = detect_langs(sentence)
+    if len(score) > 1:
+        mixed_s.append(sentence)
+    for s in score:
+        if s.lang == 'en' and s.prob >= 0.5:
+            en_s.append(sentence)
+        if s.lang == 'es' and s.prob >= 0.5:
+            es_s.append(sentence)
+        if s.lang == 'pt' and s.prob >= 0.5:
+            pt_s.append(sentence)
+        else:
+            mixed_s.append(sentence)
+
+
 NER_output = []
 
-# Process the text using spaCy
-doc = nlp(corpus)
+@dataclass
+class entities:
+    name: str
+    label: str
 
-for ent in doc.ents:
+# Process the text using spaCy
+en_doc = en_nlp(" ".join(en_s) + " ".join(mixed_s))
+pt_doc = pt_nlp(" ".join(es_s) + " ".join(pt_s))
+
+for ent in en_doc.ents:
     # The output displayed the names of the entities and their predicted labels.
     if ent.text not in NER_output:
-        NER_output.append(ent.text,  ent.label)
-print(NER_output)
+        NER_output.append(entities(ent.text, ent.label_))
+for ent in pt_doc.ents:
+    # The output displayed the names of the entities and their predicted labels.
+    if ent.text not in NER_output:
+        NER_output.append(entities(ent.text, ent.label_))
 
 # Find noun phrases in the corpus
 # print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
@@ -107,7 +149,8 @@ print(NER_output)
 # Find verbs in the corpus
 # print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
 
-# print(NER_output)
+print(NER_output)
+
 filtered_corpus = ""
 def remove_output_from_corpus() -> str:
     #remove already found NER output from the general corpus.
@@ -116,17 +159,17 @@ def remove_output_from_corpus() -> str:
     global filtered_corpus
     filtered_corpus = corpus
     for entity in NER_output:
-        filtered_corpus = filtered_corpus.replace(entity, "")
+        filtered_corpus = filtered_corpus.replace(entity.name, "")
 
 remove_output_from_corpus()
 
-filtered_doc = nlp(filtered_corpus)
+filtered_doc = en_nlp(filtered_corpus)
 #find reminaing noun phrases
 remained_nouns = [chunk.text for chunk in filtered_doc.noun_chunks]
 
-print(remained_nouns)
+# corpus_remained_nouns = "".join(remained_nouns)
 
-corpus_remained_nouns = remained_nouns.join()
+# print(remained_nouns)
 
 Lula = ["Luiz Inácio Lula da Silva", "Luiz Inacio Lula da Silva", "da Silva"]
 Bolsonaro = ["Jair Bolsonaro", "Bolsonaro", "Lula"]

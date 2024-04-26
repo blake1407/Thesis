@@ -23,7 +23,7 @@ from datetime import datetime
 
 # url = take_input.strip() + ".json"
 
-url = "https://www.reddit.com/r/AmItheAsshole/comments/10pkki0/aita_for_telling_my_sil_we_werent_going_to_cater/.json"
+url = "https://www.reddit.com/r/AmItheAsshole/comments/wyjbjs/aita_for_not_taking_down_my_video_that_was_a_gift/.json"
 # url = "https://www.reddit.com/r/ForTheKing/comments/bup98d/lore_store_unlocks_verified/.json"
 
 title = url.split("/")[-2]
@@ -70,7 +70,7 @@ def deEmojify(text):
                       "]+", re.UNICODE)
     return re.sub(emoj, '', text)
 
-def remove_extras(x):
+def remove_extras(x: str):
     '''
     This function removes the extras character leftover from
     the html parser.
@@ -84,15 +84,16 @@ def remove_extras(x):
     x = x.replace("'", "")
     x = x.replace("}}]", "")
     x = x.replace("}}", "")
-    x = x.replace("\\n\\n", ".")
     x = x.replace('\'', "'")
     x = x.replace(" \'", "'")
     x = x.replace(":\'", "")
-    x = x.replace("\\", "")
     x = x.replace("> ", "")
-    x = x.replace("..", "")
+    # x = x.replace("..", "")
     x = x.replace("**", "")
     x = x.replace("---", " ")
+    x = x.replace("\\n", " ")
+    x = x.replace('\\', "")
+    x = x.replace('~~', "")
     #remove emojis
     x = deEmojify(x)
     #remove user handles
@@ -324,8 +325,8 @@ sorted_into_class = filtering_values(code_body)
 def fill_in_bodies(filtered: list) -> list:
     all_comments = []
     for code in code_body:
-        all_comments.append(get_comments_body(code))
-        print(get_comments_body(code))
+        all_comments.append(get_comments_body(code).replace('\n\n', ""))
+        # print(get_comments_body(code))
     for people, comments in zip(filtered[1:-1], all_comments[1:-1]):
         for person in people:
             if not person.body.startswith('"') and not comments.startswith('"'): 
