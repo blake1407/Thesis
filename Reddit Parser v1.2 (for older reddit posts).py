@@ -23,7 +23,10 @@ from datetime import datetime
 
 # url = take_input.strip() + ".json"
 
-url = "https://www.reddit.com/r/AmItheAsshole/comments/wyjbjs/aita_for_not_taking_down_my_video_that_was_a_gift/.json"
+links = ['https://www.reddit.com/r/worldnews/comments/10anyyz/brazil_police_find_draft_decree_intended_to/ ', 'https://www.reddit.com/r/politics/comments/108e1yb/steve_bannon_and_maga_allies_promoted_fake_stolen/ ', 'https://www.reddit.com/r/EnoughMuskSpam/comments/107bes8/so_now_every_election_in_every_country_where/ ', 'https://www.reddit.com/r/worldnews/comments/zhcbik/it_hurts_my_soul_brazils_bolsonaro_ends/ ', 'https://www.reddit.com/r/worldnews/comments/zgx4o2/lula_ticket_sues_bolsonaro_and_sons_for_abuses/ ', 'https://www.reddit.com/r/UpliftingNews/comments/z3q10l/brazil_court_rejects_bolsonaros_election/ ', 'https://www.reddit.com/r/news/comments/z367ui/brazil_judge_fines_bolsonaro_allies_millions/ ', 'https://www.reddit.com/r/worldnews/comments/z35ika/brazils_electoral_court_rejects_bolsonaro/ ', 'https://www.reddit.com/r/anime_titties/comments/z35cpe/brazils_electoral_court_rejects_bolsonaro/ ', 'https://www.reddit.com/r/news/comments/z35byl/brazils_electoral_court_rejects_bolsonaro/ ', 'https://www.reddit.com/r/news/comments/z2itdj/bolsonaro_contests_brazil_election_loss_wants/ ', 'https://www.reddit.com/r/worldnews/comments/z23rem/brazils_bolsonaro_files_complaint_to_challenge/ ', 'https://www.reddit.com/r/MapPorn/comments/ytbkjy/what_if_brazil_had_an_electoral_college_like_the/ ', 'https://www.reddit.com/r/ActualPublicFreakouts/comments/ytarjk/forced_to_apologize_for_supporting_bolsonaro_in/ ', 'https://www.reddit.com/r/worldnews/comments/yr0d48/brazil_military_finds_no_evidence_of_election/ ', 'https://www.reddit.com/r/worldnews/comments/ympzxm/brazil_indonesia_and_drc_in_talks_to_form_opec_of/ ', 'https://www.reddit.com/r/tooktoomuch/comments/yl9amy/cocaine_or_just_not_very_happy_with_the_result_of/ ', 'https://www.reddit.com/r/worldnews/comments/yk8y7y/its_over_jair_bolsonaro_reportedly_accepts_defeat/ ', 'https://www.reddit.com/r/news/comments/yk51ik/its_over_jair_bolsonaro_reportedly_accepts_defeat/ ', 'https://www.reddit.com/r/worldnews/comments/yjlqup/brazil_election_bolsonaro_thanks_supporters/ ', 'https://www.reddit.com/r/news/comments/yjcjqz/brazils_bolsonaro_to_accept_election_loss_in/ ', 'https://www.reddit.com/r/worldnews/comments/yjcg07/brazils_bolsonaro_to_speak_today_wont_contest/ ', 'https://www.reddit.com/r/worldnews/comments/yj9f5m/bolsonaro_supporters_block_brazil_roads_for_a_2nd/ ', 'https://www.reddit.com/r/worldnews/comments/yj8ybt/brazil_judge_orders_police_to_clear_roadblocks_by/ ', 'https://www.reddit.com/r/soccer/comments/yj0mnf/juan_arango_i_get_sick_when_i_see_rightwing/ ', 'https://www.reddit.com/r/worldnews/comments/yirown/trucker_blockades_in_brazil_increase_in_wake_of/ ', 'https://www.reddit.com/r/walkaway/comments/yioy3k/was_the_election_stolen_in_brazil/ ', 'https://www.reddit.com/r/environment/comments/yioc7h/lula_cheered_for_new_climate_policies_after/ ', 'https://www.reddit.com/r/CrazyFuckingVideos/comments/yio1hr/elections_in_brazil/ ', 'https://www.reddit.com/r/worldnews/comments/yilfn0/brazils_bolsonaro_maintains_silence_after_lulas/ ', 'https://www.reddit.com/r/worldnews/comments/yiesf1/brazils_bolsonaro_yet_to_concede_after_lulas/ ', 'https://www.reddit.com/r/privacy/comments/yi3tbc/meta_and_tiktok_busted_for_actively_pushing_stop/ ', 'https://www.reddit.com/r/worldnews/comments/yi26ml/stop_the_steal_leader_ali_alexander_calls_for_a/ ', 'https://www.reddit.com/r/anime_titties/comments/yi17vw/biden_congratulates_lula_for_winning_free_fair/ ', 'https://www.reddit.com/r/politics/comments/yhxr0d/biden_congratulates_lula_on_brazil_election_win/ ', 'https://www.reddit.com/r/worldnews/comments/yhxmpt/brazil_election_bolsonaro_defeated_as_lula_makes/ ']
+
+url = links[0].strip() + ".json"
+# url = "https://www.reddit.com/r/AmItheAsshole/comments/wyjbjs/aita_for_not_taking_down_my_video_that_was_a_gift/.json"
 # url = "https://www.reddit.com/r/ForTheKing/comments/bup98d/lore_store_unlocks_verified/.json"
 
 title = url.split("/")[-2]
@@ -94,6 +97,7 @@ def remove_extras(x: str):
     x = x.replace("\\n", " ")
     x = x.replace('\\', "")
     x = x.replace('~~', "")
+    x = x.replace("_", "")
     #remove emojis
     x = deEmojify(x)
     #remove user handles
@@ -285,6 +289,7 @@ def filtering_values(code_bodies: list) -> list:
         c_t_count = 0
         u = ""
         a_f = ""
+        # p_i = ""
         n = ""
         converted_time = ""
         for values in code:

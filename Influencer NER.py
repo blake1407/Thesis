@@ -26,8 +26,10 @@ all_post_titles = []
 expected_no_comments = 0
 corpus = ""
 comment_urls = []
+all_links = []
 
 with open('log.csv', mode = 'r') as file:
+    link_column = []
     title_column = []
     comments_column = []
     all_no_comments = []
@@ -37,9 +39,12 @@ with open('log.csv', mode = 'r') as file:
         all_post_titles = title_column[1:]
         comments_column.append(line[9])
         all_no_comments = comments_column[1:]
+        link_column.append(line[3])
+        all_links = link_column[1:]
     for number in all_no_comments:
         expected_no_comments += int(number)
 
+print(all_links)
 #loop to open all post titles in create one big corpus of all comments
 def create_corpus(titles: list) -> str:
     """
@@ -134,6 +139,9 @@ class entities:
 en_doc = en_nlp(" ".join(en_s) + " ".join(mixed_s))
 pt_doc = pt_nlp(" ".join(es_s) + " ".join(pt_s))
 
+combined_doc = en_nlp(" ".join(en_s) + " ".join(mixed_s) + " ".join(es_s) + " ".join(pt_s))
+test_output = []
+
 for ent in en_doc.ents:
     # The output displayed the names of the entities and their predicted labels.
     if ent.text not in NER_output:
@@ -143,13 +151,22 @@ for ent in pt_doc.ents:
     if ent.text not in NER_output:
         NER_output.append(entities(ent.text, ent.label_))
 
+for ent in combined_doc.ents:
+    # The output displayed the names of the entities and their predicted labels.
+    if ent.text not in test_output:
+        test_output.append(entities(ent.text, ent.label_)) 
+
+# print(len(test_output))
+# print(len(NER_output))
+
+
+
 # Find noun phrases in the corpus
 # print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
 
 # Find verbs in the corpus
 # print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
 
-print(NER_output)
 
 filtered_corpus = ""
 def remove_output_from_corpus() -> str:
@@ -167,11 +184,23 @@ filtered_doc = en_nlp(filtered_corpus)
 #find reminaing noun phrases
 remained_nouns = [chunk.text for chunk in filtered_doc.noun_chunks]
 
+##strip out the pronouns, conjunctions, etc.!
+pronouns = ['I', 'you', 'my', 'mine', 'myself', 'we', 'us', 'our', 'ours', 'ourselves', 'you', 'you', 'your', 
+            'yours', 'yourself', 'you', 'you', 'your', 'your', 'yourselves', 'he', 'him', 'his', 'his', 'himself'
+            'she', 'her', 'her', 'her', 'herself', 'it', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 
+            'themself', 'they', 'them', 'their', 'theirs', 'themselves', "Another", "anybody", "anyone", "anything", 
+            "each", "either", "enough", "everybody", "everyone", "everything", "little", "much", "neither", "nobody", 
+            "no one", "nothing", "one", "other", "somebody", "something", "Both", "few", "fewer", "many", "others", 
+            "several", "All", "any", "more", "most", "someone", "none", "some", "such", "this", "that", "these", "those"
+            "who", "whom", "whose", "what", "which"
+]
+# print(remained_nouns)
+
 # corpus_remained_nouns = "".join(remained_nouns)
 
 # print(remained_nouns)
 
-Lula = ["Luiz Inácio Lula da Silva", "Luiz Inacio Lula da Silva", "da Silva"]
+Lula = ["Luiz Inácio Lula da Silva", "Luiz Inacio Lula da Silva", "da Silva", "President Jair", "leftist Luiz Inacio", "Luiz Inácio"]
 Bolsonaro = ["Jair Bolsonaro", "Bolsonaro", "Lula"]
 
 # def names_in_urls() -> list:
