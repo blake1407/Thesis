@@ -228,6 +228,7 @@ def OG_filtering_values (codes: list) -> parsed_values:
         
     og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, 0, u, d, '"'  + url + " " + new_op_body)
     return og
+
 og_post_without_table = OG_filtering_values(split)
 code_body = []
 

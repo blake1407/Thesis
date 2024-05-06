@@ -14,11 +14,15 @@ from dataclasses import dataclass
 import nltk
 # nltk.download('punkt')
 from nltk import word_tokenize,sent_tokenize
+from nltk.tokenize import word_tokenize
 
 
 #Detect language using detect_langs
 import langdetect
 from langdetect import detect_langs
+
+#Detect language using Lingua
+from lingua import Language, LanguageDetectorBuilder
 
 """
 First, I'm gonna get the entire corpus from the "Reddit Post Parsed" folder.
@@ -92,13 +96,25 @@ def create_corpus(titles: list) -> str:
                 
 create_corpus(all_post_titles)
 
+@dataclass
+class entities:
+    name: str
+    label: str
+
+#strip out the pronouns, conjunctions, etc.!
+f = open('pronouns.txt', 'r')
+pronouns = f.read()
+
+#filter out pronouns from the remainded_nouns
+pronouns_lower = set([pronoun.lower() for pronoun in pronouns])
+
 # print(corpus)
 # print(comment_urls)
 
 """
-NER for names using spaCy!
+METHOD 1: Langdetect each sentence in the corpus and use 2 NER models (en & pt)
 """
-# Load the spaCy English model
+# Load the spaCy English & Portuguese models
 en_nlp = spacy.load("en_core_web_sm")
 pt_nlp = spacy.load('pt_core_news_sm')
 pd.set_option("display.max_rows", 200)
@@ -110,6 +126,7 @@ sentences = tokenizer.tokenize(corpus)
 
 #Sentences with more than one languages detected
 mixed_s = []
+#Sentences with only one language detected
 en_s = []
 es_s = []
 pt_s = []
@@ -130,97 +147,162 @@ for sentence in sentences:
             else:
                 mixed_s.append(sentence)
     except:
+        #discard "." or numbers
         # print("This throws an error: " + sentence)
         continue 
 
 
-NER_output = []
-
-@dataclass
-class entities:
-    name: str
-    label: str
+method1_NER_output = []
 
 # Process the text using spaCy
 en_doc = en_nlp(" ".join(en_s) + " ".join(mixed_s))
 pt_doc = pt_nlp(" ".join(es_s) + " ".join(pt_s))
 
-combined_doc = en_nlp(corpus)
-test1_output = []
 
 #English NER model
 for ent in en_doc.ents:
-    if ent.text not in NER_output:
-        NER_output.append(entities(ent.text, ent.label_))
+    if entities(ent.text, ent.label_) not in method1_NER_output:
+        if ent.label_ == "PERSON":
+            method1_NER_output.append(entities(ent.text, ent.label_))
 
 #Portuguese NER model
 for ent in pt_doc.ents:
-    if ent.text not in NER_output:
-        NER_output.append(entities(ent.text, ent.label_))
+    if entities(ent.text, ent.label_) not in method1_NER_output:
+        if ent.label_ == "PERSON":
+            method1_NER_output.append(entities(ent.text, ent.label_))
 
-#English NER model
-for ent in combined_doc.ents:
-    if ent.text not in test1_output:
-        test1_output.append(entities(ent.text, ent.label_)) 
-
-filtered_corpus = ""
-filtered1_corpus = ""
+method1_filtered_corpus = ""
 def remove_output_from_corpus() -> str:
     #remove already found NER output from the general corpus.
-    global NER_output
+    global method1_NER_output
     global corpus
-    global filtered_corpus
-    global filtered1_corpus
+    global method1_filtered_corpus
 
-    filtered_corpus = corpus
-    for entity in NER_output:
-        filtered_corpus = filtered_corpus.replace(entity.name, "")
-
-    filtered1_corpus = corpus
-    for entity in test1_output:
-        filtered1_corpus = filtered1_corpus.replace(entity.name, "")
+    method1_filtered_corpus = corpus
+    for entity in method1_NER_output:
+        method1_filtered_corpus = method1_filtered_corpus.replace(entity.name, "")
 
 remove_output_from_corpus()
 
-filtered_doc = en_nlp(filtered_corpus)
-filtered1_doc = en_nlp(filtered1_corpus)
+method1_filtered_doc = en_nlp(method1_filtered_corpus)
 
 #find reminaing noun phrases
-remained_nouns = [chunk.text for chunk in filtered_doc.noun_chunks]
-remained1_nouns = [chunk.text for chunk in filtered1_doc.noun_chunks]
-
-##strip out the pronouns, conjunctions, etc.!
-pronouns = ['I', 'you', 'my', 'mine', 'myself', 'we', 'us', 'our', 'ours', 'ourselves', 'you', 'you', 'your', 
-            'yours', 'yourself', 'you', 'you', 'your', 'your', 'yourselves', 'he', 'him', 'his', 'his', 'himself'
-            'she', 'her', 'her', 'her', 'herself', 'it', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 
-            'themself', 'they', 'them', 'their', 'theirs', 'themselves', "Another", "anybody", "anyone", "anything", 
-            "each", "either", "enough", "everybody", "everyone", "everything", "little", "much", "neither", "nobody", 
-            "no one", "nothing", "one", "other", "somebody", "something", "Both", "few", "fewer", "many", "others", 
-            "several", "All", "any", "more", "most", "someone", "none", "some", "such", "this", "that", "these", "those"
-            "who", "whom", "whose", "what", "which", "those people", "these guys", "me", "some people"]
-
-#filter out pronouns from the remainded_nouns
-pronouns_lower = set([pronoun.lower() for pronoun in pronouns])
+method1_remained_nouns = [chunk.text for chunk in method1_filtered_doc.noun_chunks]
 
 # Filter out pronouns from the remained_nouns list
-filtered_remained_nouns = [noun for noun in remained_nouns if noun.lower() not in pronouns_lower]
+method1_filtered_remained_nouns = [noun for noun in method1_remained_nouns if noun.lower() not in pronouns_lower]
 
-filtered1 = [noun for noun in remained1_nouns if noun.lower() not in pronouns_lower]
+# filtered1 = [noun for noun in remained1_nouns if noun.lower() not in pronouns_lower]
 
 
-# print(filtered_remained_nouns)
-# corpus_remained_nouns = "".join(remained_nouns)
+"""
+METHOD 2: No langdetect and use 1 NER models (en) for the entire corpus
+"""
+
+combined_doc = en_nlp(corpus)
+
+method2_output = []
+
+#English NER model
+for ent in combined_doc.ents:
+    if entities(ent.text, ent.label_) not in method2_output:
+        if ent.label_ == "PERSON":
+            method2_output.append(entities(ent.text, ent.label_)) 
+
+method2_filtered_corpus = ""
+
+def remove_output_from_corpus() -> str:
+    #remove already found NER output from the general corpus.
+    global method2_output
+    global corpus
+    global method2_filtered_corpus
+
+    method2_filtered_corpus = corpus
+    for entity in method2_output:
+        method2_filtered_corpus = method2_filtered_corpus.replace(entity.name, "")
+
+remove_output_from_corpus()
+
+method2_filtered_doc = en_nlp(method2_filtered_corpus)
+
+method2_remained_nouns = [chunk.text for chunk in method2_filtered_doc.noun_chunks]
+
+# Filter out pronouns from the remained_nouns list
+method2_filtered_remained_nouns = [noun for noun in method2_remained_nouns if noun.lower() not in pronouns_lower]
+
+
+"""
+METHOD 3: Langdetect word by word
+"""
+words_token = word_tokenize(corpus)
+
+#remove pronouns
+words = [noun for noun in words_token if noun.lower() not in pronouns_lower]
+
+
+language_detected = []
+for word in words:
+    #benchmark is with a language probablity over 0.5
+    try:
+        w_score = detect_langs(word)
+        for s in w_score:
+            if s.lang not in language_detected and s.prob > 0.8:
+                language_detected.append(s.lang)
+    except:
+        #discard punctuations or numbers
+        # print("This throws an error: " + word)
+        continue 
+
+
+"""
+METHOD 4: Lingua the entire corpus
+"""
+languages = [Language.ENGLISH, Language.PORTUGUESE, Language.SPANISH]
+detector = LanguageDetectorBuilder.from_languages(*languages).build()
+corpus_confidence_values = detector.compute_language_confidence_values(corpus)
+# for confidence in corpus_confidence_values:
+#     print(f"{confidence.language.name}: {confidence.value:.2f}")
+
+"""
+METHOD 5: Lingua word by word
+"""
+en_lingua = []
+pt_lingua = []
+
+for word in words:
+    w = detector.compute_language_confidence_values(word)
+    for s in w:
+        if s.value > 0.5 and s.language.name == "ENGLISH":
+            en_lingua.append(word)
+        if s.value > 0.5 and s.language.name == "PORTUGUESE":
+            pt_lingua.append(word)
+            
+print("Method 1: Langdetect each sentence in the corpus and use 2 NER models (en & pt/es)")
+print(f'Amount of NER output: {len(method1_NER_output)}.')
+print(f'Amount of remained nouns: {len(method1_filtered_remained_nouns)}.\n')
+
+print("Method 2: No langdetect and use 1 NER models (en) for the entire corpus")
+print(f'Amount of NER output: {len(method2_output)}.')
+print(f'Amount of remained nouns: {len(method2_filtered_remained_nouns)}.\n') 
+
+print("Method 3: Langdetect word by word (unreliable and time-consuming)")
+print(f'Amount of total words: {len(words)}.')
+print(f'Amount of language detected with probabilty over 0.8: {len(language_detected)}.\nIncluding {language_detected}\n')
+
+print("Method 4: Lingua detect the entire corpus")
+for confidence in corpus_confidence_values:
+    print(f"{confidence.language.name}: {confidence.value:.2f}")
+print('\n')
+
+print("Method 4: Lingua detect word by word")
+# print(f'English words: {en_lingua}.\n')
+print(f'Portuguese words: {pt_lingua}.\n')
+
+
+# for entity in method2_output:
+#     print(entity)
+
+f.close()
 
 # Lula = ["Luiz Inácio Lula da Silva", "Luiz Inacio Lula da Silva", "da Silva", "President Jair", "leftist Luiz Inacio", "Luiz Inácio"]
 # Bolsonaro = ["Jair Bolsonaro", "Bolsonaro", "Lula"]
-
-print("Method 1: Langdetect each sentence in the corpus and use 2 NER models (en & es)")
-print(f'Amount of NER output: {len(NER_output)}.')
-print(f'Amount of remained nouns: {len(filtered_remained_nouns)}.\n') 
-
-print("Method 2: No langdetect and use 1 NER models (en) for the entire corpus")
-print(f'Amount of NER output: {len(test1_output)}.')
-print(f'Amount of remained nouns: {len(filtered1)}.\n') 
-
-for entity in test1_output:
-    print(entity)

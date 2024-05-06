@@ -9,8 +9,11 @@ Keyword used:
 II. Library required for the NER file: 
 1. Natural Language Toolkit
 2. langdetect
-2. spaCy, including the "en_core_web_sm" model. (for more information: https://spacy.io/models; https://github.com/explosion/spacy-models)
+3. spaCy, including the "en_core_web_sm" model. (for more information: https://spacy.io/models; https://github.com/explosion/spacy-models)
+4. Lingua, (for more information: https://github.com/pemistahl/lingua-py.git)
+
 To install all of them, run each of the code in the terminal (without the "$"):
+$ pip install lingua-language-detector
 $ pip install spacy
 $ pip install langdetect
 $ pip install nltk
