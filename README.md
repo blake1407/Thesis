@@ -21,6 +21,7 @@ $ python -m spacy download pt_core_news_sm
 For testing:
 $ pip install lingua-language-detector
 $ pip install fasttext-langdetect
+$ pip install polypgot (troubleshoot for mac: https://tobywf.com/2017/05/installing-pyicu-on-macos/)
 
 Look into this: https://developers.google.com/mediapipe/solutions/text/language_detector/python I couldnt get it to work
 
