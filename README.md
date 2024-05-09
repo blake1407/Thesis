@@ -21,7 +21,10 @@ $ python -m spacy download pt_core_news_sm
 For testing:
 $ pip install lingua-language-detector
 $ pip install fasttext-langdetect
+Polyglot shenanigans: see this article for common errors: https://medium.com/@tlachacml/a-guide-for-using-polyglot-on-windows-8cbd8f97c7b0
 $ pip install polypgot (troubleshoot for mac: https://tobywf.com/2017/05/installing-pyicu-on-macos/)
+- I had a lot of trouble using poly got, some other required library for this module after endless hours debugging:
+pip install polyglot numpy pyicu pycld2 morfessor
 
 Look into this: https://developers.google.com/mediapipe/solutions/text/language_detector/python I couldnt get it to work
 
@@ -32,8 +35,8 @@ Download the model zip file from https://github.com/explosion/spacy-models/relea
 Then use: (".." is whatever folders the file is in)
 $ pip install /Users/you/../en_core_web_sm-3.0.0.tar.gz
 2. Or, uncomment the following lines (will automatically update the package everytime the program is run): 
-# spacy.cli.download("pt_core_news_sm")
-# spacy.cli.download("es_core_news_sm")
+spacy.cli.download("pt_core_news_sm")
+spacy.cli.download("es_core_news_sm")
 
 III. NER Label 101:
 PERSON:      People, including fictional.
