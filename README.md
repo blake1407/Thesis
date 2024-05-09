@@ -21,10 +21,8 @@ $ python -m spacy download pt_core_news_sm
 For testing:
 $ pip install lingua-language-detector
 $ pip install fasttext-langdetect
-Polyglot shenanigans: see this article for common errors: https://medium.com/@tlachacml/a-guide-for-using-polyglot-on-windows-8cbd8f97c7b0
-$ pip install polypgot (troubleshoot for mac: https://tobywf.com/2017/05/installing-pyicu-on-macos/)
-- I had a lot of trouble using poly got, some other required library for this module after endless hours debugging:
-pip install polyglot numpy pyicu pycld2 morfessor
+
+$ pip install flair
 
 Look into this: https://developers.google.com/mediapipe/solutions/text/language_detector/python I couldnt get it to work
 
@@ -58,4 +56,14 @@ QUANTITY:    Measurements, as of weight or distance.
 ORDINAL:     “first”, “second”, etc.
 CARDINAL:    Numerals that do not fall under another type.
 
+NER Label for BERT:
+O	Outside of a named entity
+B-MISC	Beginning of a miscellaneous entity right after another miscellaneous entity
+I-MISC	Miscellaneous entity
+B-PER	Beginning of a person’s name right after another person’s name
+I-PER	Person’s name
+B-ORG	Beginning of an organization right after another organization
+I-ORG	organization
+B-LOC	Beginning of a location right after another location
+I-LOC	Location
 
