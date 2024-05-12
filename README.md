@@ -5,16 +5,20 @@ I. Data Collection:
 In order to access archived content from Reddit, use this website: https://search.pullpush.io and input appropriate keywords (subreddit name, before and after timestamp).
 Keyword used: 
 1. (Brazil AND election*) OR (Brazil) OR (election*)
+2. For poster: https://search.pullpush.io/?kind=submission&score=>1000&since=1604379600&q=(America%20AND%20election*)%20OR%20(America*)%20OR%20%20OR%20(election*)%20%20OR%20((U*S*)%20AND%20election*)&size=100
+
 
 II. Library required for the NER file: 
 1. Natural Language Toolkit
 2. langdetect
 3. spaCy, including the "en_core_web_sm" model. (for more information: https://spacy.io/models; https://github.com/explosion/spacy-models)
 4. Lingua, (for more information: https://github.com/pemistahl/lingua-py.git)
+5. Alt-profanity-check
 To install all of them, run each of the code in the terminal (without the "$"):
 $ pip install spacy
 $ pip install langdetect
 $ pip install nltk
+$ pip install alt-profanity-check
 $ python -m spacy download en_core_web_sm
 $ python -m spacy download pt_core_news_sm
 
@@ -25,7 +29,6 @@ $ pip install fasttext-langdetect
 $ pip install flair
 
 Look into this: https://developers.google.com/mediapipe/solutions/text/language_detector/python I couldnt get it to work
-
 
 Troubleshooting:
 1. When installing for en_core_web_sm: "No module named spacy". 

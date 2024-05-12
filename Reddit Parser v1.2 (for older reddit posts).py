@@ -24,11 +24,9 @@ take_input = input("Please enter the url of the Reddit thread:")
 url = take_input.strip() + ".json"
 
 """For testing
-# links = ['https://www.reddit.com/r/worldnews/comments/10anyyz/brazil_police_find_draft_decree_intended_to/ ', 'https://www.reddit.com/r/politics/comments/108e1yb/steve_bannon_and_maga_allies_promoted_fake_stolen/ ', 'https://www.reddit.com/r/EnoughMuskSpam/comments/107bes8/so_now_every_election_in_every_country_where/ ', 'https://www.reddit.com/r/worldnews/comments/zhcbik/it_hurts_my_soul_brazils_bolsonaro_ends/ ', 'https://www.reddit.com/r/worldnews/comments/zgx4o2/lula_ticket_sues_bolsonaro_and_sons_for_abuses/ ', 'https://www.reddit.com/r/UpliftingNews/comments/z3q10l/brazil_court_rejects_bolsonaros_election/ ', 'https://www.reddit.com/r/news/comments/z367ui/brazil_judge_fines_bolsonaro_allies_millions/ ', 'https://www.reddit.com/r/worldnews/comments/z35ika/brazils_electoral_court_rejects_bolsonaro/ ', 'https://www.reddit.com/r/anime_titties/comments/z35cpe/brazils_electoral_court_rejects_bolsonaro/ ', 'https://www.reddit.com/r/news/comments/z35byl/brazils_electoral_court_rejects_bolsonaro/ ', 'https://www.reddit.com/r/news/comments/z2itdj/bolsonaro_contests_brazil_election_loss_wants/ ', 'https://www.reddit.com/r/worldnews/comments/z23rem/brazils_bolsonaro_files_complaint_to_challenge/ ', 'https://www.reddit.com/r/MapPorn/comments/ytbkjy/what_if_brazil_had_an_electoral_college_like_the/ ', 'https://www.reddit.com/r/ActualPublicFreakouts/comments/ytarjk/forced_to_apologize_for_supporting_bolsonaro_in/ ', 'https://www.reddit.com/r/worldnews/comments/yr0d48/brazil_military_finds_no_evidence_of_election/ ', 'https://www.reddit.com/r/worldnews/comments/ympzxm/brazil_indonesia_and_drc_in_talks_to_form_opec_of/ ', 'https://www.reddit.com/r/tooktoomuch/comments/yl9amy/cocaine_or_just_not_very_happy_with_the_result_of/ ', 'https://www.reddit.com/r/worldnews/comments/yk8y7y/its_over_jair_bolsonaro_reportedly_accepts_defeat/ ', 'https://www.reddit.com/r/news/comments/yk51ik/its_over_jair_bolsonaro_reportedly_accepts_defeat/ ', 'https://www.reddit.com/r/worldnews/comments/yjlqup/brazil_election_bolsonaro_thanks_supporters/ ', 'https://www.reddit.com/r/news/comments/yjcjqz/brazils_bolsonaro_to_accept_election_loss_in/ ', 'https://www.reddit.com/r/worldnews/comments/yjcg07/brazils_bolsonaro_to_speak_today_wont_contest/ ', 'https://www.reddit.com/r/worldnews/comments/yj9f5m/bolsonaro_supporters_block_brazil_roads_for_a_2nd/ ', 'https://www.reddit.com/r/worldnews/comments/yj8ybt/brazil_judge_orders_police_to_clear_roadblocks_by/ ', 'https://www.reddit.com/r/soccer/comments/yj0mnf/juan_arango_i_get_sick_when_i_see_rightwing/ ', 'https://www.reddit.com/r/worldnews/comments/yirown/trucker_blockades_in_brazil_increase_in_wake_of/ ', 'https://www.reddit.com/r/walkaway/comments/yioy3k/was_the_election_stolen_in_brazil/ ', 'https://www.reddit.com/r/environment/comments/yioc7h/lula_cheered_for_new_climate_policies_after/ ', 'https://www.reddit.com/r/CrazyFuckingVideos/comments/yio1hr/elections_in_brazil/ ', 'https://www.reddit.com/r/worldnews/comments/yilfn0/brazils_bolsonaro_maintains_silence_after_lulas/ ', 'https://www.reddit.com/r/worldnews/comments/yiesf1/brazils_bolsonaro_yet_to_concede_after_lulas/ ', 'https://www.reddit.com/r/privacy/comments/yi3tbc/meta_and_tiktok_busted_for_actively_pushing_stop/ ', 'https://www.reddit.com/r/worldnews/comments/yi26ml/stop_the_steal_leader_ali_alexander_calls_for_a/ ', 'https://www.reddit.com/r/anime_titties/comments/yi17vw/biden_congratulates_lula_for_winning_free_fair/ ', 'https://www.reddit.com/r/politics/comments/yhxr0d/biden_congratulates_lula_on_brazil_election_win/ ', 'https://www.reddit.com/r/worldnews/comments/yhxmpt/brazil_election_bolsonaro_defeated_as_lula_makes/ ']
-
+links = []
 # url = links[36].strip() + ".json"
-# print(url)
-# url = "https://www.reddit.com/r/AmItheAsshole/comments/wyjbjs/aita_for_not_taking_down_my_video_that_was_a_gift/.json"
+url = "https://www.reddit.com/r/politics/comments/jnduqk/aoc_says_republicans_are_publicly_complicit_in/.json"
 # url = "https://www.reddit.com/r/ForTheKing/comments/bup98d/lore_store_unlocks_verified/.json"
 """
 
@@ -43,16 +41,6 @@ data_json = str(json.loads(response.read()))
   
 # print the json response 
 # print(data_json) 
-
-"""
-
-This is parsing ONLY the OG post section, not the comment section.
-The reason is that the buildin HTMLParser does not parse the correct 
-code section of the OG's post, only the replies. 
-
-"""
-unescaped = html.unescape(data_json)
-
 #stole from Richa's code, remove emojis from text
 def deEmojify(text):
     emoj = re.compile("["
@@ -75,6 +63,14 @@ def deEmojify(text):
         u"\u3030"
                       "]+", re.UNICODE)
     return re.sub(emoj, '', text)
+"""
+
+This is parsing ONLY the OG post section, not the comment section.
+The reason is that the buildin HTMLParser does not parse the correct 
+code section of the OG's post, only the replies. 
+
+"""
+unescaped = html.unescape(data_json)
 
 def remove_extras(x: str):
     '''
@@ -87,6 +83,10 @@ def remove_extras(x: str):
         str: corrected string.
     '''
     #remove html tidbits 
+    #remove emojis
+    x = deEmojify(x)
+    x = x.replace("xad", "")
+    x = x.replace("u200b", "")
     x = x.replace("'", "")
     x = x.replace("}}]", "")
     x = x.replace("}}", "")
@@ -111,8 +111,6 @@ def remove_extras(x: str):
     x = x.replace(". . ", ". ")
     x = x.replace(".  . ", ". ")
     x = x.replace("^#1", ",").replace("^#2", ",").replace("^#3", ",").replace("^#4", ",").replace("^#5", ",")
-    #remove emojis
-    x = deEmojify(x)
     #remove user handles
     x = re.sub('@[^\s]+','',x)
     #regex to remove URLs
@@ -225,8 +223,11 @@ def OG_filtering_values (codes: list) -> parsed_values:
             url = "https:" + str(wanted_value[-1].strip())
             if url[-1] == "'":
                 url = url[:-1]
+
+        elif wanted_value[0] == " 'title'":
+            title = str(wanted_value[1].replace("'", "").strip())
         
-    og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, 0, u, d, '"'  + url + " " + new_op_body)
+    og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, 0, u, d, '"'+ title + ". " + url + " " + new_op_body)
     return og
 
 og_post_without_table = OG_filtering_values(split)
@@ -243,7 +244,7 @@ class MyHTMLParser(HTMLParser):
                 # print("Data     :" + data)
 
 parser = MyHTMLParser()
-parsed = parser.feed(unescaped)   
+parsed = parser.feed(unescaped)
 
 def get_comments_body (body: str) -> str:
     split_head = body.split(" 'body': ")
@@ -312,7 +313,9 @@ def filtering_values(code_bodies: list) -> list:
                 # print(wanted_value)
 
                 if wanted_value[0] == " author":
-                    a = wanted_value[1].strip()
+                    name = wanted_value[1].strip()
+                    if name != 'AutoModerator':
+                        a = name
                     a_count += 1
 
                 elif wanted_value[0] == " authorfullname":
