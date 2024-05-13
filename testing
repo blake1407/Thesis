@@ -1,0 +1,4 @@
+from profanity_check import predict, predict_prob
+
+x = predict_prob(['Death to all Jews'])
+print(x)
