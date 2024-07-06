@@ -14,6 +14,7 @@ II. Library required for the NER file:
 3. spaCy, including the "en_core_web_sm" model. (for more information: https://spacy.io/models; https://github.com/explosion/spacy-models)
 4. Lingua, (for more information: https://github.com/pemistahl/lingua-py.git)
 5. Alt-profanity-check
+6. Selenium
 To install all of them, run each of the code in the terminal (without the "$"):
 $ pip install spacy
 $ pip install langdetect
@@ -21,6 +22,7 @@ $ pip install nltk
 $ pip install alt-profanity-check
 $ python -m spacy download en_core_web_sm
 $ python -m spacy download pt_core_news_sm
+$ pip install selenium
 
 For testing:
 $ pip install lingua-language-detector
