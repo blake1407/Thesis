@@ -15,6 +15,7 @@ from ast import literal_eval
 import csv
 import os
 from datetime import datetime
+import time
 
 csv_filename = "tifu_06-30-23_12-31-23_Extracted Links.csv"
 links = []
@@ -374,6 +375,8 @@ for link in links:
         sorted_into_class = filtering_values(code_body)
         fill_in_bodies(sorted_into_class)
 
+        """
+        REMOVING THIS SOON
         #filter for only comments with a score of >=1000!!
         def filter_for_1000_score (old_list: list) -> list:
             new_list = []
@@ -384,7 +387,7 @@ for link in links:
             return new_list
 
         above_1000_list = filter_for_1000_score(sorted_into_class)
-
+        """
 
         def prep_for_rows (values: list) -> list:
             '''
@@ -418,7 +421,7 @@ for link in links:
 
         columns = ["Subreddit Name", "Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Depth", "Score", "Upvote Ratio", "Body"]
 
-        rows = prep_for_rows(above_1000_list)
+        rows = prep_for_rows(sorted_into_class)
 
         def create_table(c: list, r:list):
             columns = c
@@ -448,7 +451,7 @@ for link in links:
                         highest_depth_likes = int(item.score)
             return highest
             
-        highest_depth = find_highest_depth(above_1000_list)
+        highest_depth = find_highest_depth(sorted_into_class)
 
         def update_log(log_file):
             # Get current date and time
@@ -476,7 +479,10 @@ for link in links:
             log_file = f"{subredditName}_{start}_{end}_LOG.csv"
             update_log(log_file)
 
+        time.sleep(5)
+
         f.close()
 
     except Exception as e:
         print(f"An error occurred: {e}")
+        time.sleep(5)
