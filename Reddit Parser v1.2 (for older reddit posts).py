@@ -17,6 +17,9 @@ import os
 from datetime import datetime
 import time
 
+import sys, os
+
+
 csv_filename = "tifu_06-30-23_12-31-23_Extracted Links.csv"
 links = []
 
@@ -167,6 +170,8 @@ for link in links:
             score: str
             upvote_ratio: float
             body: str
+            children: int
+            downvote: int
 
         f = open('unwanted_values.txt', 'r')
         unwanted_value = f.read()
@@ -184,15 +189,9 @@ for link in links:
             body = body[:-1]
         split = splitted[-1].split(",")
 
-
-        new_op_body = ""
-        if body.startswith('"'):
-            body = body[1:]
-        new_op_body += body
-        if not body.endswith('"'):
-            new_op_body += '"'
-        if body.endswith('""'):
-            new_op_body = new_op_body[:-2]
+        #SKIP IF POST IS DELETED
+        if "deleted" in body or "removed" in body:
+            continue
 
         op_date_posted = ""
         op_likes = 0
@@ -206,6 +205,7 @@ for link in links:
             p_i = ""
             a_f = ""
             n = ""
+            url = ""
             for code in codes:
                 wanted_value = code.split(":")
                 if wanted_value[0] == " 'author'":
@@ -234,18 +234,23 @@ for link in links:
                 elif wanted_value[0] == " 'upvote_ratio'":
                     d = str(wanted_value[1].strip())
 
-                elif wanted_value[0] == " 'url'":
-                    url = "https:" + str(wanted_value[-1].strip())
-                    if url[-1] == "'":
-                        url = url[:-1]
+                # elif wanted_value[0] == " 'url'":
+                #     if "deleted" not in wanted_value[-1] or "removed" not in wanted_value[-1]:
+                #         url = "https:" + str(wanted_value[-1].strip())
+                #         if url[-1] == "'":
+                #             url = url[:-1]
 
                 elif wanted_value[0] == " 'title'":
-                    title = str(wanted_value[1].replace("'", "").strip())
+                    if "deleted by user" in wanted_value[1]:
+                        continue
+                    else:
+                        title = str(wanted_value[1].replace("'", "").strip())
                 
-            og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, 0, u, d, '"'+ title + ". " + url + " " + new_op_body)
+            og = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, 0, u, d, '"'+ title.strip('"') + ". " + body.strip('"'), 0, 0)
             return og
 
         og_post_without_table = OG_filtering_values(split)
+
         code_body = []
 
         class MyHTMLParser(HTMLParser):
@@ -354,7 +359,7 @@ for link in links:
                         elif wanted_value[0] == " score":
                             u = str(wanted_value[1].strip())
 
-                one_person = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, depth, u, 0, "")
+                one_person = parsed_values(subreddit_name, a, a_f, n, p_i, converted_time, depth, u, 0, "", 0, 0)
                 everyone.append([one_person])
             return everyone
 
@@ -366,29 +371,31 @@ for link in links:
                 all_comments.append(get_comments_body(code).replace('\n\n', ""))
             for people, comments in zip(filtered[1:-1], all_comments[1:-1]):
                 for person in people:
-                    if not person.body.startswith('"') and not comments.startswith('"'): 
-                        person.body += '"'
-                    person.body += comments
-                    if not person.body.endswith('"'):
-                        person.body += '"'
+                    person.body.strip('"')
+                    c = comments.strip('"')
+                    
+                    person.body += '"'
+                    person.body += c
+                    person.body += '"'
 
-        sorted_into_class = filtering_values(code_body)
         fill_in_bodies(sorted_into_class)
 
-        """
-        REMOVING THIS SOON
-        #filter for only comments with a score of >=1000!!
-        def filter_for_1000_score (old_list: list) -> list:
-            new_list = []
-            for items in old_list:
-                for item in items:
-                    if bool(item.score) and int(item.score) >= 1000:
-                        new_list.append(items)
-            return new_list
+        #COUNT CHILDREN OF THE SAME PARENT ID
+        # Create a dictionary to count occurrences of each parent_id
+        parent_id_count = {}
 
-        above_1000_list = filter_for_1000_score(sorted_into_class)
-        """
+        for lists in sorted_into_class:
+            for person in lists:
+                if person.parent_id in parent_id_count:
+                    parent_id_count[person.parent_id] += 1
+                else:
+                    parent_id_count[person.parent_id] = 1
 
+        # Print the count of each parent_id
+        # for parent_id, count in parent_id_count.items():
+        #     print(f'Parent ID: {parent_id}, Count: {count}')
+
+        
         def prep_for_rows (values: list) -> list:
             '''
             This functions converts the parsed_value list of each commentor (sorted_into_class) 
@@ -401,10 +408,16 @@ for link in links:
                 list: list of ordered parsed_values for each person to be converted into csv.
                         example: [[r/ name, author, author_fullname, name,...], [r/ name, author, author_fullname, name,...]]
             '''
+            count = 0 
             everyone = []
             for value in values:
                 one_person = []
                 for v in value:
+                    # Check if the body contains "removed", "deleted", or is blank
+                    if "removed" in v.body or "deleted" in v.body or not v.body.strip('"'):
+                        continue  # Skip this entry
+                    replies = 0 
+
                     one_person.append(v.subreddit)
                     one_person.append(v.author)
                     one_person.append(v.author_fullname)
@@ -414,45 +427,40 @@ for link in links:
                     one_person.append(v.depth)
                     one_person.append(v.score)
                     one_person.append(v.upvote_ratio)
+
+                    if count == 0:
+                        one_person.append(len(sorted_into_class))
+
+                    else: 
+                        for parent_id, count in parent_id_count.items():
+                            if v.name == parent_id:
+                                replies = count
+
+                        one_person.append(replies)
                     one_person.append(v.body)
+
+                    count +=1
+
                 everyone.append(one_person)
             return everyone
 
 
-        columns = ["Subreddit Name", "Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Depth", "Score", "Upvote Ratio", "Body"]
+        columns = ["Subreddit Name", "Author", "Author Fullname", "Name", "Parent ID", "Created Time", "Depth", "Score", "Upvote Ratio", "Number of Replies", "Body"]
 
         rows = prep_for_rows(sorted_into_class)
 
-        def create_table(c: list, r:list):
-            columns = c
-            rows = r
-            filename = title + "'s post.csv"
-            with open(filename, 'w', encoding="UTF-8") as file:
-                for column in columns:
-                    file.write(str(column)+', ')
-                file.write('\n')
-                for row in rows:
-                    for x in row:
-                        file.write(str(x)+', ')
-                    file.write('\n')
+        def create_table(title: str, columns: list, rows: list):
+            filename = f"{title}'s post.csv"
+            with open(filename, 'w', newline='', encoding="UTF-8") as file:
+                writer = csv.writer(file)
+                writer.writerow(columns)
+                writer.writerows(rows)
+            print(f"Post '{title}' has been parsed!")
 
-        create_table(columns, rows)
-        print("Post " + title + " has been parsed!")
+        create_table(title, columns, rows)
 
-        highest_depth_likes = 0
-        #find for highest depth
-        def find_highest_depth (above1000: list) -> int:
-            global highest_depth_likes
-            highest = 0
-            for items in above1000:
-                for item in items:
-                    if int(item.depth) > highest:
-                        highest = int(item.depth)
-                        highest_depth_likes = int(item.score)
-            return highest
-            
-        highest_depth = find_highest_depth(sorted_into_class)
 
+        #LOG FiLE 
         def update_log(log_file):
             # Get current date and time
             now = datetime.now()
@@ -460,6 +468,8 @@ for link in links:
 
             # Check if log file exists
             file_exists = os.path.isfile(log_file)
+            
+            header = ["Scrape Time", "Subreddit Name", "Post Title", "Poster Account", "Poster ID", "Date Posted", "OP no of Likes", "Total Comments", "Post Link"]
 
             # Open log file in append mode
             with open(log_file, 'a', newline='') as file:
@@ -467,11 +477,10 @@ for link in links:
 
                 # Write header if log file is newly created
                 if not file_exists:
-                    writer.writerow(["Scrape Time", "Subreddit Name", "Post Title", "Post Link", "Poster Account", "Poster ID", "Date Posted", "OP no of Likes", "Total Comments", "No of Comments >1000", "Highest Depth", "Highest Depth no of Likes"])
+                    writer.writerow(header)
 
                 # Write current date and time along with an event description
-                # writer.writerow([current_time, subreddit_name, title, take_input + " ", op_name, op_id, op_date_posted, op_likes, len(sorted_into_class), len(above_1000_list), highest_depth, highest_depth_likes])
-                writer.writerow([current_time, subreddit_name, title, url + " ", op_name, op_id, op_date_posted, op_likes, len(sorted_into_class), len(above_1000_list), highest_depth, highest_depth_likes])
+                writer.writerow([current_time, subreddit_name, title, op_name, op_id, op_date_posted, op_likes, len(sorted_into_class), url + " "])
 
             print("Log file updated successfully.")
 
@@ -479,10 +488,14 @@ for link in links:
             log_file = f"{subredditName}_{start}_{end}_LOG.csv"
             update_log(log_file)
 
-        time.sleep(5)
+        time.sleep(10)
 
         f.close()
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        time.sleep(5)
+
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(exc_type, fname, exc_tb.tb_lineno)
+        time.sleep(10)
