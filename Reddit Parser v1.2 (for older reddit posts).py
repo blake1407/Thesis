@@ -20,7 +20,7 @@ import time
 import sys, os
 
 
-csv_filename = "tifu_06-30-23_12-31-23_Extracted Links.csv"
+csv_filename = "SCIENCE_12-01-23_12-31-23_Extracted Links.csv"
 links = []
 
 subredditName = csv_filename.split("_")[0].upper()
@@ -49,9 +49,13 @@ for link in links:
         """
 
         title = url.split("/")[-2]
-        
+        time.sleep(5)
         # store the response of URL 
         response = urlopen(url) 
+
+        #HANDLING TIME-OUT ERROR
+        if response.getcode() == 429:
+            time.sleep(int(response.headers["Retry-After"]))
         
         # storing the JSON response  
         # from url in data 
@@ -189,8 +193,9 @@ for link in links:
             body = body[:-1]
         split = splitted[-1].split(",")
 
-        #SKIP IF POST IS DELETED
-        if "deleted" in body or "removed" in body:
+        #SKIP IF POST IS DELETED, REMOVED, OR HAS NO BODY
+        if "deleted" in body or "removed" in body or not body:
+            print(f"Post with no body was skipped: {url}")
             continue
 
         op_date_posted = ""
@@ -208,9 +213,14 @@ for link in links:
             url = ""
             for code in codes:
                 wanted_value = code.split(":")
+                print(wanted_value)
                 if wanted_value[0] == " 'author'":
                     a = wanted_value[1].replace("'", "").strip()
                     op_name = a
+
+                elif wanted_value[0] == " 'removed_by_category'":
+                    if not wanted_value[1]:
+                        continue
 
                 elif wanted_value[0] == " 'author_fullname'":
                     a_f = wanted_value[1].replace("'", "").strip()
