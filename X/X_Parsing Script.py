@@ -11,15 +11,11 @@ def extract_usernames(text):
     usernames = re.findall(pattern, text)
     return usernames
 
-with open(r'symposium.json', encoding='utf-8') as f:
+with open(r'X\symposium.json', encoding='utf-8') as f:
     data = json.load(f)
 
-for x in data:
-    print(x)
-
-
 # Prepare CSV filename
-csv_filename = 'symposium.csv'
+csv_filename = 'X\Parsed_tweets.csv'
 usernames = list(data.keys())
 # print(len(usernames))
 
@@ -32,30 +28,55 @@ for name in usernames:
         for y in x:
             if y[1:] not in list_of_usernames:
                 list_of_usernames.append(y[1:])
-# print(list_of_usernames)
+print(f'List of usernames: {list_of_usernames} \n')
+
+keywords = ['(asians OR “asian OR people" OR "asian OR american” OR “asian OR americans”)', 
+            '(arab OR arabs OR “middle OR eastern” OR “arab OR americans”)']
 
 # Prepare CSV file and write headers
 with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
     writer = csv.writer(csv_file)
     writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
 
-    for name in list_of_usernames:
+    for key in keywords:
         try: 
-            for tweet_html in data: 
+             # Initialize tweet_info with default values
+            for tweet_html in data[key]: 
+                all_username = []
+                all_time = []
+                all_likes = []
+                all_comments = []
+                all_retweets = []
+                
                 soup = BeautifulSoup(tweet_html, 'html.parser')
+
+                # Find all usernames
+                usernames = soup.find_all('a', attrs = {'aria-hidden': 'true'})
+                
+                for username in usernames:
+                    href_value = username.get('href', None)
+                    if href_value and href_value not in all_username:
+                        all_username.append(href_value[1:])
+                    else:
+                        print('No name found')
+                print(f'{key}: {all_username} \n')
+
                 # Extract all tweet texts
                 tweets = soup.find_all(attrs={"data-testid": "tweetText"})
                 tweet_texts = [tweet.get_text(strip=True) for tweet in tweets]
-                # 35
-                t = tweet_texts[0].strip() if tweet_texts else ''
+                print(f'{key}: {tweet_texts} \n')
+                # print(len(tweet_texts))
+                # 15, 14
 
                 # Select the time value
-                time_element = soup.find('time')
+                time_element = soup.find_all('time')
                 if time_element:
-                    #35
+                    # print(f'{key}: {len(time_element)}')
+
                     datetime_value = time_element['datetime']
                     dt = datetime.fromisoformat(datetime_value.replace("Z", "+00:00")) 
                     readable_time = dt.strftime("%B %d, %Y %I:%M %p")
+                    all_time.append(readable_time)
                 else:
                     readable_time = ''
 
@@ -89,9 +110,10 @@ with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
                         break
 
                 # Write to CSV
-                writer.writerow([name, readable_time, t, likes, retweets, replies, views])
+                for t in tweet_texts:
+                    writer.writerow([name, readable_time, t.strip(), likes, retweets, replies, views])
         except Exception as e:
-            print(f"Error processing tweet for user: {name}")
+            print(f"Error processing tweet for keyword: {name}")
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print(exc_type, fname, exc_tb.tb_lineno)
