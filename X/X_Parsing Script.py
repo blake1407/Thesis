@@ -3,7 +3,7 @@ import csv
 import json
 from datetime import datetime
 import re
-
+import sys, os
 
 
 def extract_usernames(text):
@@ -11,19 +11,15 @@ def extract_usernames(text):
     usernames = re.findall(pattern, text)
     return usernames
 
-# #Brazil file
-# with open(r'Richa\Brazil_tweets.json', encoding='utf-8') as f:
-#     data = json.load(f)
-# # Prepare CSV filename
-# csv_filename = 'Brazil_parsed_data.csv'
-
-#US file
-with open(r'Richa\US_tweets.json', encoding='utf-8') as f:
+with open(r'symposium.json', encoding='utf-8') as f:
     data = json.load(f)
+
+for x in data:
+    print(x)
+
+
 # Prepare CSV filename
-csv_filename = 'US_parsed_data.csv'
-
-
+csv_filename = 'symposium.csv'
 usernames = list(data.keys())
 # print(len(usernames))
 
@@ -31,13 +27,12 @@ list_of_usernames = []
 for name in usernames:
     for tweet_html in data[name]: 
         soup = BeautifulSoup(tweet_html, 'html.parser')
-        print(soup.prettify())
-
+        # print(soup.prettify())
         x = extract_usernames(soup.get_text())
         for y in x:
             if y[1:] not in list_of_usernames:
                 list_of_usernames.append(y[1:])
-
+# print(list_of_usernames)
 
 # Prepare CSV file and write headers
 with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
@@ -46,9 +41,8 @@ with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
 
     for name in list_of_usernames:
         try: 
-            for tweet_html in data[name]: 
+            for tweet_html in data: 
                 soup = BeautifulSoup(tweet_html, 'html.parser')
-
                 # Extract all tweet texts
                 tweets = soup.find_all(attrs={"data-testid": "tweetText"})
                 tweet_texts = [tweet.get_text(strip=True) for tweet in tweets]
@@ -73,7 +67,7 @@ with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
 
                 for div_element in div_elements:
                     aria_label_value = div_element['aria-label']
-                    print(aria_label_value)
+                    # print(aria_label_value)
                     if 'likes' in aria_label_value or ('bookmarks' in aria_label_value or 'views' in aria_label_value):
                         # print(aria_label_value)
                         values = aria_label_value.split(', ')
@@ -97,6 +91,9 @@ with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
                 # Write to CSV
                 writer.writerow([name, readable_time, t, likes, retweets, replies, views])
         except Exception as e:
-            # print(f"Error processing tweet for user: {name}")
+            print(f"Error processing tweet for user: {name}")
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print(exc_type, fname, exc_tb.tb_lineno)
             continue
 

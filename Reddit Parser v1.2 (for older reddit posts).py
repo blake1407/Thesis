@@ -16,11 +16,11 @@ import csv
 import os
 from datetime import datetime
 import time
-
+#for errors
 import sys, os
 
 
-csv_filename = "SCIENCE_12-01-23_12-31-23_Extracted Links.csv"
+csv_filename = "chinese_01-01-24_Extracted Links.csv"
 links = []
 
 subredditName = csv_filename.split("_")[0].upper()
@@ -213,7 +213,7 @@ for link in links:
             url = ""
             for code in codes:
                 wanted_value = code.split(":")
-                print(wanted_value)
+                # print(wanted_value)
                 if wanted_value[0] == " 'author'":
                     a = wanted_value[1].replace("'", "").strip()
                     op_name = a
@@ -461,7 +461,10 @@ for link in links:
 
         def create_table(title: str, columns: list, rows: list):
             filename = f"{title}'s post.csv"
-            with open(filename, 'w', newline='', encoding="UTF-8") as file:
+            filePath = "Raw Data\Chinese Stereotypes" 
+            path = os.path.join(filePath, filename)
+
+            with open(path, 'w', newline='', encoding="UTF-8") as file:
                 writer = csv.writer(file)
                 writer.writerow(columns)
                 writer.writerows(rows)

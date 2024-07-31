@@ -1,0 +1,9 @@
+Subreddit Name,Author,Author Fullname,Name,Parent ID,Created Time,Depth,Score,Upvote Ratio,Number of Replies,Body
+bengalilanguage,Any_Dog1589,t2_8lc5m4u3,t3_1du91eh,,07/03/24 04:05,0,3,1.0,8,"""Input Method without using Shift. Fixed keyboard layouts use shift key a lot for Bangla (which is not needed when typing in English). This repeated usage of shift key drops typing speed.   On the other hand, phonetic input methods reduce the flexibility of what you can type.   Chinese people can type faster than English. Which is incredible for a complex writing system.   I took inspiration from the Chinese technique Pinyin and tried to develop an input method that does not need shift key at all, besides it can also (optionally) learn from your typing and suggest relevant words with the aid of typing-booster. Check the github repo: "
+bengalilanguage,AnyDog1589,t28lc5m4u3,t1lbf0m8y,t1lbeyxyy,07/03/24 05:09,1,2,0,0,"""Yes, I added a demo video in the repo. Visit the link in my post."""
+bengalilanguage,RestlessFlaneur,t21336f28b35,t1lbeyxyy,t31du91eh,07/03/24 04:49,1,1,0,1,"""Is it open source? Linux distros can benefit from such an input method. Have you made any demonstration videos on how it works?"""
+bengalilanguage,AnyDog1589,t28lc5m4u3,t1lbgkj9e,t1lbgjym5,,0,1,0,0,"""By multiple words I also meant phrases. You can check the video demo and youll understand how it works."""
+bengalilanguage,doomchickenchicken,t2l9o1t,t1lbgjym5,t1lbgjgzj,07/03/24 12:00,3,1,0,1,"""The multiple words at once is useful, since bangla has a lot of homophones and homonyms especially in Latin alphabet"""
+bengalilanguage,AnyDog1589,t28lc5m4u3,t1lbgjgzj,t1lbgj278,07/03/24 11:55,2,1,0,1,"""good point. But avro can not suggest phrases. And also it can not learn from your typing."""
+bengalilanguage,doomchickenchicken,t2l9o1t,t1lbgj278,t31du91eh,07/03/24 11:52,1,1,0,1,"""I already use Avro and it works perfectly 90% of the time"""
+
