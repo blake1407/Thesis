@@ -31,57 +31,57 @@ def deEmojify(text):
     return re.sub(emoj, '', text)
 
 def remove_extras(x: str):
-            '''
-            This function removes the extras character leftover from
-            the html parser.
-            
-            Args:
-                x (str): any string.
-            Returns:
-                str: corrected string.
-            '''
-            #remove html tidbits 
-            #remove emojis
-            x = deEmojify(x)
-            x = emoji.replace_emoji(x, replace='')
-            x = x.replace("xad", "")
-            x = x.replace("u200b", "")
-            x = x.replace("'", "")
-            x = x.replace("}}]", "")
-            x = x.replace("}}", "")
-            x = x.replace("\\t", " ")
-            x = x.replace(" | ", ". ")
-            x = x.replace('\'', "'")
-            x = x.replace(" \'", "'")
-            x = x.replace(":\'", "")
-            x = x.replace("> ", "")
-            x = x.replace("[", "")
-            x = x.replace("]", "")
-            x = x.replace("**", "")
-            x = x.replace("*", "")
-            x = x.replace("---", " ")
-            x = x.replace("\\n", ". ")
-            x = x.replace('\\', "")
-            x = x.replace('~~', "")
-            x = x.replace("_", "")
-            x = x.replace("....", " ")
-            x = x.replace("...", ". ")
-            x = x.replace("..", ". ")
-            x = x.replace(". . ", ". ")
-            x = x.replace(".  . ", ". ")
-            x = x.replace("^#1", ",").replace("^#2", ",").replace("^#3", ",").replace("^#4", ",").replace("^#5", ",")
-            x = x.replace('\n', ' ')
-            #remove user handles
-            x = re.sub('@[^\s]+','',x)
-            #regex to remove URLs
-            x = re.sub(r'(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', '', x)
-            #remove unk tokens
-            # x = re.sub('unk', '', x)
-            x = x.replace("()", "")
-            #removing anything that's not alphabets
-            # x = re.sub('[^A-Z a-z]+', '', x)
-            x = x.strip()
-            return x
+    '''
+    This function removes the extras character leftover from
+    the html parser.
+    
+    Args:
+        x (str): any string.
+    Returns:
+        str: corrected string.
+    '''
+    #remove html tidbits 
+    #remove emojis
+    x = deEmojify(x)
+    x = emoji.replace_emoji(x, replace='')
+    x = x.replace("xad", "")
+    x = x.replace("u200b", "")
+    x = x.replace("'", "")
+    x = x.replace("}}]", "")
+    x = x.replace("}}", "")
+    x = x.replace("\\t", " ")
+    x = x.replace(" | ", ". ")
+    x = x.replace('\'', "'")
+    x = x.replace(" \'", "'")
+    x = x.replace(":\'", "")
+    x = x.replace("> ", "")
+    x = x.replace("[", "")
+    x = x.replace("]", "")
+    x = x.replace("**", "")
+    x = x.replace("*", "")
+    x = x.replace("---", " ")
+    x = x.replace("\\n", ". ")
+    x = x.replace('\\', "")
+    x = x.replace('~~', "")
+    x = x.replace("_", "")
+    x = x.replace("....", " ")
+    x = x.replace("...", ". ")
+    x = x.replace("..", ". ")
+    x = x.replace(". . ", ". ")
+    x = x.replace(".  . ", ". ")
+    x = x.replace("^#1", ",").replace("^#2", ",").replace("^#3", ",").replace("^#4", ",").replace("^#5", ",")
+    x = x.replace('\n', ' ')
+    #remove user handles
+    x = re.sub('@[^\s]+','',x)
+    #regex to remove URLs
+    x = re.sub(r'(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', '', x)
+    #remove unk tokens
+    # x = re.sub('unk', '', x)
+    x = x.replace("()", "")
+    #removing anything that's not alphabets
+    # x = re.sub('[^A-Z a-z]+', '', x)
+    x = x.strip()
+    return x
 
 def extract_usernames(text):
     pattern = r'@\w+'
@@ -140,7 +140,8 @@ with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
 
                 # Extract all tweet texts
                 tweets = soup.find_all(attrs={"data-testid": "tweetText"})
-                tweet_texts = [remove_extras(tweet.get_text(strip=True)) for tweet in tweets]
+                # tweet_texts = [remove_extras(tweet.get_text(strip=True)) for tweet in tweets]
+                tweet_texts = [remove_extras(tweet.get_text(strip=False)) for tweet in tweets]
                 print(f'{key}: {tweet_texts} \n')
                 # print(len(tweet_texts))
                 # 15, 14
