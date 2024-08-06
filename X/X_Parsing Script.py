@@ -93,7 +93,7 @@ keywords = ['(arab OR arabs OR "middle eastern" OR "arab americans" OR ("middle 
 for keyword in keywords: 
     try: 
         # with open(f'X\{keyword} - symposium.json', encoding='utf-8') as f:
-        with open(f'X\symposium.json', encoding='utf-8') as f:
+        with open(f'X\Before - symposium.json', encoding='utf-8') as f:
             data = json.load(f)
 
         # Prepare CSV filename
@@ -113,7 +113,7 @@ for keyword in keywords:
 
 
         # Prepare CSV file and write headers
-        csv_filename = f'X\Parsed_tweets.csv'
+        csv_filename = f'X\Before - Parsed_tweets.csv'
         with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
