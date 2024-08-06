@@ -107,7 +107,10 @@ for name in usernames:
 print(f'List of usernames: {list_of_usernames} \n')
 
 keywords = ['(asians OR “asian OR people" OR "asian OR american” OR “asian OR americans”)', 
-            '(arab OR arabs OR “middle OR eastern” OR “arab OR americans”)']
+            '(arab OR arabs OR “middle OR eastern” OR “arab OR americans”)',
+            'asian people are',
+            'middle eastern people are',
+            'jewish people are']
 
 # Prepare CSV file and write headers
 csv_filename = f'X\Parsed_tweets.csv'

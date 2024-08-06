@@ -20,7 +20,7 @@ import time
 import sys, os
 
 
-csv_filename = "chinese_01-01-24_Extracted Links.csv"
+csv_filename = "middle_01-01-24_Extracted Links.csv"
 links = []
 
 subredditName = csv_filename.split("_")[0].upper()
@@ -461,7 +461,7 @@ for link in links:
 
         def create_table(title: str, columns: list, rows: list):
             filename = f"{title}'s post.csv"
-            filePath = "Raw Data\Chinese Stereotypes" 
+            filePath = "Raw Data\Middle Eastern" 
             path = os.path.join(filePath, filename)
 
             with open(path, 'w', newline='', encoding="UTF-8") as file:
