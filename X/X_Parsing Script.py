@@ -88,120 +88,124 @@ def extract_usernames(text):
     usernames = re.findall(pattern, text)
     return usernames
 
-with open(r'X\symposium.json', encoding='utf-8') as f:
-    data = json.load(f)
+keywords = ['(arab OR arabs OR "middle eastern" OR "arab americans" OR ("middle eastern" OR "jewish") AND ("people" OR "person"))']
 
-# Prepare CSV filename
-usernames = list(data.keys())
-# print(len(usernames))
+for keyword in keywords: 
+    try: 
+        # with open(f'X\{keyword} - symposium.json', encoding='utf-8') as f:
+        with open(f'X\symposium.json', encoding='utf-8') as f:
+            data = json.load(f)
 
-list_of_usernames = []
-for name in usernames:
-    for tweet_html in data[name]: 
-        soup = BeautifulSoup(tweet_html, 'html.parser')
-        # print(soup.prettify())
-        x = extract_usernames(soup.get_text())
-        for y in x:
-            if y[1:] not in list_of_usernames:
-                list_of_usernames.append(y[1:])
-print(f'List of usernames: {list_of_usernames} \n')
+        # Prepare CSV filename
+        usernames = list(data.keys())
+        # print(len(usernames))
 
-keywords = ['(asians OR “asian OR people" OR "asian OR american” OR “asian OR americans”)', 
-            '(arab OR arabs OR “middle OR eastern” OR “arab OR americans”)',
-            'asian people are',
-            'middle eastern people are',
-            'jewish people are']
+        # list_of_usernames = []
+        # for name in usernames:
+        #     for tweet_html in data[name]: 
+        #         soup = BeautifulSoup(tweet_html, 'html.parser')
+        #         # print(soup.prettify())
+        #         x = extract_usernames(soup.get_text())
+        #         for y in x:
+        #             if y[1:] not in list_of_usernames:
+        #                 list_of_usernames.append(y[1:])
+        # print(f'List of usernames: {list_of_usernames} \n')
 
-# Prepare CSV file and write headers
-csv_filename = f'X\Parsed_tweets.csv'
-with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
-    for key in keywords:
-        writer = csv.writer(csv_file)
-        writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
-        try: 
-            # Initialize tweet_info with default values
-            for tweet_html in data[key]: 
-                all_username = []
-                all_time = []
-                all_likes = []
-                all_comments = []
-                all_retweets = []
-                all_views = []
-                
-                soup = BeautifulSoup(tweet_html, 'html.parser')
-                # print(soup.prettify())
 
-                # Find all usernames
-                usernames = soup.find_all('a', attrs = {'aria-hidden': 'true'})
-                for username in usernames:
-                    href_value = username.get('href', None)
-                    if href_value and href_value not in all_username:
-                        all_username.append(href_value[1:])
-                    else:
-                        print('No name found')
-                print(f'{key}: {all_username} \n')
+        # Prepare CSV file and write headers
+        csv_filename = f'X\Parsed_tweets.csv'
+        with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
+            for key in keywords:
+                # writer = csv.writer(csv_file)
+                # writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
+                try: 
+                    # Initialize tweet_info with default values
+                    for tweet_html in data[key]: 
+                        all_username = []
+                        all_time = []
+                        all_likes = []
+                        all_comments = []
+                        all_retweets = []
+                        all_views = []
+                        
+                        soup = BeautifulSoup(tweet_html, 'html.parser')
+                        # print(soup.prettify())
 
-                # Extract all tweet texts
-                tweets = soup.find_all(attrs={"data-testid": "tweetText"})
-                # tweet_texts = [remove_extras(tweet.get_text(strip=True)) for tweet in tweets]
-                tweet_texts = [remove_extras(tweet.get_text(strip=False)) for tweet in tweets]
-                print(f'{key}: {tweet_texts} \n')
-                # print(len(tweet_texts))
-                # 15, 14
-
-                # Select the time value
-                time_element = soup.find_all('time')
-                for t in time_element:
-                    # print(f'{key}: {len(time_element)}')
-                    datetime_value = t['datetime']
-                    dt = datetime.fromisoformat(datetime_value.replace("Z", "+00:00")) 
-                    readable_time = dt.strftime("%B %d, %Y %I:%M %p")
-                    all_time.append(readable_time)
-                # else:
-                #     readable_time = ''
-
-                # Find all <div> elements with aria-label for likes, comments, and retweets
-                div_elements = soup.find_all('div', attrs={"aria-label": True})
-                # print(len(div_elements))
-
-                for div_element in div_elements:
-                    aria_label_value = div_element['aria-label']
-                    print(aria_label_value)
-                    if 'likes' in aria_label_value or ('bookmarks' in aria_label_value or 'views' in aria_label_value):
-                        # print(aria_label_value)
-                        values = aria_label_value.split(', ')
-
-                        try:
-                            replies = values[0].split(' ')[0]
-                            all_comments.append(replies)
-                        except IndexError:
-                            replies = 'N/A'
-                        try:
-                            retweets = values[1].split(' ')[0]
-                            all_retweets.append(retweets)
-                        except IndexError:
-                            retweets = 'N/A'
-                        try:
-                            likes = values[2].split(' ')[0]
-                            all_likes.append(likes)
-                        except IndexError:
-                            likes = 'N/A'
-
-                        for v in values:
-                            if 'views' in v:
-                                views = v.split(' ')[0]
-                                all_views.append(views)
+                        # Find all usernames
+                        usernames = soup.find_all('a', attrs = {'aria-hidden': 'true'})
+                        for username in usernames:
+                            href_value = username.get('href', None)
+                            if href_value and href_value not in all_username:
+                                all_username.append(href_value[1:])
                             else:
-                                all_views.append('N/A')
+                                print('No name found')
+                        print(f'Usernames: {all_username} \n')
 
-                # Write to CSV
-                for user, time, tweet, likes, retweets, comments, views in zip(all_username, all_time, tweet_texts, all_likes, all_retweets, all_comments, all_views):
-                    writer.writerow([user, time, tweet, likes, retweets, comments, views])
+                        # Extract all tweet texts
+                        tweets = soup.find_all(attrs={"data-testid": "tweetText"})
+                        # tweet_texts = [remove_extras(tweet.get_text(strip=True)) for tweet in tweets]
+                        tweet_texts = [remove_extras(tweet.get_text(strip=False)) for tweet in tweets]
+                        print(f'All tweets: {tweet_texts} \n')
+                        # print(len(tweet_texts))
+                        # 15, 14
 
-        except Exception as e:
-            print(f"Error processing tweet for keyword: {name}")
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            print(exc_type, fname, exc_tb.tb_lineno)
-            continue
+                        # Select the time value
+                        time_element = soup.find_all('time')
+                        for t in time_element:
+                            # print(f'{key}: {len(time_element)}')
+                            datetime_value = t['datetime']
+                            dt = datetime.fromisoformat(datetime_value.replace("Z", "+00:00")) 
+                            readable_time = dt.strftime("%B %d, %Y %I:%M %p")
+                            all_time.append(readable_time)
+                        # else:
+                        #     readable_time = ''
+
+                        # Find all <div> elements with aria-label for likes, comments, and retweets
+                        div_elements = soup.find_all('div', attrs={"aria-label": True})
+                        # print(len(div_elements))
+
+                        for div_element in div_elements:
+                            aria_label_value = div_element['aria-label']
+                            # print(aria_label_value)
+                            if 'likes' in aria_label_value or ('bookmarks' in aria_label_value or 'views' in aria_label_value):
+                                # print(aria_label_value)
+                                values = aria_label_value.split(', ')
+
+                                try:
+                                    replies = values[0].split(' ')[0]
+                                    all_comments.append(replies)
+                                except IndexError:
+                                    replies = 'N/A'
+                                try:
+                                    retweets = values[1].split(' ')[0]
+                                    all_retweets.append(retweets)
+                                except IndexError:
+                                    retweets = 'N/A'
+                                try:
+                                    likes = values[2].split(' ')[0]
+                                    all_likes.append(likes)
+                                except IndexError:
+                                    likes = 'N/A'
+
+                                for v in values:
+                                    if 'views' in v:
+                                        views = v.split(' ')[0]
+                                        all_views.append(views)
+                                    else:
+                                        all_views.append('N/A')
+
+                        # Write to CSV
+                        for user, time, tweet, likes, retweets, comments, views in zip(all_username, all_time, tweet_texts, all_likes, all_retweets, all_comments, all_views):
+                            writer.writerow([user, time, tweet, likes, retweets, comments, views])
+
+                except Exception as e:
+                    print(f"Error processing tweet for keyword: {e}")
+                    exc_type, exc_obj, exc_tb = sys.exc_info()
+                    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                    print(exc_type, fname, exc_tb.tb_lineno)
+                    continue
+    except:
+        continue
 

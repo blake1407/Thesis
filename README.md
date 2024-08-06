@@ -1,4 +1,7 @@
 # Reddit-JSON-Parser
+
+#08/06/24 - Havent finished installing the hate speech code word detection module, got into some errors I dont want to solve rn 
+
 This repository is an attempt at parsing reddit posts' data.
 
 I. Data Collection:
