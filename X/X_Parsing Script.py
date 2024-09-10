@@ -6,8 +6,7 @@ import re
 import sys, os
 import emoji
 import time
-
-
+import os
 #stole from Richa's code, remove emojis from text
 def deEmojify(text):
     emoj = re.compile("["
@@ -73,7 +72,7 @@ def remove_extras(x: str):
     x = x.replace("^#1", ",").replace("^#2", ",").replace("^#3", ",").replace("^#4", ",").replace("^#5", ",")
     x = x.replace('\n', ' ')
     #remove user handles
-    x = re.sub('@[^\s]+','',x)
+    # x = re.sub('@[^\s]+','',x)
     #regex to remove URLs
     x = re.sub(r'(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', '', x)
     #remove unk tokens
@@ -89,13 +88,18 @@ def extract_usernames(text):
     usernames = re.findall(pattern, text)
     return usernames
 
+#replace as needed
+folder_name = "X"
+followers_path = os.path.join(folder_name, "followers_US.txt")
+
 followers_US = []
-with open(r'''X\followers_US.txt''', 'r') as f:
+# with open(r'''X\followers_US.txt''', 'r') as f: # PC
+with open(followers_path,'r') as f:
     for line in f:
         if "@" in line:
             follower = line.strip()[1:]
             if follower not in followers_US:
-                # print(follower)
+                print(follower)
                 followers_US.append(follower)
 f.close()
 
@@ -105,8 +109,8 @@ count = 1
 
 for name in followers_US: 
     try: 
-        # with open(f'X\{keyword} - symposium.json', encoding='utf-8') as f:
-        with open(r'''X\US_tweets.json''', encoding='utf-8') as f:
+        raw_html = os.path.join(folder_name, "US_tweets.json")
+        with open(raw_html, encoding='utf-8') as f:
             data = json.load(f)
         
         # Prepare CSV filename
@@ -114,8 +118,9 @@ for name in followers_US:
         # print(len(usernames)
 
         # Prepare CSV file and write headers
-        csv_filename = r'''X\US_parsed.csv'''
-        with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
+        # csv_filename = r'''X\US_parsed.csv''' #PC
+        output_path = os.path.join(folder_name, "parsed_US.txt")
+        with open(output_path, 'w', newline='', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
 
@@ -211,7 +216,11 @@ for name in followers_US:
                 count+=1
                 if count > 50:
                     break
-    except:
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(exc_type, fname, exc_tb.tb_lineno)
         continue
 
 
