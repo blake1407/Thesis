@@ -5,6 +5,7 @@ from datetime import datetime
 import re
 import sys, os
 import emoji
+import time
 
 
 #stole from Richa's code, remove emojis from text
@@ -88,40 +89,38 @@ def extract_usernames(text):
     usernames = re.findall(pattern, text)
     return usernames
 
-keywords = ['(arab OR arabs OR "middle eastern" OR "arab americans" OR ("middle eastern" OR "jewish") AND ("people" OR "person"))']
+followers_US = []
+with open(r'''X\followers_US.txt''', 'r') as f:
+    for line in f:
+        if "@" in line:
+            follower = line.strip()[1:]
+            if follower not in followers_US:
+                # print(follower)
+                followers_US.append(follower)
+f.close()
 
-for keyword in keywords: 
+print(f"Number of followers to process: {len(followers_US)}")
+
+count = 1
+
+for name in followers_US: 
     try: 
         # with open(f'X\{keyword} - symposium.json', encoding='utf-8') as f:
         with open(r'''X\US_tweets.json''', encoding='utf-8') as f:
             data = json.load(f)
-
+        
         # Prepare CSV filename
         usernames = list(data.keys())
-        # print(len(usernames))
-
-        # list_of_usernames = []
-        # for name in usernames:
-        #     for tweet_html in data[name]: 
-        #         soup = BeautifulSoup(tweet_html, 'html.parser')
-        #         # print(soup.prettify())
-        #         x = extract_usernames(soup.get_text())
-        #         for y in x:
-        #             if y[1:] not in list_of_usernames:
-        #                 list_of_usernames.append(y[1:])
-        # print(f'List of usernames: {list_of_usernames} \n')
-
+        # print(len(usernames)
 
         # Prepare CSV file and write headers
         csv_filename = r'''X\US_parsed.csv'''
         with open(csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
-            for key in keywords:
-                # writer = csv.writer(csv_file)
-                # writer.writerow(['Poster', 'Date', 'Tweet', 'No of Likes', 'No of Retweets', 'No of Replies', 'No of Views'])
-                try: 
-                    # Initialize tweet_info with default values
+
+            try: 
+                for key in data:
                     for tweet_html in data[key]: 
                         all_username = []
                         all_time = []
@@ -141,15 +140,14 @@ for keyword in keywords:
                                 all_username.append(href_value[1:])
                             else:
                                 print('No name found')
-                        print(f'Usernames: {all_username} \n')
+                        # print(f'Usernames: {all_username} \n')
 
                         # Extract all tweet texts
                         tweets = soup.find_all(attrs={"data-testid": "tweetText"})
                         # tweet_texts = [remove_extras(tweet.get_text(strip=True)) for tweet in tweets]
                         tweet_texts = [remove_extras(tweet.get_text(strip=False)) for tweet in tweets]
-                        print(f'All tweets: {tweet_texts} \n')
+                        # print(f'All tweets: {tweet_texts} \n')
                         # print(len(tweet_texts))
-                        # 15, 14
 
                         # Select the time value
                         time_element = soup.find_all('time')
@@ -199,13 +197,31 @@ for keyword in keywords:
                         # Write to CSV
                         for user, time, tweet, likes, retweets, comments, views in zip(all_username, all_time, tweet_texts, all_likes, all_retweets, all_comments, all_views):
                             writer.writerow([user, time, tweet, likes, retweets, comments, views])
+                        
+                        print(f"Processing user: {key}")
 
-                except Exception as e:
-                    print(f"Error processing tweet for keyword: {e}")
-                    exc_type, exc_obj, exc_tb = sys.exc_info()
-                    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                    print(exc_type, fname, exc_tb.tb_lineno)
-                    continue
+            except Exception as e:
+                print(f"Error processing user {name}: {str(e)}")
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+                continue
+            finally:
+                print(f'Current count: {count}')
+                count+=1
+                if count > 50:
+                    break
     except:
         continue
 
+
+        # list_of_usernames = []
+        # for name in usernames:
+        #     for tweet_html in data[name]: 
+        #         soup = BeautifulSoup(tweet_html, 'html.parser')
+        #         # print(soup.prettify())
+        #         x = extract_usernames(soup.get_text())
+        #         for y in x:
+        #             if y[1:] not in list_of_usernames:
+        #                 list_of_usernames.append(y[1:])
+        # print(f'List of usernames: {list_of_usernames} \n')
