@@ -90,6 +90,7 @@ def extract_usernames(text):
 
 #replace as needed
 folder_name = "X"
+parsed_folder = "Parsed Data"
 followers_path = os.path.join(folder_name, "followers_US.txt")
 
 followers_US = []
@@ -109,7 +110,7 @@ count = 1
 
 #Creating file paths
 raw_html = os.path.join(folder_name, "US_tweets.json")
-output_path = os.path.join(folder_name, "parsed_US.csv")
+output_path = os.path.join(parsed_folder, "parsed_US.csv")
 
 try: 
     with open(raw_html, encoding='utf-8') as f:
