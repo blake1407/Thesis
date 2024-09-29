@@ -1,0 +1,9 @@
+total = ['FoxNews', 'aldotcom', 'RevBlackNetwork', 'TheDemocrats', 'msnbc', 'MSNBC', 'JudiciaryGOP', 'NBCNews', 'politico', 'joncoopertweets', 'HomelandDems', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'YATPOfficial', 'justinamash']
+
+['FoxNews', 'aldotcom', 'RevBlackNetwork', 'TheDemocrats', 'msnbc', 'TheAtlantic', 'MSNBC', 'JudiciaryGOP']
+#Accounts ran and are relevant
+['NBCNews', 'politico', 'joncoopertweets', 'HomelandDems', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'YATPOfficial', 'justinamash']
+#Accounts ran and are irrelevant
+
+percent = (len(total)/317)*100
+print(f'Accounts ran: {total}.\nNumber of Accounts: {len(total)}\nProgress: {round(percent,2)}%.')
