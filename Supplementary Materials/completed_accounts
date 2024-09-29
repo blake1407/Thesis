@@ -1,9 +1,13 @@
-total = ['FoxNews', 'aldotcom', 'RevBlackNetwork', 'TheDemocrats', 'msnbc', 'MSNBC', 'JudiciaryGOP', 'NBCNews', 'politico', 'joncoopertweets', 'HomelandDems', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'YATPOfficial', 'justinamash']
+total = ['RevBlackNetwork', 'TheDemocrats', 'msnbc', 'FoxNews', 'JudiciaryGOP', 'MSNBC', 'NBCNews', 'politico', 'joncoopertweets', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'justinamash','beinlibertarian', 'briebriejoy', 'foxnews', 'LPNational', 'HouseJudiciary', 'washingtonpost', 'AP', 'BreitbartNews','aldotcom', 'HomelandDems', 'YATPOfficial','gmail', 'lpnational']
 
-['FoxNews', 'aldotcom', 'RevBlackNetwork', 'TheDemocrats', 'msnbc', 'TheAtlantic', 'MSNBC', 'JudiciaryGOP']
+['RevBlackNetwork', 'TheDemocrats', 'msnbc', 'FoxNews', 'JudiciaryGOP', 'MSNBC', 'NBCNews', 'politico', 'joncoopertweets', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'justinamash','beinlibertarian', 'briebriejoy', 'foxnews', 'LPNational', 'HouseJudiciary', 'washingtonpost', 'AP', 'BreitbartNews']
 #Accounts ran and are relevant
-['NBCNews', 'politico', 'joncoopertweets', 'HomelandDems', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'YATPOfficial', 'justinamash']
+
+['aldotcom', 'HomelandDems', 'YATPOfficial','gmail', 'lpnational']
 #Accounts ran and are irrelevant
+
+['NPR', 'BadFaithPod', 'nbcnews', 'TheAtlantic', 'theintercept']
+#needed for rerun
 
 percent = (len(total)/317)*100
 print(f'Accounts ran: {total}.\nNumber of Accounts: {len(total)}\nProgress: {round(percent,2)}%.')
