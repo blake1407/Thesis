@@ -2,15 +2,10 @@ Name,Affiliation,Followers,Date,Likes,Retweets,Replies,Views
 anthonyzenkus,Democratic Party,88800,"April 21, 2024 10:15 PM",1739,68,190,50019
 anthonyzenkus,Democratic Party,88800,"May 15, 2024 08:41 PM",1505,44,619,31610
 anthonyzenkus,Democratic Party,88800,"January 17, 2024 02:22 AM",1305,43,488,16921
-jimmy_dore,Other,628500,"July 26, 2024 05:56 PM",8554,504,2987,777965
-jimmy_dore,Other,628500,"May 30, 2024 04:31 AM",1062,85,300,31417
+jimmy_dore,Democratic Party,628500,"July 26, 2024 05:56 PM",8554,504,2987,777965
+jimmy_dore,Democratic Party,628500,"May 30, 2024 04:31 AM",1062,85,300,31417
 TomFitton,Republican Party,2700000,"February 10, 2024 10:31 PM",1359,58,433,40542
 TomFitton,Republican Party,2700000,"October 18, 2023 12:45 AM",1139,61,600,96012
-PatTheSocialist,Republican Party,71800,"December 26, 2023 09:36 PM",1642,34,807,26566
-PatTheSocialist,Republican Party,71800,"February 27, 2024 01:47 AM",18155,857,4192,883511
-PatTheSocialist,Republican Party,71800,"August 01, 2024 10:41 PM",1753,21,486,19812
-BillOReilly,Republican Party,3300000,"September 11, 2024 01:59 AM",2653,53,448,116249
-brad_polumbo,Republican Party,65800,"October 09, 2023 12:30 AM",1340,79,118,54720
 BernardKerik,Republican Party,328900,"November 03, 2023 03:56 PM",2489,215,1393,83213
 SabbySabs2,Democratic Party,75700,"August 22, 2024 07:11 AM",1275,100,429,45061
 SabbySabs2,Democratic Party,75700,"July 30, 2024 07:28 PM",2264,87,681,44133
@@ -32,6 +27,53 @@ benshapiro,Republican Party,7000000,"August 15, 2024 01:51 PM",1069,104,236,1575
 benshapiro,Republican Party,7000000,"July 23, 2024 12:29 PM",4636,1597,618,1214405
 benshapiro,Republican Party,7000000,"September 01, 2024 12:20 PM",31297,2118,5374,1271005
 benshapiro,Republican Party,7000000,"August 06, 2024 06:10 PM",2780,273,356,290995
+michaelmalice,Republican Party,,"October 13, 2023 02:48 PM",2066,176,304,150596
+michaelmalice,Republican Party,,"October 13, 2023 01:40 PM",1620,96,119,79717
+michaelmalice,Republican Party,,"May 27, 2024 09:27 PM",2622,78,197,69778
+michaelmalice,Republican Party,,"October 21, 2023 06:08 PM",4589,147,575,123305
+michaelmalice,Republican Party,,"October 12, 2023 04:08 AM",2622,78,197,69778
+michaelmalice,Republican Party,,"October 12, 2023 11:32 PM",1746,68,185,66529
+michaelmalice,Republican Party,,"October 16, 2023 12:15 AM",1204,57,133,40028
+tomilahren,Republican Party,2600000,"April 24, 2024 08:08 PM",7200,424,1340,148824
+tomilahren,Republican Party,2600000,"November 05, 2023 05:09 PM",1221,190,270,60184
+tomilahren,Republican Party,2600000,"April 25, 2024 01:17 AM",1401,133,188,85179
+tomilahren,Republican Party,2600000,"November 01, 2023 10:28 AM",1221,190,270,60184
+tomilahren,Republican Party,2600000,"October 30, 2023 11:08 PM",4290,667,720,266351
+glennbeck,Republican Party,1900000,"November 03, 2023 09:00 PM",1313,79,318,61003
+glennbeck,Republican Party,1900000,"October 19, 2023 12:10 AM",1090,96,318,63473
+glennbeck,Republican Party,1900000,"April 08, 2024 08:25 PM",2789,98,894,136756
+glennbeck,Republican Party,1900000,"October 12, 2023 01:37 AM",4601,264,1438,167918
+glennbeck,Republican Party,1900000,"October 18, 2023 04:35 PM",2186,146,623,69689
+coachbrucepearl,Republican Party,157100,"September 06, 2024 11:53 AM",1288,88,199,59477
+coachbrucepearl,Republican Party,157100,"September 05, 2024 11:01 PM",2047,77,282,212751
+coachbrucepearl,Republican Party,157100,"March 08, 2024 03:51 AM",4736,218,700,331608
+coachbrucepearl,Republican Party,157100,"September 01, 2024 11:58 AM",2047,77,282,212751
+coachbrucepearl,Republican Party,157100,"October 29, 2023 09:41 PM",1525,128,215,151822
+bennyjohnson,Republican Party,3000000,"October 07, 2023 03:57 PM",3423,401,586,526927
+bennyjohnson,Republican Party,3000000,"May 03, 2024 03:12 PM",11982,529,5008,1113898
+bennyjohnson,Republican Party,3000000,"October 26, 2023 05:00 AM",1145,96,234,105511
+bennyjohnson,Republican Party,3000000,"October 30, 2023 06:00 PM",29912,1697,6534,1783957
+bennyjohnson,Republican Party,3000000,"October 28, 2023 06:09 PM",7074,217,1639,167084
+marklevinshow,Republican Party,4400000,"December 03, 2023 12:37 PM",5636,388,856,129759
+marklevinshow,Republican Party,4400000,"May 02, 2024 06:33 PM",4687,196,2920,97146
+marklevinshow,Republican Party,4400000,"October 29, 2023 12:11 PM",5721,409,740,143810
+ksorbs,Republican Party,2200000,"November 04, 2023 08:30 PM",24399,4019,6198,443559
+atensnut,Republican Party,1400000,"October 12, 2023 03:28 AM",5933,1494,1712,105647
+atensnut,Republican Party,1400000,"July 25, 2024 04:53 PM",2245,153,553,45667
+atensnut,Republican Party,1400000,"October 12, 2023 09:57 PM",9309,4462,6251,611169
+scottpresler,Republican Party,2000000,"May 13, 2024 08:12 PM",1829,28,384,24875
+scottpresler,Republican Party,2000000,"May 13, 2024 07:50 PM",8619,172,2144,177804
+scottpresler,Republican Party,2000000,"August 04, 2024 05:50 PM",5190,189,1967,79985
+scottpresler,Republican Party,2000000,"August 06, 2024 01:54 PM",48016,963,14373,717783
+scottpresler,Republican Party,2000000,"May 13, 2024 08:31 PM",1059,23,185,11993
+scottpresler,Republican Party,2000000,"June 19, 2024 03:26 AM",18736,412,3058,168222
+scottpresler,Republican Party,2000000,"April 24, 2024 09:15 PM",5998,67,833,35235
+pnjaban,Republican Party,1000000,"November 23, 2023 11:00 PM",5225,166,572,119628
+pnjaban,Republican Party,1000000,"September 01, 2024 04:04 AM",12436,180,4030,217593
+pnjaban,Republican Party,1000000,"September 01, 2024 03:18 AM",32319,2646,3177,386703
+hodgetwins,Republican Party,3000000,"November 04, 2023 01:00 AM",1510,135,216,149134
+hodgetwins,Republican Party,3000000,"August 23, 2024 03:15 AM",8792,88,816,122231
+hodgetwins,Republican Party,3000000,"April 13, 2024 09:08 PM",28884,761,6284,743177
 ComicDaveSmith,Republican Party,570400,"August 21, 2024 01:02 PM",5891,399,287,980077
 ComicDaveSmith,Republican Party,570400,"August 20, 2024 11:24 PM",3825,216,421,208082
 ComicDaveSmith,Republican Party,570400,"April 14, 2024 11:08 PM",2045,126,130,170718
@@ -39,13 +81,6 @@ ComicDaveSmith,Republican Party,570400,"April 22, 2024 11:52 PM",1780,97,175,910
 TheRickWilson,Democratic Party,1600000,"July 31, 2024 01:21 PM",3334,90,315,77274
 TheRickWilson,Democratic Party,1600000,"September 14, 2024 07:47 PM",1634,47,304,95900
 TheRickWilson,Democratic Party,1600000,"October 31, 2023 11:51 AM",2311,29,218,48497
-KyleKulinski,Democratic Party,462300,"July 24, 2024 07:40 PM",1383,61,410,55192
-KyleKulinski,Democratic Party,462300,"September 04, 2024 12:29 AM",1089,56,157,78484
-KyleKulinski,Democratic Party,462300,"September 03, 2024 04:32 PM",1071,54,199,75130
-KyleKulinski,Democratic Party,462300,"June 27, 2024 12:49 PM",2303,112,176,115756
-KyleKulinski,Democratic Party,462300,"May 08, 2024 04:58 PM",2108,49,395,76887
-KyleKulinski,Democratic Party,462300,"April 23, 2024 10:16 PM",1732,124,275,75193
-funder,Democratic Party,1100000,"January 06, 2024 12:59 PM",10979,5350,4279,403500
 benshapiro,Republican Party,7000000,"November 01, 2023 10:55 AM",11133,7616,2851,6463090
 benshapiro,Republican Party,7000000,"October 31, 2023 08:03 PM",14432,5763,1874,1170719
 benshapiro,Republican Party,7000000,"November 21, 2023 03:06 PM",31283,2113,5362,1271302
@@ -63,12 +98,6 @@ ComicDaveSmith,Republican Party,570400,"April 02, 2024 10:46 PM",7861,530,1755,6
 ComicDaveSmith,Republican Party,570400,"October 13, 2023 07:16 PM",3947,320,294,481992
 ComicDaveSmith,Republican Party,570400,"October 07, 2023 03:29 PM",9217,873,1314,929628
 TheRickWilson,Democratic Party,1600000,"August 07, 2024 05:32 PM",1633,47,304,95932
-KyleKulinski,Democratic Party,462300,"November 16, 2023 04:01 AM",1799,131,560,78208
-KyleKulinski,Democratic Party,462300,"July 09, 2024 11:46 PM",1072,49,274,52965
-funder,Democratic Party,1100000,"January 04, 2024 05:44 PM",1082,84,429,30082
-LeeCamp,Other,226700,"February 23, 2024 10:08 PM",1220,54,922,139645
-JordanChariton,Democratic Party,128400,"April 24, 2024 05:40 PM",1395,2,136,34250
-JordanChariton,Democratic Party,128400,"April 24, 2024 05:38 PM",1690,5,171,37368
 mmpadellan,Democratic Party,1300000,"March 31, 2024 07:04 PM",3900,1216,2146,248027
 mmpadellan,Democratic Party,1300000,"November 17, 2023 01:14 AM",5003,405,1190,123312
 mmpadellan,Democratic Party,1300000,"March 14, 2024 03:55 PM",29181,2880,7332,731008
@@ -92,10 +121,6 @@ itsJeffTiedrich,Democratic Party,1100000,"September 01, 2024 08:08 PM",17257,432
 krystalball,Democratic Party,587700,"November 12, 2023 02:26 PM",1753,182,670,147212
 krystalball,Democratic Party,587700,"June 09, 2024 12:11 PM",10846,7373,3168,1591146
 SteveSchmidtSES,Democratic Party,1500000,"October 24, 2023 06:08 PM",4262,314,1588,228271
-gtconway3d,Republican Party,2300000,"November 11, 2023 07:34 AM",5826,752,2057,1651064
-gtconway3d,Republican Party,2300000,"January 19, 2024 04:40 PM",1908,50,408,255802
-JordanChariton,Democratic Party,128400,"July 18, 2024 12:27 AM",11017,40,3003,544959
-JordanChariton,Democratic Party,128400,"April 24, 2024 05:26 PM",1201,22,316,58869
 mmpadellan,Democratic Party,1300000,"May 06, 2024 04:55 PM",5852,954,612,251080
 mmpadellan,Democratic Party,1300000,"October 09, 2023 04:04 PM",15884,1898,2544,689734
 charliekirk11,Republican Party,3600000,"October 07, 2023 03:56 PM",7159,1643,3176,751683
@@ -114,16 +139,8 @@ krystalball,Democratic Party,587700,"July 26, 2024 11:10 AM",3408,137,591,114093
 krystalball,Democratic Party,587700,"July 26, 2024 04:05 AM",1704,145,520,98755
 krystalball,Democratic Party,587700,"November 01, 2023 07:43 PM",8826,537,2242,713310
 SteveSchmidtSES,Democratic Party,1500000,"October 10, 2023 01:01 PM",13223,810,4037,1048489
-gtconway3d,Republican Party,2300000,"November 02, 2023 01:06 AM",1819,53,520,299509
-gtconway3d,Republican Party,2300000,"October 09, 2023 04:48 PM",2416,78,623,602142
-gtconway3d,Republican Party,2300000,"October 09, 2023 03:38 PM",2528,106,294,389445
-gtconway3d,Republican Party,2300000,"October 10, 2023 07:20 PM",1819,53,520,299509
 briebriejoy,Democratic Party,418700,"November 26, 2023 04:41 AM",5390,299,1214,123264
 briebriejoy,Democratic Party,418700,"November 30, 2023 01:54 AM",8785,1011,1858,579066
-PatTheSocialist,Republican Party,71800,"February 28, 2024 02:42 AM",1958,145,568,47023
-PatTheSocialist,Republican Party,71800,"December 03, 2023 12:10 AM",1289,23,281,14418
-PatTheSocialist,Republican Party,71800,"November 02, 2023 11:37 PM",2442,39,807,67950
-PatTheSocialist,Republican Party,71800,"November 02, 2023 09:50 PM",1973,93,440,54019
 TristanSnell,Democratic Party,571900,"August 28, 2024 06:56 PM",22055,1200,9550,331792
 TomFitton,Republican Party,2700000,"June 09, 2024 09:45 PM",3386,101,1129,62557
 TomFitton,Republican Party,2700000,"October 07, 2023 03:18 PM",3177,248,1023,88112
@@ -152,16 +169,13 @@ RonFilipkowski,Democratic Party,1000000,"October 18, 2023 02:41 PM",5266,155,103
 RonFilipkowski,Democratic Party,1000000,"October 18, 2023 02:19 PM",1402,117,712,96305
 RonFilipkowski,Democratic Party,1000000,"October 12, 2023 05:52 PM",1236,46,226,44511
 RonFilipkowski,Democratic Party,1000000,"September 05, 2024 10:20 PM",5784,704,1435,411687
-KyleKulinski,Democratic Party,462300,"August 08, 2024 02:03 AM",3159,146,555,180631
-funder,Democratic Party,1100000,"April 07, 2024 02:11 PM",4181,5,1968,44641
 mmpadellan,Democratic Party,1300000,"April 04, 2024 09:17 PM",8496,5150,2079,307279
 krystalball,Democratic Party,587700,"June 19, 2024 05:25 PM",1266,135,480,145547
 krystalball,Democratic Party,587700,"January 08, 2024 06:17 PM",2145,128,717,167628
-jimmy_dore,Other,628500,"November 12, 2023 04:11 AM",4281,300,1647,285714
+jimmy_dore,Democratic Party,628500,"November 12, 2023 04:11 AM",4281,300,1647,285714
 TheRickWilson,Democratic Party,1600000,"October 18, 2023 12:57 PM",3046,265,658,167444
 davidsirota,Democratic Party,336700,"October 13, 2023 05:12 PM",1061,24,567,78633
 TuckerCarlson,Republican Party,14100000,"April 09, 2024 08:46 PM",83854,10882,29830,19330710
-PatTheSocialist,Republican Party,71800,"July 27, 2024 05:42 AM",1945,40,572,29112
 TristanSnell,Democratic Party,571900,"September 11, 2024 02:01 AM",6663,137,3114,78963
 TristanSnell,Democratic Party,571900,"June 27, 2024 11:36 PM",1923,58,650,36648
 natsechobbyist,Democratic Party,477600,"October 10, 2023 11:39 PM",2340,39,540,154415
@@ -173,7 +187,6 @@ benshapiro,Republican Party,7000000,"August 13, 2024 01:36 PM",1966,117,226,2960
 benshapiro,Republican Party,7000000,"August 13, 2024 01:14 PM",1064,102,234,157603
 briebriejoy,Democratic Party,418700,"December 07, 2023 10:10 PM",1886,216,812,129980
 briebriejoy,Democratic Party,418700,"June 17, 2024 04:01 PM",1267,101,482,44884
-JordanChariton,Democratic Party,128400,"August 08, 2024 12:25 AM",1387,2,135,34257
 kylegriffin1,Democratic Party,1400000,"July 27, 2024 02:00 PM",4567,76,1088,181490
 kylegriffin1,Democratic Party,1400000,"August 22, 2024 03:45 PM",3419,53,781,173122
 kylegriffin1,Democratic Party,1400000,"August 23, 2024 03:10 AM",1720,34,331,85329
@@ -191,9 +204,9 @@ donaldjtrumpjr,Republican Party,12400000,"October 07, 2023 04:19 PM",19049,2625,
 donaldjtrumpjr,Republican Party,12400000,"February 03, 2024 04:13 PM",16759,1977,4846,427855
 donaldjtrumpjr,Republican Party,12400000,"November 09, 2023 03:18 PM",36166,1646,13457,1259341
 donaldjtrumpjr,Republican Party,12400000,"November 30, 2023 04:14 PM",1799,260,413,123779
-spiritofho,Other,146800,"November 24, 2023 03:51 PM",1929,96,1432,41645
-spiritofho,Other,146800,"October 29, 2023 05:18 AM",1398,61,963,35049
-spiritofho,Other,146800,"May 08, 2024 02:52 PM",1617,80,811,39041
+spiritofho,Democratic Party,146800,"November 24, 2023 03:51 PM",1929,96,1432,41645
+spiritofho,Democratic Party,146800,"October 29, 2023 05:18 AM",1398,61,963,35049
+spiritofho,Democratic Party,146800,"May 08, 2024 02:52 PM",1617,80,811,39041
 MollyJongFast,Democratic Party,1000000,"September 24, 2024 07:05 PM",1590,52,536,179093
 MollyJongFast,Democratic Party,1000000,"September 14, 2024 12:28 AM",2667,80,339,98644
 MollyJongFast,Democratic Party,1000000,"September 21, 2024 06:44 PM",11387,169,2657,288055
