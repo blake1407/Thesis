@@ -1,0 +1,428 @@
+2024-11-16 23:00:10,596 - INFO - Processing date: 20240607
+2024-11-16 23:00:10,596 - INFO - Fetching page 0 for date 20240607 (Daily requests: 0/500)
+2024-11-16 23:00:11,181 - INFO - Found 10 articles on page 0
+2024-11-16 23:00:11,183 - INFO - Fetching page 1 for date 20240607 (Daily requests: 1/500)
+2024-11-16 23:00:23,034 - INFO - Found 1 articles on page 1
+2024-11-16 23:00:23,036 - INFO - Processing date: 20240608
+2024-11-16 23:00:23,037 - INFO - Fetching page 0 for date 20240608 (Daily requests: 2/500)
+2024-11-16 23:00:35,156 - INFO - Found 10 articles on page 0
+2024-11-16 23:00:35,157 - INFO - Fetching page 1 for date 20240608 (Daily requests: 3/500)
+2024-11-16 23:00:47,103 - INFO - Found 4 articles on page 1
+2024-11-16 23:00:47,114 - INFO - Processing date: 20240609
+2024-11-16 23:00:47,115 - INFO - Fetching page 0 for date 20240609 (Daily requests: 4/500)
+2024-11-16 23:00:59,057 - INFO - Found 9 articles on page 0
+2024-11-16 23:00:59,058 - INFO - Processing date: 20240610
+2024-11-16 23:00:59,059 - INFO - Fetching page 0 for date 20240610 (Daily requests: 5/500)
+2024-11-16 23:01:11,193 - INFO - Found 10 articles on page 0
+2024-11-16 23:01:11,193 - INFO - Fetching page 1 for date 20240610 (Daily requests: 6/500)
+2024-11-16 23:01:23,021 - INFO - Found 1 articles on page 1
+2024-11-16 23:01:23,023 - INFO - Processing date: 20240611
+2024-11-16 23:01:23,024 - INFO - Fetching page 0 for date 20240611 (Daily requests: 7/500)
+2024-11-16 23:01:35,171 - INFO - Found 10 articles on page 0
+2024-11-16 23:01:35,171 - INFO - Fetching page 1 for date 20240611 (Daily requests: 8/500)
+2024-11-16 23:01:47,070 - INFO - Found 3 articles on page 1
+2024-11-16 23:01:47,071 - INFO - Processing date: 20240612
+2024-11-16 23:01:47,072 - INFO - Fetching page 0 for date 20240612 (Daily requests: 9/500)
+2024-11-16 23:01:59,095 - INFO - Found 10 articles on page 0
+2024-11-16 23:01:59,096 - INFO - Fetching page 1 for date 20240612 (Daily requests: 10/500)
+2024-11-16 23:02:11,122 - INFO - Found 1 articles on page 1
+2024-11-16 23:02:11,124 - INFO - Processing date: 20240613
+2024-11-16 23:02:11,124 - INFO - Fetching page 0 for date 20240613 (Daily requests: 11/500)
+2024-11-16 23:02:23,080 - INFO - Found 6 articles on page 0
+2024-11-16 23:02:23,082 - INFO - Processing date: 20240614
+2024-11-16 23:02:23,083 - INFO - Fetching page 0 for date 20240614 (Daily requests: 12/500)
+2024-11-16 23:02:35,140 - INFO - Found 8 articles on page 0
+2024-11-16 23:02:35,142 - INFO - Processing date: 20240615
+2024-11-16 23:02:35,143 - INFO - Fetching page 0 for date 20240615 (Daily requests: 13/500)
+2024-11-16 23:02:47,188 - INFO - Found 5 articles on page 0
+2024-11-16 23:02:47,190 - INFO - Processing date: 20240616
+2024-11-16 23:02:47,191 - INFO - Fetching page 0 for date 20240616 (Daily requests: 14/500)
+2024-11-16 23:02:59,135 - INFO - Found 4 articles on page 0
+2024-11-16 23:02:59,136 - INFO - Processing date: 20240617
+2024-11-16 23:02:59,136 - INFO - Fetching page 0 for date 20240617 (Daily requests: 15/500)
+2024-11-16 23:03:11,250 - INFO - Found 10 articles on page 0
+2024-11-16 23:03:11,251 - INFO - Fetching page 1 for date 20240617 (Daily requests: 16/500)
+2024-11-16 23:03:23,064 - INFO - Found 1 articles on page 1
+2024-11-16 23:03:23,065 - INFO - Processing date: 20240618
+2024-11-16 23:03:23,065 - INFO - Fetching page 0 for date 20240618 (Daily requests: 17/500)
+2024-11-16 23:03:35,160 - INFO - Found 9 articles on page 0
+2024-11-16 23:03:35,161 - INFO - Processing date: 20240619
+2024-11-16 23:03:35,161 - INFO - Fetching page 0 for date 20240619 (Daily requests: 18/500)
+2024-11-16 23:03:47,156 - INFO - Found 4 articles on page 0
+2024-11-16 23:03:47,157 - INFO - Processing date: 20240620
+2024-11-16 23:03:47,159 - INFO - Fetching page 0 for date 20240620 (Daily requests: 19/500)
+2024-11-16 23:03:59,177 - INFO - Found 8 articles on page 0
+2024-11-16 23:03:59,178 - INFO - Processing date: 20240621
+2024-11-16 23:03:59,180 - INFO - Fetching page 0 for date 20240621 (Daily requests: 20/500)
+2024-11-16 23:04:11,220 - INFO - Found 2 articles on page 0
+2024-11-16 23:04:11,221 - INFO - Processing date: 20240622
+2024-11-16 23:04:11,222 - INFO - Fetching page 0 for date 20240622 (Daily requests: 21/500)
+2024-11-16 23:04:23,247 - INFO - Found 9 articles on page 0
+2024-11-16 23:04:23,248 - INFO - Processing date: 20240623
+2024-11-16 23:04:23,249 - INFO - Fetching page 0 for date 20240623 (Daily requests: 22/500)
+2024-11-16 23:04:35,229 - INFO - Found 2 articles on page 0
+2024-11-16 23:04:35,230 - INFO - Processing date: 20240624
+2024-11-16 23:04:35,231 - INFO - Fetching page 0 for date 20240624 (Daily requests: 23/500)
+2024-11-16 23:04:47,263 - INFO - Found 9 articles on page 0
+2024-11-16 23:04:47,264 - INFO - Processing date: 20240625
+2024-11-16 23:04:47,265 - INFO - Fetching page 0 for date 20240625 (Daily requests: 24/500)
+2024-11-16 23:04:59,265 - INFO - Found 7 articles on page 0
+2024-11-16 23:04:59,266 - INFO - Processing date: 20240626
+2024-11-16 23:04:59,267 - INFO - Fetching page 0 for date 20240626 (Daily requests: 25/500)
+2024-11-16 23:05:11,269 - INFO - Found 10 articles on page 0
+2024-11-16 23:05:11,270 - INFO - Fetching page 1 for date 20240626 (Daily requests: 26/500)
+2024-11-16 23:05:23,223 - INFO - Processing date: 20240627
+2024-11-16 23:05:23,224 - INFO - Fetching page 0 for date 20240627 (Daily requests: 27/500)
+2024-11-16 23:05:35,344 - INFO - Found 8 articles on page 0
+2024-11-16 23:05:35,345 - INFO - Processing date: 20240628
+2024-11-16 23:05:35,346 - INFO - Fetching page 0 for date 20240628 (Daily requests: 28/500)
+2024-11-16 23:05:47,287 - INFO - Found 2 articles on page 0
+2024-11-16 23:05:47,288 - INFO - Processing date: 20240629
+2024-11-16 23:05:47,288 - INFO - Fetching page 0 for date 20240629 (Daily requests: 29/500)
+2024-11-16 23:05:59,309 - INFO - Found 2 articles on page 0
+2024-11-16 23:05:59,311 - INFO - Processing date: 20240630
+2024-11-16 23:05:59,312 - INFO - Fetching page 0 for date 20240630 (Daily requests: 30/500)
+2024-11-16 23:06:11,245 - INFO - Found 3 articles on page 0
+2024-11-16 23:06:11,252 - INFO - Saved 178 articles for 2024-06 to Raw Data/NYT_Articles_2024_06.csv
+2024-11-16 23:06:11,254 - INFO - Processing date: 20240701
+2024-11-16 23:06:11,255 - INFO - Fetching page 0 for date 20240701 (Daily requests: 31/500)
+2024-11-16 23:06:23,304 - INFO - Found 5 articles on page 0
+2024-11-16 23:06:23,305 - INFO - Processing date: 20240702
+2024-11-16 23:06:23,305 - INFO - Fetching page 0 for date 20240702 (Daily requests: 32/500)
+2024-11-16 23:06:35,339 - INFO - Found 7 articles on page 0
+2024-11-16 23:06:35,340 - INFO - Processing date: 20240703
+2024-11-16 23:06:35,341 - INFO - Fetching page 0 for date 20240703 (Daily requests: 33/500)
+2024-11-16 23:06:47,327 - INFO - Found 3 articles on page 0
+2024-11-16 23:06:47,328 - INFO - Processing date: 20240704
+2024-11-16 23:06:47,328 - INFO - Fetching page 0 for date 20240704 (Daily requests: 34/500)
+2024-11-16 23:06:59,315 - INFO - Found 2 articles on page 0
+2024-11-16 23:06:59,316 - INFO - Processing date: 20240705
+2024-11-16 23:06:59,317 - INFO - Fetching page 0 for date 20240705 (Daily requests: 35/500)
+2024-11-16 23:07:11,297 - INFO - Found 2 articles on page 0
+2024-11-16 23:07:11,298 - INFO - Processing date: 20240706
+2024-11-16 23:07:11,299 - INFO - Fetching page 0 for date 20240706 (Daily requests: 36/500)
+2024-11-16 23:07:23,345 - INFO - Found 3 articles on page 0
+2024-11-16 23:07:23,346 - INFO - Processing date: 20240707
+2024-11-16 23:07:23,347 - INFO - Fetching page 0 for date 20240707 (Daily requests: 37/500)
+2024-11-16 23:07:35,367 - INFO - Found 3 articles on page 0
+2024-11-16 23:07:35,368 - INFO - Processing date: 20240708
+2024-11-16 23:07:35,369 - INFO - Fetching page 0 for date 20240708 (Daily requests: 38/500)
+2024-11-16 23:07:47,396 - INFO - Found 3 articles on page 0
+2024-11-16 23:07:47,397 - INFO - Processing date: 20240709
+2024-11-16 23:07:47,398 - INFO - Fetching page 0 for date 20240709 (Daily requests: 39/500)
+2024-11-16 23:07:59,409 - INFO - Found 5 articles on page 0
+2024-11-16 23:07:59,410 - INFO - Processing date: 20240710
+2024-11-16 23:07:59,410 - INFO - Fetching page 0 for date 20240710 (Daily requests: 40/500)
+2024-11-16 23:08:11,492 - INFO - Found 3 articles on page 0
+2024-11-16 23:08:11,492 - INFO - Processing date: 20240711
+2024-11-16 23:08:11,493 - INFO - Fetching page 0 for date 20240711 (Daily requests: 41/500)
+2024-11-16 23:08:23,459 - INFO - Found 7 articles on page 0
+2024-11-16 23:08:23,460 - INFO - Processing date: 20240712
+2024-11-16 23:08:23,461 - INFO - Fetching page 0 for date 20240712 (Daily requests: 42/500)
+2024-11-16 23:08:35,464 - INFO - Found 8 articles on page 0
+2024-11-16 23:08:35,465 - INFO - Processing date: 20240713
+2024-11-16 23:08:35,466 - INFO - Fetching page 0 for date 20240713 (Daily requests: 43/500)
+2024-11-16 23:08:47,390 - INFO - Found 5 articles on page 0
+2024-11-16 23:08:47,391 - INFO - Processing date: 20240714
+2024-11-16 23:08:47,392 - INFO - Fetching page 0 for date 20240714 (Daily requests: 44/500)
+2024-11-16 23:08:59,368 - INFO - Found 2 articles on page 0
+2024-11-16 23:08:59,369 - INFO - Processing date: 20240715
+2024-11-16 23:08:59,369 - INFO - Fetching page 0 for date 20240715 (Daily requests: 45/500)
+2024-11-16 23:09:11,482 - INFO - Found 5 articles on page 0
+2024-11-16 23:09:11,483 - INFO - Processing date: 20240716
+2024-11-16 23:09:11,484 - INFO - Fetching page 0 for date 20240716 (Daily requests: 46/500)
+2024-11-16 23:09:23,442 - INFO - Found 6 articles on page 0
+2024-11-16 23:09:23,443 - INFO - Processing date: 20240717
+2024-11-16 23:09:23,444 - INFO - Fetching page 0 for date 20240717 (Daily requests: 47/500)
+2024-11-16 23:09:35,429 - INFO - Found 1 articles on page 0
+2024-11-16 23:09:35,430 - INFO - Processing date: 20240718
+2024-11-16 23:09:35,432 - INFO - Fetching page 0 for date 20240718 (Daily requests: 48/500)
+2024-11-16 23:09:47,530 - INFO - Found 6 articles on page 0
+2024-11-16 23:09:47,531 - INFO - Processing date: 20240719
+2024-11-16 23:09:47,532 - INFO - Fetching page 0 for date 20240719 (Daily requests: 49/500)
+2024-11-16 23:09:59,539 - INFO - Found 4 articles on page 0
+2024-11-16 23:09:59,540 - INFO - Processing date: 20240720
+2024-11-16 23:09:59,541 - INFO - Fetching page 0 for date 20240720 (Daily requests: 50/500)
+2024-11-16 23:10:11,445 - INFO - Found 4 articles on page 0
+2024-11-16 23:10:11,446 - INFO - Processing date: 20240721
+2024-11-16 23:10:11,447 - INFO - Fetching page 0 for date 20240721 (Daily requests: 51/500)
+2024-11-16 23:10:23,534 - INFO - Found 5 articles on page 0
+2024-11-16 23:10:23,535 - INFO - Processing date: 20240722
+2024-11-16 23:10:23,536 - INFO - Fetching page 0 for date 20240722 (Daily requests: 52/500)
+2024-11-16 23:10:35,600 - INFO - Found 5 articles on page 0
+2024-11-16 23:10:35,602 - INFO - Processing date: 20240723
+2024-11-16 23:10:35,603 - INFO - Fetching page 0 for date 20240723 (Daily requests: 53/500)
+2024-11-16 23:10:47,598 - INFO - Found 9 articles on page 0
+2024-11-16 23:10:47,600 - INFO - Processing date: 20240724
+2024-11-16 23:10:47,602 - INFO - Fetching page 0 for date 20240724 (Daily requests: 54/500)
+2024-11-16 23:10:59,616 - INFO - Found 10 articles on page 0
+2024-11-16 23:10:59,616 - INFO - Fetching page 1 for date 20240724 (Daily requests: 55/500)
+2024-11-16 23:11:11,493 - INFO - Processing date: 20240725
+2024-11-16 23:11:11,494 - INFO - Fetching page 0 for date 20240725 (Daily requests: 56/500)
+2024-11-16 23:11:23,706 - INFO - Found 7 articles on page 0
+2024-11-16 23:11:23,708 - INFO - Processing date: 20240726
+2024-11-16 23:11:23,708 - INFO - Fetching page 0 for date 20240726 (Daily requests: 57/500)
+2024-11-16 23:11:35,584 - INFO - Found 5 articles on page 0
+2024-11-16 23:11:35,585 - INFO - Processing date: 20240727
+2024-11-16 23:11:35,585 - INFO - Fetching page 0 for date 20240727 (Daily requests: 58/500)
+2024-11-16 23:11:47,608 - INFO - Found 4 articles on page 0
+2024-11-16 23:11:47,610 - INFO - Processing date: 20240728
+2024-11-16 23:11:47,611 - INFO - Fetching page 0 for date 20240728 (Daily requests: 59/500)
+2024-11-16 23:11:59,558 - INFO - Found 4 articles on page 0
+2024-11-16 23:11:59,559 - INFO - Processing date: 20240729
+2024-11-16 23:11:59,560 - INFO - Fetching page 0 for date 20240729 (Daily requests: 60/500)
+2024-11-16 23:12:11,612 - INFO - Found 5 articles on page 0
+2024-11-16 23:12:11,614 - INFO - Processing date: 20240730
+2024-11-16 23:12:11,614 - INFO - Fetching page 0 for date 20240730 (Daily requests: 61/500)
+2024-11-16 23:12:23,652 - INFO - Found 7 articles on page 0
+2024-11-16 23:12:23,653 - INFO - Processing date: 20240731
+2024-11-16 23:12:23,654 - INFO - Fetching page 0 for date 20240731 (Daily requests: 62/500)
+2024-11-16 23:12:35,684 - INFO - Found 10 articles on page 0
+2024-11-16 23:12:35,685 - INFO - Fetching page 1 for date 20240731 (Daily requests: 63/500)
+2024-11-16 23:12:47,662 - INFO - Found 6 articles on page 1
+2024-11-16 23:12:47,668 - INFO - Saved 161 articles for 2024-07 to Raw Data/NYT_Articles_2024_07.csv
+2024-11-16 23:12:47,670 - INFO - Processing date: 20240801
+2024-11-16 23:12:47,670 - INFO - Fetching page 0 for date 20240801 (Daily requests: 64/500)
+2024-11-16 23:12:59,689 - INFO - Found 10 articles on page 0
+2024-11-16 23:12:59,690 - INFO - Fetching page 1 for date 20240801 (Daily requests: 65/500)
+2024-11-16 23:13:11,614 - INFO - Found 1 articles on page 1
+2024-11-16 23:13:11,615 - INFO - Processing date: 20240802
+2024-11-16 23:13:11,615 - INFO - Fetching page 0 for date 20240802 (Daily requests: 66/500)
+2024-11-16 23:13:23,804 - INFO - Found 8 articles on page 0
+2024-11-16 23:13:23,805 - INFO - Processing date: 20240803
+2024-11-16 23:13:23,805 - INFO - Fetching page 0 for date 20240803 (Daily requests: 67/500)
+2024-11-16 23:13:35,744 - INFO - Found 5 articles on page 0
+2024-11-16 23:13:35,745 - INFO - Processing date: 20240804
+2024-11-16 23:13:35,746 - INFO - Fetching page 0 for date 20240804 (Daily requests: 68/500)
+2024-11-16 23:13:47,640 - INFO - Found 4 articles on page 0
+2024-11-16 23:13:47,641 - INFO - Processing date: 20240805
+2024-11-16 23:13:47,642 - INFO - Fetching page 0 for date 20240805 (Daily requests: 69/500)
+2024-11-16 23:13:59,703 - INFO - Found 8 articles on page 0
+2024-11-16 23:13:59,704 - INFO - Processing date: 20240806
+2024-11-16 23:13:59,705 - INFO - Fetching page 0 for date 20240806 (Daily requests: 70/500)
+2024-11-16 23:14:11,685 - INFO - Found 5 articles on page 0
+2024-11-16 23:14:11,686 - INFO - Processing date: 20240807
+2024-11-16 23:14:11,688 - INFO - Fetching page 0 for date 20240807 (Daily requests: 71/500)
+2024-11-16 23:14:23,731 - INFO - Found 10 articles on page 0
+2024-11-16 23:14:23,732 - INFO - Fetching page 1 for date 20240807 (Daily requests: 72/500)
+2024-11-16 23:14:35,587 - INFO - Processing date: 20240808
+2024-11-16 23:14:35,588 - INFO - Fetching page 0 for date 20240808 (Daily requests: 73/500)
+2024-11-16 23:14:47,747 - INFO - Found 7 articles on page 0
+2024-11-16 23:14:47,748 - INFO - Processing date: 20240809
+2024-11-16 23:14:47,749 - INFO - Fetching page 0 for date 20240809 (Daily requests: 74/500)
+2024-11-16 23:14:59,743 - INFO - Found 6 articles on page 0
+2024-11-16 23:14:59,744 - INFO - Processing date: 20240810
+2024-11-16 23:14:59,745 - INFO - Fetching page 0 for date 20240810 (Daily requests: 75/500)
+2024-11-16 23:15:11,763 - INFO - Found 8 articles on page 0
+2024-11-16 23:15:11,764 - INFO - Processing date: 20240811
+2024-11-16 23:15:11,765 - INFO - Fetching page 0 for date 20240811 (Daily requests: 76/500)
+2024-11-16 23:15:23,745 - INFO - Found 2 articles on page 0
+2024-11-16 23:15:23,746 - INFO - Processing date: 20240812
+2024-11-16 23:15:23,747 - INFO - Fetching page 0 for date 20240812 (Daily requests: 77/500)
+2024-11-16 23:15:35,787 - INFO - Found 6 articles on page 0
+2024-11-16 23:15:35,788 - INFO - Processing date: 20240813
+2024-11-16 23:15:35,789 - INFO - Fetching page 0 for date 20240813 (Daily requests: 78/500)
+2024-11-16 23:15:47,811 - INFO - Found 7 articles on page 0
+2024-11-16 23:15:47,812 - INFO - Processing date: 20240814
+2024-11-16 23:15:47,813 - INFO - Fetching page 0 for date 20240814 (Daily requests: 79/500)
+2024-11-16 23:15:59,827 - INFO - Found 3 articles on page 0
+2024-11-16 23:15:59,829 - INFO - Processing date: 20240815
+2024-11-16 23:15:59,829 - INFO - Fetching page 0 for date 20240815 (Daily requests: 80/500)
+2024-11-16 23:16:11,857 - INFO - Found 10 articles on page 0
+2024-11-16 23:16:11,858 - INFO - Fetching page 1 for date 20240815 (Daily requests: 81/500)
+2024-11-16 23:16:23,704 - INFO - Processing date: 20240816
+2024-11-16 23:16:23,705 - INFO - Fetching page 0 for date 20240816 (Daily requests: 82/500)
+2024-11-16 23:16:35,764 - INFO - Found 6 articles on page 0
+2024-11-16 23:16:35,765 - INFO - Processing date: 20240817
+2024-11-16 23:16:35,766 - INFO - Fetching page 0 for date 20240817 (Daily requests: 83/500)
+2024-11-16 23:16:47,795 - INFO - Found 4 articles on page 0
+2024-11-16 23:16:47,797 - INFO - Processing date: 20240818
+2024-11-16 23:16:47,798 - INFO - Fetching page 0 for date 20240818 (Daily requests: 84/500)
+2024-11-16 23:16:59,859 - INFO - Found 6 articles on page 0
+2024-11-16 23:16:59,862 - INFO - Processing date: 20240819
+2024-11-16 23:16:59,863 - INFO - Fetching page 0 for date 20240819 (Daily requests: 85/500)
+2024-11-16 23:17:11,859 - INFO - Found 10 articles on page 0
+2024-11-16 23:17:11,859 - INFO - Fetching page 1 for date 20240819 (Daily requests: 86/500)
+2024-11-16 23:17:23,748 - INFO - Processing date: 20240820
+2024-11-16 23:17:23,749 - INFO - Fetching page 0 for date 20240820 (Daily requests: 87/500)
+2024-11-16 23:17:35,876 - INFO - Found 10 articles on page 0
+2024-11-16 23:17:35,876 - INFO - Fetching page 1 for date 20240820 (Daily requests: 88/500)
+2024-11-16 23:17:47,811 - INFO - Found 1 articles on page 1
+2024-11-16 23:17:47,812 - INFO - Processing date: 20240821
+2024-11-16 23:17:47,812 - INFO - Fetching page 0 for date 20240821 (Daily requests: 89/500)
+2024-11-16 23:17:59,849 - INFO - Found 8 articles on page 0
+2024-11-16 23:17:59,851 - INFO - Processing date: 20240822
+2024-11-16 23:17:59,851 - INFO - Fetching page 0 for date 20240822 (Daily requests: 90/500)
+2024-11-16 23:18:11,912 - INFO - Found 7 articles on page 0
+2024-11-16 23:18:11,914 - INFO - Processing date: 20240823
+2024-11-16 23:18:11,914 - INFO - Fetching page 0 for date 20240823 (Daily requests: 91/500)
+2024-11-16 23:18:23,902 - INFO - Found 6 articles on page 0
+2024-11-16 23:18:23,903 - INFO - Processing date: 20240824
+2024-11-16 23:18:23,904 - INFO - Fetching page 0 for date 20240824 (Daily requests: 92/500)
+2024-11-16 23:18:35,906 - INFO - Found 4 articles on page 0
+2024-11-16 23:18:35,907 - INFO - Processing date: 20240825
+2024-11-16 23:18:35,907 - INFO - Fetching page 0 for date 20240825 (Daily requests: 93/500)
+2024-11-16 23:18:47,925 - INFO - Found 7 articles on page 0
+2024-11-16 23:18:47,927 - INFO - Processing date: 20240826
+2024-11-16 23:18:47,928 - INFO - Fetching page 0 for date 20240826 (Daily requests: 94/500)
+2024-11-16 23:18:59,964 - INFO - Found 5 articles on page 0
+2024-11-16 23:18:59,965 - INFO - Processing date: 20240827
+2024-11-16 23:18:59,966 - INFO - Fetching page 0 for date 20240827 (Daily requests: 95/500)
+2024-11-16 23:19:12,033 - INFO - Found 10 articles on page 0
+2024-11-16 23:19:12,034 - INFO - Fetching page 1 for date 20240827 (Daily requests: 96/500)
+2024-11-16 23:19:23,920 - INFO - Found 3 articles on page 1
+2024-11-16 23:19:23,921 - INFO - Processing date: 20240828
+2024-11-16 23:19:23,922 - INFO - Fetching page 0 for date 20240828 (Daily requests: 97/500)
+2024-11-16 23:19:36,014 - INFO - Found 10 articles on page 0
+2024-11-16 23:19:36,015 - INFO - Fetching page 1 for date 20240828 (Daily requests: 98/500)
+2024-11-16 23:19:47,923 - INFO - Found 1 articles on page 1
+2024-11-16 23:19:47,924 - INFO - Processing date: 20240829
+2024-11-16 23:19:47,924 - INFO - Fetching page 0 for date 20240829 (Daily requests: 99/500)
+2024-11-16 23:19:59,965 - INFO - Found 6 articles on page 0
+2024-11-16 23:19:59,967 - INFO - Processing date: 20240830
+2024-11-16 23:19:59,968 - INFO - Fetching page 0 for date 20240830 (Daily requests: 100/500)
+2024-11-16 23:20:12,021 - INFO - Found 8 articles on page 0
+2024-11-16 23:20:12,022 - INFO - Processing date: 20240831
+2024-11-16 23:20:12,023 - INFO - Fetching page 0 for date 20240831 (Daily requests: 101/500)
+2024-11-16 23:20:23,932 - INFO - Found 4 articles on page 0
+2024-11-16 23:20:23,939 - INFO - Saved 216 articles for 2024-08 to Raw Data/NYT_Articles_2024_08.csv
+2024-11-16 23:20:23,940 - INFO - Processing date: 20240901
+2024-11-16 23:20:23,941 - INFO - Fetching page 0 for date 20240901 (Daily requests: 102/500)
+2024-11-16 23:20:36,028 - INFO - Found 9 articles on page 0
+2024-11-16 23:20:36,030 - INFO - Processing date: 20240902
+2024-11-16 23:20:36,030 - INFO - Fetching page 0 for date 20240902 (Daily requests: 103/500)
+2024-11-16 23:20:47,982 - INFO - Found 10 articles on page 0
+2024-11-16 23:20:47,983 - INFO - Fetching page 1 for date 20240902 (Daily requests: 104/500)
+2024-11-16 23:20:59,973 - INFO - Found 1 articles on page 1
+2024-11-16 23:20:59,973 - INFO - Processing date: 20240903
+2024-11-16 23:20:59,975 - INFO - Fetching page 0 for date 20240903 (Daily requests: 105/500)
+2024-11-16 23:21:11,996 - INFO - Found 8 articles on page 0
+2024-11-16 23:21:11,998 - INFO - Processing date: 20240904
+2024-11-16 23:21:11,999 - INFO - Fetching page 0 for date 20240904 (Daily requests: 106/500)
+2024-11-16 23:21:24,009 - INFO - Found 5 articles on page 0
+2024-11-16 23:21:24,010 - INFO - Processing date: 20240905
+2024-11-16 23:21:24,011 - INFO - Fetching page 0 for date 20240905 (Daily requests: 107/500)
+2024-11-16 23:21:36,038 - INFO - Found 3 articles on page 0
+2024-11-16 23:21:36,039 - INFO - Processing date: 20240906
+2024-11-16 23:21:36,040 - INFO - Fetching page 0 for date 20240906 (Daily requests: 108/500)
+2024-11-16 23:21:48,017 - INFO - Found 9 articles on page 0
+2024-11-16 23:21:48,019 - INFO - Processing date: 20240907
+2024-11-16 23:21:48,020 - INFO - Fetching page 0 for date 20240907 (Daily requests: 109/500)
+2024-11-16 23:22:00,045 - INFO - Found 5 articles on page 0
+2024-11-16 23:22:00,046 - INFO - Processing date: 20240908
+2024-11-16 23:22:00,048 - INFO - Fetching page 0 for date 20240908 (Daily requests: 110/500)
+2024-11-16 23:22:12,008 - INFO - Found 2 articles on page 0
+2024-11-16 23:22:12,009 - INFO - Processing date: 20240909
+2024-11-16 23:22:12,010 - INFO - Fetching page 0 for date 20240909 (Daily requests: 111/500)
+2024-11-16 23:22:23,998 - INFO - Found 2 articles on page 0
+2024-11-16 23:22:23,999 - INFO - Processing date: 20240910
+2024-11-16 23:22:24,000 - INFO - Fetching page 0 for date 20240910 (Daily requests: 112/500)
+2024-11-16 23:22:36,132 - INFO - Found 10 articles on page 0
+2024-11-16 23:22:36,133 - INFO - Fetching page 1 for date 20240910 (Daily requests: 113/500)
+2024-11-16 23:22:48,025 - INFO - Found 3 articles on page 1
+2024-11-16 23:22:48,026 - INFO - Processing date: 20240911
+2024-11-16 23:22:48,027 - INFO - Fetching page 0 for date 20240911 (Daily requests: 114/500)
+2024-11-16 23:23:00,038 - INFO - Found 6 articles on page 0
+2024-11-16 23:23:00,039 - INFO - Processing date: 20240912
+2024-11-16 23:23:00,040 - INFO - Fetching page 0 for date 20240912 (Daily requests: 115/500)
+2024-11-16 23:23:12,038 - INFO - Found 5 articles on page 0
+2024-11-16 23:23:12,039 - INFO - Processing date: 20240913
+2024-11-16 23:23:12,040 - INFO - Fetching page 0 for date 20240913 (Daily requests: 116/500)
+2024-11-16 23:23:24,075 - INFO - Found 5 articles on page 0
+2024-11-16 23:23:24,076 - INFO - Processing date: 20240914
+2024-11-16 23:23:24,076 - INFO - Fetching page 0 for date 20240914 (Daily requests: 117/500)
+2024-11-16 23:23:36,082 - INFO - Found 2 articles on page 0
+2024-11-16 23:23:36,083 - INFO - Processing date: 20240915
+2024-11-16 23:23:36,084 - INFO - Fetching page 0 for date 20240915 (Daily requests: 118/500)
+2024-11-16 23:23:48,063 - INFO - Found 3 articles on page 0
+2024-11-16 23:23:48,064 - INFO - Processing date: 20240916
+2024-11-16 23:23:48,065 - INFO - Fetching page 0 for date 20240916 (Daily requests: 119/500)
+2024-11-16 23:24:00,090 - INFO - Found 3 articles on page 0
+2024-11-16 23:24:00,092 - INFO - Processing date: 20240917
+2024-11-16 23:24:00,093 - INFO - Fetching page 0 for date 20240917 (Daily requests: 120/500)
+2024-11-16 23:24:12,176 - INFO - Found 10 articles on page 0
+2024-11-16 23:24:12,176 - INFO - Fetching page 1 for date 20240917 (Daily requests: 121/500)
+2024-11-16 23:24:23,976 - INFO - Processing date: 20240918
+2024-11-16 23:24:23,978 - INFO - Fetching page 0 for date 20240918 (Daily requests: 122/500)
+2024-11-16 23:24:36,128 - INFO - Found 10 articles on page 0
+2024-11-16 23:24:36,129 - INFO - Fetching page 1 for date 20240918 (Daily requests: 123/500)
+2024-11-16 23:24:47,991 - INFO - Processing date: 20240919
+2024-11-16 23:24:47,992 - INFO - Fetching page 0 for date 20240919 (Daily requests: 124/500)
+2024-11-16 23:25:00,160 - INFO - Found 9 articles on page 0
+2024-11-16 23:25:00,162 - INFO - Processing date: 20240920
+2024-11-16 23:25:00,163 - INFO - Fetching page 0 for date 20240920 (Daily requests: 125/500)
+2024-11-16 23:25:12,239 - INFO - Found 10 articles on page 0
+2024-11-16 23:25:12,240 - INFO - Fetching page 1 for date 20240920 (Daily requests: 126/500)
+2024-11-16 23:25:24,063 - INFO - Processing date: 20240921
+2024-11-16 23:25:24,065 - INFO - Fetching page 0 for date 20240921 (Daily requests: 127/500)
+2024-11-16 23:25:36,167 - INFO - Found 6 articles on page 0
+2024-11-16 23:25:36,170 - INFO - Processing date: 20240922
+2024-11-16 23:25:36,171 - INFO - Fetching page 0 for date 20240922 (Daily requests: 128/500)
+2024-11-16 23:25:48,178 - INFO - Found 4 articles on page 0
+2024-11-16 23:25:48,179 - INFO - Processing date: 20240923
+2024-11-16 23:25:48,180 - INFO - Fetching page 0 for date 20240923 (Daily requests: 129/500)
+2024-11-16 23:26:00,214 - INFO - Found 8 articles on page 0
+2024-11-16 23:26:00,215 - INFO - Processing date: 20240924
+2024-11-16 23:26:00,216 - INFO - Fetching page 0 for date 20240924 (Daily requests: 130/500)
+2024-11-16 23:26:12,272 - INFO - Found 10 articles on page 0
+2024-11-16 23:26:12,273 - INFO - Fetching page 1 for date 20240924 (Daily requests: 131/500)
+2024-11-16 23:26:24,168 - INFO - Found 3 articles on page 1
+2024-11-16 23:26:24,168 - INFO - Processing date: 20240925
+2024-11-16 23:26:24,169 - INFO - Fetching page 0 for date 20240925 (Daily requests: 132/500)
+2024-11-16 23:26:36,161 - INFO - Found 10 articles on page 0
+2024-11-16 23:26:36,162 - INFO - Fetching page 1 for date 20240925 (Daily requests: 133/500)
+2024-11-16 23:26:48,152 - INFO - Found 2 articles on page 1
+2024-11-16 23:26:48,153 - INFO - Processing date: 20240926
+2024-11-16 23:26:48,154 - INFO - Fetching page 0 for date 20240926 (Daily requests: 134/500)
+2024-11-16 23:27:00,170 - INFO - Found 6 articles on page 0
+2024-11-16 23:27:00,171 - INFO - Processing date: 20240927
+2024-11-16 23:27:00,172 - INFO - Fetching page 0 for date 20240927 (Daily requests: 135/500)
+2024-11-16 23:27:12,161 - INFO - Found 7 articles on page 0
+2024-11-16 23:27:12,162 - INFO - Processing date: 20240928
+2024-11-16 23:27:12,163 - INFO - Fetching page 0 for date 20240928 (Daily requests: 136/500)
+2024-11-16 23:27:24,290 - INFO - Found 10 articles on page 0
+2024-11-16 23:27:24,291 - INFO - Fetching page 1 for date 20240928 (Daily requests: 137/500)
+2024-11-16 23:27:36,179 - INFO - Found 1 articles on page 1
+2024-11-16 23:27:36,180 - INFO - Processing date: 20240929
+2024-11-16 23:27:36,181 - INFO - Fetching page 0 for date 20240929 (Daily requests: 138/500)
+2024-11-16 23:27:48,307 - INFO - Found 7 articles on page 0
+2024-11-16 23:27:48,308 - INFO - Processing date: 20240930
+2024-11-16 23:27:48,309 - INFO - Fetching page 0 for date 20240930 (Daily requests: 139/500)
+2024-11-16 23:28:00,253 - INFO - Found 10 articles on page 0
+2024-11-16 23:28:00,254 - INFO - Fetching page 1 for date 20240930 (Daily requests: 140/500)
+2024-11-16 23:28:12,323 - INFO - Found 1 articles on page 1
+2024-11-16 23:28:12,330 - INFO - Saved 215 articles for 2024-09 to Raw Data/NYT_Articles_2024_09.csv
+2024-11-16 23:28:12,331 - INFO - Processing date: 20241001
+2024-11-16 23:28:12,331 - INFO - Fetching page 0 for date 20241001 (Daily requests: 141/500)
+2024-11-16 23:28:24,286 - INFO - Found 10 articles on page 0
+2024-11-16 23:28:24,287 - INFO - Fetching page 1 for date 20241001 (Daily requests: 142/500)
+2024-11-16 23:28:36,209 - INFO - Found 1 articles on page 1
+2024-11-16 23:28:36,210 - INFO - Processing date: 20241002
+2024-11-16 23:28:36,211 - INFO - Fetching page 0 for date 20241002 (Daily requests: 143/500)
+2024-11-16 23:28:48,336 - INFO - Found 10 articles on page 0
+2024-11-16 23:28:48,337 - INFO - Fetching page 1 for date 20241002 (Daily requests: 144/500)
+2024-11-16 23:29:00,253 - INFO - Found 3 articles on page 1
+2024-11-16 23:29:00,254 - INFO - Processing date: 20241003
+2024-11-16 23:29:00,254 - INFO - Fetching page 0 for date 20241003 (Daily requests: 145/500)
+2024-11-16 23:29:12,278 - INFO - Found 5 articles on page 0
+2024-11-16 23:29:12,279 - INFO - Processing date: 20241004
+2024-11-16 23:29:12,280 - INFO - Fetching page 0 for date 20241004 (Daily requests: 146/500)
+2024-11-16 23:29:24,331 - INFO - Found 10 articles on page 0
+2024-11-16 23:29:24,331 - INFO - Fetching page 1 for date 20241004 (Daily requests: 147/500)
+2024-11-16 23:29:36,429 - INFO - Found 3 articles on page 1
+2024-11-16 23:29:36,430 - INFO - Processing date: 20241005
+2024-11-16 23:29:36,431 - INFO - Fetching page 0 for date 20241005 (Daily requests: 148/500)
+2024-11-16 23:29:48,314 - INFO - Found 8 articles on page 0
+2024-11-16 23:29:48,315 - INFO - Processing date: 20241006
+2024-11-16 23:29:48,316 - INFO - Fetching page 0 for date 20241006 (Daily requests: 149/500)
+2024-11-16 23:30:00,336 - INFO - Found 9 articles on page 0
+2024-11-16 23:30:00,337 - INFO - Processing date: 20241007
+2024-11-16 23:30:00,338 - INFO - Fetching page 0 for date 20241007 (Daily requests: 150/500)
+2024-11-16 23:30:12,334 - INFO - Found 10 articles on page 0
+2024-11-16 23:30:12,335 - INFO - Fetching page 1 for date 20241007 (Daily requests: 151/500)
+2024-11-16 23:30:24,419 - INFO - Found 10 articles on page 1
+2024-11-16 23:30:24,420 - INFO - Fetching page 2 for date 20241007 (Daily requests: 152/500)
+2024-11-16 23:30:36,402 - INFO - Found 10 articles on page 2
+2024-11-16 23:30:36,403 - INFO - Fetching page 3 for date 20241007 (Daily requests: 153/500)
+2024-11-16 23:30:48,309 - INFO - Found 3 articles on page 3
+2024-11-16 23:30:48,314 - INFO - Saved 92 articles for 2024-10 to Raw Data/NYT_Articles_2024_10.csv
