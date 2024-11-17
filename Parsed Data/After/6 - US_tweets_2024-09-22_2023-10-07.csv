@@ -1,0 +1,10 @@
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 16, 2024 10:11 PM
+","Number of discards: 8
+","List of accounts processed: []
+","List of accounts coming in: ['CapitolJournal', 'OnStrikeShow', 'WedgeSquared', 'theadvocatebr', 'wvhouse', 'LibertarianPol', 'BadFaithPod', 'overheardpbs', 'america1stwomen', 'womenfortrump', 'nprpolitics', 'emcollective', 'EliasLawGroup', 'politicallyga', 'PunchUpPod', 'HoodtotheHoller', 'ReasonFdn', 'washpost']
+","List of accounts needed to be rerun: ['CapitolJournal', 'OnStrikeShow', 'WedgeSquared', 'theadvocatebr', 'wvhouse', 'LibertarianPol', 'BadFaithPod', 'overheardpbs', 'america1stwomen', 'womenfortrump', 'nprpolitics', 'emcollective', 'politicallyga', 'PunchUpPod', 'HoodtotheHoller', 'ReasonFdn', 'washpost']
+",List of accounts with parsed but only irrelevant tweets: ['EliasLawGroup']

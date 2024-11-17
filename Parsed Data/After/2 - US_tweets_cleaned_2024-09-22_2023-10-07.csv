@@ -1,0 +1,10 @@
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 16, 2024 10:11 PM
+","Number of discards: 0
+","List of accounts processed: []
+","List of accounts coming in: ['briebriejoy', 'HouseJudiciary', 'LPNational', 'beinlibertarian', 'theintercept', 'nbcnews', 'NPR', 'TheAtlantic', 'gmail', 'AP', 'BadFaithPod', 'BreitbartNews', 'foxnews', 'washingtonpost', 'lpnational']
+","List of accounts needed to be rerun: ['nbcnews', 'NPR', 'TheAtlantic', 'BadFaithPod']
+","List of accounts with parsed but only irrelevant tweets: ['briebriejoy', 'HouseJudiciary', 'LPNational', 'beinlibertarian', 'theintercept', 'gmail', 'AP', 'BreitbartNews', 'foxnews', 'washingtonpost', 'lpnational']"

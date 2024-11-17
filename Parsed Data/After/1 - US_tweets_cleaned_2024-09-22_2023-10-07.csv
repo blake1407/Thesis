@@ -1,0 +1,10 @@
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 16, 2024 10:11 PM
+","Number of discards: 0
+","List of accounts processed: []
+","List of accounts coming in: ['RevBlackNetwork', 'TheDemocrats', 'msnbc', 'FoxNews', 'TheAtlantic', 'aldotcom', 'JudiciaryGOP', 'MSNBC', 'NBCNews', 'politico', 'joncoopertweets', 'HomelandDems', 'HouseJudiciary', 'NPR', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'YATPOfficial', 'justinamash', 'LPNational', 'theintercept']
+","List of accounts needed to be rerun: ['NPR', 'theintercept']
+","List of accounts with parsed but only irrelevant tweets: ['RevBlackNetwork', 'TheDemocrats', 'msnbc', 'FoxNews', 'TheAtlantic', 'aldotcom', 'JudiciaryGOP', 'MSNBC', 'NBCNews', 'politico', 'joncoopertweets', 'HomelandDems', 'HouseJudiciary', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'YATPOfficial', 'justinamash', 'LPNational']"
