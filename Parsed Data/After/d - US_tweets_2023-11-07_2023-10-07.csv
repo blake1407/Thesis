@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
 kylegriffin1,"October 20, 2023 07:15 PM",House Republicans — who have no plan to elect a Speaker — just left for the weekend despite a looming government shutdown and an urgent aid plea from the Biden admin for Israel and Ukraine.,7465,2851,236,1808053
 kylegriffin1,"October 16, 2023 03:00 AM","New statement from President Biden on the murder in Illinois:  ""Jill and I were shocked and sickened to learn of the brutal murder of a six-year-old child and the attempted murder of the child’s mother in their home yesterday in Illinois.   ""The childs Palestinian Muslim",7274,1309,165,686120
@@ -18,3 +19,25 @@ kylegriffin1,"October 20, 2023 12:30 AM","President Biden: ""We must, without eq
 ","List of accounts coming in: ['kylegriffin1']
 ","List of accounts needed to be rerun: []
 ",List of accounts with parsed but only irrelevant tweets: []
+=======
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+@kylegriffin1,"October 20, 2023 07:15 PM",House Republicans — who have no plan to elect a Speaker — just left for the weekend despite a looming government shutdown and an urgent aid plea from the Biden admin for Israel and Ukraine.,7465,2851,236,1808053
+@kylegriffin1,"October 16, 2023 03:00 AM","New statement from President Biden on the murder in Illinois:  ""Jill and I were shocked and sickened to learn of the brutal murder of a six-year-old child and the attempted murder of the child’s mother in their home yesterday in Illinois.   ""The childs Palestinian Muslim",7274,1309,165,686120
+@kylegriffin1,"October 22, 2023 05:50 PM","Nearly two dozen Americans fleeing Israel with the help of Ron DeSantis admin were stranded for days in Cyprus.  The rush to help DeSantis score political points caused the confusion, according to the head of an international rescue organization.",2020,883,144,294548
+@kylegriffin1,"October 12, 2023 06:55 PM","Deputy W.H. Press Secretary Andrew Bates: ""Statements like this are dangerous and unhinged. Its completely lost on us why any American would ever praise an Iran-backed terrorist organization as smart. Or have any objection to the U.S. warning terrorists not to attack Israel.""",1558,288,41,96963
+@kylegriffin1,"October 16, 2023 09:40 PM","NBC News: President Biden is strongly considering a trip to Israel as early as this week, according to three U.S. officials. @MSNBC",5600,1393,161,367334
+@kylegriffin1,"October 20, 2023 05:55 PM",Breaking on @MSNBC: Three sources with direct knowledge tell NBC News that two American hostages held by Hamas have been released.,1649,240,36,112908
+@kylegriffin1,"October 16, 2023 03:05 AM","""As Americans, we must come together and reject Islamophobia and all forms of bigotry and hatred.  I have said repeatedly that I will not be silent in the face of hate.  We must be unequivocal. There is no place in America for hate against anyone.   We join everyone here at the",6429,1177,236,290843
+@kylegriffin1,"October 31, 2023 09:15 PM","White House memo on the new Speakers aid demands: ""Why should Israel be singled out in this way? Why should it be treated differently, especially when they were just subjected to the worst massacre of the Jewish people since the Holocaust?""",3018,502,116,155330
+@kylegriffin1,"October 16, 2023 02:55 PM",The Justice Department has opened a federal hate crimes investigation into the stabbing death of a 6-year old Palestinian-American boy and the wounding of his mother in Illinois.,2589,501,73,182791
+@kylegriffin1,"October 20, 2023 12:30 AM","President Biden: ""We must, without equivocation, denounce antisemitism.  ""We must also, without equivocation, denounce Islamophobia.  ""To all of you hurting, I want you to know: I see you. You belong.""",7473,2851,236,1808053
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 18, 2024 10:05 AM
+","Number of discards: 194
+","List of accounts processed: ['@kylegriffin1']
+","List of accounts coming in: ['@kylegriffin1']
+","List of accounts needed to be rerun: []
+",List of accounts with parsed but only irrelevant tweets: []
+>>>>>>> 62324f422cb40a7fec1b1ee479c97c34cc3aac97

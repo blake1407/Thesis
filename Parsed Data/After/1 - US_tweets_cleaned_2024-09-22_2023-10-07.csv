@@ -1,8 +1,13 @@
 Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
 
 "|RUN STATISTICS|
+<<<<<<< HEAD
 "
 "Time Processed: November 18, 2024 10:28 PM
+=======
+"
+"Time Processed: November 18, 2024 10:05 AM
+>>>>>>> 62324f422cb40a7fec1b1ee479c97c34cc3aac97
 ","Number of discards: 0
 ","List of accounts processed: []
 ","List of accounts coming in: ['RevBlackNetwork', 'TheDemocrats', 'msnbc', 'FoxNews', 'TheAtlantic', 'aldotcom', 'JudiciaryGOP', 'MSNBC', 'NBCNews', 'politico', 'joncoopertweets', 'HomelandDems', 'HouseJudiciary', 'NPR', 'CNN', 'LPMisesCaucus', 'RealSpikeCohen', 'YATPOfficial', 'justinamash', 'LPNational', 'theintercept']

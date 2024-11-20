@@ -32,8 +32,13 @@ funder,"January 06, 2024 12:59 PM","Don’t let anyone lie about January 6th. It
 WashingtonPost,"November 15, 2023 10:33 PM","As Israel’s war in Gaza continues, violence by Israeli settlers in the West Bank has increased. But even before the war, settler attacks were on the rise.  Follow our live coverage:",2831,1916,482,1848333
 
 "|RUN STATISTICS|
+<<<<<<< HEAD
 "
 "Time Processed: November 18, 2024 10:28 PM
+=======
+"
+"Time Processed: November 18, 2024 10:06 AM
+>>>>>>> 62324f422cb40a7fec1b1ee479c97c34cc3aac97
 ","Number of discards: 337
 ","List of accounts processed: ['ComicDaveSmith', 'RBReich', 'theintercept', 'TheRickWilson', 'nbcnews', 'DailyCaller', 'OversightDems', 'MeidasTouch', 'GOP', 'KyleKulinski', 'seanhannity', 'funder', 'WashingtonPost']
 ","List of accounts coming in: ['ProudSocialist', 'ComicDaveSmith', 'LPTN1776', 'checkmatestate', 'ajc', 'RBReich', 'theintercept', 'TheRickWilson', 'FreemansMind96', 'AmpedUpPodcast', 'nbcnews', 'NPR', 'DailyCaller', 'Morehouse', 'LPNH', 'TheAtlantic', 'people4liberty', 'TeamWarnock', 'OversightDems', 'Weaponization', 'MeidasTouch', 'StJude', 'BadFaithPod', 'whitecoatwaste', 'InequalityMedia', 'GOP', 'Josh_Moon', 'HoustonChron', 'HannahDCox', 'KyleKulinski', 'EricTrump', 'LaraLeaTrump', 'seanhannity', 'RacePowerPolicy', 'ProjectLincoln', 'UALawSchool', 'PeoplesParty_US', 'nytimes', 'funder', 'WashingtonPost', 'GOPoversight', 'yhn', 'rbreich']

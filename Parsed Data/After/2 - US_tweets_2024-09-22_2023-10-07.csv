@@ -12,8 +12,13 @@ foxnews,"July 24, 2024 08:00 PM","LET ME BE CLEAR: Israeli Prime Minister Benjam
 washingtonpost,"November 15, 2023 10:33 PM","As Israel’s war in Gaza continues, violence by Israeli settlers in the West Bank has increased. But even before the war, settler attacks were on the rise.  Follow our live coverage:",2832,1916,482,1848332
 
 "|RUN STATISTICS|
+<<<<<<< HEAD
 "
 "Time Processed: November 18, 2024 10:28 PM
+=======
+"
+"Time Processed: November 18, 2024 10:05 AM
+>>>>>>> 62324f422cb40a7fec1b1ee479c97c34cc3aac97
 ","Number of discards: 132
 ","List of accounts processed: ['briebriejoy', 'HouseJudiciary', 'beinlibertarian', 'AP', 'BreitbartNews', 'foxnews', 'washingtonpost']
 ","List of accounts coming in: ['briebriejoy', 'HouseJudiciary', 'LPNational', 'beinlibertarian', 'theintercept', 'nbcnews', 'NPR', 'TheAtlantic', 'gmail', 'AP', 'BadFaithPod', 'BreitbartNews', 'foxnews', 'washingtonpost', 'lpnational']
