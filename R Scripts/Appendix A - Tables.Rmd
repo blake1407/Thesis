@@ -1,0 +1,884 @@
+---
+title: 'Appendix A: Tables'
+output: word_document
+fontsize: 12
+fontfamily: arev
+---
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE, include=TRUE, warning=FALSE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(gt)
+library(formattable)
+library(flextable)
+library(huxtable)
+```
+```{r include=FALSE}
+# df_grouped_tp = read.csv("df_grouped_tp.csv", stringsAsFactors = FALSE, na.string = c("", "NA", "na", "NaN", "[]"))
+# df_sentiment = read.csv("sentiment.csv")
+
+# mod_warmth_prepost = lm(Warm ~ Condition, data = df_grouped_tp)
+# mod_warmth_prepost_statstable = round(summary(mod_warmth_prepost)$coefficients, 6)
+# mod_warmth_prepost_confint = confint(mod_warmth_prepost)
+# mod_warmth_prepost_confint = round(subset(mod_warmth_prepost_confint, rownames(mod_warmth_prepost_confint) %in% rownames(mod_warmth_prepost_statstable)), 6)
+# mod_warmth_prepost_statstable = merge(mod_warmth_prepost_statstable, mod_warmth_prepost_confint, by="row.names")
+# mod_warmth_prepost_statstable = mod_warmth_prepost_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_warmth_prepost_statstable$`2.5 %`, 6), ", ", round(mod_warmth_prepost_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_warmth_prepost_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_warmth_prepost_confint)
+# mod_warmth_prepost_statstable = mod_warmth_prepost_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_warmth_prepost_statstable, "mod_warmth_prepost_statstable.csv", row.names = F)
+# 
+# mod_cold_prepost = lm(Cold ~ Condition, data = df_grouped_tp)
+# mod_cold_prepost_statstable = round(summary(mod_cold_prepost)$coefficients, 6)
+# mod_cold_prepost_confint = confint(mod_cold_prepost)
+# mod_cold_prepost_confint = round(subset(mod_cold_prepost_confint, rownames(mod_cold_prepost_confint) %in% rownames(mod_cold_prepost_statstable)), 6)
+# mod_cold_prepost_statstable = merge(mod_cold_prepost_statstable, mod_cold_prepost_confint, by="row.names")
+# mod_cold_prepost_statstable = mod_cold_prepost_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_cold_prepost_statstable$`2.5 %`, 6), ", ", round(mod_cold_prepost_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_cold_prepost_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_cold_prepost_confint)
+# mod_cold_prepost_statstable = mod_cold_prepost_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_cold_prepost_statstable, "mod_cold_prepost_statstable.csv", row.names = F)
+# 
+# mod_competence_prepost = lm(Competent ~ Condition, data = df_grouped_tp)
+# mod_competence_prepost_statstable = round(summary(mod_competence_prepost)$coefficients, 6)
+# mod_competence_prepost_confint = confint(mod_competence_prepost)
+# mod_competence_prepost_confint = round(subset(mod_competence_prepost_confint, rownames(mod_competence_prepost_confint) %in% rownames(mod_competence_prepost_statstable)), 6)
+# mod_competence_prepost_statstable = merge(mod_competence_prepost_statstable, mod_competence_prepost_confint, by="row.names")
+# mod_competence_prepost_statstable = mod_competence_prepost_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_competence_prepost_statstable$`2.5 %`, 6), ", ", round(mod_competence_prepost_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_competence_prepost_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_competence_prepost_confint)
+# mod_competence_prepost_statstable = mod_competence_prepost_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_competence_prepost_statstable, "mod_competence_prepost_statstable.csv", row.names = F)
+# 
+# mod_incompetence_prepost = lm(Incompetent ~ Condition, data = df_grouped_tp)
+# mod_incompetence_prepost_statstable = round(summary(mod_incompetence_prepost)$coefficients, 6)
+# mod_incompetence_prepost_confint = confint(mod_incompetence_prepost)
+# mod_incompetence_prepost_confint = round(subset(mod_incompetence_prepost_confint, rownames(mod_incompetence_prepost_confint) %in% rownames(mod_incompetence_prepost_statstable)), 6)
+# mod_incompetence_prepost_statstable = merge(mod_incompetence_prepost_statstable, mod_incompetence_prepost_confint, by="row.names")
+# mod_incompetence_prepost_statstable = mod_incompetence_prepost_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_incompetence_prepost_statstable$`2.5 %`, 6), ", ", round(mod_incompetence_prepost_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_incompetence_prepost_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_incompetence_prepost_confint)
+# mod_incompetence_prepost_statstable = mod_incompetence_prepost_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_incompetence_prepost_statstable, "mod_incompetence_prepost_statstable.csv", row.names = F)
+# 
+# mod_possentiment_prepost = lm(positive_tone ~ Condition, data = df_sentiment)
+# mod_possentiment_prepost_statstable = round(summary(mod_possentiment_prepost)$coefficients, 6)
+# mod_possentiment_prepost_confint = confint(mod_possentiment_prepost)
+# mod_possentiment_prepost_confint = round(subset(mod_possentiment_prepost_confint, rownames(mod_possentiment_prepost_confint) %in% rownames(mod_possentiment_prepost_statstable)), 6)
+# mod_possentiment_prepost_statstable = merge(mod_possentiment_prepost_statstable, mod_possentiment_prepost_confint, by="row.names")
+# mod_possentiment_prepost_statstable = mod_possentiment_prepost_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_possentiment_prepost_statstable$`2.5 %`, 6), ", ", round(mod_possentiment_prepost_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_possentiment_prepost_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_possentiment_prepost_confint)
+# mod_possentiment_prepost_statstable = mod_possentiment_prepost_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_possentiment_prepost_statstable, "mod_possentiment_prepost_statstable.csv", row.names = F)
+# 
+# mod_negsentiment_prepost = lm(negative_tone ~ Condition, data = df_sentiment)
+# mod_negsentiment_prepost_statstable = round(summary(mod_negsentiment_prepost)$coefficients, 6)
+# mod_negsentiment_prepost_confint = confint(mod_negsentiment_prepost)
+# mod_negsentiment_prepost_confint = round(subset(mod_negsentiment_prepost_confint, rownames(mod_negsentiment_prepost_confint) %in% rownames(mod_negsentiment_prepost_statstable)), 6)
+# mod_negsentiment_prepost_statstable = merge(mod_negsentiment_prepost_statstable, mod_negsentiment_prepost_confint, by="row.names")
+# mod_negsentiment_prepost_statstable = mod_negsentiment_prepost_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_negsentiment_prepost_statstable$`2.5 %`, 6), ", ", round(mod_negsentiment_prepost_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_negsentiment_prepost_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_negsentiment_prepost_confint)
+# mod_negsentiment_prepost_statstable = mod_negsentiment_prepost_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_negsentiment_prepost_statstable, "mod_negsentiment_prepost_statstable.csv", row.names = F)
+########################################################################################
+
+
+# mod_warmth_newstotal = lm(Warm ~ total + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_warmth_newstotal_statstable = round(summary(mod_warmth_newstotal)$coefficients, 6)
+# mod_warmth_newstotal_confint = confint(mod_warmth_newstotal)
+# mod_warmth_newstotal_confint = round(subset(mod_warmth_newstotal_confint, rownames(mod_warmth_newstotal_confint) %in% rownames(mod_warmth_newstotal_statstable)), 6)
+# mod_warmth_newstotal_statstable = merge(mod_warmth_newstotal_statstable, mod_warmth_newstotal_confint, by="row.names")
+# mod_warmth_newstotal_statstable = mod_warmth_newstotal_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_warmth_newstotal_statstable$`2.5 %`, 6), ", ", round(mod_warmth_newstotal_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_warmth_newstotal_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_warmth_newstotal_confint)
+# mod_warmth_newstotal_statstable = mod_warmth_newstotal_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_warmth_newstotal_statstable, "mod_warmth_newstotal_statstable.csv", row.names = F)
+# 
+# mod_cold_newstotal = lm(Cold ~ total + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_cold_newstotal_statstable = round(summary(mod_cold_newstotal)$coefficients, 6)
+# mod_cold_newstotal_confint = confint(mod_cold_newstotal)
+# mod_cold_newstotal_confint = round(subset(mod_cold_newstotal_confint, rownames(mod_cold_newstotal_confint) %in% rownames(mod_cold_newstotal_statstable)), 6)
+# mod_cold_newstotal_statstable = merge(mod_cold_newstotal_statstable, mod_cold_newstotal_confint, by="row.names")
+# mod_cold_newstotal_statstable = mod_cold_newstotal_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_cold_newstotal_statstable$`2.5 %`, 6), ", ", round(mod_cold_newstotal_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_cold_newstotal_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_cold_newstotal_confint)
+# mod_cold_newstotal_statstable = mod_cold_newstotal_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_cold_newstotal_statstable, "mod_cold_newstotal_statstable.csv", row.names = F)
+# 
+# mod_competence_newstotal = lm(Competent ~ total + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_competence_newstotal_statstable = round(summary(mod_competence_newstotal)$coefficients, 6)
+# mod_competence_newstotal_confint = confint(mod_competence_newstotal)
+# mod_competence_newstotal_confint = round(subset(mod_competence_newstotal_confint, rownames(mod_competence_newstotal_confint) %in% rownames(mod_competence_newstotal_statstable)), 6)
+# mod_competence_newstotal_statstable = merge(mod_competence_newstotal_statstable, mod_competence_newstotal_confint, by="row.names")
+# mod_competence_newstotal_statstable = mod_competence_newstotal_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_competence_newstotal_statstable$`2.5 %`, 6), ", ", round(mod_competence_newstotal_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_competence_newstotal_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_competence_newstotal_confint)
+# mod_competence_newstotal_statstable = mod_competence_newstotal_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_competence_newstotal_statstable, "mod_competence_newstotal_statstable.csv", row.names = F)
+# 
+# mod_incompetence_newstotal = lm(Incompetent ~ total + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_incompetence_newstotal_statstable = round(summary(mod_incompetence_newstotal)$coefficients, 6)
+# mod_incompetence_newstotal_confint = confint(mod_incompetence_newstotal)
+# mod_incompetence_newstotal_confint = round(subset(mod_incompetence_newstotal_confint, rownames(mod_incompetence_newstotal_confint) %in% rownames(mod_incompetence_newstotal_statstable)), 6)
+# mod_incompetence_newstotal_statstable = merge(mod_incompetence_newstotal_statstable, mod_incompetence_newstotal_confint, by="row.names")
+# mod_incompetence_newstotal_statstable = mod_incompetence_newstotal_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_incompetence_newstotal_statstable$`2.5 %`, 6), ", ", round(mod_incompetence_newstotal_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_incompetence_newstotal_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_incompetence_newstotal_confint)
+# mod_incompetence_newstotal_statstable = mod_incompetence_newstotal_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_incompetence_newstotal_statstable, "mod_incompetence_newstotal_statstable.csv", row.names = F)
+# 
+# 
+# mod_possentiment_newstotal = lm(positive_tone ~ total + day, data = df_sentiment %>% filter(day > 0))
+# mod_possentiment_newstotal_statstable = round(summary(mod_possentiment_newstotal)$coefficients, 6)
+# mod_possentiment_newstotal_confint = confint(mod_possentiment_newstotal)
+# mod_possentiment_newstotal_confint = round(subset(mod_possentiment_newstotal_confint, rownames(mod_possentiment_newstotal_confint) %in% rownames(mod_possentiment_newstotal_statstable)), 6)
+# mod_possentiment_newstotal_statstable = merge(mod_possentiment_newstotal_statstable, mod_possentiment_newstotal_confint, by="row.names")
+# mod_possentiment_newstotal_statstable = mod_possentiment_newstotal_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_possentiment_newstotal_statstable$`2.5 %`, 6), ", ", round(mod_possentiment_newstotal_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_possentiment_newstotal_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_possentiment_newstotal_confint)
+# mod_possentiment_newstotal_statstable = mod_possentiment_newstotal_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_possentiment_newstotal_statstable, "mod_possentiment_newstotal_statstable.csv", row.names = F)
+# 
+# mod_negsentiment_newstotal = lm(negative_tone ~ total + day, data = df_sentiment %>% filter(day > 0))
+# mod_negsentiment_newstotal_statstable = round(summary(mod_negsentiment_newstotal)$coefficients, 6)
+# mod_negsentiment_newstotal_confint = confint(mod_negsentiment_newstotal)
+# mod_negsentiment_newstotal_confint = round(subset(mod_negsentiment_newstotal_confint, rownames(mod_negsentiment_newstotal_confint) %in% rownames(mod_negsentiment_newstotal_statstable)), 6)
+# mod_negsentiment_newstotal_statstable = merge(mod_negsentiment_newstotal_statstable, mod_negsentiment_newstotal_confint, by="row.names")
+# mod_negsentiment_newstotal_statstable = mod_negsentiment_newstotal_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_negsentiment_newstotal_statstable$`2.5 %`, 6), ", ", round(mod_negsentiment_newstotal_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_negsentiment_newstotal_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_negsentiment_newstotal_confint)
+# mod_negsentiment_newstotal_statstable = mod_negsentiment_newstotal_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_negsentiment_newstotal_statstable, "mod_negsentiment_newstotal_statstable.csv", row.names = F)
+##############################################################################################
+
+
+# mod_warmth_newspolitical = lm(Warm ~ political + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_warmth_newspolitical_statstable = round(summary(mod_warmth_newspolitical)$coefficients, 6)
+# mod_warmth_newspolitical_confint = confint(mod_warmth_newspolitical)
+# mod_warmth_newspolitical_confint = round(subset(mod_warmth_newspolitical_confint, rownames(mod_warmth_newspolitical_confint) %in% rownames(mod_warmth_newspolitical_statstable)), 6)
+# mod_warmth_newspolitical_statstable = merge(mod_warmth_newspolitical_statstable, mod_warmth_newspolitical_confint, by="row.names")
+# mod_warmth_newspolitical_statstable = mod_warmth_newspolitical_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_warmth_newspolitical_statstable$`2.5 %`, 6), ", ", round(mod_warmth_newspolitical_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_warmth_newspolitical_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_warmth_newspolitical_confint)
+# mod_warmth_newspolitical_statstable = mod_warmth_newspolitical_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_warmth_newspolitical_statstable, "mod_warmth_newspolitical_statstable.csv", row.names = F)
+
+# mod_cold_newspolitical = lm(Cold ~ political + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_cold_newspolitical_statstable = round(summary(mod_cold_newspolitical)$coefficients, 6)
+# mod_cold_newspolitical_confint = confint(mod_cold_newspolitical)
+# mod_cold_newspolitical_confint = round(subset(mod_cold_newspolitical_confint, rownames(mod_cold_newspolitical_confint) %in% rownames(mod_cold_newspolitical_statstable)), 6)
+# mod_cold_newspolitical_statstable = merge(mod_cold_newspolitical_statstable, mod_cold_newspolitical_confint, by="row.names")
+# mod_cold_newspolitical_statstable = mod_cold_newspolitical_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_cold_newspolitical_statstable$`2.5 %`, 6), ", ", round(mod_cold_newspolitical_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_cold_newspolitical_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_cold_newspolitical_confint)
+# mod_cold_newspolitical_statstable = mod_cold_newspolitical_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_cold_newspolitical_statstable, "mod_cold_newspolitical_statstable.csv", row.names = F)
+
+# mod_competence_newspolitical = lm(Competent ~ political + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_competence_newspolitical_statstable = round(summary(mod_competence_newspolitical)$coefficients, 6)
+# mod_competence_newspolitical_confint = confint(mod_competence_newspolitical)
+# mod_competence_newspolitical_confint = round(subset(mod_competence_newspolitical_confint, rownames(mod_competence_newspolitical_confint) %in% rownames(mod_competence_newspolitical_statstable)), 6)
+# mod_competence_newspolitical_statstable = merge(mod_competence_newspolitical_statstable, mod_competence_newspolitical_confint, by="row.names")
+# mod_competence_newspolitical_statstable = mod_competence_newspolitical_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_competence_newspolitical_statstable$`2.5 %`, 6), ", ", round(mod_competence_newspolitical_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_competence_newspolitical_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_competence_prepost_confint)
+# mod_competence_newspolitical_statstable = mod_competence_newspolitical_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_competence_newspolitical_statstable, "mod_competence_newspolitical_statstable.csv", row.names = F)
+
+# mod_incompetence_newspolitical = lm(Incompetent ~ political + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_incompetence_newspolitical_statstable = round(summary(mod_incompetence_newspolitical)$coefficients, 6)
+# mod_incompetence_newspolitical_confint = confint(mod_incompetence_newspolitical)
+# mod_incompetence_newspolitical_confint = round(subset(mod_incompetence_newspolitical_confint, rownames(mod_incompetence_newspolitical_confint) %in% rownames(mod_incompetence_newspolitical_statstable)), 6)
+# mod_incompetence_newspolitical_statstable = merge(mod_incompetence_newspolitical_statstable, mod_incompetence_newspolitical_confint, by="row.names")
+# mod_incompetence_newspolitical_statstable = mod_incompetence_newspolitical_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_incompetence_newspolitical_statstable$`2.5 %`, 6), ", ", round(mod_incompetence_newspolitical_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_incompetence_newspolitical_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_incompetence_newspolitical_confint)
+# mod_incompetence_newspolitical_statstable = mod_incompetence_newspolitical_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_incompetence_newspolitical_statstable, "mod_incompetence_newspolitical_statstable.csv", row.names = F)
+
+# mod_possentiment_newspolitical = lm(positive_tone ~ political + day, data = df_sentiment %>% filter(day > 0))
+# mod_possentiment_newspolitical_statstable = round(summary(mod_possentiment_newspolitical)$coefficients, 6)
+# mod_possentiment_newspolitical_confint = confint(mod_possentiment_newspolitical)
+# mod_possentiment_newspolitical_confint = round(subset(mod_possentiment_newspolitical_confint, rownames(mod_possentiment_newspolitical_confint) %in% rownames(mod_possentiment_newspolitical_statstable)), 6)
+# mod_possentiment_newspolitical_statstable = merge(mod_possentiment_newspolitical_statstable, mod_possentiment_newspolitical_confint, by="row.names")
+# mod_possentiment_newspolitical_statstable = mod_possentiment_newspolitical_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_possentiment_newspolitical_statstable$`2.5 %`, 6), ", ", round(mod_possentiment_newspolitical_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_possentiment_newspolitical_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_possentiment_newspolitical_confint)
+# mod_possentiment_newspolitical_statstable = mod_possentiment_newspolitical_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_possentiment_newspolitical_statstable, "mod_possentiment_newspolitical_statstable.csv", row.names = F)
+
+# mod_negsentiment_newspolitical = lm(negative_tone ~ political + day, data = df_sentiment %>% filter(day > 0))
+# mod_negsentiment_newspolitical_statstable = round(summary(mod_negsentiment_newspolitical)$coefficients, 6)
+# mod_negsentiment_newspolitical_confint = confint(mod_negsentiment_newspolitical)
+# mod_negsentiment_newspolitical_confint = round(subset(mod_negsentiment_newspolitical_confint, rownames(mod_negsentiment_newspolitical_confint) %in% rownames(mod_negsentiment_newspolitical_statstable)), 6)
+# mod_negsentiment_newspolitical_statstable = merge(mod_negsentiment_newspolitical_statstable, mod_negsentiment_newspolitical_confint, by="row.names")
+# mod_negsentiment_newspolitical_statstable = mod_negsentiment_newspolitical_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_negsentiment_newspolitical_statstable$`2.5 %`, 6), ", ", round(mod_negsentiment_newspolitical_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_negsentiment_newspolitical_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_negsentiment_newspolitical_confint)
+# mod_negsentiment_newspolitical_statstable = mod_negsentiment_newspolitical_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_negsentiment_newspolitical_statstable, "mod_negsentiment_newspolitical_statstable.csv", row.names = F)
+###############################################################################################
+
+
+# mod_warmth_newsasian = lm(Warm ~ asian + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_warmth_newsasian_statstable = round(summary(mod_warmth_newsasian)$coefficients, 6)
+# mod_warmth_newsasian_confint = confint(mod_warmth_newsasian)
+# mod_warmth_newsasian_confint = round(subset(mod_warmth_newsasian_confint, rownames(mod_warmth_newsasian_confint) %in% rownames(mod_warmth_newsasian_statstable)), 6)
+# mod_warmth_newsasian_statstable = merge(mod_warmth_newsasian_statstable, mod_warmth_newsasian_confint, by="row.names")
+# mod_warmth_newsasian_statstable = mod_warmth_newsasian_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_warmth_newsasian_statstable$`2.5 %`, 6), ", ", round(mod_warmth_newsasian_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_warmth_newsasian_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_warmth_newsasian_confint)
+# mod_warmth_newsasian_statstable = mod_warmth_newsasian_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_warmth_newsasian_statstable, "mod_warmth_newsasian_statstable.csv", row.names = F)
+
+# mod_cold_newsasian = lm(Cold ~ asian + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_cold_newsasian_statstable = round(summary(mod_cold_newsasian)$coefficients, 6)
+# mod_cold_newsasian_confint = confint(mod_cold_newsasian)
+# mod_cold_newsasian_confint = round(subset(mod_cold_newsasian_confint, rownames(mod_cold_newsasian_confint) %in% rownames(mod_cold_newsasian_statstable)), 6)
+# mod_cold_newsasian_statstable = merge(mod_cold_newsasian_statstable, mod_cold_newsasian_confint, by="row.names")
+# mod_cold_newsasian_statstable = mod_cold_newsasian_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_cold_newsasian_statstable$`2.5 %`, 6), ", ", round(mod_cold_newsasian_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_cold_newsasian_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_cold_newsasian_confint)
+# mod_cold_newsasian_statstable = mod_cold_newsasian_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_cold_newsasian_statstable, "mod_cold_newsasian_statstable.csv", row.names = F)
+
+# mod_competence_newsasian = lm(Competent ~ asian + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_competence_newsasian_statstable = round(summary(mod_competence_newsasian)$coefficients, 6)
+# mod_competence_newsasian_confint = confint(mod_competence_newsasian)
+# mod_competence_newsasian_confint = round(subset(mod_competence_newsasian_confint, rownames(mod_competence_newsasian_confint) %in% rownames(mod_competence_newsasian_statstable)), 6)
+# mod_competence_newsasian_statstable = merge(mod_competence_newsasian_statstable, mod_competence_newsasian_confint, by="row.names")
+# mod_competence_newsasian_statstable = mod_competence_newsasian_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_competence_newsasian_statstable$`2.5 %`, 6), ", ", round(mod_competence_newsasian_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_competence_newsasian_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_competence_newsasian_confint)
+# mod_competence_newsasian_statstable = mod_competence_newsasian_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_competence_newsasian_statstable, "mod_competence_newsasian_statstable.csv", row.names = F)
+
+# mod_incompetence_newsasian = lm(Incompetent ~ asian + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_incompetence_newsasian_statstable = round(summary(mod_incompetence_newsasian)$coefficients, 6)
+# mod_incompetence_newsasian_confint = confint(mod_incompetence_newsasian)
+# mod_incompetence_newsasian_confint = round(subset(mod_incompetence_newsasian_confint, rownames(mod_incompetence_newsasian_confint) %in% rownames(mod_incompetence_newsasian_statstable)), 6)
+# mod_incompetence_newsasian_statstable = merge(mod_incompetence_newsasian_statstable, mod_incompetence_newsasian_confint, by="row.names")
+# mod_incompetence_newsasian_statstable = mod_incompetence_newsasian_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_incompetence_newsasian_statstable$`2.5 %`, 6), ", ", round(mod_incompetence_newsasian_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_incompetence_newsasian_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_incompetence_newsasian_confint)
+# mod_incompetence_newsasian_statstable = mod_incompetence_newsasian_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_incompetence_newsasian_statstable, "mod_incompetence_newsasian_statstable.csv", row.names = F)
+
+
+# mod_possentiment_newsasian = lm(positive_tone ~ asian + day, data = df_sentiment %>% filter(day > 0))
+# mod_possentiment_newsasian_statstable = round(summary(mod_possentiment_newsasian)$coefficients, 6)
+# mod_possentiment_newsasian_confint = confint(mod_possentiment_newsasian)
+# mod_possentiment_newsasian_confint = round(subset(mod_possentiment_newsasian_confint, rownames(mod_possentiment_newsasian_confint) %in% rownames(mod_possentiment_newsasian_statstable)), 6)
+# mod_possentiment_newsasian_statstable = merge(mod_possentiment_newsasian_statstable, mod_possentiment_newsasian_confint, by="row.names")
+# mod_possentiment_newsasian_statstable = mod_possentiment_newsasian_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_possentiment_newsasian_statstable$`2.5 %`, 6), ", ", round(mod_possentiment_newsasian_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_possentiment_newsasian_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_possentiment_newsasian_confint)
+# mod_possentiment_newsasian_statstable = mod_possentiment_newsasian_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***",
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_possentiment_newsasian_statstable, "mod_possentiment_newsasian_statstable.csv", row.names = F)
+
+# mod_negsentiment_newsasian = lm(negative_tone ~ asian + day, data = df_sentiment %>% filter(day > 0))
+# mod_negsentiment_newsasian_statstable = round(summary(mod_negsentiment_newsasian)$coefficients, 6)
+# mod_negsentiment_newsasian_confint = confint(mod_negsentiment_newsasian)
+# mod_negsentiment_newsasian_confint = round(subset(mod_negsentiment_newsasian_confint, rownames(mod_negsentiment_newsasian_confint) %in% rownames(mod_negsentiment_newsasian_statstable)), 6)
+# mod_negsentiment_newsasian_statstable = merge(mod_negsentiment_newsasian_statstable, mod_negsentiment_newsasian_confint, by="row.names")
+# mod_negsentiment_newsasian_statstable = mod_negsentiment_newsasian_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_negsentiment_newsasian_statstable$`2.5 %`, 6), ", ", round(mod_negsentiment_newsasian_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_negsentiment_newsasian_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_negsentiment_newsasian_confint)
+# mod_negsentiment_newsasian_statstable = mod_negsentiment_newsasian_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_negsentiment_newsasian_statstable, "mod_negsentiment_newsasian_statstable.csv", row.names = F)
+###############################################################################################
+
+
+# mod_warmth_newschinese = lm(Warm ~ chinese + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_warmth_newschinese_statstable = round(summary(mod_warmth_newschinese)$coefficients, 6)
+# mod_warmth_newschinese_confint = confint(mod_warmth_newschinese)
+# mod_warmth_newschinese_confint = round(subset(mod_warmth_newschinese_confint, rownames(mod_warmth_newschinese_confint) %in% rownames(mod_warmth_newschinese_statstable)), 6)
+# mod_warmth_newschinese_statstable = merge(mod_warmth_newschinese_statstable, mod_warmth_newschinese_confint, by="row.names")
+# mod_warmth_newschinese_statstable = mod_warmth_newschinese_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_warmth_newschinese_statstable$`2.5 %`, 6), ", ", round(mod_warmth_newschinese_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_warmth_newschinese_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_warmth_newschinese_confint)
+# mod_warmth_newschinese_statstable = mod_warmth_newschinese_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***",
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_warmth_newschinese_statstable, "mod_warmth_newschinese_statstable.csv", row.names = F)
+
+# mod_cold_newschinese = lm(Cold ~ chinese + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_cold_newschinese_statstable = round(summary(mod_cold_newschinese)$coefficients, 6)
+# mod_cold_newschinese_confint = confint(mod_cold_newschinese)
+# mod_cold_newschinese_confint = round(subset(mod_cold_newschinese_confint, rownames(mod_cold_newschinese_confint) %in% rownames(mod_cold_newschinese_statstable)), 6)
+# mod_cold_newschinese_statstable = merge(mod_cold_newschinese_statstable, mod_cold_newschinese_confint, by="row.names")
+# mod_cold_newschinese_statstable = mod_cold_newschinese_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_cold_newschinese_statstable$`2.5 %`, 6), ", ", round(mod_cold_newschinese_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_cold_newschinese_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_cold_newschinese_confint)
+# mod_cold_newschinese_statstable = mod_cold_newschinese_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_cold_newschinese_statstable, "mod_cold_newschinese_statstable.csv", row.names = F)
+
+# mod_competence_newschinese = lm(Competent ~ chinese + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_competence_newschinese_statstable = round(summary(mod_competence_newschinese)$coefficients, 6)
+# mod_competence_newschinese_confint = confint(mod_competence_newschinese)
+# mod_competence_newschinese_confint = round(subset(mod_competence_newschinese_confint, rownames(mod_competence_newschinese_confint) %in% rownames(mod_competence_newschinese_statstable)), 6)
+# mod_competence_newschinese_statstable = merge(mod_competence_newschinese_statstable, mod_competence_newschinese_confint, by="row.names")
+# mod_competence_newschinese_statstable = mod_competence_newschinese_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_competence_newschinese_statstable$`2.5 %`, 6), ", ", round(mod_competence_newschinese_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_competence_newschinese_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_competence_newschinese_confint)
+# mod_competence_newschinese_statstable = mod_competence_newschinese_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_competence_newschinese_statstable, "mod_competence_newschinese_statstable.csv", row.names = F)
+
+# mod_incompetence_newschinese = lm(Incompetent ~ chinese + day, data = df_grouped_tp %>% filter(day > 0))
+# mod_incompetence_newschinese_statstable = round(summary(mod_incompetence_newschinese)$coefficients, 6)
+# mod_incompetence_newschinese_confint = confint(mod_incompetence_newschinese)
+# mod_incompetence_newschinese_confint = round(subset(mod_incompetence_newschinese_confint, rownames(mod_incompetence_newschinese_confint) %in% rownames(mod_incompetence_newschinese_statstable)), 6)
+# mod_incompetence_newschinese_statstable = merge(mod_incompetence_newschinese_statstable, mod_incompetence_newschinese_confint, by="row.names")
+# mod_incompetence_newschinese_statstable = mod_incompetence_newschinese_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_incompetence_newschinese_statstable$`2.5 %`, 6), ", ", round(mod_incompetence_newschinese_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_incompetence_newschinese_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_incompetence_newschinese_confint)
+# mod_incompetence_newschinese_statstable = mod_incompetence_newschinese_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_incompetence_newschinese_statstable, "mod_incompetence_newschinese_statstable.csv", row.names = F)
+
+
+# mod_possentiment_newschinese = lm(positive_tone ~ chinese + day, data = df_sentiment %>% filter(day > 0))
+# mod_possentiment_newschinese_statstable = round(summary(mod_possentiment_newschinese)$coefficients, 6)
+# mod_possentiment_newschinese_confint = confint(mod_possentiment_newschinese)
+# mod_possentiment_newschinese_confint = round(subset(mod_possentiment_newschinese_confint, rownames(mod_possentiment_newschinese_confint) %in% rownames(mod_possentiment_newschinese_statstable)), 6)
+# mod_possentiment_newschinese_statstable = merge(mod_possentiment_newschinese_statstable, mod_possentiment_newschinese_confint, by="row.names")
+# mod_possentiment_newschinese_statstable = mod_possentiment_newschinese_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_possentiment_newschinese_statstable$`2.5 %`, 6), ", ", round(mod_possentiment_newschinese_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_possentiment_newschinese_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_possentiment_newschinese_confint)
+# mod_possentiment_newschinese_statstable = mod_possentiment_newschinese_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_possentiment_newschinese_statstable, "mod_possentiment_newschinese_statstable.csv", row.names = F)
+
+# mod_negsentiment_newschinese = lm(negative_tone ~ chinese + day, data = df_sentiment %>% filter(day > 0))
+# mod_negsentiment_newschinese_statstable = round(summary(mod_negsentiment_newschinese)$coefficients, 6)
+# mod_negsentiment_newschinese_confint = confint(mod_negsentiment_newschinese)
+# mod_negsentiment_newschinese_confint = round(subset(mod_negsentiment_newschinese_confint, rownames(mod_negsentiment_newschinese_confint) %in% rownames(mod_negsentiment_newschinese_statstable)), 6)
+# mod_negsentiment_newschinese_statstable = merge(mod_negsentiment_newschinese_statstable, mod_negsentiment_newschinese_confint, by="row.names")
+# mod_negsentiment_newschinese_statstable = mod_negsentiment_newschinese_statstable %>%
+#   mutate("CI" = paste0("[", round(mod_negsentiment_newschinese_statstable$`2.5 %`, 6), ", ", round(mod_negsentiment_newschinese_statstable$`97.5 %`, 6), "]")) %>%
+#   select(-c(`2.5 %`, `97.5 %`))
+# names(mod_negsentiment_newschinese_statstable) = c("Predictor", "Estimate", "SE", "t-value", "p-value", "CI")
+# rm(mod_negsentiment_newschinese_confint)
+# mod_negsentiment_newschinese_statstable = mod_negsentiment_newschinese_statstable %>%
+#   select(Predictor, Estimate, SE, CI, `t-value`, `p-value`) %>%
+#   mutate(`p-value` = ifelse(as.numeric(`p-value`) < 0.001, "< 0.001***", 
+#                             ifelse(as.numeric(`p-value`) < 0.01, paste0(`p-value`, "**"),
+#                                    ifelse(as.numeric(`p-value`) < 0.05, paste0(`p-value`,"*"), `p-value`))))
+# write.csv(mod_negsentiment_newschinese_statstable, "mod_negsentiment_newschinese_statstable.csv", row.names = F)
+
+```
+```{r include=FALSE}
+possentiment_prepost_statstable = read.csv("mod_possentiment_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newstotal_statstable = read.csv("mod_possentiment_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newspolitical_statstable = read.csv("mod_possentiment_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newsasian_statstable = read.csv("mod_possentiment_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newschinese_statstable = read.csv("mod_possentiment_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+negsentiment_prepost_statstable = read.csv("mod_negsentiment_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newstotal_statstable = read.csv("mod_negsentiment_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newspolitical_statstable = read.csv("mod_negsentiment_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newsasian_statstable = read.csv("mod_negsentiment_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newschinese_statstable = read.csv("mod_negsentiment_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+warmth_prepost_statstable = read.csv("mod_warmth_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newstotal_statstable = read.csv("mod_warmth_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newspolitical_statstable = read.csv("mod_warmth_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newsasian_statstable = read.csv("mod_warmth_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newschinese_statstable = read.csv("mod_warmth_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+cold_prepost_statstable = read.csv("mod_cold_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newstotal_statstable = read.csv("mod_cold_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newspolitical_statstable = read.csv("mod_cold_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newsasian_statstable = read.csv("mod_cold_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newschinese_statstable = read.csv("mod_cold_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+competent_prepost_statstable = read.csv("mod_competence_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newstotal_statstable = read.csv("mod_competence_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newspolitical_statstable = read.csv("mod_competence_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newsasian_statstable = read.csv("mod_competence_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newschinese_statstable = read.csv("mod_competence_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+incompetent_prepost_statstable = read.csv("mod_incompetence_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newstotal_statstable = read.csv("mod_incompetence_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newspolitical_statstable = read.csv("mod_incompetence_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newsasian_statstable = read.csv("mod_incompetence_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newschinese_statstable = read.csv("mod_incompetence_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+```
+# Appendix A: Tables
+
+## Sentiment
+
+```{r, echo=FALSE, warning=FALSE}
+possentiment_prepost_statstable %>%
+  kable(format = "markdown",
+        booktabs = TRUE,
+        escape = FALSE,
+        longtable = TRUE,
+        align = c("l", "c", "c", "c", "c", "c"),
+        caption = "Table 1: Impact of the COVID-19 outbreak on proportion of positive sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+possentiment_newstotal_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 2: Impact of news coverage of COVID-19 over time on proportion of positive sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+possentiment_newspolitical_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 3: Impact of political news coverage of COVID-19 over time on proportion of positive sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+possentiment_newsasian_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 4: Impact of news coverage of COVID-19 that also mentioned Asia or Asian people over time on proportion of positive sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+possentiment_newschinese_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 5: Impact of news coverage of COVID-19 that specifically mentioned China or Chinese people over time on proportion of positive sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+negsentiment_prepost_statstable %>%
+  kable(format = "markdown",
+        booktabs = TRUE,
+        escape = FALSE,
+        longtable = TRUE,
+        align = c("l", "c", "c", "c", "c", "c"),
+        caption = "Table 6: Impact of the COVID-19 outbreak on proportion of negative sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+negsentiment_newstotal_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 7: Impact of news coverage of COVID-19 over time on proportion of negative sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+negsentiment_newspolitical_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 8: Impact of political news coverage of COVID-19 over time on proportion of negative sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+possentiment_newsasian_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 9: Impact of news coverage of COVID-19 that also mentioned Asia or Asian people over time on proportion of negative sentiment words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+negsentiment_newschinese_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 10: Impact of news coverage of COVID-19 that specifically mentioned China or Chinese people over time on proportion of negative sentiment words in a typical tweet")
+```
+
+## Stereotypes
+
+```{r, echo=FALSE, warning=FALSE}
+warmth_prepost_statstable %>%
+  kable(format = "markdown",
+        booktabs = TRUE,
+        escape = FALSE,
+        longtable = TRUE,
+        align = c("l", "c", "c", "c", "c", "c"),
+        caption = "Table 11: Impact of the COVID-19 outbreak on proportion of warm stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+warmth_newstotal_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 12: Impact of news coverage of COVID-19 over time on proportion of warm stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+warmth_newspolitical_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 13: Impact of political news coverage of COVID-19 over time on proportion of warm stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+warmth_newsasian_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 14: Impact of news coverage of COVID-19 that also mentioned Asia or Asian people over time on proportion of warm stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+warmth_newschinese_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 15: Impact of news coverage of COVID-19 that specifically mentioned China or Chinese people over time on proportion of warm stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+cold_prepost_statstable %>%
+  kable(format = "markdown",
+        booktabs = TRUE,
+        escape = FALSE,
+        longtable = TRUE,
+        align = c("l", "c", "c", "c", "c", "c"),
+        caption = "Table 16: Impact of the COVID-19 outbreak on proportion of cold stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+cold_newstotal_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 17: Impact of news coverage of COVID-19 over time on proportion of cold stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+cold_newspolitical_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 18: Impact of political news coverage of COVID-19 over time on proportion of cold stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+cold_newsasian_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 19: Impact of news coverage of COVID-19 that also mentioned Asia or Asian people over time on proportion of cold stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+cold_newschinese_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 20: Impact of news coverage of COVID-19 that specifically mentioned China or Chinese people over time on proportion of cold stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+competent_prepost_statstable %>%
+  kable(format = "markdown",
+        booktabs = TRUE,
+        escape = FALSE,
+        longtable = TRUE,
+        align = c("l", "c", "c", "c", "c", "c"),
+        caption = "Table 21: Impact of the COVID-19 outbreak on proportion of competent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+competent_newstotal_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 22: Impact of news coverage of COVID-19 over time on proportion of competent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+competent_newspolitical_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 23: Impact of political news coverage of COVID-19 over time on proportion of competent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+competent_newsasian_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 24: Impact of news coverage of COVID-19 that also mentioned Asia or Asian people over time on proportion of competent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+competent_newschinese_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 25: Impact of news coverage of COVID-19 that specifically mentioned China or Chinese people over time on proportion of competent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+incompetent_prepost_statstable %>%
+  kable(format = "markdown",
+        booktabs = TRUE,
+        escape = FALSE,
+        longtable = TRUE,
+        align = c("l", "c", "c", "c", "c", "c"),
+        caption = "Table 26: Impact of the COVID-19 outbreak on proportion of incompetent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+incompetent_newstotal_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 27: Impact of news coverage of COVID-19 over time on proportion of incompetent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+incompetent_newspolitical_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 28: Impact of political news coverage of COVID-19 over time on proportion of incompetent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+incompetent_newsasian_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 29: Impact of news coverage of COVID-19 that also mentioned Asia or Asian people over time on proportion of incompetent stereotype words in a typical tweet")
+```
+
+```{r, echo=FALSE, warning=FALSE}
+incompetent_newschinese_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "c", "c", "c", "c", "c"),
+      caption = "Table 30: Impact of news coverage of COVID-19 that specifically mentioned China or Chinese people over time on proportion of incompetent stereotype words in a typical tweet")
+```

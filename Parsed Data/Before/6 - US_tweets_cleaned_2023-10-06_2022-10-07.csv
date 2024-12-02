@@ -1,0 +1,10 @@
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 28, 2024 09:14 PM
+","Number of discards: 0
+","List of accounts processed: []
+","List of accounts coming in: ['senkatiebritt', 'laurenboebert', 'repmtg', 'bennyjohnson', 'marklevinshow', 'fdrlst', 'ksorbs', 'tpaction_', 'jimmyfailla', 'w_terrence', 'atensnut', 'scottpresler', 'earlyvoteaction', 'pnjaban', 'dhillonlaw', 'liberty_ctr', 'mattshupepr', 'richardgrenell', 'rudygiuliani', 'brandonstraka', 'benigma2017', 'thebabylonbee', 'hodgetwins', 'thetwinspod']
+","List of accounts needed to be rerun: ['dhillonlaw', 'richardgrenell', 'thetwinspod']
+","List of accounts with parsed but only irrelevant tweets: ['senkatiebritt', 'laurenboebert', 'repmtg', 'bennyjohnson', 'marklevinshow', 'fdrlst', 'ksorbs', 'tpaction_', 'jimmyfailla', 'w_terrence', 'atensnut', 'scottpresler', 'earlyvoteaction', 'pnjaban', 'liberty_ctr', 'mattshupepr', 'rudygiuliani', 'brandonstraka', 'benigma2017', 'thebabylonbee', 'hodgetwins']"

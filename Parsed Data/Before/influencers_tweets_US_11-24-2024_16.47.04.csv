@@ -1,0 +1,10 @@
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 28, 2024 09:14 PM
+","Number of discards: 207
+","List of accounts processed: []
+","List of accounts coming in: ['@OfficialPSQ', '@RallyRightUSA']
+","List of accounts needed to be rerun: ['@RallyRightUSA']
+",List of accounts with parsed but only irrelevant tweets: ['@OfficialPSQ']

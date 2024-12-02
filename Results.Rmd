@@ -1,0 +1,862 @@
+---
+title: "Results"
+output: word_document
+fontsize: 12
+fontfamily: arev
+header-includes:
+   - \usepackage{caption}
+   - \captionsetup[table]{textfont={it}, labelfont={bf}, singlelinecheck=false, labelsep=newline}
+    - \usepackage{setspace}\doublespacing
+    - \usepackage{float}
+---
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+# s1_mod1 = lmer(MoneyTrusted ~ agency_contrast*generosity_contrast1*status_contrast*Round +
+#               (1|Subject), data = data)
+# s1_mod2 = lmer(MoneyTrusted ~ agency_contrast*generosity_contrast1*status_contrast*Feedback + Game_Number +
+#               (1|Subject), data=data_firstroundexcluded)
+# s2_mod1 = lmer(MoneyTrusted ~ agency_contrast*generosity_contrast1*status_contrast*Round +
+#               (1|Subject), data = data)
+# s2_mod2 = lmer(MoneyTrusted ~ agency_contrast*generosity_contrast1*status_contrast*Feedback + Game_Number +
+#               (1|Subject), data=data_firstroundexcluded)
+
+s1_mod1_statstable = read.csv("s1_mod1_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+s1_mod2_statstable = read.csv("s1_mod2_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+s2_mod1_statstable = read.csv("s2_mod1_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+s2_mod2_statstable = read.csv("s2_mod2_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+
+s1_mod1_sigslopes1 = read.csv("s1_mod1_sigslopes1.csv", stringsAsFactors = FALSE, 
+                              na.strings = c("", "NA"), check.names = FALSE)
+s1_mod1_sigslopes2 = read.csv("s1_mod1_sigslopes2.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+s1_mod1_sigslopes3 = read.csv("s1_mod1_sigslopes3.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+
+s1_mod2_sigslopes1 = read.csv("s1_mod2_sigslopes1.csv", stringsAsFactors = FALSE, 
+                              na.strings = c("", "NA"), check.names = FALSE)
+s1_mod2_sigslopes2 = read.csv("s1_mod2_sigslopes2.csv", stringsAsFactors = FALSE, 
+                              na.strings = c("", "NA"), check.names = FALSE)
+s1_mod2_sigslopes3 = read.csv("s1_mod2_sigslopes3.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+
+s2_mod1_sigslopes1 = read.csv("s2_mod1_sigslopes1.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+
+s2_mod2_sigslopes1 = read.csv("s2_mod2_sigslopes1.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+s2_mod2_sigslopes2 = read.csv("s2_mod2_sigslopes2.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+s2_mod2_sigslopes3 = read.csv("s2_mod2_sigslopes3.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+s2_mod2_sigslopes4 = read.csv("s2_mod2_sigslopes4.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE)
+```
+
+We hypothesized that agency, status, and reciprocity would interact over time to affect trust. We tested the interaction of agency, status, reciprocity, and round as a predictor of trust. We also tested a second model, testing the interaction of agency, status, reciprocity, and feedback as a predictor of trust.  
+
+We therefore tested two models. In the first model we entered entered agency, status, generosity, and round number as interacting predictors of trust. We included the first rounds in this analysis. In the second model we entered agency, status, generosity, and feedback as interacting predictors of trust, with game number as a covariate. For this model, we used removed the first round of each game as no feedback has been received that could affect behavior in the first round. 
+
+# Study 1
+
+Study 1 was a mixed design, with one between-subjects factor (agency: human, AI) and three within-subjects factors (status: high, low; generosity: greedy, neutral, generous; feedback: 9 rounds). 
+
+## Model 1
+
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+s1_mod1_beta_generosity = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate"), "B"]
+s1_mod1_se_generosity = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate"), "SE"]
+s1_mod1_t_generosity = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate"), "t-value"]
+s1_mod1_p_generosity = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate"), "p-value"]
+s1_mod1_CI_generosity = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate"), "95% CI"]
+
+s1_mod1_beta_status = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status"), "B"]
+s1_mod1_se_status = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status"), "SE"]
+s1_mod1_t_status = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status"), "t-value"]
+s1_mod1_p_status = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status"), "p-value"]
+s1_mod1_CI_status = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status"), "95% CI"]
+
+s1_mod1_beta_round = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Round"), "B"]
+s1_mod1_se_round = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Round"), "SE"]
+s1_mod1_t_round = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Round"), "t-value"]
+s1_mod1_p_round = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Round"), "p-value"]
+s1_mod1_CI_round = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Round"), "95% CI"]
+
+s1_mod1_beta_generosityround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Round"), "B"]
+s1_mod1_se_generosityround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Round"), "SE"]
+s1_mod1_t_generosityround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Round"), "t-value"]
+s1_mod1_p_generosityround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Round"), "p-value"]
+s1_mod1_CI_generosityround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Round"), "95% CI"]
+
+s1_mod1_beta_statusround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status x Round"), "B"]
+s1_mod1_se_statusround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status x Round"), "SE"]
+s1_mod1_t_statusround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status x Round"), "t-value"]
+s1_mod1_p_statusround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status x Round"), "p-value"]
+s1_mod1_CI_statusround = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Status x Round"), "95% CI"]
+
+s1_mod1_beta_generositystatus = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Status"), "B"]
+s1_mod1_se_generositystatus = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Status"), "SE"]
+s1_mod1_t_generositystatus = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Status"), "t-value"]
+s1_mod1_p_generositystatus = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Status"), "p-value"]
+s1_mod1_CI_generositystatus = s1_mod1_statstable[which(s1_mod1_statstable$Predictor=="Reciprocity rate x Status"), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+# Simple slopes for status and generosity interaction
+
+s1_mod1_beta_generosity_lowstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='LowStatus'), "B"]
+s1_mod1_se_generosity_lowstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='LowStatus'), "SE"]
+s1_mod1_t_generosity_lowstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='LowStatus'), "t-value"]
+s1_mod1_p_generosity_lowstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='LowStatus'), "p-value"]
+s1_mod1_CI_generosity_lowstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='LowStatus'), "95% CI"]
+
+s1_mod1_beta_generosity_highstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='HighStatus'), "B"]
+s1_mod1_se_generosity_highstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='HighStatus'), "SE"]
+s1_mod1_t_generosity_highstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='HighStatus'), "t-value"]
+s1_mod1_p_generosity_highstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='HighStatus'), "p-value"]
+s1_mod1_CI_generosity_highstatus = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='HighStatus'), "95% CI"]
+
+s1_mod1_beta_status_greedy = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Greedy'), "B"]
+s1_mod1_se_status_greedy = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Greedy'), "SE"]
+s1_mod1_t_status_greedy = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Greedy'), "t-value"]
+s1_mod1_p_status_greedy = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Greedy'), "p-value"]
+s1_mod1_CI_status_greedy = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Greedy'), "95% CI"]
+
+s1_mod1_beta_status_neutral = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Neutral'), "B"]
+s1_mod1_se_status_neutral = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Neutral'), "SE"]
+s1_mod1_t_status_neutral = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Neutral'), "t-value"]
+s1_mod1_p_status_neutral = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Neutral'), "p-value"]
+s1_mod1_CI_status_neutral = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Neutral'), "95% CI"]
+
+s1_mod1_beta_status_generous = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Generous'), "B"]
+s1_mod1_se_status_generous = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Generous'), "SE"]
+s1_mod1_t_status_generous = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Generous'), "t-value"]
+s1_mod1_p_status_generous = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Generous'), "p-value"]
+s1_mod1_CI_status_generous = s1_mod1_sigslopes1[which(s1_mod1_sigslopes1$Reference=='Generous'), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+# Simple slopes for status and round interaction
+
+s1_mod1_beta_status_firstround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='FirstRound'), "B"]
+s1_mod1_se_status_firstround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='FirstRound'), "SE"]
+s1_mod1_t_status_firstround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='FirstRound'), "t-value"]
+s1_mod1_p_status_firstround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='FirstRound'), "p-value"]
+s1_mod1_CI_status_firstround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='FirstRound'), "95% CI"]
+
+s1_mod1_beta_status_middleround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='MiddleRound'), "B"]
+s1_mod1_se_status_middleround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='MiddleRound'), "SE"]
+s1_mod1_t_status_middleround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='MiddleRound'), "t-value"]
+s1_mod1_p_status_middleround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='MiddleRound'), "p-value"]
+s1_mod1_CI_status_middleround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='MiddleRound'), "95% CI"]
+
+s1_mod1_beta_status_lastround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LastRound'), "B"]
+s1_mod1_se_status_lastround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LastRound'), "SE"]
+s1_mod1_t_status_lastround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LastRound'), "t-value"]
+s1_mod1_p_status_lastround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LastRound'), "p-value"]
+s1_mod1_CI_status_lastround = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LastRound'), "95% CI"]
+
+s1_mod1_beta_round_lowstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LowStatus'), "B"]
+s1_mod1_se_round_lowstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LowStatus'), "SE"]
+s1_mod1_t_round_lowstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LowStatus'), "t-value"]
+s1_mod1_p_round_lowstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LowStatus'), "p-value"]
+s1_mod1_CI_round_lowstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='LowStatus'), "95% CI"]
+
+s1_mod1_beta_round_highstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='HighStatus'), "B"]
+s1_mod1_se_round_highstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='HighStatus'), "SE"]
+s1_mod1_t_round_highstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='HighStatus'), "t-value"]
+s1_mod1_p_round_highstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='HighStatus'), "p-value"]
+s1_mod1_CI_round_highstatus = s1_mod1_sigslopes2[which(s1_mod1_sigslopes2$Reference=='HighStatus'), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+# Simple slopes for generosity and round interaction
+
+s1_mod1_beta_generosity_firstround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='FirstRound'), "B"]
+s1_mod1_se_generosity_firstround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='FirstRound'), "SE"]
+s1_mod1_t_generosity_firstround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='FirstRound'), "t-value"]
+s1_mod1_p_generosity_firstround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='FirstRound'), "p-value"]
+s1_mod1_CI_generosity_firstround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='FirstRound'), "95% CI"]
+
+s1_mod1_beta_generosity_middleround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='MiddleRound'), "B"]
+s1_mod1_se_generosity_middleround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='MiddleRound'), "SE"]
+s1_mod1_t_generosity_middleround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='MiddleRound'), "t-value"]
+s1_mod1_p_generosity_middleround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='MiddleRound'), "p-value"]
+s1_mod1_CI_generosity_middleround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='MiddleRound'), "95% CI"]
+
+s1_mod1_beta_generosity_lastround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='LastRound'), "B"]
+s1_mod1_se_generosity_lastround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='LastRound'), "SE"]
+s1_mod1_t_generosity_lastround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='LastRound'), "t-value"]
+s1_mod1_p_generosity_lastround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='LastRound'), "p-value"]
+s1_mod1_CI_generosity_lastround = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='LastRound'), "95% CI"]
+
+s1_mod1_beta_round_greedy = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Greedy'), "B"]
+s1_mod1_se_round_greedy = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Greedy'), "SE"]
+s1_mod1_t_round_greedy = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Greedy'), "t-value"]
+s1_mod1_p_round_greedy = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Greedy'), "p-value"]
+s1_mod1_CI_round_greedy = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Greedy'), "95% CI"]
+
+s1_mod1_beta_round_neutral = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Neutral'), "B"]
+s1_mod1_se_round_neutral = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Neutral'), "SE"]
+s1_mod1_t_round_neutral = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Neutral'), "t-value"]
+s1_mod1_p_round_neutral = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Neutral'), "p-value"]
+s1_mod1_CI_round_neutral = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Neutral'), "95% CI"]
+
+s1_mod1_beta_round_generous = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Generous'), "B"]
+s1_mod1_se_round_generous = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Generous'), "SE"]
+s1_mod1_t_round_generous = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Generous'), "t-value"]
+s1_mod1_p_round_generous = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Generous'), "p-value"]
+s1_mod1_CI_round_generous = s1_mod1_sigslopes3[which(s1_mod1_sigslopes3$Reference=='Generous'), "95% CI"]
+```
+
+Results from our second model yielded three significant main effects - of generosity (B = `r s1_mod1_beta_generosity`, SE = `r s1_mod1_se_generosity`, t = `r s1_mod1_t_generosity`, p = `r s1_mod1_p_generosity`, CI = `r s1_mod1_CI_generosity`), status (B = `r s1_mod1_beta_status`, SE = `r s1_mod1_se_status`, t = `r s1_mod1_t_status`, p = `r s1_mod1_p_status`, CI = `r s1_mod1_CI_status`), and round (B = `r s1_mod1_beta_round`, SE = `r s1_mod1_se_round`, t = `r s1_mod1_t_round`, p = `r s1_mod1_p_round`, CI = `r s1_mod1_CI_round`) - all of which were qualified by interactions. We found a significant interaction between generosity and round (B = `r s1_mod1_beta_generosityround`, SE = `r s1_mod1_se_generosityround`, t = `r s1_mod1_t_generosityround`, p = `r s1_mod1_p_generosityround`, CI = `r s1_mod1_CI_generosityround`), another between status and round (B = `r s1_mod1_beta_statusround`, SE = `r s1_mod1_se_statusround`, t = `r s1_mod1_t_statusround`, p = `r s1_mod1_p_statusround`, CI = `r s1_mod1_CI_statusround`), and a third between generosity and status (B = `r s1_mod1_beta_generositystatus`, SE = `r s1_mod1_se_generositystatus`, t = `r s1_mod1_t_generositystatus`, p = `r s1_mod1_p_generositystatus`, CI = `r s1_mod1_CI_generositystatus`). 
+
+Participants decreased in their trust over rounds, but this decrease was greater for high status partners (B = `r s1_mod1_beta_round_highstatus`, SE = `r s1_mod1_se_round_highstatus`, t = `r s1_mod1_t_round_highstatus`, p = `r s1_mod1_p_round_highstatus`, CI = `r s1_mod1_CI_round_highstatus`) than for low status partners (B = `r s1_mod1_beta_round_lowstatus`, SE = `r s1_mod1_se_round_lowstatus`, t = `r s1_mod1_t_round_lowstatus`, p = `r s1_mod1_p_round_lowstatus`, CI = `r s1_mod1_CI_round_lowstatus`). This difference was due to greater trust for high status players compared to low status players in initial rounds.
+
+Trust also decreased over rounds for generous (B = `r s1_mod1_beta_round_generous`, SE = `r s1_mod1_se_round_generous`, t = `r s1_mod1_t_round_generous`, p = `r s1_mod1_p_round_generous`, CI = `r s1_mod1_CI_round_generous`), neutral (B = `r s1_mod1_beta_round_neutral`, SE = `r s1_mod1_se_round_neutral`, t = `r s1_mod1_t_round_neutral`, p = `r s1_mod1_p_round_neutral`, CI = `r s1_mod1_CI_round_neutral`), and greedy players (B = `r s1_mod1_beta_round_greedy`, SE = `r s1_mod1_se_round_greedy`, t = `r s1_mod1_t_round_greedy`, p = `r s1_mod1_p_round_greedy`, CI = `r s1_mod1_CI_round_greedy`). Additionally, trust was greater for generous than neutral or greedy partners at the first (B = `r s1_mod1_beta_generosity_firstround`, SE = `r s1_mod1_se_generosity_firstround`, t = `r s1_mod1_t_generosity_firstround`, p = `r s1_mod1_p_generosity_firstround`, CI = `r s1_mod1_CI_generosity_firstround`), fifth (B = `r s1_mod1_beta_generosity_middleround`, SE = `r s1_mod1_se_generosity_middleround`, t = `r s1_mod1_t_generosity_middleround`, p = `r s1_mod1_p_generosity_middleround`, CI = `r s1_mod1_CI_generosity_middleround`), and tenth round (B = `r s1_mod1_beta_generosity_lastround`, SE = `r s1_mod1_se_generosity_lastround`, t = `r s1_mod1_t_generosity_lastround`, p = `r s1_mod1_p_generosity_lastround`, CI = `r s1_mod1_CI_generosity_lastround`). Taken together, these two results suggest that trust decreased over rounds, but this decrease was alleviated when participants noticed an actual difference in sharing behavior from their partner. In the case of status, which did not modulate partner return, participants trusted both high and low status partners similarly by the last round. But in the case of generosity, which was reflected in partner returns, participants continued to trust generous partners highly until the last round.
+
+Finally, a simple slopes analysis of our generosity and status interaction revealed that participants were more likely to trust generous compared to neutral and greedy partners at both high (B = `r s1_mod1_beta_generosity_highstatus`, SE = `r s1_mod1_se_generosity_highstatus`, t = `r s1_mod1_t_generosity_highstatus`, p = `r s1_mod1_p_generosity_highstatus`, CI = `r s1_mod1_CI_generosity_highstatus`) and low status (B = `r s1_mod1_beta_generosity_lowstatus`, SE = `r s1_mod1_se_generosity_lowstatus`, t = `r s1_mod1_t_generosity_lowstatus`, p = `r s1_mod1_p_generosity_lowstatus`, CI = `r s1_mod1_CI_generosity_lowstatus`). They were also more likely to trust high status partners more than low status partners for greedy (B = `r s1_mod1_beta_status_greedy`, SE = `r s1_mod1_se_status_greedy`, t = `r s1_mod1_t_status_greedy`, p = `r s1_mod1_p_status_greedy`, CI = `r s1_mod1_CI_status_greedy`), neutral (B = `r s1_mod1_beta_status_neutral`, SE = `r s1_mod1_se_status_neutral`, t = `r s1_mod1_t_status_neutral`, p = `r s1_mod1_p_status_neutral`, CI = `r s1_mod1_CI_status_neutral`), and generous partners (B = `r s1_mod1_beta_status_generous`, SE = `r s1_mod1_se_status_generous`, t = `r s1_mod1_t_status_generous`, p = `r s1_mod1_p_status_generous`, CI = `r s1_mod1_CI_status_generous`).
+
+However, we again failed to find any significant effects - main or in interactions - of agency.
+
+Taken together, results from our first study showed that people attend to competency status and reciprocity when making trust decisions with humans and AI. They reliably infer reciprocity profiles for AI, suggesting that participants mentalize AI and learn their "traits." 
+
+Unexpectedly, there was little difference in how participants trusted humans vs how they trusted AI. This could be a true negative - maybe we do treat humans and AI similarly when deciding whom to trust. Or it could be due to our design - "AI" is not the automatic "other" category for "human." Because our design was between-subjects for the agency factor, participants who played with "human" players probably couldn't guess that they were supposed to compare their human partners to a possible AI partner. To ensure that this was in fact a true negative, we ran a completely within-subjects second study with a nearly-identical procedure - instead of 6 games, participants played 12 games, 6 with humans and 6 with AI.
+
+## Model 2
+
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+s1_mod2_beta_status = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status"), "B"]
+s1_mod2_se_status = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status"), "SE"]
+s1_mod2_t_status = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status"), "t-value"]
+s1_mod2_p_status = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status"), "p-value"]
+s1_mod2_CI_status = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status"), "95% CI"]
+
+s1_mod2_beta_generosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate"), "B"]
+s1_mod2_se_generosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate"), "SE"]
+s1_mod2_t_generosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate"), "t-value"]
+s1_mod2_p_generosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate"), "p-value"]
+s1_mod2_CI_generosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate"), "95% CI"]
+
+s1_mod2_beta_feedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Feedback"), "B"]
+s1_mod2_se_feedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Feedback"), "SE"]
+s1_mod2_t_feedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Feedback"), "t-value"]
+s1_mod2_p_feedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Feedback"), "p-value"]
+s1_mod2_CI_feedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Feedback"), "95% CI"]
+
+s1_mod2_beta_agencygenerosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Agency x Reciprocity rate"), "B"]
+s1_mod2_se_agencygenerosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Agency x Reciprocity rate"), "SE"]
+s1_mod2_t_agencygenerosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Agency x Reciprocity rate"), "t-value"]
+s1_mod2_p_agencygenerosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Agency x Reciprocity rate"), "p-value"]
+s1_mod2_CI_agencygenerosity = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Agency x Reciprocity rate"), "95% CI"]
+  
+s1_mod2_beta_statusfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status x Feedback"), "B"]
+s1_mod2_se_statusfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status x Feedback"), "SE"]
+s1_mod2_t_statusfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status x Feedback"), "t-value"]
+s1_mod2_p_statusfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status x Feedback"), "p-value"]
+s1_mod2_CI_statusfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Status x Feedback"), "95% CI"]
+  
+s1_mod2_beta_generosityfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "B"]
+s1_mod2_se_generosityfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "SE"]
+s1_mod2_t_generosityfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "t-value"]
+s1_mod2_p_generosityfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "p-value"]
+s1_mod2_CI_generosityfeedback = s1_mod2_statstable[which(s1_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+# Simple slopes for agency and generosity interaction
+
+s1_mod2_beta_generosity_human = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='Human'), "B"]
+s1_mod2_se_generosity_human = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='Human'), "SE"]
+s1_mod2_t_generosity_human = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='Human'), "t-value"]
+s1_mod2_p_generosity_human = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='Human'), "p-value"]
+s1_mod2_CI_generosity_human = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='Human'), "95% CI"]
+
+s1_mod2_beta_generosity_ai = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='AI'), "B"]
+s1_mod2_se_generosity_ai = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='AI'), "SE"]
+s1_mod2_t_generosity_ai = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='AI'), "t-value"]
+s1_mod2_p_generosity_ai = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='AI'), "p-value"]
+s1_mod2_CI_generosity_ai = s1_mod2_sigslopes1[which(s1_mod2_sigslopes1$Reference=='AI'), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+# Simple slopes for status and feedback interaction
+
+s1_mod2_beta_feedback_lowstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='LowStatus'), "B"]
+s1_mod2_se_feedback_lowstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='LowStatus'), "SE"]
+s1_mod2_t_feedback_lowstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='LowStatus'), "t-value"]
+s1_mod2_p_feedback_lowstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='LowStatus'), "p-value"]
+s1_mod2_CI_feedback_lowstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='LowStatus'), "95% CI"]
+
+s1_mod2_beta_feedback_highstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "B"]
+s1_mod2_se_feedback_highstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "SE"]
+s1_mod2_t_feedback_highstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "t-value"]
+s1_mod2_p_feedback_highstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "p-value"]
+s1_mod2_CI_feedback_highstatus = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "95% CI"]
+
+s1_mod2_beta_status_lowfeedback = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='LowFeedback'), "B"]
+s1_mod2_se_status_lowfeedback = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "SE"]
+s1_mod2_t_status_lowfeedback = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "t-value"]
+s1_mod2_p_status_lowfeedback = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "p-value"]
+s1_mod2_CI_status_lowfeedback = s1_mod2_sigslopes2[which(s1_mod2_sigslopes2$Reference=='HighStatus'), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+# Simple slopes for generosity and feedback interaction
+
+s1_mod2_beta_feedback_greedy = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Greedy'), "B"]
+s1_mod2_se_feedback_greedy = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Greedy'), "SE"]
+s1_mod2_t_feedback_greedy = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Greedy'), "t-value"]
+s1_mod2_p_feedback_greedy = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Greedy'), "p-value"]
+s1_mod2_CI_feedback_greedy = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Greedy'), "95% CI"]
+
+s1_mod2_beta_feedback_neutral = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Neutral'), "B"]
+s1_mod2_se_feedback_neutral = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Neutral'), "SE"]
+s1_mod2_t_feedback_neutral = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Neutral'), "t-value"]
+s1_mod2_p_feedback_neutral = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Neutral'), "p-value"]
+s1_mod2_CI_feedback_neutral = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Neutral'), "95% CI"]
+
+s1_mod2_beta_feedback_generous = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Generous'), "B"]
+s1_mod2_se_feedback_generous = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Generous'), "SE"]
+s1_mod2_t_feedback_generous = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Generous'), "t-value"]
+s1_mod2_p_feedback_generous = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Generous'), "p-value"]
+s1_mod2_CI_feedback_generous = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='Generous'), "95% CI"]
+
+s1_mod2_beta_generosity_lowfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='LowFeedback'), "B"]
+s1_mod2_se_generosity_lowfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='LowFeedback'), "SE"]
+s1_mod2_t_generosity_lowfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='LowFeedback'), "t-value"]
+s1_mod2_p_generosity_lowfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='LowFeedback'), "p-value"]
+s1_mod2_CI_generosity_lowfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='LowFeedback'), "95% CI"]
+
+s1_mod2_beta_generosity_midfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='MidFeedback'), "B"]
+s1_mod2_se_generosity_midfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='MidFeedback'), "SE"]
+s1_mod2_t_generosity_midfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='MidFeedback'), "t-value"]
+s1_mod2_p_generosity_midfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='MidFeedback'), "p-value"]
+s1_mod2_CI_generosity_midfeedback = s1_mod2_sigslopes3[which(s1_mod2_sigslopes3$Reference=='MidFeedback'), "95% CI"]
+```
+
+Results from our second model showed significant main effects of status (B = `r s1_mod2_beta_status`, SE = `r s1_mod2_se_status`, t = `r s1_mod2_t_status`, p = `r s1_mod2_p_status`, CI = `r s1_mod2_CI_status`), generosity (B = `r s1_mod2_beta_generosity`, SE = `r s1_mod2_se_generosity`, t = `r s1_mod2_t_generosity`, p = `r s1_mod2_p_generosity`, CI = `r s1_mod2_CI_generosity`), and feedback (B = `r s1_mod2_beta_feedback`, SE = `r s1_mod2_se_feedback`, t = `r s1_mod2_t_feedback`, p = `r s1_mod2_p_feedback`, CI = `r s1_mod2_CI_feedback`), which were qualified by a status & feedback interaction (B = `r s1_mod2_beta_statusfeedback`, SE = `r s1_mod2_se_statusfeedback`, t = `r s1_mod2_t_statusfeedback`, p = `r s1_mod2_p_statusfeedback`, CI = `r s1_mod2_CI_statusfeedback`), and a generosity & feedback interaction (B = `r s1_mod2_beta_generosityfeedback`, SE = `r s1_mod2_se_generosityfeedback`, t = `r s1_mod2_t_generosityfeedback`, p = `r s1_mod2_p_generosityfeedback`, CI = `r s1_mod2_CI_generosityfeedback`). 
+
+Increase in feedback led to increase in trust towards both low (B = `r s1_mod2_beta_feedback_lowstatus`, SE = `r s1_mod2_se_feedback_lowstatus`, t = `r s1_mod2_t_feedback_lowstatus`, p = `r s1_mod2_p_feedback_lowstatus`, CI = `r s1_mod2_CI_feedback_lowstatus`) and high status partners (B = `r s1_mod2_beta_feedback_highstatus`, SE = `r s1_mod2_se_feedback_highstatus`, t = `r s1_mod2_t_feedback_highstatus`, p = `r s1_mod2_p_feedback_highstatus`, CI = `r s1_mod2_CI_feedback_highstatus`). However, while high status partners were trusted more than low status partners at a low feedback level (centered at 0; B = `r s1_mod2_beta_status_lowfeedback`, SE = `r s1_mod2_se_status_lowfeedback`, t = `r s1_mod2_t_status_lowfeedback`, p = `r s1_mod2_p_status_lowfeedback`, CI = `r s1_mod2_CI_status_lowfeedback`), the difference between high and low status partners at medium (centered at 11) and high (centered at 22) feedback levels was insignificant. 
+
+Similarly, increase in feedback led to increase in trust towards generous (B = `r s1_mod2_beta_feedback_generous`, SE = `r s1_mod2_se_feedback_generous`, t = `r s1_mod2_t_feedback_generous`, p = `r s1_mod2_p_feedback_generous`, CI = `r s1_mod2_CI_feedback_generous`), neutral (B = `r s1_mod2_beta_feedback_neutral`, SE = `r s1_mod2_se_feedback_neutral`, t = `r s1_mod2_t_feedback_neutral`, p = `r s1_mod2_p_feedback_neutral`, CI = `r s1_mod2_CI_feedback_neutral`), and greedy partners (B = `r s1_mod2_beta_feedback_greedy`, SE = `r s1_mod2_se_feedback_greedy`, t = `r s1_mod2_t_feedback_greedy`, p = `r s1_mod2_p_feedback_greedy`, CI = `r s1_mod2_CI_feedback_greedy`). However, difference between trust towards generous, neutral, and greedy partners decreased as feedback increased -- at low (centered at 0; B = `r s1_mod2_beta_generosity_lowfeedback`, SE = `r s1_mod2_se_generosity_lowfeedback`, t = `r s1_mod2_t_generosity_lowfeedback`, p = `r s1_mod2_p_generosity_lowfeedback`, CI = `r s1_mod2_CI_generosity_lowfeedback`) and medium (centered at 11; B = `r s1_mod2_beta_generosity_midfeedback`, SE = `r s1_mod2_se_generosity_midfeedback`, t = `r s1_mod2_t_generosity_midfeedback`, p = `r s1_mod2_p_generosity_midfeedback`, CI = `r s1_mod2_CI_generosity_midfeedback`) feedback, generous partners were trusted more than neutral and greedy partners, but by high (centered at 22) feedback this difference in trust by generosity level became insignificant.
+
+While there were no main effects of agency, we did find an agency and generosity interaction (B = `r s1_mod2_beta_agencygenerosity`, SE = `r s1_mod2_se_agencygenerosity`, t = `r s1_mod2_t_agencygenerosity`, p = `r s1_mod2_p_agencygenerosity`, CI = `r s1_mod2_CI_agencygenerosity`). However, this interaction was entirely driven by generosity - participants trusted generous partners more than neutral and greedy partners for both human (B = `r s1_mod2_beta_generosity_human`, SE = `r s1_mod2_se_generosity_human`, t = `r s1_mod2_t_generosity_human`, p = `r s1_mod2_p_generosity_human`, CI = `r s1_mod2_CI_generosity_human`) and AI partners (B = `r s1_mod2_beta_generosity_ai`, SE = `r s1_mod2_se_generosity_ai`, t = `r s1_mod2_t_generosity_ai`, p = `r s1_mod2_p_generosity_ai`, CI = `r s1_mod2_CI_generosity_ai`), but we did not find any simple differences by agency.
+
+Taken together, these results show that status, generosity, and feedback impact trust decisions. Specifically, higher feedback and greater generosity lead to higher trust, while higher status led to higher trust only when feedback was low. However, we did not find any significant effects of agency, nor the expected four-way interaction between agency, generosity, status, and feedback. 
+
+# Study 2
+
+Study 2 was a within-subjects design with four factors -- agency (human, AI), status (high, low), generosity (greedy, neutral, generous), and feedback (9 rounds).
+
+## Model 1
+
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+s2_mod1_beta_generosity = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Reciprocity rate"), "B"]
+s2_mod1_se_generosity = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Reciprocity rate"), "SE"]
+s2_mod1_t_generosity = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Reciprocity rate"), "t-value"]
+s2_mod1_p_generosity = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Reciprocity rate"), "p-value"]
+s2_mod1_CI_generosity = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Reciprocity rate"), "95% CI"]
+
+s2_mod1_beta_agency = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency"), "B"]
+s2_mod1_se_agency = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency"), "SE"]
+s2_mod1_t_agency = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency"), "t-value"]
+s2_mod1_p_agency = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency"), "p-value"]
+s2_mod1_CI_agency = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency"), "95% CI"]
+
+s2_mod1_beta_status = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Status"), "B"]
+s2_mod1_se_status = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Status"), "SE"]
+s2_mod1_t_status = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Status"), "t-value"]
+s2_mod1_p_status = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Status"), "p-value"]
+s2_mod1_CI_status = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Status"), "95% CI"]
+
+s2_mod1_beta_round = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Round"), "B"]
+s2_mod1_se_round = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Round"), "SE"]
+s2_mod1_t_round = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Round"), "t-value"]
+s2_mod1_p_round = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Round"), "p-value"]
+s2_mod1_CI_round = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Round"), "95% CI"]
+
+s2_mod1_beta_agencystatusgenerosityround = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency x Reciprocity rate x Status x Round"), "B"]
+s2_mod1_se_agencystatusgenerosityround = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency x Reciprocity rate x Status x Round"), "SE"]
+s2_mod1_t_agencystatusgenerosityround = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency x Reciprocity rate x Status x Round"), "t-value"]
+s2_mod1_p_agencystatusgenerosityround = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency x Reciprocity rate x Status x Round"), "p-value"]
+s2_mod1_CI_agencystatusgenerosityround = s2_mod1_statstable[which(s2_mod1_statstable$Predictor=="Agency x Reciprocity rate x Status x Round"), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE}
+# Simple slopes for agency, status, generosity, and round interaction
+# Round
+s2_mod1_beta_round_lowstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Greedy'), "B"]
+s2_mod1_se_round_lowstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Greedy'), "SE"]
+s2_mod1_t_round_lowstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Greedy'), "t-value"]
+s2_mod1_p_round_lowstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Greedy'), "p-value"]
+s2_mod1_CI_round_lowstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Greedy'), "95% CI"]
+
+s2_mod1_beta_round_lowstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Neutral'), "B"]
+s2_mod1_se_round_lowstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Neutral'), "SE"]
+s2_mod1_t_round_lowstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Neutral'), "t-value"]
+s2_mod1_p_round_lowstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Neutral'), "p-value"]
+s2_mod1_CI_round_lowstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Neutral'), "95% CI"]
+
+s2_mod1_beta_round_lowstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Generous'), "B"]
+s2_mod1_se_round_lowstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Generous'), "SE"]
+s2_mod1_t_round_lowstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Generous'), "t-value"]
+s2_mod1_p_round_lowstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Generous'), "p-value"]
+s2_mod1_CI_round_lowstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Generous'), "95% CI"]
+
+s2_mod1_beta_round_highstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Greedy'), "B"]
+s2_mod1_se_round_highstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Greedy'), "SE"]
+s2_mod1_t_round_highstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Greedy'), "t-value"]
+s2_mod1_p_round_highstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Greedy'), "p-value"]
+s2_mod1_CI_round_highstatusgreedyai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Greedy'), "95% CI"]
+
+s2_mod1_beta_round_highstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Neutral'), "B"]
+s2_mod1_se_round_highstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Neutral'), "SE"]
+s2_mod1_t_round_highstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Neutral'), "t-value"]
+s2_mod1_p_round_highstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Neutral'), "p-value"]
+s2_mod1_CI_round_highstatusneutralai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Neutral'), "95% CI"]
+
+s2_mod1_beta_round_highstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Generous'), "B"]
+s2_mod1_se_round_highstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Generous'), "SE"]
+s2_mod1_t_round_highstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Generous'), "t-value"]
+s2_mod1_p_round_highstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Generous'), "p-value"]
+s2_mod1_CI_round_highstatusgenerousai = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Generous'), "95% CI"]
+
+s2_mod1_beta_round_lowstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Greedy'), "B"]
+s2_mod1_se_round_lowstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Greedy'), "SE"]
+s2_mod1_t_round_lowstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Greedy'), "t-value"]
+s2_mod1_p_round_lowstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Greedy'), "p-value"]
+s2_mod1_CI_round_lowstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Greedy'), "95% CI"]
+
+s2_mod1_beta_round_lowstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Neutral'), "B"]
+s2_mod1_se_round_lowstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Neutral'), "SE"]
+s2_mod1_t_round_lowstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Neutral'), "t-value"]
+s2_mod1_p_round_lowstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Neutral'), "p-value"]
+s2_mod1_CI_round_lowstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Neutral'), "95% CI"]
+
+s2_mod1_beta_round_lowstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Generous'), "B"]
+s2_mod1_se_round_lowstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Generous'), "SE"]
+s2_mod1_t_round_lowstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Generous'), "t-value"]
+s2_mod1_p_round_lowstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Generous'), "p-value"]
+s2_mod1_CI_round_lowstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Generous'), "95% CI"]
+
+s2_mod1_beta_round_highstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Greedy'), "B"]
+s2_mod1_se_round_highstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Greedy'), "SE"]
+s2_mod1_t_round_highstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Greedy'), "t-value"]
+s2_mod1_p_round_highstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Greedy'), "p-value"]
+s2_mod1_CI_round_highstatusgreedyhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Greedy'), "95% CI"]
+
+s2_mod1_beta_round_highstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Neutral'), "B"]
+s2_mod1_se_round_highstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Neutral'), "SE"]
+s2_mod1_t_round_highstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Neutral'), "t-value"]
+s2_mod1_p_round_highstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Neutral'), "p-value"]
+s2_mod1_CI_round_highstatusneutralhuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Neutral'), "95% CI"]
+
+s2_mod1_beta_round_highstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Generous'), "B"]
+s2_mod1_se_round_highstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Generous'), "SE"]
+s2_mod1_t_round_highstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Generous'), "t-value"]
+s2_mod1_p_round_highstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Generous'), "p-value"]
+s2_mod1_CI_round_highstatusgeneroushuman = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Generous'), "95% CI"]
+
+# Generosity
+s2_mod1_beta_generosity_ailowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_FirstRound'), "B"]
+s2_mod1_se_generosity_ailowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_FirstRound'), "SE"]
+s2_mod1_t_generosity_ailowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_FirstRound'), "t-value"]
+s2_mod1_p_generosity_ailowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_FirstRound'), "p-value"]
+s2_mod1_CI_generosity_ailowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_generosity_ailowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_MiddleRound'), "B"]
+s2_mod1_se_generosity_ailowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_MiddleRound'), "SE"]
+s2_mod1_t_generosity_ailowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_MiddleRound'), "t-value"]
+s2_mod1_p_generosity_ailowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_generosity_ailowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_generosity_ailowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_LastRound'), "B"]
+s2_mod1_se_generosity_ailowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_LastRound'), "SE"]
+s2_mod1_t_generosity_ailowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_LastRound'), "t-value"]
+s2_mod1_p_generosity_ailowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_LastRound'), "p-value"]
+s2_mod1_CI_generosity_ailowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_LowStatus_Round_LastRound'), "95% CI"]
+
+s2_mod1_beta_generosity_aihighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_FirstRound'), "B"]
+s2_mod1_se_generosity_aihighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_FirstRound'), "SE"]
+s2_mod1_t_generosity_aihighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_FirstRound'), "t-value"]
+s2_mod1_p_generosity_aihighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_FirstRound'), "p-value"]
+s2_mod1_CI_generosity_aihighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_generosity_aihighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_MiddleRound'), "B"]
+s2_mod1_se_generosity_aihighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_MiddleRound'), "SE"]
+s2_mod1_t_generosity_aihighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_MiddleRound'), "t-value"]
+s2_mod1_p_generosity_aihighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_generosity_aihighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_generosity_aihighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_LastRound'), "B"]
+s2_mod1_se_generosity_aihighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_LastRound'), "SE"]
+s2_mod1_t_generosity_aihighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_LastRound'), "t-value"]
+s2_mod1_p_generosity_aihighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_LastRound'), "p-value"]
+s2_mod1_CI_generosity_aihighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_HighStatus_Round_LastRound'), "95% CI"]
+
+s2_mod1_beta_generosity_humanlowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_FirstRound'), "B"]
+s2_mod1_se_generosity_humanlowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_FirstRound'), "SE"]
+s2_mod1_t_generosity_humanlowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_FirstRound'), "t-value"]
+s2_mod1_p_generosity_humanlowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_FirstRound'), "p-value"]
+s2_mod1_CI_generosity_humanlowstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_generosity_humanlowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_MiddleRound'), "B"]
+s2_mod1_se_generosity_humanlowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_MiddleRound'), "SE"]
+s2_mod1_t_generosity_humanlowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_MiddleRound'), "t-value"]
+s2_mod1_p_generosity_humanlowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_generosity_humanlowstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_generosity_humanlowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_LastRound'), "B"]
+s2_mod1_se_generosity_humanlowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_LastRound'), "SE"]
+s2_mod1_t_generosity_humanlowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_LastRound'), "t-value"]
+s2_mod1_p_generosity_humanlowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_LastRound'), "p-value"]
+s2_mod1_CI_generosity_humanlowstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_LowStatus_Round_LastRound'), "95% CI"]
+
+s2_mod1_beta_generosity_humanhighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_FirstRound'), "B"]
+s2_mod1_se_generosity_humanhighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_FirstRound'), "SE"]
+s2_mod1_t_generosity_humanhighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_FirstRound'), "t-value"]
+s2_mod1_p_generosity_humanhighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_FirstRound'), "p-value"]
+s2_mod1_CI_generosity_humanhighstatusfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_generosity_humanhighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_MiddleRound'), "B"]
+s2_mod1_se_generosity_humanhighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_MiddleRound'), "SE"]
+s2_mod1_t_generosity_humanhighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_MiddleRound'), "t-value"]
+s2_mod1_p_generosity_humanhighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_generosity_humanhighstatusmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_generosity_humanhighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_LastRound'), "B"]
+s2_mod1_se_generosity_humanhighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_LastRound'), "SE"]
+s2_mod1_t_generosity_humanhighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_LastRound'), "t-value"]
+s2_mod1_p_generosity_humanhighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_LastRound'), "p-value"]
+s2_mod1_CI_generosity_humanhighstatuslastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_HighStatus_Round_LastRound'), "95% CI"]
+
+# Agency
+s2_mod1_beta_agency_lowstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_FirstRound'), "B"]
+s2_mod1_se_agency_lowstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_FirstRound'), "SE"]
+s2_mod1_t_agency_lowstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_FirstRound'), "t-value"]
+s2_mod1_p_agency_lowstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_FirstRound'), "p-value"]
+s2_mod1_CI_agency_lowstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_agency_lowstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_FirstRound'), "B"]
+s2_mod1_se_agency_lowstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_FirstRound'), "SE"]
+s2_mod1_t_agency_lowstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_FirstRound'), "t-value"]
+s2_mod1_p_agency_lowstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_FirstRound'), "p-value"]
+s2_mod1_CI_agency_lowstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_agency_lowstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_FirstRound'), "B"]
+s2_mod1_se_agency_lowstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_FirstRound'), "SE"]
+s2_mod1_t_agency_lowstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_FirstRound'), "t-value"]
+s2_mod1_p_agency_lowstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_FirstRound'), "p-value"]
+s2_mod1_CI_agency_lowstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_agency_lowstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_MiddleRound'), "B"]
+s2_mod1_se_agency_lowstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_MiddleRound'), "SE"]
+s2_mod1_t_agency_lowstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_MiddleRound'), "t-value"]
+s2_mod1_p_agency_lowstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_agency_lowstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Greedy_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_agency_lowstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_MiddleRound'), "B"]
+s2_mod1_se_agency_lowstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_MiddleRound'), "SE"]
+s2_mod1_t_agency_lowstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_MiddleRound'), "t-value"]
+s2_mod1_p_agency_lowstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_agency_lowstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Neutral_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_agency_lowstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_MiddleRound'), "B"]
+s2_mod1_se_agency_lowstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_MiddleRound'), "SE"]
+s2_mod1_t_agency_lowstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_MiddleRound'), "t-value"]
+s2_mod1_p_agency_lowstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_agency_lowstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='LowStatus_Generous_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_agency_highstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_FirstRound'), "B"]
+s2_mod1_se_agency_highstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_FirstRound'), "SE"]
+s2_mod1_t_agency_highstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_FirstRound'), "t-value"]
+s2_mod1_p_agency_highstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_FirstRound'), "p-value"]
+s2_mod1_CI_agency_highstatusgreedyfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_agency_highstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_FirstRound'), "B"]
+s2_mod1_se_agency_highstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_FirstRound'), "SE"]
+s2_mod1_t_agency_highstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_FirstRound'), "t-value"]
+s2_mod1_p_agency_highstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_FirstRound'), "p-value"]
+s2_mod1_CI_agency_highstatusneutralfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_agency_highstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_FirstRound'), "B"]
+s2_mod1_se_agency_highstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_FirstRound'), "SE"]
+s2_mod1_t_agency_highstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_FirstRound'), "t-value"]
+s2_mod1_p_agency_highstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_FirstRound'), "p-value"]
+s2_mod1_CI_agency_highstatusgenerousfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_agency_highstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_MiddleRound'), "B"]
+s2_mod1_se_agency_highstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_MiddleRound'), "SE"]
+s2_mod1_t_agency_highstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_MiddleRound'), "t-value"]
+s2_mod1_p_agency_highstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_agency_highstatusgreedymiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Greedy_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_agency_highstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_MiddleRound'), "B"]
+s2_mod1_se_agency_highstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_MiddleRound'), "SE"]
+s2_mod1_t_agency_highstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_MiddleRound'), "t-value"]
+s2_mod1_p_agency_highstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_agency_highstatusneutralmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Neutral_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_agency_highstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_MiddleRound'), "B"]
+s2_mod1_se_agency_highstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_MiddleRound'), "SE"]
+s2_mod1_t_agency_highstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_MiddleRound'), "t-value"]
+s2_mod1_p_agency_highstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_agency_highstatusgenerousmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='HighStatus_Generous_Round_MiddleRound'), "95% CI"]
+
+# Status
+s2_mod1_beta_status_greedyailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Greedy_Round_LastRound'), "B"]
+s2_mod1_se_status_greedyailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Greedy_Round_LastRound'), "SE"]
+s2_mod1_t_status_greedyailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Greedy_Round_LastRound'), "t-value"]
+s2_mod1_p_status_greedyailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Greedy_Round_LastRound'), "p-value"]
+s2_mod1_CI_status_greedyailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Greedy_Round_LastRound'), "95% CI"]
+
+s2_mod1_beta_status_greedyhumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_MiddleRound'), "B"]
+s2_mod1_se_status_greedyhumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_MiddleRound'), "SE"]
+s2_mod1_t_status_greedyhumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_MiddleRound'), "t-value"]
+s2_mod1_p_status_greedyhumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_status_greedyhumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_status_greedyhumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_LastRound'), "B"]
+s2_mod1_se_status_greedyhumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_LastRound'), "SE"]
+s2_mod1_t_status_greedyhumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_LastRound'), "t-value"]
+s2_mod1_p_status_greedyhumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_LastRound'), "p-value"]
+s2_mod1_CI_status_greedyhumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Greedy_Round_LastRound'), "95% CI"]
+
+s2_mod1_beta_status_neutralaifirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_FirstRound'), "B"]
+s2_mod1_se_status_neutralaifirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_FirstRound'), "SE"]
+s2_mod1_t_status_neutralaifirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_FirstRound'), "t-value"]
+s2_mod1_p_status_neutralaifirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_FirstRound'), "p-value"]
+s2_mod1_CI_status_neutralaifirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_status_neutralaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_MiddleRound'), "B"]
+s2_mod1_se_status_neutralaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_MiddleRound'), "SE"]
+s2_mod1_t_status_neutralaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_MiddleRound'), "t-value"]
+s2_mod1_p_status_neutralaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_status_neutralaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Neutral_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_status_neutralhumanfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Neutral_Round_FirstRound'), "B"]
+s2_mod1_se_status_neutralhumanfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Neutral_Round_FirstRound'), "SE"]
+s2_mod1_t_status_neutralhumanfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Neutral_Round_FirstRound'), "t-value"]
+s2_mod1_p_status_neutralhumanfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Neutral_Round_FirstRound'), "p-value"]
+s2_mod1_CI_status_neutralhumanfirstround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Neutral_Round_FirstRound'), "95% CI"]
+
+s2_mod1_beta_status_generousaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_MiddleRound'), "B"]
+s2_mod1_se_status_generousaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_MiddleRound'), "SE"]
+s2_mod1_t_status_generousaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_MiddleRound'), "t-value"]
+s2_mod1_p_status_generousaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_status_generousaimiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_status_generousailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_LastRound'), "B"]
+s2_mod1_se_status_generousailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_LastRound'), "SE"]
+s2_mod1_t_status_generousailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_LastRound'), "t-value"]
+s2_mod1_p_status_generousailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_LastRound'), "p-value"]
+s2_mod1_CI_status_generousailastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='AI_Generous_Round_LastRound'), "95% CI"]
+
+s2_mod1_beta_status_generoushumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_MiddleRound'), "B"]
+s2_mod1_se_status_generoushumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_MiddleRound'), "SE"]
+s2_mod1_t_status_generoushumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_MiddleRound'), "t-value"]
+s2_mod1_p_status_generoushumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_MiddleRound'), "p-value"]
+s2_mod1_CI_status_generoushumanmiddleround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_MiddleRound'), "95% CI"]
+
+s2_mod1_beta_status_generoushumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_LastRound'), "B"]
+s2_mod1_se_status_generoushumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_LastRound'), "SE"]
+s2_mod1_t_status_generoushumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_LastRound'), "t-value"]
+s2_mod1_p_status_generoushumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_LastRound'), "p-value"]
+s2_mod1_CI_status_generoushumanlastround = s2_mod1_sigslopes1[which(s2_mod1_sigslopes1$Reference=='Human_Generous_Round_LastRound'), "95% CI"]
+
+```
+
+We found significant main effects of agency (B = `r s2_mod1_beta_agency`, SE = `r s2_mod1_se_agency`, t = `r s2_mod1_t_agency`, p = `r s2_mod1_p_agency`, CI = `r s2_mod1_CI_agency`), status (B = `r s2_mod1_beta_status`, SE = `r s2_mod1_se_status`, t = `r s2_mod1_t_status`, p = `r s2_mod1_p_status`, CI = `r s2_mod1_CI_status`), generosity (B = `r s2_mod1_beta_generosity`, SE = `r s2_mod1_se_generosity`, t = `r s2_mod1_t_generosity`, p = `r s2_mod1_p_generosity`, CI = `r s2_mod1_CI_generosity`), and round (B = `r s2_mod1_beta_round`, SE = `r s2_mod1_se_round`, t = `r s2_mod1_t_round`, p = `r s2_mod1_p_round`, CI = `r s2_mod1_CI_round`), which were further qualified by a significant interaction effect of agency, status, generosity, and rounds (B = `r s2_mod1_beta_agencystatusgenerosityround`, SE = `r s2_mod1_se_agencystatusgenerosityround`, t = `r s2_mod1_t_agencystatusgenerosityround`, p = `r s2_mod1_p_agencystatusgenerosityround`, CI = `r s2_mod1_CI_agencystatusgenerosityround`). 
+
+Decomposing this interaction, we found that participants decreased in trust over rounds for partners of all agency, status, and generosity combinations(Low status Greedy AI: B = `r s2_mod1_beta_round_lowstatusgreedyai`, SE = `r s2_mod1_se_round_lowstatusgreedyai`, t = `r s2_mod1_t_round_lowstatusgreedyai`, p = `r s2_mod1_p_round_lowstatusgreedyai`, CI = `r s2_mod1_CI_round_lowstatusgreedyai`; Low status Neutral AI: B = `r s2_mod1_beta_round_lowstatusneutralai`, SE = `r s2_mod1_se_round_lowstatusneutralai`, t = `r s2_mod1_t_round_lowstatusneutralai`, p = `r s2_mod1_p_round_lowstatusneutralai`, CI = `r s2_mod1_CI_round_lowstatusneutralai`; Low status Generous AI: B = `r s2_mod1_beta_round_lowstatusgenerousai`, SE = `r s2_mod1_se_round_lowstatusgenerousai`, t = `r s2_mod1_t_round_lowstatusgenerousai`, p = `r s2_mod1_p_round_lowstatusgenerousai`, CI = `r s2_mod1_CI_round_lowstatusgenerousai`; High status Greedy AI: B = `r s2_mod1_beta_round_highstatusgreedyai`, SE = `r s2_mod1_se_round_highstatusgreedyai`, t = `r s2_mod1_t_round_highstatusgreedyai`, p = `r s2_mod1_p_round_highstatusgreedyai`, CI = `r s2_mod1_CI_round_highstatusgreedyai`; High status Neutral AI: B = `r s2_mod1_beta_round_highstatusneutralai`, SE = `r s2_mod1_se_round_highstatusneutralai`, t = `r s2_mod1_t_round_highstatusneutralai`, p = `r s2_mod1_p_round_highstatusneutralai`, CI = `r s2_mod1_CI_round_highstatusneutralai`; High status Generous AI: B = `r s2_mod1_beta_round_highstatusgenerousai`, SE = `r s2_mod1_se_round_highstatusgenerousai`, t = `r s2_mod1_t_round_highstatusgenerousai`, p = `r s2_mod1_p_round_highstatusgenerousai`, CI = `r s2_mod1_CI_round_highstatusgenerousai`; Low status Greedy Human: B = `r s2_mod1_beta_round_lowstatusgreedyhuman`, SE = `r s2_mod1_se_round_lowstatusgreedyhuman`, t = `r s2_mod1_t_round_lowstatusgreedyhuman`, p = `r s2_mod1_p_round_lowstatusgreedyhuman`, CI = `r s2_mod1_CI_round_lowstatusgreedyhuman`; Low status Neutral Human: B = `r s2_mod1_beta_round_lowstatusneutralhuman`, SE = `r s2_mod1_se_round_lowstatusneutralhuman`, t = `r s2_mod1_t_round_lowstatusneutralhuman`, p = `r s2_mod1_p_round_lowstatusneutralhuman`, CI = `r s2_mod1_CI_round_lowstatusneutralhuman`; Low status Generous Human: B = `r s2_mod1_beta_round_lowstatusgeneroushuman`, SE = `r s2_mod1_se_round_lowstatusgeneroushuman`, t = `r s2_mod1_t_round_lowstatusgeneroushuman`, p = `r s2_mod1_p_round_lowstatusgeneroushuman`, CI = `r s2_mod1_CI_round_lowstatusgeneroushuman`; High status Greedy Human: B = `r s2_mod1_beta_round_highstatusgreedyhuman`, SE = `r s2_mod1_se_round_highstatusgreedyhuman`, t = `r s2_mod1_t_round_highstatusgreedyhuman`, p = `r s2_mod1_p_round_highstatusgreedyhuman`, CI = `r s2_mod1_CI_round_highstatusgreedyhuman`; High status Neutral Human: B = `r s2_mod1_beta_round_highstatusneutralhuman`, SE = `r s2_mod1_se_round_highstatusneutralhuman`, t = `r s2_mod1_t_round_highstatusneutralhuman`, p = `r s2_mod1_p_round_highstatusneutralhuman`, CI = `r s2_mod1_CI_round_highstatusneutralhuman`; High status Generous Human: B = `r s2_mod1_beta_round_highstatusgeneroushuman`, SE = `r s2_mod1_se_round_highstatusgeneroushuman`, t = `r s2_mod1_t_round_highstatusgeneroushuman`, p = `r s2_mod1_p_round_highstatusgeneroushuman`, CI = `r s2_mod1_CI_round_highstatusgeneroushuman`). 
+
+We also found that participants consistently trusted generous partners more than greedy partners for partners of all agency, status, and generosity combinations (Low status AI First Round: B = `r s2_mod1_beta_generosity_ailowstatusfirstround`, SE = `r s2_mod1_se_generosity_ailowstatusfirstround`, t = `r s2_mod1_t_generosity_ailowstatusfirstround`, p = `r s2_mod1_p_generosity_ailowstatusfirstround`, CI = `r s2_mod1_CI_generosity_ailowstatusfirstround`; Low status AI Middle Round: B = `r s2_mod1_beta_generosity_ailowstatusmiddleround`, SE = `r s2_mod1_se_generosity_ailowstatusmiddleround`, t = `r s2_mod1_t_generosity_ailowstatusmiddleround`, p = `r s2_mod1_p_generosity_ailowstatusmiddleround`, CI = `r s2_mod1_CI_generosity_ailowstatusmiddleround`; Low status AI Last Round: B = `r s2_mod1_beta_generosity_ailowstatuslastround`, SE = `r s2_mod1_se_generosity_ailowstatuslastround`, t = `r s2_mod1_t_generosity_ailowstatuslastround`, p = `r s2_mod1_p_generosity_ailowstatuslastround`, CI = `r s2_mod1_CI_generosity_ailowstatuslastround`; High status AI First Round: B = `r s2_mod1_beta_generosity_aihighstatusfirstround`, SE = `r s2_mod1_se_generosity_aihighstatusfirstround`, t = `r s2_mod1_t_generosity_aihighstatusfirstround`, p = `r s2_mod1_p_generosity_aihighstatusfirstround`, CI = `r s2_mod1_CI_generosity_aihighstatusfirstround`; High status AI Middle Round: B = `r s2_mod1_beta_generosity_aihighstatusmiddleround`, SE = `r s2_mod1_se_generosity_aihighstatusmiddleround`, t = `r s2_mod1_t_generosity_aihighstatusmiddleround`, p = `r s2_mod1_p_generosity_aihighstatusmiddleround`, CI = `r s2_mod1_CI_generosity_aihighstatusmiddleround`; High status AI Last Round: B = `r s2_mod1_beta_generosity_aihighstatuslastround`, SE = `r s2_mod1_se_generosity_aihighstatuslastround`, t = `r s2_mod1_t_generosity_aihighstatuslastround`, p = `r s2_mod1_p_generosity_aihighstatuslastround`, CI = `r s2_mod1_CI_generosity_aihighstatuslastround`; Low status Human First Round: B = `r s2_mod1_beta_generosity_humanlowstatusfirstround`, SE = `r s2_mod1_se_generosity_humanlowstatusfirstround`, t = `r s2_mod1_t_generosity_humanlowstatusfirstround`, p = `r s2_mod1_p_generosity_humanlowstatusfirstround`, CI = `r s2_mod1_CI_generosity_humanlowstatusfirstround`; Low status Human Middle Round: B = `r s2_mod1_beta_generosity_humanlowstatusmiddleround`, SE = `r s2_mod1_se_generosity_humanlowstatusmiddleround`, t = `r s2_mod1_t_generosity_humanlowstatusmiddleround`, p = `r s2_mod1_p_generosity_humanlowstatusmiddleround`, CI = `r s2_mod1_CI_generosity_humanlowstatusmiddleround`; Low status Human Last Round: B = `r s2_mod1_beta_generosity_humanlowstatuslastround`, SE = `r s2_mod1_se_generosity_humanlowstatuslastround`, t = `r s2_mod1_t_generosity_humanlowstatuslastround`, p = `r s2_mod1_p_generosity_humanlowstatuslastround`, CI = `r s2_mod1_CI_generosity_humanlowstatuslastround`; High status Human First Round: B = `r s2_mod1_beta_generosity_humanhighstatusfirstround`, SE = `r s2_mod1_se_generosity_humanhighstatusfirstround`, t = `r s2_mod1_t_generosity_humanhighstatusfirstround`, p = `r s2_mod1_p_generosity_humanhighstatusfirstround`, CI = `r s2_mod1_CI_generosity_humanhighstatusfirstround`; High status Human Middle Round: B = `r s2_mod1_beta_generosity_humanhighstatusmiddleround`, SE = `r s2_mod1_se_generosity_humanhighstatusmiddleround`, t = `r s2_mod1_t_generosity_humanhighstatusmiddleround`, p = `r s2_mod1_p_generosity_humanhighstatusmiddleround`, CI = `r s2_mod1_CI_generosity_humanhighstatusmiddleround`; High status Human Last Round: B = `r s2_mod1_beta_generosity_humanhighstatuslastround`, SE = `r s2_mod1_se_generosity_humanhighstatuslastround`, t = `r s2_mod1_t_generosity_humanhighstatuslastround`, p = `r s2_mod1_p_generosity_humanhighstatuslastround`, CI = `r s2_mod1_CI_generosity_humanhighstatuslastround`). 
+
+Agency on the other hand only significantly affected trust decisions in first and middle rounds. Participants trusted human partners more than AI partners regardless of status and generosity from rounds 1 (Low status Greedy First Round: B = `r s2_mod1_beta_agency_lowstatusgreedyfirstround`, SE = `r s2_mod1_se_agency_lowstatusgreedyfirstround`, t = `r s2_mod1_t_agency_lowstatusgreedyfirstround`, p = `r s2_mod1_p_agency_lowstatusgreedyfirstround`, CI = `r s2_mod1_CI_agency_lowstatusgreedyfirstround`; Low status Neutral First Round: B = `r s2_mod1_beta_agency_lowstatusneutralfirstround`, SE = `r s2_mod1_se_agency_lowstatusneutralfirstround`, t = `r s2_mod1_t_agency_lowstatusneutralfirstround`, p = `r s2_mod1_p_agency_lowstatusneutralfirstround`, CI = `r s2_mod1_CI_agency_lowstatusneutralfirstround`; Low status Generous First Round: B = `r s2_mod1_beta_agency_lowstatusgenerousfirstround`, SE = `r s2_mod1_se_agency_lowstatusgenerousfirstround`, t = `r s2_mod1_t_agency_lowstatusgenerousfirstround`, p = `r s2_mod1_p_agency_lowstatusgenerousfirstround`, CI = `r s2_mod1_CI_agency_lowstatusgenerousfirstround`; High status Greedy First Round: B = `r s2_mod1_beta_agency_highstatusgreedyfirstround`, SE = `r s2_mod1_se_agency_highstatusgreedyfirstround`, t = `r s2_mod1_t_agency_highstatusgreedyfirstround`, p = `r s2_mod1_p_agency_highstatusgreedyfirstround`, CI = `r s2_mod1_CI_agency_highstatusgreedyfirstround`; High status Neutral First Round: B = `r s2_mod1_beta_agency_highstatusneutralfirstround`, SE = `r s2_mod1_se_agency_highstatusneutralfirstround`, t = `r s2_mod1_t_agency_highstatusneutralfirstround`, p = `r s2_mod1_p_agency_highstatusneutralfirstround`, CI = `r s2_mod1_CI_agency_highstatusneutralfirstround`; High status Generous First Round: B = `r s2_mod1_beta_agency_highstatusgenerousfirstround`, SE = `r s2_mod1_se_agency_highstatusgenerousfirstround`, t = `r s2_mod1_t_agency_highstatusgenerousfirstround`, p = `r s2_mod1_p_agency_highstatusgenerousfirstround`, CI = `r s2_mod1_CI_agency_highstatusgenerousfirstround`) to 5 (Low status Greedy Middle Round: B = `r s2_mod1_beta_agency_lowstatusgreedymiddleround`, SE = `r s2_mod1_se_agency_lowstatusgreedymiddleround`, t = `r s2_mod1_t_agency_lowstatusgreedymiddleround`, p = `r s2_mod1_p_agency_lowstatusgreedymiddleround`, CI = `r s2_mod1_CI_agency_lowstatusgreedymiddleround`; Low status Neutral Middle Round: B = `r s2_mod1_beta_agency_lowstatusneutralmiddleround`, SE = `r s2_mod1_se_agency_lowstatusneutralmiddleround`, t = `r s2_mod1_t_agency_lowstatusneutralmiddleround`, p = `r s2_mod1_p_agency_lowstatusneutralmiddleround`, CI = `r s2_mod1_CI_agency_lowstatusneutralmiddleround`; Low status Generous Middle Round: B = `r s2_mod1_beta_agency_lowstatusgenerousmiddleround`, SE = `r s2_mod1_se_agency_lowstatusgenerousmiddleround`, t = `r s2_mod1_t_agency_lowstatusgenerousmiddleround`, p = `r s2_mod1_p_agency_lowstatusgenerousmiddleround`, CI = `r s2_mod1_CI_agency_lowstatusgenerousmiddleround`; High status Greedy Middle Round: B = `r s2_mod1_beta_agency_highstatusgreedymiddleround`, SE = `r s2_mod1_se_agency_highstatusgreedymiddleround`, t = `r s2_mod1_t_agency_highstatusgreedymiddleround`, p = `r s2_mod1_p_agency_highstatusgreedymiddleround`, CI = `r s2_mod1_CI_agency_highstatusgreedymiddleround`; High status Neutral Middle Round: B = `r s2_mod1_beta_agency_highstatusneutralmiddleround`, SE = `r s2_mod1_se_agency_highstatusneutralmiddleround`, t = `r s2_mod1_t_agency_highstatusneutralmiddleround`, p = `r s2_mod1_p_agency_highstatusneutralmiddleround`, CI = `r s2_mod1_CI_agency_highstatusneutralmiddleround`; High status Generous Middle Round: B = `r s2_mod1_beta_agency_highstatusgenerousmiddleround`, SE = `r s2_mod1_se_agency_highstatusgenerousmiddleround`, t = `r s2_mod1_t_agency_highstatusgenerousmiddleround`, p = `r s2_mod1_p_agency_highstatusgenerousmiddleround`, CI = `r s2_mod1_CI_agency_highstatusgenerousmiddleround`). However by the last round this significant difference had disappeared.
+
+Status effects were more complex. For human partners, status affected trust in middle and last rounds when the partners were greedy (middle round: B = `r s2_mod1_beta_status_greedyhumanmiddleround`, SE = `r s2_mod1_se_status_greedyhumanmiddleround`, t = `r s2_mod1_t_status_greedyhumanmiddleround`, p = `r s2_mod1_p_status_greedyhumanmiddleround`, CI = `r s2_mod1_CI_status_greedyhumanmiddleround`; last round: B = `r s2_mod1_beta_status_greedyhumanlastround`, SE = `r s2_mod1_se_status_greedyhumanlastround`, t = `r s2_mod1_t_status_greedyhumanlastround`, p = `r s2_mod1_p_status_greedyhumanlastround`, CI = `r s2_mod1_CI_status_greedyhumanlastround`) or generous (middle round: B = `r s2_mod1_beta_status_generoushumanmiddleround`, SE = `r s2_mod1_se_status_generoushumanmiddleround`, t = `r s2_mod1_t_status_generoushumanmiddleround`, p = `r s2_mod1_p_status_generoushumanmiddleround`, CI = `r s2_mod1_CI_status_generoushumanmiddleround`; last round: B = `r s2_mod1_beta_status_generoushumanlastround`, SE = `r s2_mod1_se_status_generoushumanlastround`, t = `r s2_mod1_t_status_generoushumanlastround`, p = `r s2_mod1_p_status_generoushumanlastround`, CI = `r s2_mod1_CI_status_generoushumanlastround`). However, the coefficients show a negative relationship - participants trusted low status human partners more when they were generous or greedy, from rounds 5 to 10, than high status partners. For neutral human partners, high status partners were trusted more than low status partners at round 1 (B = `r s2_mod1_beta_status_neutralhumanfirstround`, SE = `r s2_mod1_se_status_neutralhumanfirstround`, t = `r s2_mod1_t_status_neutralhumanfirstround`, p = `r s2_mod1_p_status_neutralhumanfirstround`, CI = `r s2_mod1_CI_status_neutralhumanfirstround`), but this significant effect had disappeared by round 5. For AI partners, status affected trust in the last round for greedy partners (B = `r s2_mod1_beta_status_greedyailastround`, SE = `r s2_mod1_se_status_greedyailastround`, t = `r s2_mod1_t_status_greedyailastround`, p = `r s2_mod1_p_status_greedyailastround`, CI = `r s2_mod1_CI_status_greedyailastround`) and in the middle and last rounds for generous partners (middle round: B = `r s2_mod1_beta_status_generousaimiddleround`, SE = `r s2_mod1_se_status_generousaimiddleround`, t = `r s2_mod1_t_status_generousaimiddleround`, p = `r s2_mod1_p_status_generousaimiddleround`, CI = `r s2_mod1_CI_status_generousaimiddleround`; last round: B = `r s2_mod1_beta_status_generousailastround`, SE = `r s2_mod1_se_status_generousailastround`, t = `r s2_mod1_t_status_generousailastround`, p = `r s2_mod1_p_status_generousailastround`, CI = `r s2_mod1_CI_status_generousailastround`). Once again, the coefficients showed a negative relationship - participants trusted low status partners more than high status partners. For neutral AI partners, high status partners were trusted more than low status partners from the first to the middle round (first round: B = `r s2_mod1_beta_status_neutralaifirstround`, SE = `r s2_mod1_se_status_neutralaifirstround`, t = `r s2_mod1_t_status_neutralaifirstround`, p = `r s2_mod1_p_status_neutralaifirstround`, CI = `r s2_mod1_CI_status_neutralaifirstround`; middle round: B = `r s2_mod1_beta_status_neutralaimiddleround`, SE = `r s2_mod1_se_status_neutralaimiddleround`, t = `r s2_mod1_t_status_neutralaimiddleround`, p = `r s2_mod1_p_status_neutralaimiddleround`, CI = `r s2_mod1_CI_status_neutralaimiddleround`).
+
+## Model 2
+
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+s2_mod2_beta_generosity = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate"), "B"]
+s2_mod2_se_generosity = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate"), "SE"]
+s2_mod2_t_generosity = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate"), "t-value"]
+s2_mod2_p_generosity = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate"), "p-value"]
+s2_mod2_CI_generosity = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate"), "95% CI"]
+
+s2_mod2_beta_status = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status"), "B"]
+s2_mod2_se_status = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status"), "SE"]
+s2_mod2_t_status = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status"), "t-value"]
+s2_mod2_p_status = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status"), "p-value"]
+s2_mod2_CI_status = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status"), "95% CI"]
+
+s2_mod2_beta_feedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Feedback"), "B"]
+s2_mod2_se_feedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Feedback"), "SE"]
+s2_mod2_t_feedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Feedback"), "t-value"]
+s2_mod2_p_feedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Feedback"), "p-value"]
+s2_mod2_CI_feedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Feedback"), "95% CI"]
+
+s2_mod2_beta_agencygenerositystatus = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Reciprocity rate x Status"), "B"]
+s2_mod2_se_agencygenerositystatus = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Reciprocity rate x Status"), "SE"]
+s2_mod2_t_agencygenerositystatus = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Reciprocity rate x Status"), "t-value"]
+s2_mod2_p_agencygenerositystatus = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Reciprocity rate x Status"), "p-value"]
+s2_mod2_CI_agencygenerositystatus = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Reciprocity rate x Status"), "95% CI"]
+
+s2_mod2_beta_agencyfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Feedback"), "B"]
+s2_mod2_se_agencyfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Feedback"), "SE"]
+s2_mod2_t_agencyfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Feedback"), "t-value"]
+s2_mod2_p_agencyfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Feedback"), "p-value"]
+s2_mod2_CI_agencyfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Agency x Feedback"), "95% CI"]
+
+s2_mod2_beta_generosityfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "B"]
+s2_mod2_se_generosityfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "SE"]
+s2_mod2_t_generosityfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "t-value"]
+s2_mod2_p_generosityfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "p-value"]
+s2_mod2_CI_generosityfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Reciprocity rate x Feedback"), "95% CI"]
+
+s2_mod2_beta_statusfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status x Feedback"), "B"]
+s2_mod2_se_statusfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status x Feedback"), "SE"]
+s2_mod2_t_statusfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status x Feedback"), "t-value"]
+s2_mod2_p_statusfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status x Feedback"), "p-value"]
+s2_mod2_CI_statusfeedback = s2_mod2_statstable[which(s2_mod2_statstable$Predictor=="Status x Feedback"), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE}
+# Simple slopes for agency, status, and generosity interaction
+
+s2_mod2_beta_generosity_highstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_HighStatus'), "B"]
+s2_mod2_se_generosity_highstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_HighStatus'), "SE"]
+s2_mod2_t_generosity_highstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_HighStatus'), "t-value"]
+s2_mod2_p_generosity_highstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_HighStatus'), "p-value"]
+s2_mod2_CI_generosity_highstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_HighStatus'), "95% CI"]
+
+s2_mod2_beta_generosity_lowstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_LowStatus'), "B"]
+s2_mod2_se_generosity_lowstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_LowStatus'), "SE"]
+s2_mod2_t_generosity_lowstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_LowStatus'), "t-value"]
+s2_mod2_p_generosity_lowstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_LowStatus'), "p-value"]
+s2_mod2_CI_generosity_lowstatusai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_LowStatus'), "95% CI"]
+
+s2_mod2_beta_generosity_highstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_HighStatus'), "B"]
+s2_mod2_se_generosity_highstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_HighStatus'), "SE"]
+s2_mod2_t_generosity_highstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_HighStatus'), "t-value"]
+s2_mod2_p_generosity_highstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_HighStatus'), "p-value"]
+s2_mod2_CI_generosity_highstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_HighStatus'), "95% CI"]
+
+s2_mod2_beta_generosity_lowstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_LowStatus'), "B"]
+s2_mod2_se_generosity_lowstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_LowStatus'), "SE"]
+s2_mod2_t_generosity_lowstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_LowStatus'), "t-value"]
+s2_mod2_p_generosity_lowstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_LowStatus'), "p-value"]
+s2_mod2_CI_generosity_lowstatushuman = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='Human_LowStatus'), "95% CI"]
+
+s2_mod2_beta_status_neutralai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_Neutral'), "B"]
+s2_mod2_se_status_neutralai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_Neutral'), "SE"]
+s2_mod2_t_status_neutralai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_Neutral'), "t-value"]
+s2_mod2_p_status_neutralai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_Neutral'), "p-value"]
+s2_mod2_CI_status_neutralai = s2_mod2_sigslopes1[which(s2_mod2_sigslopes1$Reference=='AI_Neutral'), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE}
+# Simple slopes for agency and feedback interaction
+
+s2_mod2_beta_feedback_ai = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='AI'), "B"]
+s2_mod2_se_feedback_ai = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='AI'), "SE"]
+s2_mod2_t_feedback_ai = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='AI'), "t-value"]
+s2_mod2_p_feedback_ai = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='AI'), "p-value"]
+s2_mod2_CI_feedback_ai = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='AI'), "95% CI"]
+
+s2_mod2_beta_feedback_human = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='Human'), "B"]
+s2_mod2_se_feedback_human = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='Human'), "SE"]
+s2_mod2_t_feedback_human = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='Human'), "t-value"]
+s2_mod2_p_feedback_human = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='Human'), "p-value"]
+s2_mod2_CI_feedback_human = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='Human'), "95% CI"]
+
+s2_mod2_beta_agency_midfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='MidFeedback'), "B"]
+s2_mod2_se_agency_midfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='MidFeedback'), "SE"]
+s2_mod2_t_agency_midfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='MidFeedback'), "t-value"]
+s2_mod2_p_agency_midfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='MidFeedback'), "p-value"]
+s2_mod2_CI_agency_midfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='MidFeedback'), "95% CI"]
+
+s2_mod2_beta_agency_highfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='HighFeedback'), "B"]
+s2_mod2_se_agency_highfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='HighFeedback'), "SE"]
+s2_mod2_t_agency_highfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='HighFeedback'), "t-value"]
+s2_mod2_p_agency_highfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='HighFeedback'), "p-value"]
+s2_mod2_CI_agency_highfeedback = s2_mod2_sigslopes2[which(s2_mod2_sigslopes2$Reference=='HighFeedback'), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE}
+# Simple slopes for status and feedback interaction
+
+s2_mod2_beta_status_lowfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowFeedback'), "B"]
+s2_mod2_se_status_lowfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowFeedback'), "SE"]
+s2_mod2_t_status_lowfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowFeedback'), "t-value"]
+s2_mod2_p_status_lowfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowFeedback'), "p-value"]
+s2_mod2_CI_status_lowfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowFeedback'), "95% CI"]
+
+s2_mod2_beta_status_midfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='MidFeedback'), "B"]
+s2_mod2_se_status_midfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='MidFeedback'), "SE"]
+s2_mod2_t_status_midfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='MidFeedback'), "t-value"]
+s2_mod2_p_status_midfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='MidFeedback'), "p-value"]
+s2_mod2_CI_status_midfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='MidFeedback'), "95% CI"]
+
+s2_mod2_beta_status_highfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighFeedback'), "B"]
+s2_mod2_se_status_highfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighFeedback'), "SE"]
+s2_mod2_t_status_highfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighFeedback'), "t-value"]
+s2_mod2_p_status_highfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighFeedback'), "p-value"]
+s2_mod2_CI_status_highfeedback = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighFeedback'), "95% CI"]
+
+s2_mod2_beta_feedback_lowstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowStatus'), "B"]
+s2_mod2_se_feedback_lowstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowStatus'), "SE"]
+s2_mod2_t_feedback_lowstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowStatus'), "t-value"]
+s2_mod2_p_feedback_lowstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowStatus'), "p-value"]
+s2_mod2_CI_feedback_lowstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='LowStatus'), "95% CI"]
+
+s2_mod2_beta_feedback_highstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighStatus'), "B"]
+s2_mod2_se_feedback_highstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighStatus'), "SE"]
+s2_mod2_t_feedback_highstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighStatus'), "t-value"]
+s2_mod2_p_feedback_highstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighStatus'), "p-value"]
+s2_mod2_CI_feedback_highstatus = s2_mod2_sigslopes3[which(s2_mod2_sigslopes3$Reference=='HighStatus'), "95% CI"]
+```
+```{r, include=FALSE, echo=FALSE}
+# Simple slopes for generosity and feedback interaction
+
+s2_mod2_beta_feedback_greedy = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Greedy'), "B"]
+s2_mod2_se_feedback_greedy = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Greedy'), "SE"]
+s2_mod2_t_feedback_greedy = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Greedy'), "t-value"]
+s2_mod2_p_feedback_greedy = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Greedy'), "p-value"]
+s2_mod2_CI_feedback_greedy = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Greedy'), "95% CI"]
+
+s2_mod2_beta_feedback_neutral = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Neutral'), "B"]
+s2_mod2_se_feedback_neutral = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Neutral'), "SE"]
+s2_mod2_t_feedback_neutral = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Neutral'), "t-value"]
+s2_mod2_p_feedback_neutral = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Neutral'), "p-value"]
+s2_mod2_CI_feedback_neutral = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Neutral'), "95% CI"]
+
+s2_mod2_beta_feedback_generous = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Generous'), "B"]
+s2_mod2_se_feedback_generous = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Generous'), "SE"]
+s2_mod2_t_feedback_generous = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Generous'), "t-value"]
+s2_mod2_p_feedback_generous = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Generous'), "p-value"]
+s2_mod2_CI_feedback_generous = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='Generous'), "95% CI"]
+
+s2_mod2_beta_generosity_lowfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='LowFeedback'), "B"]
+s2_mod2_se_generosity_lowfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='LowFeedback'), "SE"]
+s2_mod2_t_generosity_lowfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='LowFeedback'), "t-value"]
+s2_mod2_p_generosity_lowfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='LowFeedback'), "p-value"]
+s2_mod2_CI_generosity_lowfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='LowFeedback'), "95% CI"]
+
+s2_mod2_beta_generosity_midfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='MidFeedback'), "B"]
+s2_mod2_se_generosity_midfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='MidFeedback'), "SE"]
+s2_mod2_t_generosity_midfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='MidFeedback'), "t-value"]
+s2_mod2_p_generosity_midfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='MidFeedback'), "p-value"]
+s2_mod2_CI_generosity_midfeedback = s2_mod2_sigslopes4[which(s2_mod2_sigslopes4$Reference=='MidFeedback'), "95% CI"]
+```
+
+We found significant main effects of generosity (B = `r s2_mod2_beta_generosity`, SE = `r s2_mod2_se_generosity`, t = `r s2_mod2_t_generosity`, p = `r s2_mod2_p_generosity`, CI = `r s2_mod2_CI_generosity`), status (B = `r s2_mod2_beta_status`, SE = `r s2_mod2_se_status`, t = `r s2_mod2_t_status`, p = `r s2_mod2_p_status`, CI = `r s2_mod2_CI_status`), and feedback (B = `r s2_mod2_beta_feedback`, SE = `r s2_mod2_se_feedback`, t = `r s2_mod2_t_feedback`, p = `r s2_mod2_p_feedback`, CI = `r s2_mod2_CI_feedback`), which were further qualified by two-way interactions between generosity & feedback (B = `r s2_mod2_beta_generosityfeedback`, SE = `r s2_mod2_se_generosityfeedback`, t = `r s2_mod2_t_generosityfeedback`, p = `r s2_mod2_p_generosityfeedback`, CI = `r s2_mod2_CI_generosityfeedback`), and status & feedback (B = `r s2_mod2_beta_statusfeedback`, SE = `r s2_mod2_se_statusfeedback`, t = `r s2_mod2_t_statusfeedback`, p = `r s2_mod2_p_statusfeedback`, CI = `r s2_mod2_CI_statusfeedback`). While we saw no main effects of agency, we found a two-way interaction between agency & feedback (B = `r s2_mod2_beta_agencyfeedback`, SE = `r s2_mod2_se_agencyfeedback`, t = `r s2_mod2_t_agencyfeedback`, p = `r s2_mod2_p_agencyfeedback`, CI = `r s2_mod2_CI_agencyfeedback`), and a three-way interaction between agency, status, & generosity (B = `r s2_mod2_beta_agencygenerositystatus`, SE = `r s2_mod2_se_agencygenerositystatus`, t = `r s2_mod2_t_agencygenerositystatus`, p = `r s2_mod2_p_agencygenerositystatus`, CI = `r s2_mod2_CI_agencygenerositystatus`).
+
+Our simple slopes analyses revealed that increase in feedback led to an increase in trust towards greedy (B = `r s2_mod2_beta_feedback_greedy`, SE = `r s2_mod2_se_feedback_greedy`, t = `r s2_mod2_t_feedback_greedy`, p = `r s2_mod2_p_feedback_greedy`, CI = `r s2_mod2_CI_feedback_greedy`), neutral (B = `r s2_mod2_beta_feedback_neutral`, SE = `r s2_mod2_se_feedback_neutral`, t = `r s2_mod2_t_feedback_neutral`, p = `r s2_mod2_p_feedback_neutral`, CI = `r s2_mod2_CI_feedback_neutral`), & generous partners (B = `r s2_mod2_beta_feedback_generous`, SE = `r s2_mod2_se_feedback_generous`, t = `r s2_mod2_t_feedback_generous`, p = `r s2_mod2_p_feedback_generous`, CI = `r s2_mod2_CI_feedback_generous`). They trusted generous partners more than neutral or generous partners at low (B = `r s2_mod2_beta_generosity_lowfeedback`, SE = `r s2_mod2_se_generosity_lowfeedback`, t = `r s2_mod2_t_generosity_lowfeedback`, p = `r s2_mod2_p_generosity_lowfeedback`, CI = `r s2_mod2_CI_generosity_lowfeedback`) and medium levels of feedback (B = `r s2_mod2_beta_generosity_midfeedback`, SE = `r s2_mod2_se_generosity_midfeedback`, t = `r s2_mod2_t_generosity_midfeedback`, p = `r s2_mod2_p_generosity_midfeedback`, CI = `r s2_mod2_CI_generosity_midfeedback`), but by high levels of feedback there was no significant differences in trust towards generous, neutral, and greedy partners.
+
+Increase in feedback also increased trust towards low (B = `r s2_mod2_beta_feedback_lowstatus`, SE = `r s2_mod2_se_feedback_lowstatus`, t = `r s2_mod2_t_feedback_lowstatus`, p = `r s2_mod2_p_feedback_lowstatus`, CI = `r s2_mod2_CI_feedback_lowstatus`) & high status partners (B = `r s2_mod2_beta_feedback_highstatus`, SE = `r s2_mod2_se_feedback_highstatus`, t = `r s2_mod2_t_feedback_highstatus`, p = `r s2_mod2_p_feedback_highstatus`, CI = `r s2_mod2_CI_feedback_highstatus`). Participants trusted high status partners more than low status partners low (B = `r s2_mod2_beta_status_lowfeedback`, SE = `r s2_mod2_se_status_lowfeedback`, t = `r s2_mod2_t_status_lowfeedback`, p = `r s2_mod2_p_status_lowfeedback`, CI = `r s2_mod2_CI_status_lowfeedback`), medium (B = `r s2_mod2_beta_status_midfeedback`, SE = `r s2_mod2_se_status_midfeedback`, t = `r s2_mod2_t_status_midfeedback`, p = `r s2_mod2_p_status_midfeedback`, CI = `r s2_mod2_CI_status_midfeedback`), and high feedback (B = `r s2_mod2_beta_status_highfeedback`, SE = `r s2_mod2_se_status_highfeedback`, t = `r s2_mod2_t_status_highfeedback`, p = `r s2_mod2_p_status_highfeedback`, CI = `r s2_mod2_CI_status_highfeedback`). 
+
+Similarly, increase in feedback led to increase in trust towards both human (B = `r s2_mod2_beta_feedback_human`, SE = `r s2_mod2_se_feedback_human`, t = `r s2_mod2_t_feedback_human`, p = `r s2_mod2_p_feedback_human`, CI = `r s2_mod2_CI_feedback_human`) and AI partners (B = `r s2_mod2_beta_feedback_ai`, SE = `r s2_mod2_se_feedback_ai`, t = `r s2_mod2_t_feedback_ai`, p = `r s2_mod2_p_feedback_ai`, CI = `r s2_mod2_CI_feedback_ai`). Participants trusted human partners more than AI partners at medium (B = `r s2_mod2_beta_agency_midfeedback`, SE = `r s2_mod2_se_agency_midfeedback`, t = `r s2_mod2_t_agency_midfeedback`, p = `r s2_mod2_p_agency_midfeedback`, CI = `r s2_mod2_CI_agency_midfeedback`) and high levels of feedback (B = `r s2_mod2_beta_agency_highfeedback`, SE = `r s2_mod2_se_agency_highfeedback`, t = `r s2_mod2_t_agency_highfeedback`, p = `r s2_mod2_p_agency_highfeedback`, CI = `r s2_mod2_CI_agency_highfeedback`), but not at low levels of feedback. 
+
+Decomposing the three-way interaction, we found that participants trusted generous more than neutral or greedy partners for low status humans (B = `r s2_mod2_beta_generosity_lowstatushuman`, SE = `r s2_mod2_se_generosity_lowstatushuman`, t = `r s2_mod2_t_generosity_lowstatushuman`, p = `r s2_mod2_p_generosity_lowstatushuman`, CI = `r s2_mod2_CI_generosity_lowstatushuman`), low status AI (B = `r s2_mod2_beta_generosity_lowstatusai`, SE = `r s2_mod2_se_generosity_lowstatusai`, t = `r s2_mod2_t_generosity_lowstatusai`, p = `r s2_mod2_p_generosity_lowstatusai`, CI = `r s2_mod2_CI_generosity_lowstatusai`), high status humans (B = `r s2_mod2_beta_generosity_highstatushuman`, SE = `r s2_mod2_se_generosity_highstatushuman`, t = `r s2_mod2_t_generosity_highstatushuman`, p = `r s2_mod2_p_generosity_highstatushuman`, CI = `r s2_mod2_CI_generosity_highstatushuman`), and high status AI (B = `r s2_mod2_beta_generosity_highstatusai`, SE = `r s2_mod2_se_generosity_highstatusai`, t = `r s2_mod2_t_generosity_highstatusai`, p = `r s2_mod2_p_generosity_highstatusai`, CI = `r s2_mod2_CI_generosity_highstatusai`). Participants also trusted high status partners more than low status partners for neutral AI partners (B = `r s2_mod2_beta_status_neutralai`, SE = `r s2_mod2_se_status_neutralai`, t = `r s2_mod2_t_status_neutralai`, p = `r s2_mod2_p_status_neutralai`, CI = `r s2_mod2_CI_status_neutralai`).
+
+Overall, we replicated the generosity & feedback and status & feedback found in study 1. The agency and generosity we had discovered in study 1 was qualified by a three-way interaction that included status. We also found an additional interaction - effects of agency in interaction with feedback, and with status & generosity.
+
+Altogether, our results show that decision-making in an economic context where partners differ on agency, status, and generosity is complex. While we did not test participants for what they thought competency status meant, our results suggest that it participants did not trust high status partners in all contexts.

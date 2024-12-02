@@ -1,0 +1,62 @@
+---
+title: "Results"
+author: "Richa Gautam"
+date: "`r Sys.Date()`"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, include=TRUE, warning=FALSE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(gt)
+library(formattable)
+library(flextable)
+library(huxtable)
+options(scipen=999)
+```
+```{r}
+possentiment_prepost_statstable = read.csv("mod_possentiment_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newstotal_statstable = read.csv("mod_possentiment_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newspolitical_statstable = read.csv("mod_possentiment_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newsasian_statstable = read.csv("mod_possentiment_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+possentiment_newschinese_statstable = read.csv("mod_possentiment_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+negsentiment_prepost_statstable = read.csv("mod_negsentiment_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newstotal_statstable = read.csv("mod_negsentiment_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newspolitical_statstable = read.csv("mod_negsentiment_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newsasian_statstable = read.csv("mod_negsentiment_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+negsentiment_newschinese_statstable = read.csv("mod_negsentiment_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+warmth_prepost_statstable = read.csv("mod_warmth_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newstotal_statstable = read.csv("mod_warmth_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newspolitical_statstable = read.csv("mod_warmth_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newsasian_statstable = read.csv("mod_warmth_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+warmth_newschinese_statstable = read.csv("mod_warmth_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+cold_prepost_statstable = read.csv("mod_cold_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newstotal_statstable = read.csv("mod_cold_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newspolitical_statstable = read.csv("mod_cold_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newsasian_statstable = read.csv("mod_cold_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+cold_newschinese_statstable = read.csv("mod_cold_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+competent_prepost_statstable = read.csv("mod_competence_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newstotal_statstable = read.csv("mod_competence_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newspolitical_statstable = read.csv("mod_competence_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newsasian_statstable = read.csv("mod_competence_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+competent_newschinese_statstable = read.csv("mod_competence_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+incompetent_prepost_statstable = read.csv("mod_incompetence_prepost_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newstotal_statstable = read.csv("mod_incompetence_newstotal_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newspolitical_statstable = read.csv("mod_incompetence_newspolitical_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newsasian_statstable = read.csv("mod_incompetence_newsasian_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+incompetent_newschinese_statstable = read.csv("mod_incompetence_newschinese_statstable.csv", na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+
+```
+
+# Results
+
+Our linear model investigating the association between the events and positive sentiment found significant `r ifelse(possentiment_prepost_statstable["Condition", "Estimate"] > 0, "positive", "negative")` association between XYZ (b=`r possentiment_prepost_statstable["Condition", "Estimate"]`, SE=`r round(possentiment_prepost_statstable["Condition", "SE"], 6)`, t=`r possentiment_prepost_statstable["Condition", "t-value"]`, p=`r possentiment_prepost_statstable["Condition", "p-value"]`, CI95%=`r possentiment_prepost_statstable["Condition", "CI"]`)
+
+![Caption for the picture.](Figure1.png)

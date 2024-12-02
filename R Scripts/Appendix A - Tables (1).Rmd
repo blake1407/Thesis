@@ -1,0 +1,110 @@
+---
+title: 'Appendix A: Tables'
+output: word_document
+fontsize: 12
+fontfamily: arev
+header-includes:
+   - \usepackage{caption}
+   - \captionsetup[table]{textfont={it}, labelfont={bf}, singlelinecheck=false, labelsep=newline}
+    - \usepackage{setspace}\doublespacing
+    - \usepackage{float}
+---
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(gt)
+library(formattable)
+
+s1_mod1_statstable = read.csv("s1_mod1_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+s1_mod2_statstable = read.csv("s1_mod2_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+s2_mod1_statstable = read.csv("s2_mod1_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+s2_mod2_statstable = read.csv("s2_mod2_statstable.csv", stringsAsFactors = FALSE,
+                              na.strings = c("", "NA"), check.names = FALSE, row.names=1)
+```
+# Appendix A: Tables
+
+## Study 1
+
+```{r, echo=FALSE, warning=FALSE}
+s1_mod1_statstable %>%
+  kable(format = "markdown",
+        booktabs = TRUE,
+        escape = FALSE,
+        longtable = TRUE,
+        align = c("l", "l", "c", "c", "c", "c", "c", "c"),
+        caption = "Table 1: Impact of Agency, Status, Reciprocity rate, and Round on Trust in Study 1") %>%
+  row_spec(row = 0, align = "c") %>%
+  column_spec(column = 1, width = "1in") %>%
+  column_spec(column = 2, width = "1in") %>%
+  column_spec(column = 3, width = ".625in") %>%
+  column_spec(column = 4, width = ".625in") %>%
+  column_spec(column = 5, width = "1in") %>%
+  column_spec(column = 6, width = "1in") %>%
+  column_spec(column = 7, width = ".625in") %>%
+  kable_styling(full_width = TRUE)
+                   
+```
+
+```{r, echo=FALSE, warning=FALSE}
+s1_mod2_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "l", "c", "c", "c", "c", "c", "c"),
+      caption = "Table 2: Impact of Agency, Status, Reciprocity rate, and Feedback on Trust in Study 1") %>%
+  row_spec(row = 0, align = "c") %>%
+  column_spec(column = 1, width = "1in") %>%
+  column_spec(column = 2, width = "1in") %>%
+  column_spec(column = 3, width = ".625in") %>%
+  column_spec(column = 4, width = ".625in") %>%
+  column_spec(column = 5, width = "1in") %>%
+  column_spec(column = 6, width = "1in") %>%
+  column_spec(column = 7, width = ".625in") %>%
+  kable_styling(full_width = TRUE)
+```
+
+## Study 2
+
+```{r, echo=FALSE, warning=FALSE}
+s2_mod1_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "l", "c", "c", "c", "c", "c", "c"),
+      caption = "Table 3: Impact of Agency, Status, Reciprocity rate, and Round on Trust in Study 2") %>%
+  row_spec(row = 0, align = "c") %>%
+  column_spec(column = 1, width = "1in") %>%
+  column_spec(column = 2, width = "1in") %>%
+  column_spec(column = 3, width = ".625in") %>%
+  column_spec(column = 4, width = ".625in") %>%
+  column_spec(column = 5, width = "1in") %>%
+  column_spec(column = 6, width = "1in") %>%
+  column_spec(column = 7, width = ".625in") %>%
+  kable_styling(full_width = TRUE)
+```
+
+```{r, echo=FALSE, warning=FALSE}
+s2_mod2_statstable %>%
+  kable(format = "markdown",
+      booktabs = TRUE,
+      escape = FALSE,
+      longtable = TRUE,
+      align = c("l", "l", "c", "c", "c", "c", "c", "c"),
+      caption = "Table 4: Impact of Agency, Status, Reciprocity rate, and Feedback on Trust in Study 2") %>%
+  row_spec(row = 0, align = "c") %>%
+  column_spec(column = 1, width = "1in") %>%
+  column_spec(column = 2, width = "1in") %>%
+  column_spec(column = 3, width = ".625in") %>%
+  column_spec(column = 4, width = ".625in") %>%
+  column_spec(column = 5, width = "1in") %>%
+  column_spec(column = 6, width = "1in") %>%
+  column_spec(column = 7, width = ".625in") %>%
+  kable_styling(full_width = TRUE)
+```

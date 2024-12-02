@@ -1,0 +1,10 @@
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 28, 2024 09:15 PM
+","Number of discards: 0
+","List of accounts processed: []
+","List of accounts coming in: ['@ScottPresler', '@SarcasmStardust']
+","List of accounts needed to be rerun: []
+","List of accounts with parsed but only irrelevant tweets: ['@ScottPresler', '@SarcasmStardust']"

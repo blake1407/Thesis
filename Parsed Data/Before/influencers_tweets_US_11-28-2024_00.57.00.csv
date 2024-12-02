@@ -1,0 +1,12 @@
+Poster,Date,Tweet,No of Likes,No of Retweets,No of Replies,No of Views
+@0rf,"April 27, 2024 02:02 PM","WOW: The Jewish student who claims she was ""stabbed in the eye"" previously testified to Congress to shame Yale for not giving her a security escort.   ""Thats just the beginning""  1/5",2797,920,280,712626
+@0rf,"May 24, 2024 01:13 PM","Blinken 23:  What separates us from Hamas is our respect for international law.  Blinken 24:  We ""fundamentally reject"" international law.",1227,675,50,266510
+
+"|RUN STATISTICS|
+"
+"Time Processed: November 28, 2024 09:15 PM
+","Number of discards: 1139
+","List of accounts processed: []
+","List of accounts coming in: ['@0rf', '@AVindman', '@AdamKinzinger', '@AnaKasparian']
+","List of accounts needed to be rerun: ['@0rf', '@0rf', '@0rf', '@0rf', '@0rf', '@0rf', '@0rf', '@0rf']
+","List of accounts with parsed but only irrelevant tweets: ['@AVindman', '@AdamKinzinger', '@AnaKasparian']"
