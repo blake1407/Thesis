@@ -46,53 +46,206 @@ data = merge(data_pre, data_post,
   distinct()
 
 data = data %>%
-  mutate(ethorace_israelijewish = prop_Israeli + prop_Jewish + prop_IDF,
-         ethorace_arabicmuslim = prop_Arabic + prop_Muslim + prop_Hamas) %>%
+  mutate(ethorace_israelijewish = prop_Israeli + prop_Jewish,
+         ethorace_arabicmuslim = prop_Arabic + prop_Muslim) %>%
   mutate(Ethnorace = ifelse(ethorace_israelijewish > ethorace_arabicmuslim, -0.5,
                             ifelse(ethorace_arabicmuslim > ethorace_israelijewish, 0.5, NA)))
 
-# mod_negsentiment = lmer(tone_neg ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+ Ethnorace*Affiliation_Contrast*Date_Index|Subject_ID), data=data)
+data = data %>%
+  mutate(Militant = ifelse(prop_IDF > prop_Hamas, -0.5,
+                            ifelse(prop_Hamas > prop_IDF, 0.5, NA)))
+
+#Complitcated intercept
+mod_negsentiment = lmer(tone_neg ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+Ethnorace*Condition_Contrast|Subject_ID), data=data)
+summary(mod_negsentiment)
+
+mod_negsentiment = lmer(tone_neg ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+Ethnorace*Date_Index|Subject_ID), data=data)
+summary(mod_negsentiment)
+
+mod_negsentiment = lmer(tone_neg ~ Militant*Affiliation_Contrast*Condition_Contrast + (1+Militant*Condition_Contrast|Subject_ID), data=data)
+summary(mod_negsentiment)
+
+mod_negsentiment = lmer(tone_neg ~ Militant*Affiliation_Contrast*Date_Index + (1+Militant*Date_Index|Subject_ID), data=data)
+summary(mod_negsentiment)
+
+#Less Complitcated intercept
 mod_negsentiment = lmer(tone_neg ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
 summary(mod_negsentiment)
+
 mod_negsentiment = lmer(tone_neg ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_negsentiment)
 
-# mod_possentiment = lmer(tone_pos ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast |Subject_ID), data=data)
+mod_negsentiment = lmer(tone_neg ~ Militant*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_negsentiment)
+
+mod_negsentiment = lmer(tone_neg ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_negsentiment)
+
+
+
+#Complitcated intercept
+mod_possentiment = lmer(tone_pos ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+Ethnorace*Condition_Contrast|Subject_ID), data=data)
+summary(mod_possentiment)
+
+mod_possentiment = lmer(tone_pos ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+Ethnorace*Date_Index|Subject_ID), data=data)
+summary(mod_possentiment)
+
+mod_possentiment = lmer(tone_pos ~ Militant*Affiliation_Contrast*Condition_Contrast + (1+Militant*Condition_Contrast|Subject_ID), data=data)
+summary(mod_possentiment)
+
+mod_possentiment = lmer(tone_pos ~ Militant*Affiliation_Contrast*Date_Index + (1+Militant*Date_Index|Subject_ID), data=data)
+summary(mod_possentiment)
+
+#Less Complitcated intercept
 mod_possentiment = lmer(tone_pos ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
 summary(mod_possentiment)
+
 mod_possentiment = lmer(tone_pos ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_possentiment)
 
-# mod_warmstereotype = lmer(prop_Warm ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast |Subject_ID), data=data)
+mod_possentiment = lmer(tone_pos ~ Militant*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_possentiment)
+
+mod_possentiment = lmer(tone_pos ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_possentiment)
+
+
+
+#Complitcated intercept
+mod_warmstereotype = lmer(prop_Warm ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+Ethnorace*Condition_Contrast|Subject_ID), data=data)
+summary(mod_warmstereotype)
+
+mod_warmstereotype = lmer(prop_Warm ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+Ethnorace*Date_Index|Subject_ID), data=data)
+summary(mod_warmstereotype)
+
+mod_warmstereotype = lmer(prop_Warm ~ Militant*Affiliation_Contrast*Condition_Contrast + (1+Militant*Condition_Contrast|Subject_ID), data=data)
+summary(mod_warmstereotype)
+
+mod_warmstereotype = lmer(prop_Warm ~ Militant*Affiliation_Contrast*Date_Index + (1+Militant*Date_Index|Subject_ID), data=data)
+summary(mod_warmstereotype)
+
+#Less Complitcated intercept
 mod_warmstereotype = lmer(prop_Warm ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
 summary(mod_warmstereotype)
+
 mod_warmstereotype = lmer(prop_Warm ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_warmstereotype)
 
-# mod_coldstereotype = lmer(prop_Cold ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast |Subject_ID), data=data)
+mod_warmstereotype = lmer(prop_Warm ~ Militant*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_warmstereotype)
+
+mod_warmstereotype = lmer(prop_Warm ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_warmstereotype)
+
+
+#Complitcated intercept
+mod_coldstereotype = lmer(prop_Cold ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+Ethnorace*Condition_Contrast|Subject_ID), data=data)
+summary(mod_coldstereotype)
+
+mod_coldstereotype = lmer(prop_Cold ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+Ethnorace*Date_Index|Subject_ID), data=data)
+summary(mod_coldstereotype)
+
+mod_coldstereotype = lmer(prop_Cold ~ Militant*Affiliation_Contrast*Condition_Contrast + (1+Militant*Condition_Contrast|Subject_ID), data=data)
+summary(mod_coldstereotype)
+
+mod_coldstereotype = lmer(prop_Cold ~ Militant*Affiliation_Contrast*Date_Index + (1+Militant*Date_Index|Subject_ID), data=data)
+summary(mod_coldstereotype)
+
+#Less Complitcated intercept
 mod_coldstereotype = lmer(prop_Cold ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
 summary(mod_coldstereotype)
+
 mod_coldstereotype = lmer(prop_Cold ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_coldstereotype)
 
- 
-# mod_compstereotype = lmer(prop_Competence ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast |Subject_ID), data=data)
+mod_coldstereotype = lmer(prop_Cold ~ Militant*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_coldstereotype)
+
+mod_coldstereotype = lmer(prop_Cold ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_coldstereotype)
+
+
+
+#Complitcated intercept
+mod_compstereotype = lmer(prop_Competence ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+Ethnorace*Condition_Contrast|Subject_ID), data=data)
+summary(mod_compstereotype)
+
+mod_compstereotype = lmer(prop_Competence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+Ethnorace*Date_Index|Subject_ID), data=data)
+summary(mod_compstereotype)
+
+mod_compstereotype = lmer(prop_Competence ~ Militant*Affiliation_Contrast*Condition_Contrast + (1+Militant*Condition_Contrast|Subject_ID), data=data)
+summary(mod_compstereotype)
+
+mod_compstereotype = lmer(prop_Competence ~ Militant*Affiliation_Contrast*Date_Index + (1+Militant*Date_Index|Subject_ID), data=data)
+summary(mod_compstereotype)
+
+#Less Complitcated intercept
 mod_compstereotype = lmer(prop_Competence ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
 summary(mod_compstereotype)
+
 mod_compstereotype = lmer(prop_Competence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_compstereotype)
 
-# mod_incompstereotype = lmer(prop_Incompetence ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast |Subject_ID), data=data)
+mod_compstereotype = lmer(prop_Competence ~ Militant*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_compstereotype)
+
+mod_compstereotype = lmer(prop_Competence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_compstereotype)
+
+
+#Complitcated intercept
+mod_incompstereotype = lmer(prop_Incompetence ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+Ethnorace*Condition_Contrast|Subject_ID), data=data)
+summary(mod_incompstereotype)
+
+mod_incompstereotype = lmer(prop_Incompetence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+Ethnorace*Date_Index|Subject_ID), data=data)
+summary(mod_incompstereotype)
+
+mod_incompstereotype = lmer(prop_Incompetence ~ Militant*Affiliation_Contrast*Condition_Contrast + (1+Militant*Condition_Contrast|Subject_ID), data=data)
+summary(mod_incompstereotype)
+
+mod_incompstereotype = lmer(prop_Incompetence ~ Militant*Affiliation_Contrast*Date_Index + (1+Militant*Date_Index|Subject_ID), data=data)
+summary(mod_incompstereotype)
+
+#Less Complitcated intercept
 mod_incompstereotype = lmer(prop_Incompetence ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
 summary(mod_incompstereotype)
+
 mod_incompstereotype = lmer(prop_Incompetence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_incompstereotype)
 
-# mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast |Subject_ID), data=data)
+mod_incompstereotype = lmer(prop_Incompetence ~ Militant*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_incompstereotype)
+
+mod_incompstereotype = lmer(prop_Incompetence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_incompstereotype)
+
+
+
+#Complitcated intercept
+mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+Ethnorace*Condition_Contrast|Subject_ID), data=data)
+summary(mod_hatespeech)
+
+mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Date_Index + (1+Ethnorace*Date_Index|Subject_ID), data=data)
+summary(mod_hatespeech)
+
+mod_hatespeech = lmer(Hate_Score ~ Militant*Affiliation_Contrast*Condition_Contrast + (1+Militant*Condition_Contrast|Subject_ID), data=data)
+summary(mod_hatespeech)
+
+mod_hatespeech = lmer(Hate_Score ~ Militant*Affiliation_Contrast*Date_Index + (1+Militant*Date_Index|Subject_ID), data=data)
+summary(mod_hatespeech)
+#Less Complitcated intercept
 mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
 summary(mod_hatespeech)
+
 mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_hatespeech)
 
-# buildmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast|Subject_ID), data=data)
+mod_hatespeech = lmer(Hate_Score ~ Militant*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_hatespeech)
+
+mod_hatespeech = lmer(Hate_Score ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_hatespeech)
+
+
+# # buildmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1+ Ethnorace*Affiliation_Contrast*Condition_Contrast|Subject_ID), data=data)
 

@@ -19,6 +19,8 @@ library(lme4)
 library(lmerTest)
 library(gtools)
 library(dplyr)
+library(interactions)
+library(ggplot2)
 
 
 # Function to create the date numbering
@@ -92,23 +94,30 @@ print(paste("Index halfway between lowest time index and 0:", unique(closest_neg
 print(paste("Index halfway between 0 and highest time index:", unique(closest_positive)))
 
 
-
-
 data = data %>%
-  mutate(ethorace_israelijewish = prop_Israeli + prop_Jewish + prop_IDF,
-         ethorace_arabicmuslim = prop_Arabic + prop_Muslim + prop_Hamas) %>%
+  mutate(ethorace_israelijewish = prop_Israeli + prop_Jewish,
+         ethorace_arabicmuslim = prop_Arabic + prop_Muslim) %>%
   mutate(Ethnorace = ifelse(ethorace_israelijewish > ethorace_arabicmuslim, -0.5,
                             ifelse(ethorace_arabicmuslim > ethorace_israelijewish, 0.5, NA)))
 
-mod_compstereotype = lmer(prop_Competence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+data = data %>%
+  mutate(Militant = ifelse(prop_IDF > prop_Hamas, -0.5,
+                           ifelse(prop_Hamas > prop_IDF, 0.5, NA)))
+
+mod_negsentiment = lmer(tone_neg ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
+summary(mod_negsentiment)
+
+mod_possentiment = lmer(tone_pos ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_possentiment)
+
+mod_compstereotype = lmer(prop_Competence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 summary(mod_compstereotype)
 
-mod_incompstereotype = lmer(prop_Incompetence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
-summary(mod_incompstereotype)
+mod_Incompstereotype = lmer(prop_Incompetence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_Incompstereotype)
 
-mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
-summary(mod_hatespeech)
-
+# mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+# summary(mod_hatespeech)
 
 get_simslopes = function(model, confints = "No", variables = NULL,
                          levels = NULL, labels = NULL, categorical = NULL) {
@@ -823,20 +832,38 @@ get_simslopes = function(model, confints = "No", variables = NULL,
   })
 }
 
-comp_results = get_simslopes(model = mod_compstereotype, 
+comp_results = get_simslopes(model = mod_Incompstereotype, 
               confints = "Yes",
-              variables = c("Ethnorace", "Affiliation_Contrast", "Date_Index"),
+              # variables = c("Ethnorace", "Affiliation_Contrast", "Condition_Contrast"),
+              # levels = list(c(-0.5, 0.5), 
+              #               c(-0.5, 0.5), 
+              #               c(-0.5, 0.5)),
+              # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+              #               c("Right_leaning", "Left_leaning"),
+              #               c("Before", "After")),
+              
+              # variables = c("Ethnorace", "Affiliation_Contrast", "Date_Index"),
+              # 
+              # levels = list(c(-0.5, 0.5), 
+              #               c(-0.5, 0.5), 
+              #               c(-360, -180, 0, 181, 362)),
+              # 
+              # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+              #               c("Right_leaning", "Left_leaning"),
+              #               c("Earliest", "Mid", "0", "Mid", "Latest")),
+              
+              variables = c("Militant", "Affiliation_Contrast", "Date_Index"),
+              
               levels = list(c(-0.5, 0.5), 
                             c(-0.5, 0.5), 
-                            c(-365, -187, 0, 181, 366)),
-              # labels = list(c("Israeli/Jewish/IDF", "Arabic/Muslim/Hamas"), 
-              #               c("Right-leaning", "Left-leaning"), 
-              #               c("Earliest", "Mid", "0", "Mid", "Latest")),
+                            c(-360, -180, 0, 181, 362)),
+              
+              labels = list(c("IDF", "Hamas"),
+                            c("Right_leaning", "Left_leaning"),
+                            c("Earliest", "Mid", "0", "Mid", "Latest")),
+              
               categorical = c(FALSE, FALSE, FALSE)
 )
 
-write.csv(comp_results$significant_slopes,file="Competence_stats_results.csv", row.names=FALSE, na=)
+write.csv(comp_results$significant_slopes,file="Incompetence_Stereotype_stats_results.csv", row.names=FALSE, na=)
 
-# mod_compstereotype - Ethnorace:Affiliation_Contrast:Date_Index
-# prop_Incompetence - Affiliation_Contrast:Date_Index
-# Hate_Score - Ethnorace:Affiliation_Contrast

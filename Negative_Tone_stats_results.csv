@@ -1,0 +1,13 @@
+"Reference","Contrast","B","SE","df","95% CI","t-value","p-value"
+"Ethnorace_Israeli_Jewish Affiliation_Contrast_Right_leaning","Condition_Contrast",3.022,1.254,513.042,"[0.591, 5.463]",2.409,0.016
+"Ethnorace_Israeli_Jewish Affiliation_Contrast_Left_leaning","Condition_Contrast",-0.408,1.245,423.004,"[-2.909, 1.953]",-0.328,0.743
+"Ethnorace_Arabic_Muslim Affiliation_Contrast_Right_leaning","Condition_Contrast",-6.469,2.551,546.835,"[-11.388, -1.425]",-2.536,0.012
+"Ethnorace_Arabic_Muslim Affiliation_Contrast_Left_leaning","Condition_Contrast",1.589,4.369,540.327,"[-6.871, 10.202]",0.364,0.716
+"Ethnorace_Israeli_Jewish Condition_Contrast_Before","Affiliation_Contrast",3.302,1.699,446.042,"[0.001, 6.586]",1.944,0.053
+"Ethnorace_Israeli_Jewish Condition_Contrast_After","Affiliation_Contrast",-0.128,0.595,17.323,"[-1.288, 1.065]",-0.216,0.832
+"Ethnorace_Arabic_Muslim Condition_Contrast_Before","Affiliation_Contrast",-8.138,5.03,546.981,"[-18.042, 1.585]",-1.618,0.106
+"Ethnorace_Arabic_Muslim Condition_Contrast_After","Affiliation_Contrast",-0.08,0.739,46.58,"[-1.536, 1.332]",-0.108,0.915
+"Affiliation_Contrast_Right_leaning Condition_Contrast_Before","Ethnorace",8.448,2.785,546.703,"[2.97, 13.839]",3.033,0.003
+"Affiliation_Contrast_Right_leaning Condition_Contrast_After","Ethnorace",-1.044,0.538,536.43,"[-2.078, 0.019]",-1.942,0.053
+"Affiliation_Contrast_Left_leaning Condition_Contrast_Before","Ethnorace",-2.993,4.509,546.855,"[-11.922, 5.69]",-0.664,0.507
+"Affiliation_Contrast_Left_leaning Condition_Contrast_After","Ethnorace",-0.995,0.631,505.031,"[-2.199, 0.263]",-1.576,0.116

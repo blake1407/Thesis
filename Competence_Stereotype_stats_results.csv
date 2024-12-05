@@ -1,0 +1,25 @@
+"Reference","Contrast","B","SE","df","95% CI","t-value","p-value"
+"Militant_IDF Affiliation_Contrast_Right_leaning","Date_Index",0,0,388.72,"[0, 0]",-0.734,0.464
+"Militant_IDF Affiliation_Contrast_Left_leaning","Date_Index",0,0,388.989,"[0, 0]",2.178,0.03
+"Militant_Hamas Affiliation_Contrast_Right_leaning","Date_Index",0,0,374.953,"[0, 0]",-0.633,0.527
+"Militant_Hamas Affiliation_Contrast_Left_leaning","Date_Index",0,0,388.984,"[0, 0]",-0.986,0.325
+"Militant_IDF Date_Index_Earliest","Affiliation_Contrast",-0.063,0.03,388.995,"[-0.121, -0.005]",-2.131,0.034
+"Militant_IDF Date_Index_Mid","Affiliation_Contrast",0.013,0.008,367.761,"[-0.002, 0.027]",1.693,0.091
+"Militant_IDF Date_Index_0","Affiliation_Contrast",-0.013,0.009,381.335,"[-0.03, 0.004]",-1.437,0.152
+"Militant_IDF Date_Index_Mid","Affiliation_Contrast",0.013,0.008,367.761,"[-0.002, 0.027]",1.693,0.091
+"Militant_IDF Date_Index_Latest","Affiliation_Contrast",0.038,0.017,388.151,"[0.005, 0.071]",2.231,0.026
+"Militant_Hamas Date_Index_Earliest","Affiliation_Contrast",0.003,0.007,382.675,"[-0.011, 0.017]",0.447,0.655
+"Militant_Hamas Date_Index_Mid","Affiliation_Contrast",-0.002,0.002,58.362,"[-0.006, 0.001]",-1.236,0.221
+"Militant_Hamas Date_Index_0","Affiliation_Contrast",0,0.002,133.244,"[-0.005, 0.004]",-0.211,0.833
+"Militant_Hamas Date_Index_Mid","Affiliation_Contrast",-0.002,0.002,58.362,"[-0.006, 0.001]",-1.236,0.221
+"Militant_Hamas Date_Index_Latest","Affiliation_Contrast",-0.004,0.004,280.156,"[-0.012, 0.003]",-1.061,0.29
+"Affiliation_Contrast_Right_leaning Date_Index_Earliest","Militant",-0.01,0.017,388.57,"[-0.044, 0.024]",-0.573,0.567
+"Affiliation_Contrast_Right_leaning Date_Index_Mid","Militant",0.001,0.004,388.456,"[-0.007, 0.008]",0.267,0.79
+"Affiliation_Contrast_Right_leaning Date_Index_0","Militant",-0.003,0.006,388.613,"[-0.015, 0.01]",-0.41,0.682
+"Affiliation_Contrast_Right_leaning Date_Index_Mid","Militant",0.001,0.004,388.456,"[-0.007, 0.008]",0.267,0.79
+"Affiliation_Contrast_Right_leaning Date_Index_Latest","Militant",0.005,0.008,388.42,"[-0.01, 0.019]",0.623,0.534
+"Affiliation_Contrast_Left_leaning Date_Index_Earliest","Militant",0.056,0.025,388.797,"[0.008, 0.105]",2.252,0.025
+"Affiliation_Contrast_Left_leaning Date_Index_Mid","Militant",-0.014,0.007,388.697,"[-0.027, -0.001]",-2.092,0.037
+"Affiliation_Contrast_Left_leaning Date_Index_0","Militant",0.009,0.006,388.995,"[-0.003, 0.022]",1.486,0.138
+"Affiliation_Contrast_Left_leaning Date_Index_Mid","Militant",-0.014,0.007,388.697,"[-0.027, -0.001]",-2.092,0.037
+"Affiliation_Contrast_Left_leaning Date_Index_Latest","Militant",-0.038,0.016,388.554,"[-0.069, -0.007]",-2.379,0.018
