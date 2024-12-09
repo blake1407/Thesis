@@ -1,0 +1,3375 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage[]{arev}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{caption}
+\captionsetup[table]{textfont={it}, labelfont={bf}, singlelinecheck=false, labelsep=newline} - \usepackage{setspace}\doublespacing - \usepackage{float}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Results},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Results}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\section{Change in Negative
+Sentiment}\label{change-in-negative-sentiment}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people}
+
+Changes in negative sentiment in tweets by the ``Before'' and ``After''
+period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6220}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0610}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 2.157893 & 1.189217 & 301.190757 & 1.8145495 &
+0.0705879 \\
+EthnoraceArabic and/or Muslim group & 7.148940 & 4.771941 & 2.804883 &
+1.4981200 & 0.2371147 \\
+Affiliation\_ContrastLeft-leaning & 3.332712 & 1.651867 & 285.168207 &
+2.0175427 & 0.0445755 \\
+Condition\_ContrastAfter 10/07/23 & 3.127981 & 1.319356 & 47.574604 &
+2.3708399 & 0.0218480 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-8.639582 & 9.078019 & 2.896523 & -0.9517035 & 0.4137239 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+-8.462369 & 4.733700 & 2.765667 & -1.7876861 & 0.1795147 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+-3.431669 & 1.836748 & 59.327481 & -1.8683395 & 0.0666550 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 8.777563 & 8.991652 & 2.874717 & 0.9761903 & 0.4037934 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot1-1.pdf}
+Changes in negative sentiment in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5594}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1329}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 5.2497022 & 1.3505690 & 347.437251 & 3.8870301 &
+0.0001215 \\
+EthnoraceArabic and/or Muslim group & -1.3684428 & 1.7119709 & 20.068573
+& -0.7993377 & 0.4334542 \\
+Affiliation\_ContrastLeft-leaning & -0.3125696 & 1.8880507 & 417.957200
+& -0.1655515 & 0.8685900 \\
+Date\_Index & -0.0030929 & 0.0046383 & 9.299234 & -0.6668142 &
+0.5210908 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.4315429 & 2.5249745 & 21.227460 & 0.1709098 & 0.8659133 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0039280 & 0.0085666
+& 13.611430 & 0.4585224 & 0.6538127 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0045643 & 0.0063496 &
+9.810700 & 0.7188235 & 0.4890163 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0055245 &
+0.0127331 & 15.645050 & -0.4338723 & 0.6703047 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot2-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in negative sentiment in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4754}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0984}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1557}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 1.6885940 & 2.995756 & 0.3667352 & 0.5636620 &
+0.7623752 \\
+MilitantHamas & 4.2079429 & 3.022227 & 0.5434213 & 1.3923319 &
+0.5084851 \\
+Affiliation\_ContrastLeft-leaning & 0.8083810 & 5.206795 & 0.4933803 &
+0.1552550 & 0.9175709 \\
+Date\_Index & 0.0546467 & 1.114661 & 317.3584923 & 0.0490254 &
+0.9609299 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & -2.7239265 & 5.284504
+& 0.7420358 & -0.5154555 & 0.7188613 \\
+MilitantHamas:Date\_Index & -0.0592167 & 1.114694 & 299.6835895 &
+-0.0531237 & 0.9576687 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0509858 & 1.441135 &
+326.9169323 & -0.0353789 & 0.9717992 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0600138
+& 1.441212 & 316.4355746 & 0.0416412 & 0.9668110 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot3-1.pdf}
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-1}
+
+Changes in negative sentiment in tweets by the ``Before'' and ``After''
+period
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6296}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0679}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0679}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0556}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0617}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1173}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 2.134729 & 1.222057 & 466.5418 & 1.746834 & 0.0813243 \\
+EthnoraceArabic and/or Muslim group & 8.447642 & 2.785260 & 546.7029 &
+3.032981 & 0.0025365 \\
+Affiliation\_ContrastLeft-leaning & 3.301992 & 1.698653 & 446.0416 &
+1.943889 & 0.0525373 \\
+Condition\_ContrastAfter 10/07/23 & 3.021922 & 1.254289 & 513.0424 &
+2.409270 & 0.0163357 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-11.440150 & 5.300000 & 546.8183 & -2.158519 & 0.0313220 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+-9.491227 & 2.836233 & 546.7152 & -3.346420 & 0.0008749 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+-3.430362 & 1.767134 & 472.1152 & -1.941201 & 0.0528286 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 11.488763 & 5.359556 & 546.3413 & 2.143603 & 0.0325055 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot4-1.pdf}
+Changes in negative sentiment in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 5.0361604 & 0.4548497 & 24.55851 & 11.0721406 &
+0.0000000 \\
+EthnoraceArabic and/or Muslim group & -0.5483524 & 0.7270375 & 546.93991
+& -0.7542286 & 0.4510366 \\
+Affiliation\_ContrastLeft-leaning & 0.0106164 & 0.6730107 & 36.38799 &
+0.0157746 & 0.9875004 \\
+Date\_Index & -0.0006444 & 0.0021415 & 539.14041 & -0.3009072 &
+0.7636013 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.5662824 & 1.1605158 & 540.77440 & -0.4879575 & 0.6257777 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0011019 & 0.0042920
+& 534.60808 & -0.2567260 & 0.7974890 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0007946 & 0.0031087 &
+535.19890 & 0.2555990 & 0.7983587 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0015998 &
+0.0066767 & 520.23686 & 0.2396104 & 0.8107267 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot5-1.pdf}
+
+\subsubsection{Tweets Mentioning either IDF or
+Hamas}\label{tweets-mentioning-either-idf-or-hamas}
+
+Changes in negative sentiment in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4874}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0756}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1597}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 2.1157747 & 2.4064762 & 378.0572 & 0.8792004 &
+0.3798511 \\
+MilitantHamas & 3.5451747 & 2.3877397 & 372.0199 & 1.4847409 &
+0.1384593 \\
+Affiliation\_ContrastLeft-leaning & 0.6544639 & 3.3132900 & 355.7051 &
+0.1975269 & 0.8435281 \\
+Date\_Index & 0.0223508 & 0.0118492 & 370.0031 & 1.8862786 &
+0.0600403 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & -2.2589936 & 3.3626146
+& 380.7376 & -0.6717968 & 0.5021205 \\
+MilitantHamas:Date\_Index & -0.0255376 & 0.0120156 & 370.7466 &
+-2.1253705 & 0.0342164 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0144934 & 0.0231542 &
+379.8728 & -0.6259512 & 0.5317228 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0224421
+& 0.0237573 & 378.6329 & 0.9446388 & 0.3454457 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot6-1.pdf}
+
+\section{Change in Positive
+Sentiment}\label{change-in-positive-sentiment}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-2}
+
+Changes in positive sentiment in tweets by the ``Before'' and ``After''
+period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6220}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0610}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 3.7540068 & 1.425759 & 13.181520 & 2.6329888 &
+0.0204759 \\
+EthnoraceArabic and/or Muslim group & -3.1549952 & 2.277895 & 5.784519 &
+-1.3850483 & 0.2170851 \\
+Affiliation\_ContrastLeft-leaning & -1.1816824 & 1.996922 & 13.466833 &
+-0.5917520 & 0.5638194 \\
+Condition\_ContrastAfter 10/07/23 & -1.7358792 & 1.334909 & 12.198927 &
+-1.3003731 & 0.2175041 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+1.0380779 & 3.947035 & 12.923257 & 0.2630019 & 0.7966955 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+2.8224405 & 2.168605 & 7.544741 & 1.3015004 & 0.2314189 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+1.1903968 & 1.894830 & 13.320280 & 0.6282342 & 0.5404731 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 0.0515584 & 3.841539 & 23.090524 & 0.0134213 & 0.9894070 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot7-1.pdf}
+Changes in positive sentiment in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5594}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1329}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 2.5009720 & 1.2095413 & 236.152383 & 2.0677029 &
+0.0397574 \\
+EthnoraceArabic and/or Muslim group & -1.0626311 & 1.1513353 & 4.916252
+& -0.9229554 & 0.3990642 \\
+Affiliation\_ContrastLeft-leaning & -0.3983739 & 1.6902100 & 181.423669
+& -0.2356949 & 0.8139353 \\
+Date\_Index & -0.0014622 & 0.0039605 & 13.016956 & -0.3691923 &
+0.7179203 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.9016764 & 1.6662929 & 4.347503 & 0.5411272 & 0.6149659 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0040871 & 0.0048617
+& 1.368339 & 0.8406832 & 0.5219047 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0004161 & 0.0055617 &
+13.378453 & 0.0748157 & 0.9414685 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0027385 &
+0.0074753 & 1.473469 & 0.3663325 & 0.7598147 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot8-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in positve sentiment in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4754}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0984}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1557}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 1.0664990 & 2.490179 & 0.6203344 & 0.4282820 &
+0.7720214 \\
+MilitantHamas & 1.6901751 & 2.506564 & 0.9782139 & 0.6742996 &
+0.6243336 \\
+Affiliation\_ContrastLeft-leaning & 0.0525433 & 4.337178 & 0.8203643 &
+0.0121146 & 0.9925964 \\
+Date\_Index & -0.0034307 & 1.002447 & 362.5739016 & -0.0034223 &
+0.9972713 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0531469 & 4.393030 &
+1.2914967 & 0.0120980 & 0.9919419 \\
+MilitantHamas:Date\_Index & 0.0019546 & 1.002434 & 359.4759657 &
+0.0019499 & 0.9984453 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0061768 & 1.295596 &
+361.1483682 & -0.0047675 & 0.9961987 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0015715
+& 1.295576 & 359.1903480 & 0.0012130 & 0.9990329 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot9-1.pdf}
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-3}
+
+Changes in positive sentiment in tweets by the ``Before'' and ``After''
+period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6456}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0253}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1203}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 4.0223077 & 0.8159660 & 547 & 4.9295039 & 0.0000011 \\
+EthnoraceArabic and/or Muslim group & -3.2656410 & 1.8843928 & 547 &
+-1.7329938 & 0.0836603 \\
+Affiliation\_ContrastLeft-leaning & -1.9630220 & 1.1331566 & 547 &
+-1.7323483 & 0.0837752 \\
+Condition\_ContrastAfter 10/07/23 & -1.9456709 & 0.8394129 & 547 &
+-2.3178949 & 0.0208230 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+1.2063553 & 3.5811432 & 547 & 0.3368632 & 0.7363492 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+2.8375306 & 1.9185566 & 547 & 1.4789924 & 0.1397180 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+2.0062277 & 1.1794110 & 547 & 1.7010421 & 0.0895034 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & -0.3011254 & 3.6238411 & 547 & -0.0830956 & 0.9338059 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot10-1.pdf}
+Changes in positive sentiment in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5882}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0294}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1397}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 2.3865176 & 0.2619491 & 547 & 9.1106172 & 0.0000000 \\
+EthnoraceArabic and/or Muslim group & -1.2361065 & 0.4859006 & 547 &
+-2.5439492 & 0.0112346 \\
+Affiliation\_ContrastLeft-leaning & -0.1533981 & 0.4017245 & 547 &
+-0.3818489 & 0.7027217 \\
+Date\_Index & -0.0016162 & 0.0014240 & 547 & -1.1349290 & 0.2569021 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+1.1229885 & 0.7728645 & 547 & 1.4530211 & 0.1467913 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0057609 & 0.0028557
+& 547 & 2.0173442 & 0.0441475 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0006052 & 0.0020679 &
+547 & 0.2926701 & 0.7698853 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0013746 &
+0.0044315 & 547 & -0.3101909 & 0.7565339 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot11-1.pdf}
+
+\section{Change in Warm-conveying
+Words}\label{change-in-warm-conveying-words}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-4}
+
+Changes in Warm-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6220}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0610}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0071062 & 0.0041010 & 23.36500 & 1.7327772 &
+0.0963165 \\
+EthnoraceArabic and/or Muslim group & -0.0071062 & 0.0091611 & 135.34843
+& -0.7756990 & 0.4392800 \\
+Affiliation\_ContrastLeft-leaning & -0.0029463 & 0.0056934 & 23.46444 &
+-0.5175048 & 0.6096486 \\
+Condition\_ContrastAfter 10/07/23 & -0.0001844 & 0.0042613 & 19.08341 &
+-0.0432804 & 0.9659277 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0029453 & 0.0173449 & 397.44611 & 0.1698085 & 0.8652471 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0051543 & 0.0094371 & 58.50797 & 0.5461779 & 0.5870204 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0016352 & 0.0059650 & 21.00903 & 0.2741369 & 0.7866568 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & -0.0016497 & 0.0176422 & 171.42399 & -0.0935092 &
+0.9256083 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot12-1.pdf}
+Changes in Warm-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5594}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1329}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0046309 & 0.0044959 & 220.723438 & 1.0300140 &
+0.3041308 \\
+EthnoraceArabic and/or Muslim group & 0.0019056 & 0.0053023 & 9.808157 &
+0.3593980 & 0.7269143 \\
+Affiliation\_ContrastLeft-leaning & 0.0022054 & 0.0062838 & 319.481334 &
+0.3509742 & 0.7258390 \\
+Date\_Index & 0.0000174 & 0.0000321 & 10.575821 & 0.5432331 &
+0.5982322 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0067564 & 0.0078609 & 10.792498 & -0.8594919 & 0.4087548 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0000285 & 0.0000200
+& 4.643090 & -1.4247156 & 0.2178402 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000188 & 0.0000450 &
+10.529362 & -0.4171472 & 0.6849488 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000466 &
+0.0000297 & 7.082103 & 1.5720137 & 0.1594487 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot13-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in Warm-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4754}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0984}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0902}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1557}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0067777 & 0.0104360 & 0.8408546 & 0.6494605 &
+0.6491057 \\
+MilitantHamas & 0.0006329 & 0.0104957 & 1.1923101 & 0.0603053 &
+0.9604041 \\
+Affiliation\_ContrastLeft-leaning & -0.0081755 & 0.0180873 & 1.1171543 &
+-0.4520035 & 0.7233175 \\
+Date\_Index & 0.0000344 & 0.0039992 & 264.8751864 & 0.0086068 &
+0.9931393 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0099162 & 0.0182794
+& 1.6194437 & 0.5424794 & 0.6527180 \\
+MilitantHamas:Date\_Index & -0.0000459 & 0.0039990 & 244.9800499 &
+-0.0114673 & 0.9908599 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000267 & 0.0051694 &
+295.4798565 & -0.0051683 & 0.9958798 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000203
+& 0.0051691 & 281.8841107 & 0.0039236 & 0.9968722 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot14-1.pdf}
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-5}
+
+Changes in Warm-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6456}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0253}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1203}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0073073 & 0.0039448 & 547 & 1.8523898 & 0.0645084 \\
+EthnoraceArabic and/or Muslim group & -0.0073073 & 0.0091101 & 547 &
+-0.8021083 & 0.4228386 \\
+Affiliation\_ContrastLeft-leaning & -0.0033390 & 0.0054783 & 547 &
+-0.6095091 & 0.5424401 \\
+Condition\_ContrastAfter 10/07/23 & -0.0004853 & 0.0040582 & 547 &
+-0.1195879 & 0.9048535 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0033390 & 0.0173131 & 547 & 0.1928628 & 0.8471380 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0056237 & 0.0092753 & 547 & 0.6063068 & 0.5445625 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0021065 & 0.0057019 & 547 & 0.3694330 & 0.7119480 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & -0.0020844 & 0.0175195 & 547 & -0.1189782 & 0.9053363 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot15-1.pdf}
+Changes in Warm-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5882}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0294}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1397}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0069147 & 0.0012629 & 547 & 5.4753395 & 0.0000001 \\
+EthnoraceArabic and/or Muslim group & -0.0003593 & 0.0023426 & 547 &
+-0.1533615 & 0.8781697 \\
+Affiliation\_ContrastLeft-leaning & -0.0024437 & 0.0019367 & 547 &
+-1.2617781 & 0.2075664 \\
+Date\_Index & -0.0000005 & 0.0000069 & 547 & -0.0765815 & 0.9389845 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0003791 & 0.0037260 & 547 & -0.1017459 & 0.9189956 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0000133 & 0.0000138
+& 547 & -0.9685041 & 0.3332207 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000086 & 0.0000100 &
+547 & 0.8666529 & 0.3865122 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000156 &
+0.0000214 & 547 & 0.7288791 & 0.4663875 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot16-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in Warm-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4874}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0756}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1597}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0058361 & 0.0080610 & 376.2490 & 0.7239824 &
+0.4695265 \\
+MilitantHamas & 0.0011657 & 0.0080671 & 377.7246 & 0.1444979 &
+0.8851844 \\
+Affiliation\_ContrastLeft-leaning & -0.0061992 & 0.0110529 & 359.7849 &
+-0.5608650 & 0.5752387 \\
+Date\_Index & -0.0000239 & 0.0000401 & 375.7012 & -0.5970324 &
+0.5508454 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0073206 & 0.0113330
+& 382.8384 & 0.6459578 & 0.5186937 \\
+MilitantHamas:Date\_Index & 0.0000130 & 0.0000406 & 375.9835 & 0.3209538
+& 0.7484237 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000214 & 0.0000780 &
+382.8620 & 0.2737972 & 0.7843881 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000251
+& 0.0000801 & 381.6445 & -0.3129787 & 0.7544678 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot17-1.pdf}
+
+\section{Change in Cold-conveying
+Words}\label{change-in-cold-conveying-words}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-6}
+
+Changes in Cold-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6220}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0610}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0049737 & 0.0039496 & 10.851981 & 1.2592866 &
+0.2343390 \\
+EthnoraceArabic and/or Muslim group & 0.0049586 & 0.0118588 & 3.054885 &
+0.4181382 & 0.7035043 \\
+Affiliation\_ContrastLeft-leaning & -0.0014189 & 0.0054641 & 11.175372 &
+-0.2596755 & 0.7998358 \\
+Condition\_ContrastAfter 10/07/23 & -0.0003149 & 0.0040354 & 11.849291 &
+-0.0780393 & 0.9390991 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0054496 & 0.0225565 & 2.892946 & -0.2415991 & 0.8251974 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+-0.0051017 & 0.0119938 & 3.099944 & -0.4253667 & 0.6983789 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0010871 & 0.0056329 & 12.640674 & 0.1929839 & 0.8500377 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 0.0052257 & 0.0226848 & 2.900549 & 0.2303628 & 0.8330957 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot18-1.pdf}
+Changes in Cold-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0045082 & 0.0016763 & 9.373354 & 2.6894663 &
+0.0239757 \\
+EthnoraceArabic and/or Muslim group & -0.0001103 & 0.0029815 & 9.454476
+& -0.0369870 & 0.9712646 \\
+Affiliation\_ContrastLeft-leaning & -0.0001673 & 0.0023593 & 11.494821 &
+-0.0709092 & 0.9446888 \\
+Date\_Index & -0.0000016 & 0.0000084 & 9.622077 & -0.1868510 &
+0.8556582 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0004762 & 0.0044800 & 11.097368 & 0.1062887 & 0.9172503 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0000015 & 0.0000176
+& 11.287607 & -0.0847755 & 0.9339249 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000006 & 0.0000115 &
+12.028133 & 0.0513426 & 0.9598953 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000053 &
+0.0000265 & 12.751389 & -0.1999576 & 0.8446673 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot19-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in Cold-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4833}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0917}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0917}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0917}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1583}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & -0.0011876 & 0.0094329 & 0.4072280 & -0.1259040 &
+0.9367017 \\
+MilitantHamas & 0.0049492 & 0.0094836 & 0.5757234 & 0.5218680 &
+0.7366427 \\
+Affiliation\_ContrastLeft-leaning & 0.0068653 & 0.0164033 & 0.5483648 &
+0.4185303 & 0.7847709 \\
+Date\_Index & -0.0028045 & 0.0031042 & 2.6115133 & -0.9034615 &
+0.4417414 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & -0.0084077 & 0.0166029
+& 0.7910331 & -0.5063986 & 0.7182136 \\
+MilitantHamas:Date\_Index & 0.0028018 & 0.0030967 & 2.5552728 &
+0.9047666 & 0.4426440 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0033953 & 0.0042709 &
+5.2924580 & 0.7949832 & 0.4607736 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0033741
+& 0.0042630 & 5.1693309 & -0.7914812 & 0.4634171 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot20-1.pdf}
+
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-7}
+
+Changes in Cold-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6456}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0253}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0696}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1203}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0045249 & 0.0033527 & 547 & 1.3496285 & 0.1776935 \\
+EthnoraceArabic and/or Muslim group & 0.0069694 & 0.0077427 & 547 &
+0.9001200 & 0.3684525 \\
+Affiliation\_ContrastLeft-leaning & -0.0007834 & 0.0046560 & 547 &
+-0.1682546 & 0.8664452 \\
+Condition\_ContrastAfter 10/07/23 & 0.0003844 & 0.0034490 & 547 &
+0.1114545 & 0.9112968 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0107109 & 0.0147144 & 547 & -0.7279161 & 0.4669764 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+-0.0072061 & 0.0078831 & 547 & -0.9141167 & 0.3610583 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0002111 & 0.0048460 & 547 & 0.0435538 & 0.9652759 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 0.0105702 & 0.0148899 & 547 & 0.7098922 & 0.4780735 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot21-1.pdf}
+
+Changes in Cold-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5882}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0294}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0809}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1397}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0053919 & 0.0010745 & 547 & 5.0179685 & 0.0000007 \\
+EthnoraceArabic and/or Muslim group & 0.0009836 & 0.0019932 & 547 &
+0.4934918 & 0.6218632 \\
+Affiliation\_ContrastLeft-leaning & -0.0009831 & 0.0016479 & 547 &
+-0.5966059 & 0.5510173 \\
+Date\_Index & -0.0000040 & 0.0000058 & 547 & -0.6876239 & 0.4919811 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0019799 & 0.0031703 & 547 & -0.6245003 & 0.5325595 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0000091 & 0.0000117
+& 547 & -0.7799522 & 0.4357564 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000029 & 0.0000085 &
+547 & 0.3427106 & 0.7319478 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000140 &
+0.0000182 & 547 & 0.7715136 & 0.4407357 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot22-1.pdf}
+
+\subsubsection{Tweets Mentioning either IDF or
+Hamas}\label{tweets-mentioning-either-idf-or-hamas-1}
+
+Changes in Cold-conveying Words in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4874}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0756}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1597}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0002886 & 0.0074539 & 377.1102 & 0.0387217 &
+0.9691328 \\
+MilitantHamas & 0.0043722 & 0.0075239 & 383.7480 & 0.5811077 &
+0.5615090 \\
+Affiliation\_ContrastLeft-leaning & 0.0096044 & 0.0101947 & 375.3298 &
+0.9421019 & 0.3467464 \\
+Date\_Index & 0.0000129 & 0.0000374 & 383.9973 & 0.3449550 &
+0.7303170 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & -0.0133749 & 0.0105517
+& 383.9267 & -1.2675607 & 0.2057231 \\
+MilitantHamas:Date\_Index & -0.0000135 & 0.0000379 & 383.7056 &
+-0.3573713 & 0.7210104 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000455 & 0.0000727 &
+383.9783 & -0.6268380 & 0.5311380 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000662
+& 0.0000747 & 383.5780 & 0.8868101 & 0.3757368 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot24-1.pdf}
+
+\section{Change in Competence-conveying
+Words}\label{change-in-competence-conveying-words}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-8}
+
+Changes in Competence-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6220}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0610}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0098529 & 0.0035968 & 16.791577 & 2.7393277 &
+0.0140901 \\
+EthnoraceArabic and/or Muslim group & -0.0044815 & 0.0126972 & 5.741706
+& -0.3529492 & 0.7367206 \\
+Affiliation\_ContrastLeft-leaning & -0.0101967 & 0.0050318 & 16.164248 &
+-2.0264420 & 0.0595479 \\
+Condition\_ContrastAfter 10/07/23 & -0.0045478 & 0.0055532 & 15.415491 &
+-0.8189376 & 0.4253019 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0003716 & 0.0236370 & 2.683340 & -0.0157219 & 0.9885507 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0016743 & 0.0138564 & 4.934599 & 0.1208308 & 0.9085906 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0113741 & 0.0077351 & 15.683463 & 1.4704540 & 0.1612159 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & -0.0006818 & 0.0248428 & 5.280589 & -0.0274450 & 0.9791120 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0047213 & 0.0032453 & 8.246887 & 1.4547992 &
+0.1827044 \\
+EthnoraceArabic and/or Muslim group & -0.0016348 & 0.0048127 & 23.241596
+& -0.3396785 & 0.7371492 \\
+Affiliation\_ContrastLeft-leaning & -0.0003718 & 0.0045289 & 7.920567 &
+-0.0820844 & 0.9366160 \\
+Date\_Index & -0.0000124 & 0.0000090 & 5.374184 & -1.3728060 &
+0.2243336 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0007670 & 0.0070823 & 23.116034 & 0.1083012 & 0.9146914 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0000073 & 0.0000244
+& 20.777521 & 0.2996669 & 0.7674085 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000239 & 0.0000125 &
+6.205503 & 1.9069330 & 0.1035444 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000288 &
+0.0000360 & 23.343023 & -0.8016354 & 0.4308491 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-27-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362). \n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4793}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1570}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0065645 & 0.0082720 & 1.982571 & 0.7935821 &
+0.5112673 \\
+MilitantHamas & -0.0017984 & 0.0084142 & 2.679183 & -0.2137326 &
+0.8459680 \\
+Affiliation\_ContrastLeft-leaning & -0.0113516 & 0.0144086 & 2.610445 &
+-0.7878391 & 0.4960325 \\
+Date\_Index & -0.0000277 & 0.0032669 & 375.293995 & -0.0084652 &
+0.9932503 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0089258 & 0.0146783
+& 3.574131 & 0.6080941 & 0.5796253 \\
+MilitantHamas:Date\_Index & 0.0000180 & 0.0032669 & 376.767709 &
+0.0055137 & 0.9956036 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0001335 & 0.0042224 &
+376.279110 & 0.0316170 & 0.9747943 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0001347
+& 0.0042224 & 378.600410 & -0.0318975 & 0.9745706 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot200-1.pdf}
+
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-9}
+
+Changes in Competence-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6258}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0552}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1166}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0073734 & 0.0031775 & 357.2783 & 2.3205475 &
+0.0208738 \\
+EthnoraceArabic and/or Muslim group & 0.0045334 & 0.0071627 & 546.6139 &
+0.6329180 & 0.5270519 \\
+Affiliation\_ContrastLeft-leaning & -0.0073556 & 0.0044241 & 317.2592 &
+-1.6626189 & 0.0973763 \\
+Condition\_ContrastAfter 10/07/23 & -0.0050269 & 0.0032439 & 506.0259 &
+-1.5496675 & 0.1218465 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0050424 & 0.0136269 & 545.2905 & -0.3700317 & 0.7115025 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+-0.0038925 & 0.0072936 & 546.4664 & -0.5336904 & 0.5937727 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0101333 & 0.0045882 & 412.6530 & 2.2085515 & 0.0277549 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 0.0019205 & 0.0137753 & 543.8659 & 0.1394172 & 0.8891721 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot210-1.pdf}
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0040543 & 0.0013138 & 14.59557 & 3.0859193 &
+0.0077320 \\
+EthnoraceArabic and/or Muslim group & 0.0008083 & 0.0018437 & 546.97406
+& 0.4383991 & 0.6612701 \\
+Affiliation\_ContrastLeft-leaning & -0.0007608 & 0.0019062 & 18.52988 &
+-0.3991110 & 0.6943737 \\
+Date\_Index & -0.0000103 & 0.0000054 & 545.51023 & -1.8863667 &
+0.0597764 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0003389 & 0.0029496 & 542.53245 & 0.1148833 & 0.9085801 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0000027 & 0.0000109
+& 536.25500 & -0.2510894 & 0.8018412 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000214 & 0.0000079 &
+533.50705 & 2.7100201 & 0.0069444 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000228 &
+0.0000170 & 524.10216 & -1.3402828 & 0.1807341 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot220-1.pdf}
+
+\subsubsection{Tweets Mentioning either IDF or
+Hamas}\label{tweets-mentioning-either-idf-or-hamas-2}
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362). \n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4874}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0756}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1597}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0061636 & 0.0064545 & 378.6785 & 0.9549246 &
+0.3402250 \\
+MilitantHamas & -0.0024054 & 0.0065047 & 383.4127 & -0.3697924 &
+0.7117413 \\
+Affiliation\_ContrastLeft-leaning & -0.0125862 & 0.0088299 & 375.6357 &
+-1.4254064 & 0.1548701 \\
+Date\_Index & -0.0000239 & 0.0000323 & 383.4627 & -0.7392357 &
+0.4602161 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0118419 & 0.0091239
+& 383.8891 & 1.2978925 & 0.1951036 \\
+MilitantHamas:Date\_Index & 0.0000189 & 0.0000328 & 383.0808 & 0.5774669
+& 0.5639634 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0001406 & 0.0000628 &
+383.9328 & 2.2383302 & 0.0257721 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0001492
+& 0.0000646 & 383.5478 & -2.3113653 & 0.0213421 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot240-1.pdf}
+
+\section{Change in Incompetence-conveying
+Words}\label{change-in-incompetence-conveying-words}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-10}
+
+Changes in Incompetence-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6296}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0679}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0679}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0556}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0617}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1173}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0164206 & 0.0055916 & 11.48300 & 2.936626 & 0.0129798 \\
+EthnoraceArabic and/or Muslim group & -0.0164202 & 0.0083573 & 14.78680
+& -1.964771 & 0.0685175 \\
+Affiliation\_ContrastLeft-leaning & -0.0174738 & 0.0078137 & 11.74305 &
+-2.236300 & 0.0455546 \\
+Condition\_ContrastAfter 10/07/23 & -0.0146831 & 0.0062266 & 12.93476 &
+-2.358099 & 0.0347871 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0174730 & 0.0146755 & 53.21500 & 1.190624 & 0.2390852 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0165638 & 0.0088709 & 13.50271 & 1.867213 & 0.0837313 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0189803 & 0.0086350 & 12.95330 & 2.198075 & 0.0467330 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & -0.0188305 & 0.0152238 & 38.47739 & -1.236912 & 0.2236161 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot230-1.pdf}
+
+Changes in Incompetence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0044660 & 0.0069104 & 34.655082 & 0.6462761 &
+0.5223577 \\
+EthnoraceArabic and/or Muslim group & -0.0011259 & 0.0032491 & 1.924216
+& -0.3465400 & 0.7631456 \\
+Affiliation\_ContrastLeft-leaning & -0.0030962 & 0.0098798 & 36.028305 &
+-0.3133813 & 0.7557981 \\
+Date\_Index & -0.0000060 & 0.0000111 & 1.779451 & -0.5378050 &
+0.6503119 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0015038 & 0.0047037 & 2.216907 & 0.3197022 & 0.7768435 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0000029 & 0.0000160
+& 1.196273 & -0.1796631 & 0.8829842 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000170 & 0.0000161 &
+1.847316 & 1.0561918 & 0.4093221 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000050 &
+0.0000241 & 1.365491 & -0.2063893 & 0.8629809 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot241-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in Incompetence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362). \n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4793}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1570}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0138302 & 0.0051687 & 1.655300 & 2.6757393 &
+0.1408250 \\
+MilitantHamas & -0.0115545 & 0.0052397 & 2.368189 & -2.2051813 &
+0.1381901 \\
+Affiliation\_ContrastLeft-leaning & -0.0200797 & 0.0090035 & 2.197843 &
+-2.2302101 & 0.1439670 \\
+Date\_Index & -0.0000988 & 0.0020042 & 232.133520 & -0.0492996 &
+0.9607229 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0173079 & 0.0091893
+& 3.086780 & 1.8834848 & 0.1535645 \\
+MilitantHamas:Date\_Index & 0.0000907 & 0.0020038 & 215.814412 &
+0.0452385 & 0.9639591 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0002425 & 0.0025909 &
+276.874668 & 0.0936025 & 0.9254926 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0002198
+& 0.0025903 & 261.194958 & -0.0848368 & 0.9324562 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot25-1.pdf}
+
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-11}
+
+Changes in Incompetence-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6296}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0679}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0679}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0556}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0617}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1173}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0134985 & 0.0031037 & 481.8068 & 4.349108 & 0.0000167 \\
+EthnoraceArabic and/or Muslim group & -0.0137189 & 0.0071143 & 546.4593
+& -1.928353 & 0.0543290 \\
+Affiliation\_ContrastLeft-leaning & -0.0135091 & 0.0043112 & 469.5954 &
+-3.133453 & 0.0018357 \\
+Condition\_ContrastAfter 10/07/23 & -0.0115372 & 0.0031906 & 503.7143 &
+-3.615982 & 0.0003293 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0142206 & 0.0135345 & 547.0000 & 1.050694 & 0.2938632 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0135029 & 0.0072443 & 546.5862 & 1.863935 & 0.0628667 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0147193 & 0.0044879 & 475.4040 & 3.279781 & 0.0011151 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & -0.0149908 & 0.0136899 & 546.7858 & -1.095027 & 0.2739868 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot26-1.pdf}
+
+Changes in Incompetence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0036770 & 0.0011939 & 16.24532 & 3.0798399 &
+0.0070767 \\
+EthnoraceArabic and/or Muslim group & -0.0011581 & 0.0018497 & 546.92802
+& -0.6261301 & 0.5314908 \\
+Affiliation\_ContrastLeft-leaning & -0.0021515 & 0.0017567 & 23.22311 &
+-1.2247623 & 0.2329435 \\
+Date\_Index & -0.0000066 & 0.0000055 & 538.78294 & -1.2021904 &
+0.2298179 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0010297 & 0.0029544 & 539.00679 & 0.3485258 & 0.7275814 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0000007 & 0.0000109
+& 530.01889 & 0.0619631 & 0.9506156 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000174 & 0.0000079 &
+530.56153 & 2.1927291 & 0.0287604 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000049 &
+0.0000170 & 510.74990 & -0.2885858 & 0.7730154 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot27-1.pdf}
+
+\subsubsection{Tweets Mentioning either IDF or
+Hamas}\label{tweets-mentioning-either-idf-or-hamas-3}
+
+Changes in Incompetence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362). \n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4915}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0932}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0932}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0763}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0847}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1610}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0125362 & 0.0041197 & 376.5176 & 3.042996 & 0.0025067 \\
+MilitantHamas & -0.0110099 & 0.0041571 & 383.6428 & -2.648449 &
+0.0084200 \\
+Affiliation\_ContrastLeft-leaning & -0.0190233 & 0.0056346 & 374.1741 &
+-3.376138 & 0.0008122 \\
+Date\_Index & -0.0000397 & 0.0000206 & 383.9449 & -1.924310 &
+0.0550545 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0169720 & 0.0058302
+& 383.9085 & 2.911048 & 0.0038123 \\
+MilitantHamas:Date\_Index & 0.0000395 & 0.0000209 & 383.5270 & 1.888301
+& 0.0597401 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0001564 & 0.0000401 &
+383.9655 & 3.896807 & 0.0001150 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0001398
+& 0.0000413 & 383.5094 & -3.389272 & 0.0007735 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+\section{Change in Competence-conveying
+Words}\label{change-in-competence-conveying-words-1}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-12}
+
+Changes in Competence-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6220}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0610}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0098529 & 0.0035968 & 16.791577 & 2.7393277 &
+0.0140901 \\
+EthnoraceArabic and/or Muslim group & -0.0044815 & 0.0126972 & 5.741706
+& -0.3529492 & 0.7367206 \\
+Affiliation\_ContrastLeft-leaning & -0.0101967 & 0.0050318 & 16.164248 &
+-2.0264420 & 0.0595479 \\
+Condition\_ContrastAfter 10/07/23 & -0.0045478 & 0.0055532 & 15.415491 &
+-0.8189376 & 0.4253019 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0003716 & 0.0236370 & 2.683340 & -0.0157219 & 0.9885507 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0016743 & 0.0138564 & 4.934599 & 0.1208308 & 0.9085906 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0113741 & 0.0077351 & 15.683463 & 1.4704540 & 0.1612159 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & -0.0006818 & 0.0248428 & 5.280589 & -0.0274450 & 0.9791120 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot180-1.pdf}
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0047213 & 0.0032453 & 8.246887 & 1.4547992 &
+0.1827044 \\
+EthnoraceArabic and/or Muslim group & -0.0016348 & 0.0048127 & 23.241596
+& -0.3396785 & 0.7371492 \\
+Affiliation\_ContrastLeft-leaning & -0.0003718 & 0.0045289 & 7.920567 &
+-0.0820844 & 0.9366160 \\
+Date\_Index & -0.0000124 & 0.0000090 & 5.374184 & -1.3728060 &
+0.2243336 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0007670 & 0.0070823 & 23.116034 & 0.1083012 & 0.9146914 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0000073 & 0.0000244
+& 20.777521 & 0.2996669 & 0.7674085 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000239 & 0.0000125 &
+6.205503 & 1.9069330 & 0.1035444 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000288 &
+0.0000360 & 23.343023 & -0.8016354 & 0.4308491 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/interaction-plot190-1.pdf}
+\#\#\# Tweets Mentioning either IDF or Hamas
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362). \n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4793}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1570}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0065645 & 0.0082720 & 1.982571 & 0.7935821 &
+0.5112673 \\
+MilitantHamas & -0.0017984 & 0.0084142 & 2.679183 & -0.2137326 &
+0.8459680 \\
+Affiliation\_ContrastLeft-leaning & -0.0113516 & 0.0144086 & 2.610445 &
+-0.7878391 & 0.4960325 \\
+Date\_Index & -0.0000277 & 0.0032669 & 375.293995 & -0.0084652 &
+0.9932503 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0089258 & 0.0146783
+& 3.574131 & 0.6080941 & 0.5796253 \\
+MilitantHamas:Date\_Index & 0.0000180 & 0.0032669 & 376.767709 &
+0.0055137 & 0.9956036 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0001335 & 0.0042224 &
+376.279110 & 0.0316170 & 0.9747943 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0001347
+& 0.0042224 & 378.600410 & -0.0318975 & 0.9745706 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-13}
+
+Changes in Competence-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6258}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0552}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1166}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0073734 & 0.0031775 & 357.2783 & 2.3205475 &
+0.0208738 \\
+EthnoraceArabic and/or Muslim group & 0.0045334 & 0.0071627 & 546.6139 &
+0.6329180 & 0.5270519 \\
+Affiliation\_ContrastLeft-leaning & -0.0073556 & 0.0044241 & 317.2592 &
+-1.6626189 & 0.0973763 \\
+Condition\_ContrastAfter 10/07/23 & -0.0050269 & 0.0032439 & 506.0259 &
+-1.5496675 & 0.1218465 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0050424 & 0.0136269 & 545.2905 & -0.3700317 & 0.7115025 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+-0.0038925 & 0.0072936 & 546.4664 & -0.5336904 & 0.5937727 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+0.0101333 & 0.0045882 & 412.6530 & 2.2085515 & 0.0277549 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 0.0019205 & 0.0137753 & 543.8659 & 0.1394172 & 0.8891721 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0040543 & 0.0013138 & 14.59557 & 3.0859193 &
+0.0077320 \\
+EthnoraceArabic and/or Muslim group & 0.0008083 & 0.0018437 & 546.97406
+& 0.4383991 & 0.6612701 \\
+Affiliation\_ContrastLeft-leaning & -0.0007608 & 0.0019062 & 18.52988 &
+-0.3991110 & 0.6943737 \\
+Date\_Index & -0.0000103 & 0.0000054 & 545.51023 & -1.8863667 &
+0.0597764 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0003389 & 0.0029496 & 542.53245 & 0.1148833 & 0.9085801 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & -0.0000027 & 0.0000109
+& 536.25500 & -0.2510894 & 0.8018412 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0000214 & 0.0000079 &
+533.50705 & 2.7100201 & 0.0069444 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000228 &
+0.0000170 & 524.10216 & -1.3402828 & 0.1807341 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+\subsubsection{Tweets Mentioning either IDF or
+Hamas}\label{tweets-mentioning-either-idf-or-hamas-4}
+
+Changes in Competence-conveying Words in tweets between as date index
+(e.g., 10/07/23 as 0) moving backwards (min= -360) and forward (max=
+362). \n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4874}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0756}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1597}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0061636 & 0.0064545 & 378.6785 & 0.9549246 &
+0.3402250 \\
+MilitantHamas & -0.0024054 & 0.0065047 & 383.4127 & -0.3697924 &
+0.7117413 \\
+Affiliation\_ContrastLeft-leaning & -0.0125862 & 0.0088299 & 375.6357 &
+-1.4254064 & 0.1548701 \\
+Date\_Index & -0.0000239 & 0.0000323 & 383.4627 & -0.7392357 &
+0.4602161 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & 0.0118419 & 0.0091239
+& 383.8891 & 1.2978925 & 0.1951036 \\
+MilitantHamas:Date\_Index & 0.0000189 & 0.0000328 & 383.0808 & 0.5774669
+& 0.5639634 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0001406 & 0.0000628 &
+383.9328 & 2.2383302 & 0.0257721 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0001492
+& 0.0000646 & 383.5478 & -2.3113653 & 0.0213421 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\section{Change in Hate-speech
+Content}\label{change-in-hate-speech-content}
+
+Intercept as indicated by the Pre-reg
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-14}
+
+Changes in Incompetence-conveying Words in tweets by the ``Before'' and
+``After'' period
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6220}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0610}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0671}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0717728 & 0.0839367 & 20.17601 & 0.8550822 &
+0.4025459 \\
+EthnoraceArabic and/or Muslim group & -0.0254788 & 0.1564241 & 178.04481
+& -0.1628828 & 0.8707955 \\
+Affiliation\_ContrastLeft-leaning & 0.1103239 & 0.1185652 & 20.36889 &
+0.9304911 & 0.3630146 \\
+Condition\_ContrastAfter 10/07/23 & 0.0349597 & 0.0774365 & 29.15125 &
+0.4514629 & 0.6549969 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.1049470 & 0.2944660 & 322.13886 & -0.3563975 & 0.7217762 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0633091 & 0.1606285 & 126.43013 & 0.3941336 & 0.6941464 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+-0.0992015 & 0.1122521 & 31.28305 & -0.8837390 & 0.3835787 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 0.0467139 & 0.2987332 & 237.34670 & 0.1563735 & 0.8758716 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-50-1.pdf}
+
+Changes in Hate Speech Content in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{verbatim}
+## boundary (singular) fit: see help('isSingular')
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.1329853 & 0.0785421 & 0.5645535 & 1.6931721 &
+0.4547768 \\
+EthnoraceArabic and/or Muslim group & -0.0081401 & 0.0805244 & 5.8836074
+& -0.1010884 & 0.9228369 \\
+Affiliation\_ContrastLeft-leaning & -0.0037643 & 0.1111840 & 0.5617568 &
+-0.0338568 & 0.9811490 \\
+Date\_Index & -0.0001075 & 0.0002506 & 0.5541421 & -0.4290647 &
+0.7793630 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+0.0093501 & 0.1182627 & 5.8352381 & 0.0790621 & 0.9396245 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0004736 & 0.0005351
+& 1.4076927 & 0.8849956 & 0.5012284 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0001233 & 0.0003446 &
+0.5254993 & 0.3579319 & 0.8150043 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0005398 &
+0.0007616 & 1.8667409 & -0.7087654 & 0.5564649 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\subsubsection{Tweets Mentioning either IDF or
+Hamas}\label{tweets-mentioning-either-idf-or-hamas-5}
+
+Changes in Hate Speech Content in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4793}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0909}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1570}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & -0.0316456 & 0.1763983 & 0.8141154 & -0.1793985 &
+0.8918222 \\
+MilitantHamas & 0.1583700 & 0.1768151 & 1.4492132 & 0.8956816 &
+0.4940895 \\
+Affiliation\_ContrastLeft-leaning & -0.0559130 & 0.3172105 & 0.9498581 &
+-0.1762648 & 0.8900733 \\
+Date\_Index & 0.0190559 & 0.0797508 & 32.1179980 & 0.2389427 &
+0.8126682 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & -0.0165362 & 0.3231452
+& 1.5194298 & -0.0511728 & 0.9650883 \\
+MilitantHamas:Date\_Index & -0.0189345 & 0.0796766 & 30.6716857 &
+-0.2376425 & 0.8137387 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0150490 & 0.1039512 &
+51.5711725 & -0.1447696 & 0.8854571 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0149627
+& 0.1038399 & 48.9733544 & 0.1440940 & 0.8860176 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+Simplified Intercept
+
+\subsubsection{Tweets Mentioning either Israeli and/or Jewish people or
+Arabic and/or Muslim
+people}\label{tweets-mentioning-either-israeli-andor-jewish-people-or-arabic-andor-muslim-people-15}
+
+Changes in Hate Speech Content in tweets by the ``Before'' and ``After''
+period
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6258}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0552}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0675}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1166}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.0516724 & 0.0718090 & 229.6100 & 0.7195804 &
+0.4725152 \\
+EthnoraceArabic and/or Muslim group & -0.0145414 & 0.1537189 & 544.4145
+& -0.0945975 & 0.9246693 \\
+Affiliation\_ContrastLeft-leaning & 0.1357293 & 0.1007828 & 194.7148 &
+1.3467501 & 0.1796262 \\
+Condition\_ContrastAfter 10/07/23 & 0.0635256 & 0.0704260 & 542.3015 &
+0.9020203 & 0.3674465 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0911573 & 0.2917942 & 540.4504 & -0.3124027 & 0.7548550 \\
+EthnoraceArabic and/or Muslim group:Condition\_ContrastAfter 10/07/23 &
+0.0397444 & 0.1564632 & 543.7374 & 0.2540176 & 0.7995780 \\
+Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter 10/07/23 &
+-0.1244813 & 0.1014121 & 453.5027 & -1.2274806 & 0.2202788 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Condition\_ContrastAfter
+10/07/23 & 0.0366357 & 0.2947002 & 538.4528 & 0.1243152 & 0.9011121 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+Changes in Hate Speech Content in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.5634}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0704}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0775}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1338}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 0.1074888 & 0.0365388 & 21.71402 & 2.9417682 &
+0.0076122 \\
+EthnoraceArabic and/or Muslim group & -0.0010717 & 0.0397960 & 546.32759
+& -0.0269297 & 0.9785256 \\
+Affiliation\_ContrastLeft-leaning & 0.0286631 & 0.0521533 & 22.81004 &
+0.5495931 & 0.5879396 \\
+Date\_Index & -0.0000079 & 0.0001174 & 543.22757 & -0.0671937 &
+0.9464523 \\
+EthnoraceArabic and/or Muslim group:Affiliation\_ContrastLeft-leaning &
+-0.0492247 & 0.0638009 & 546.84271 & -0.7715361 & 0.4407225 \\
+EthnoraceArabic and/or Muslim group:Date\_Index & 0.0002445 & 0.0002365
+& 546.94851 & 1.0337008 & 0.3017329 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0000014 & 0.0001717 &
+545.83262 & -0.0081275 & 0.9935183 \\
+EthnoraceArabic and/or Muslim
+group:Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0001129 &
+0.0003692 & 546.99829 & -0.3059122 & 0.7597879 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-58-1.pdf}
+
+\subsubsection{Tweets Mentioning either IDF or
+Hamas}\label{tweets-mentioning-either-idf-or-hamas-6}
+
+Changes in Hate Speech Content in tweets between as date index (e.g.,
+10/07/23 as 0) moving backwards (min= -360) and forward (max= 362).
+\n Note: IDF was not mentioned in any tweets between 10/07/22 and
+10/06/23 (the ``Before'' period). So, the data was subsetted to only the
+``\,``After'' period.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4874}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0756}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0924}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1597}}@{}}
+\caption{Model Summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & -0.0237975 & 0.1565768 & 379.7993 & -0.1519861 &
+0.8792786 \\
+MilitantHamas & 0.1958321 & 0.1546624 & 374.2409 & 1.2661906 &
+0.2062324 \\
+Affiliation\_ContrastLeft-leaning & 0.0295536 & 0.2160783 & 362.6503 &
+0.1367725 & 0.8912865 \\
+Date\_Index & 0.0001708 & 0.0007674 & 373.0039 & 0.2225578 &
+0.8240015 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning & -0.1394556 & 0.2180789
+& 380.8858 & -0.6394729 & 0.5228997 \\
+MilitantHamas:Date\_Index & -0.0003741 & 0.0007782 & 373.5534 &
+-0.4806702 & 0.6310323 \\
+Affiliation\_ContrastLeft-leaning:Date\_Index & -0.0002813 & 0.0015013 &
+379.8440 & -0.1873532 & 0.8514838 \\
+MilitantHamas:Affiliation\_ContrastLeft-leaning:Date\_Index & 0.0004601
+& 0.0015402 & 379.1245 & 0.2987184 & 0.7653186 \\
+\end{longtable}
+
+\includegraphics{Results_files/figure-latex/unnamed-chunk-60-1.pdf}
+
+\end{document}
