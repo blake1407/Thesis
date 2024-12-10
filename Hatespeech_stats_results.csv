@@ -1,0 +1,25 @@
+"Reference","Contrast","B","SE","df","95% CI","t-value","p-value"
+"Ethnorace_Minus1SD Affiliation_Contrast_Mean","Date_Index",0,0,744.163,"[0, 0]",0.438,0.661
+"Ethnorace_Minus1SD Affiliation_Contrast_NA","Date_Index",0,0,716.692,"[0, 0]",-0.228,0.819
+"Ethnorace_NA Affiliation_Contrast_Mean","Date_Index",0,0,745.968,"[0, 0]",-1.072,0.284
+"Ethnorace_NA Affiliation_Contrast_NA","Date_Index",0,0,743.051,"[0, 0]",0.095,0.925
+"Ethnorace_Minus1SD Date_Index_Plus1SD","Affiliation_Contrast",0.079,0.102,381.708,"[-0.117, 0.277]",0.778,0.437
+"Ethnorace_Minus1SD Date_Index_NA","Affiliation_Contrast",0.013,0.067,84.209,"[-0.116, 0.141]",0.191,0.849
+"Ethnorace_Minus1SD Date_Index_NA","Affiliation_Contrast",0.013,0.067,84.209,"[-0.116, 0.141]",0.191,0.849
+"Ethnorace_Minus1SD Date_Index_NA","Affiliation_Contrast",0.013,0.067,84.209,"[-0.116, 0.141]",0.191,0.849
+"Ethnorace_Minus1SD Date_Index_NA","Affiliation_Contrast",0.013,0.067,84.209,"[-0.116, 0.141]",0.191,0.849
+"Ethnorace_NA Date_Index_Plus1SD","Affiliation_Contrast",-0.133,0.128,465.491,"[-0.382, 0.113]",-1.041,0.298
+"Ethnorace_NA Date_Index_NA","Affiliation_Contrast",-0.027,0.074,131.101,"[-0.17, 0.115]",-0.368,0.713
+"Ethnorace_NA Date_Index_NA","Affiliation_Contrast",-0.027,0.074,131.101,"[-0.17, 0.115]",-0.368,0.713
+"Ethnorace_NA Date_Index_NA","Affiliation_Contrast",-0.027,0.074,131.101,"[-0.17, 0.115]",-0.368,0.713
+"Ethnorace_NA Date_Index_NA","Affiliation_Contrast",-0.027,0.074,131.101,"[-0.17, 0.115]",-0.368,0.713
+"Affiliation_Contrast_Mean Date_Index_Plus1SD","Ethnorace",0.16,0.092,745.464,"[-0.02, 0.339]",1.75,0.081
+"Affiliation_Contrast_Mean Date_Index_NA","Ethnorace",0.025,0.05,738.872,"[-0.072, 0.122]",0.498,0.619
+"Affiliation_Contrast_Mean Date_Index_NA","Ethnorace",0.025,0.05,738.872,"[-0.072, 0.122]",0.498,0.619
+"Affiliation_Contrast_Mean Date_Index_NA","Ethnorace",0.025,0.05,738.872,"[-0.072, 0.122]",0.498,0.619
+"Affiliation_Contrast_Mean Date_Index_NA","Ethnorace",0.025,0.05,738.872,"[-0.072, 0.122]",0.498,0.619
+"Affiliation_Contrast_NA Date_Index_Plus1SD","Ethnorace",-0.052,0.126,741.788,"[-0.302, 0.191]",-0.41,0.682
+"Affiliation_Contrast_NA Date_Index_NA","Ethnorace",-0.015,0.069,737.128,"[-0.149, 0.121]",-0.22,0.826
+"Affiliation_Contrast_NA Date_Index_NA","Ethnorace",-0.015,0.069,737.128,"[-0.149, 0.121]",-0.22,0.826
+"Affiliation_Contrast_NA Date_Index_NA","Ethnorace",-0.015,0.069,737.128,"[-0.149, 0.121]",-0.22,0.826
+"Affiliation_Contrast_NA Date_Index_NA","Ethnorace",-0.015,0.069,737.128,"[-0.149, 0.121]",-0.22,0.826
