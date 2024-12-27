@@ -1,0 +1,5 @@
+category,group_attributes,difference,standard_dev,effect_size,Pleft,Pright,Ptot,se
+"['Arabic/Muslim', 'Israeli/Jewish']","['Warm_Before', 'Warm_After']",-0.000818,0.000578,-1.414214,0.000999,1.0,0.000999,0.003635
+"['Arabic/Muslim', 'Israeli/Jewish']","['Cold_Before', 'Cold_After']",-0.008376,0.005923,-1.414214,0.000999,1.0,0.000999,0.006277
+"['Arabic/Muslim', 'Israeli/Jewish']","['Competence_Before', 'Competence_After']",-0.002263,0.0016,-1.414214,0.000999,1.0,0.000999,0.004504
+"['Arabic/Muslim', 'Israeli/Jewish']","['Incompetence_Before', 'Incompetence_After']",-0.010647,0.007528,-1.414214,0.000999,1.0,0.000999,0.007587

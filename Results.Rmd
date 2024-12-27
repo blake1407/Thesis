@@ -95,6 +95,8 @@ data = data %>%
                                 levels = c(-0.5, 0.5),
                                 labels = c("Before 10/07/23", "After 10/07/23")),
   )
+
+summary(data)
 ```
 
 ```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
@@ -294,15 +296,15 @@ kable(summary(mod_negsentiment)$coef,
 
 p <- interact_plot(mod_negsentiment,
                     pred = Date_Index,
-                    modx = Affiliation_Contrast,
-                    mod2 = Militant,
+                    modx = Militant,
+                    mod2 = Affiliation_Contrast,
                     plot.points = TRUE,
                     point.alpha = 0.2,
                     interval = TRUE,
-                     colors = c("red", "blue")) +
+                     colors = c("blue", "darkgreen")) +
       # Customize labels if needed
       labs(
-        x = "Dates After Oct 7th, 2023",
+        x = "Dates between Oct 7th, 2023 and Oct 7th, 2024",
         y = "Negative Sentiment",
         # color = "Political Affiliation",
         # linetype = "Affiliation"
@@ -1116,8 +1118,8 @@ p <- cat_plot(mod_compstereotype,
                     pred = Condition_Contrast,
                     modx = Affiliation_Contrast,
                     mod2 = Ethnorace,
-                    plot.points = TRUE,
-                    point.alpha = 0.1,
+                    # plot.points = TRUE,
+                    # point.alpha = 0.1,
                     interval = TRUE,
                      colors = c("red", "blue")) +
       # Customize labels if needed
@@ -1169,13 +1171,17 @@ p <- interact_plot(mod_compstereotype,
                      colors = c("red", "blue")) +
       # Customize labels if needed
       labs(
-        x = "Dates Before and After Oct 7th, 2023",
-        y = "Competence-conveying Words",
+        x = "Dates One Year Before and After Oct 7th, 2023",
+        y = "Porportion of Competence-conveying Words",
       ) +
    # Add vertical line at 0 with date label
    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
    annotate("text", x = 0, y = Inf, label = "Oct 7th, 2023",
-            vjust = 1.5, hjust = 0.5, color = "gray50")
+            vjust = 1.5, hjust = 0.5, color = "gray50") +
+    # # Add y-axis limit only for the Militant contrast panel
+    # facet_wrap(~Ethnorace, scales = "free_y")
+   # Adjust y-axis limits
+   ylim(-0.01, 0.08)
 
  # Print the plot
  print(p)
@@ -1226,13 +1232,13 @@ p <- interact_plot(mod_compstereotype,
                      colors = c("red", "blue")) +
       # Customize labels if needed
       labs(
-        x = "Date Before and After Oct 7th, 2023",
-        y = "Competence-conveying Words",
+        x = "Dates between Oct 7th, 2023 and Oct 7th, 2024",
+        y = "Porpotion of Competence-conveying Words",
       ) +
-   # Add vertical line at 0 with date label
-   geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
-   annotate("text", x = 0, y = Inf, label = "Oct 7th, 2023",
-            vjust = 1.5, hjust = 0.5, color = "gray50")
+      # # Add y-axis limit only for the Militant contrast panel
+      # facet_wrap(~Militant, scales = "free_y")
+     # Adjust y-axis limits
+      ylim(-0.02, 0.08)
 
  # Print the plot
  print(p)
@@ -1354,8 +1360,8 @@ p <- interact_plot(mod_incompstereotype,
                      colors = c("red", "blue")) +
       # Customize labels if needed
       labs(
-        x = "Date After Oct 7th, 2023",
-        y = "Incompetence-conveying Words",
+        x = "Dates between Oct 7th, 2023 and Oct 7th, 2024",
+        y = "Porportion of Incompetence-conveying Words",
         # color = "Condition",
         # linetype = "Affiliation"
       ) +
@@ -1505,13 +1511,13 @@ p <- interact_plot(mod_incompstereotype,
                      colors = c("red", "blue")) +
       # Customize labels if needed
       labs(
-        x = "Date Before and After Oct 7th, 2023",
-        y = "Incompetence-conveying Words",
-      ) +
-   # Add vertical line at 0 with date label
-   geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
-   annotate("text", x = 0, y = Inf, label = "Oct 7th, 2023",
-            vjust = 1.5, hjust = 0.5, color = "gray50")
+        x = "Dates between Oct 7th, 2023 and Oct 7th, 2024",
+        y = "Porpotion of Incompetence-conveying Words",
+      ) 
+   # # Add vertical line at 0 with date label
+   # geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+   # annotate("text", x = 0, y = Inf, label = "Oct 7th, 2023",
+   #          vjust = 1.5, hjust = 0.5, color = "gray50")
 
  # Print the plot
  print(p)

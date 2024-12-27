@@ -1,0 +1,23 @@
+Reference,Contrast,B,SE,df,95% CI,t-value,p-value
+Militant_IDF Affiliation_Contrast_Right_leaning,Date_Index,0,0,383.945,"[0, 0]",-1.924,0.055
+Militant_IDF Affiliation_Contrast_Left_leaning,Date_Index,0,0,383.972,"[0, 0]",3.39,0.001
+Militant_Hamas Affiliation_Contrast_Right_leaning,Date_Index,0,0,345.297,"[0, 0]",-0.055,0.956
+Militant_Hamas Affiliation_Contrast_Left_leaning,Date_Index,0,0,383.942,"[0, 0]",1.856,0.064
+Militant_IDF Date_Index_0,Affiliation_Contrast,-0.019,0.006,374.174,"[-0.03, -0.008]",-3.376,0.001
+Militant_IDF Date_Index_Mid,Affiliation_Contrast,0.009,0.005,355.724,"[0, 0.019]",1.917,0.056
+Militant_IDF Date_Index_Latest,Affiliation_Contrast,0.038,0.011,382.677,"[0.016, 0.059]",3.421,0.001
+Militant_Hamas Date_Index_Earliest,Affiliation_Contrast,-0.008,0.005,376.881,"[-0.017, 0.001]",-1.728,0.085
+Militant_Hamas Date_Index_Mid,Affiliation_Contrast,0.001,0.001,43.422,"[-0.001, 0.003]",0.788,0.435
+Militant_Hamas Date_Index_0,Affiliation_Contrast,-0.002,0.002,114.839,"[-0.005, 0.001]",-1.35,0.18
+Militant_Hamas Date_Index_Mid,Affiliation_Contrast,0.001,0.001,43.422,"[-0.001, 0.003]",0.788,0.435
+Militant_Hamas Date_Index_Latest,Affiliation_Contrast,0.004,0.003,245.941,"[-0.001, 0.009]",1.546,0.123
+Affiliation_Contrast_Right_leaning Date_Index_Earliest,Militant,-0.025,0.011,383.579,"[-0.047, -0.003]",-2.258,0.025
+Affiliation_Contrast_Right_leaning Date_Index_Mid,Militant,-0.004,0.002,383.498,"[-0.009, 0.001]",-1.565,0.118
+Affiliation_Contrast_Right_leaning Date_Index_0,Militant,-0.011,0.004,383.643,"[-0.019, -0.003]",-2.648,0.008
+Affiliation_Contrast_Right_leaning Date_Index_Mid,Militant,-0.004,0.002,383.498,"[-0.009, 0.001]",-1.565,0.118
+Affiliation_Contrast_Right_leaning Date_Index_Latest,Militant,0.003,0.005,383.416,"[-0.006, 0.013]",0.681,0.497
+Affiliation_Contrast_Left_leaning Date_Index_Earliest,Militant,0.042,0.016,383.676,"[0.011, 0.073]",2.616,0.009
+Affiliation_Contrast_Left_leaning Date_Index_Mid,Militant,-0.012,0.004,383.514,"[-0.021, -0.004]",-2.809,0.005
+Affiliation_Contrast_Left_leaning Date_Index_0,Militant,0.006,0.004,384,"[-0.002, 0.014]",1.459,0.146
+Affiliation_Contrast_Left_leaning Date_Index_Mid,Militant,-0.012,0.004,383.514,"[-0.021, -0.004]",-2.809,0.005
+Affiliation_Contrast_Left_leaning Date_Index_Latest,Militant,-0.03,0.01,383.334,"[-0.05, -0.011]",-2.979,0.003

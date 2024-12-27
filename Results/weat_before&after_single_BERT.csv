@@ -1,0 +1,17 @@
+category,group_attributes,difference,standard_dev,effect_size,Pleft,Pright,Ptot,se
+"['Israeli_Before', 'Israeli_After']","['Warm_Before', 'Warm_After']",0.026992,0.024558,1.099121,1.0,0.000999,0.000999,0.017202
+"['Israeli_Before', 'Israeli_After']","['Cold_Before', 'Cold_After']",-0.015183,0.029924,-0.507408,0.000999,1.0,0.000999,0.017245
+"['Israeli_Before', 'Israeli_After']","['Competence_Before', 'Competence_After']",-0.005884,0.015108,-0.38944,0.000999,1.0,0.000999,0.016952
+"['Israeli_Before', 'Israeli_After']","['Incompetence_Before', 'Incompetence_After']",-0.003019,0.025584,-0.118021,0.000999,1.0,0.000999,0.018604
+"['Jewish_Before', 'Jewish_After']","['Warm_Before', 'Warm_After']",-0.00403,0.023833,-0.169089,0.000999,1.0,0.000999,0.00493
+"['Jewish_Before', 'Jewish_After']","['Cold_Before', 'Cold_After']",0.011355,0.037303,0.304392,1.0,0.000999,0.000999,0.006405
+"['Jewish_Before', 'Jewish_After']","['Competence_Before', 'Competence_After']",-0.00099,0.019081,-0.051888,0.000999,1.0,0.000999,0.004382
+"['Jewish_Before', 'Jewish_After']","['Incompetence_Before', 'Incompetence_After']",0.013653,0.039065,0.349479,1.0,0.000999,0.000999,0.006874
+"['Arabic_Before', 'Arabic_After']","['Warm_Before', 'Warm_After']",-0.026331,0.030339,-0.867896,0.000999,1.0,0.000999,0.014633
+"['Arabic_Before', 'Arabic_After']","['Cold_Before', 'Cold_After']",0.049222,0.04558,1.079903,1.0,0.000999,0.000999,0.017968
+"['Arabic_Before', 'Arabic_After']","['Competence_Before', 'Competence_After']",-0.017719,0.020349,-0.87077,0.000999,1.0,0.000999,0.016447
+"['Arabic_Before', 'Arabic_After']","['Incompetence_Before', 'Incompetence_After']",0.0343,0.046761,0.733529,1.0,0.000999,0.000999,0.018981
+"['Muslim_Before', 'Muslim_After']","['Warm_Before', 'Warm_After']",0.016251,0.020074,0.809538,1.0,0.000999,0.000999,0.024825
+"['Muslim_Before', 'Muslim_After']","['Cold_Before', 'Cold_After']",-0.021335,0.022062,-0.967051,0.000999,1.0,0.000999,0.028881
+"['Muslim_Before', 'Muslim_After']","['Competence_Before', 'Competence_After']",-0.003082,0.016107,-0.191351,0.000999,1.0,0.000999,0.029185
+"['Muslim_Before', 'Muslim_After']","['Incompetence_Before', 'Incompetence_After']",-0.00456,0.019777,-0.230552,0.000999,1.0,0.000999,0.028616

@@ -95,26 +95,36 @@ print(paste("Index halfway between 0 and highest time index:", unique(closest_po
 
 
 data = data %>%
-  mutate(ethorace_israelijewish = prop_Israeli + prop_Jewish,
-         ethorace_arabicmuslim = prop_Arabic + prop_Muslim) %>%
-  mutate(Ethnorace = ifelse(ethorace_israelijewish > ethorace_arabicmuslim, -0.5,
-                            ifelse(ethorace_arabicmuslim > ethorace_israelijewish, 0.5, NA)))
+  mutate(ethnorace_israelijewish = prop_Israeli + prop_Jewish,
+         ethnorace_arabicmuslim = prop_Arabic + prop_Muslim) %>%
+  mutate(Ethnorace = ifelse(ethnorace_israelijewish > ethnorace_arabicmuslim, -0.5,
+                            ifelse(ethnorace_arabicmuslim > ethnorace_israelijewish, 0.5, NA)))
+
+#ONly compare data in the after period as IDF was not mentioned
+data <- data %>%
+  mutate(Militant = ifelse(Condition_Contrast == 0.5 & prop_IDF > prop_Hamas, -0.5,
+                           ifelse(Condition_Contrast == 0.5 & prop_Hamas > prop_IDF, 0.5, 
+                                  NA)))
 
 data = data %>%
-  mutate(Militant = ifelse(prop_IDF > prop_Hamas, -0.5,
-                           ifelse(prop_Hamas > prop_IDF, 0.5, NA)))
+  mutate(Civilian = ifelse(prop_IDF > ethnorace_israelijewish, -0.5,
+                           ifelse(prop_Hamas > ethnorace_arabicmuslim, -0.5,
+                                  ifelse(ethnorace_israelijewish > prop_IDF, 0.5,
+                                         ifelse(ethnorace_arabicmuslim > prop_Hamas, 0.5, NA)))))
 
-mod_negsentiment = lmer(tone_neg ~ Ethnorace*Affiliation_Contrast*Condition_Contrast + (1|Subject_ID), data=data)
-summary(mod_negsentiment)
 
-mod_possentiment = lmer(tone_pos ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
-summary(mod_possentiment)
+mod_negsentiment_militant = lmer(tone_neg ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 
-mod_compstereotype = lmer(prop_Competence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
-summary(mod_compstereotype)
+mod_compstereotype_ethnorace = lmer(prop_Competence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+mod_compstereotype_militant = lmer(prop_Competence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+summary(mod_compstereotype_ethnorace)
+summary(mod_compstereotype_militant)
 
-mod_Incompstereotype = lmer(prop_Incompetence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
-summary(mod_Incompstereotype)
+mod_Incompstereotype_militant = lmer(prop_Incompetence ~ Militant*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+mod_Incompstereotype_ethnorace = lmer(prop_Incompetence ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
+
+summary(mod_Incompstereotype_militant)
+summary(mod_Incompstereotype_ethnorace)
 
 # mod_hatespeech = lmer(Hate_Score ~ Ethnorace*Affiliation_Contrast*Date_Index + (1|Subject_ID), data=data)
 # summary(mod_hatespeech)
@@ -832,7 +842,10 @@ get_simslopes = function(model, confints = "No", variables = NULL,
   })
 }
 
-comp_results = get_simslopes(model = mod_Incompstereotype, 
+
+
+
+neg_results = get_simslopes(model = mod_negsentiment_militant, 
               confints = "Yes",
               # variables = c("Ethnorace", "Affiliation_Contrast", "Condition_Contrast"),
               # levels = list(c(-0.5, 0.5), 
@@ -844,8 +857,8 @@ comp_results = get_simslopes(model = mod_Incompstereotype,
               
               # variables = c("Ethnorace", "Affiliation_Contrast", "Date_Index"),
               # 
-              # levels = list(c(-0.5, 0.5), 
-              #               c(-0.5, 0.5), 
+              # levels = list(c(-0.5, 0.5),
+              #               c(-0.5, 0.5),
               #               c(-360, -180, 0, 181, 362)),
               # 
               # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
@@ -853,17 +866,158 @@ comp_results = get_simslopes(model = mod_Incompstereotype,
               #               c("Earliest", "Mid", "0", "Mid", "Latest")),
               
               variables = c("Militant", "Affiliation_Contrast", "Date_Index"),
-              
-              levels = list(c(-0.5, 0.5), 
-                            c(-0.5, 0.5), 
+
+              levels = list(c(-0.5, 0.5),
+                            c(-0.5, 0.5),
                             c(-360, -180, 0, 181, 362)),
-              
+
               labels = list(c("IDF", "Hamas"),
                             c("Right_leaning", "Left_leaning"),
                             c("Earliest", "Mid", "0", "Mid", "Latest")),
-              
+              # 
               categorical = c(FALSE, FALSE, FALSE)
 )
 
-write.csv(comp_results$significant_slopes,file="Incompetence_Stereotype_stats_results.csv", row.names=FALSE, na=)
+write.csv(neg_results$significant_slopes,file="Negative_Militant_stats_results.csv", row.names=FALSE, na=)
 
+comp_militant_results = get_simslopes(model = mod_compstereotype_militant, 
+                            confints = "Yes",
+                            # variables = c("Ethnorace", "Affiliation_Contrast", "Condition_Contrast"),
+                            # levels = list(c(-0.5, 0.5), 
+                            #               c(-0.5, 0.5), 
+                            #               c(-0.5, 0.5)),
+                            # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                            #               c("Right_leaning", "Left_leaning"),
+                            #               c("Before", "After")),
+                            
+                            # variables = c("Ethnorace", "Affiliation_Contrast", "Date_Index"),
+                            # 
+                            # levels = list(c(-0.5, 0.5),
+                            #               c(-0.5, 0.5),
+                            #               c(-360, -180, 0, 181, 362)),
+                            # 
+                            # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                            #               c("Right_leaning", "Left_leaning"),
+                            #               c("Earliest", "Mid", "0", "Mid", "Latest")),
+                            
+                            variables = c("Militant", "Affiliation_Contrast", "Date_Index"),
+
+                            levels = list(c(-0.5, 0.5),
+                                          c(-0.5, 0.5),
+                                          c(-360, -180, 0, 181, 362)),
+
+                            labels = list(c("IDF", "Hamas"),
+                                          c("Right_leaning", "Left_leaning"),
+                                          c("Earliest", "Mid", "0", "Mid", "Latest")),
+
+                            categorical = c(FALSE, FALSE, FALSE)
+)
+
+write.csv(comp_militant_results$significant_slopes,file="Competence_Militant_stats_results.csv", row.names=FALSE, na=)
+
+comp_ethnorace_results = get_simslopes(model = mod_compstereotype_ethnorace, 
+                                       confints = "Yes",
+                                       # variables = c("Ethnorace", "Affiliation_Contrast", "Condition_Contrast"),
+                                       # levels = list(c(-0.5, 0.5), 
+                                       #               c(-0.5, 0.5), 
+                                       #               c(-0.5, 0.5)),
+                                       # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                                       #               c("Right_leaning", "Left_leaning"),
+                                       #               c("Before", "After")),
+                                       
+                                       variables = c("Ethnorace", "Affiliation_Contrast", "Date_Index"),
+                                       
+                                       levels = list(c(-0.5, 0.5),
+                                                     c(-0.5, 0.5),
+                                                     c(-360, -180, 0, 181, 362)),
+                                       
+                                       labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                                                     c("Right_leaning", "Left_leaning"),
+                                                     c("Earliest", "Mid", "0", "Mid", "Latest")),
+                                       
+                                       # variables = c("Militant", "Affiliation_Contrast", "Date_Index"),
+                                       # 
+                                       # levels = list(c(-0.5, 0.5), 
+                                       #               c(-0.5, 0.5), 
+                                       #               c(-360, -180, 0, 181, 362)),
+                                       # 
+                                       # labels = list(c("IDF", "Hamas"),
+                                       #               c("Right_leaning", "Left_leaning"),
+                                       #               c("Earliest", "Mid", "0", "Mid", "Latest")),
+                                       # 
+                                       categorical = c(FALSE, FALSE, FALSE)
+)
+
+write.csv(comp_ethnorace_results$significant_slopes,file="Competence_Ethnorace_stats_results.csv", row.names=FALSE, na=)
+
+
+Incomp_ethnorace_results = get_simslopes(model = mod_Incompstereotype_ethnorace, 
+                                       confints = "Yes",
+                                       # variables = c("Ethnorace", "Affiliation_Contrast", "Condition_Contrast"),
+                                       # levels = list(c(-0.5, 0.5), 
+                                       #               c(-0.5, 0.5), 
+                                       #               c(-0.5, 0.5)),
+                                       # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                                       #               c("Right_leaning", "Left_leaning"),
+                                       #               c("Before", "After")),
+                                       
+                                       variables = c("Ethnorace", "Affiliation_Contrast", "Date_Index"),
+                                       
+                                       levels = list(c(-0.5, 0.5),
+                                                     c(-0.5, 0.5),
+                                                     c(-360, -180, 0, 181, 362)),
+                                       
+                                       labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                                                     c("Right_leaning", "Left_leaning"),
+                                                     c("Earliest", "Mid", "0", "Mid", "Latest")),
+                                       
+                                       # variables = c("Militant", "Affiliation_Contrast", "Date_Index"),
+                                       # 
+                                       # levels = list(c(-0.5, 0.5), 
+                                       #               c(-0.5, 0.5), 
+                                       #               c(-360, -180, 0, 181, 362)),
+                                       # 
+                                       # labels = list(c("IDF", "Hamas"),
+                                       #               c("Right_leaning", "Left_leaning"),
+                                       #               c("Earliest", "Mid", "0", "Mid", "Latest")),
+                                       # 
+                                       categorical = c(FALSE, FALSE, FALSE)
+)
+
+write.csv(Incomp_ethnorace_results$significant_slopes,file="Incompetence_Ethnorace_stats_results.csv", row.names=FALSE, na=)
+
+
+Incomp_militant_results = get_simslopes(model = mod_Incompstereotype_militant, 
+                                      confints = "Yes",
+                                      # variables = c("Ethnorace", "Affiliation_Contrast", "Condition_Contrast"),
+                                      # levels = list(c(-0.5, 0.5), 
+                                      #               c(-0.5, 0.5), 
+                                      #               c(-0.5, 0.5)),
+                                      # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                                      #               c("Right_leaning", "Left_leaning"),
+                                      #               c("Before", "After")),
+                                      
+                                      # variables = c("Ethnorace", "Affiliation_Contrast", "Date_Index"),
+                                      # 
+                                      # levels = list(c(-0.5, 0.5),
+                                      #               c(-0.5, 0.5),
+                                      #               c(-360, -180, 0, 181, 362)),
+                                      # 
+                                      # labels = list(c("Israeli_Jewish", "Arabic_Muslim"),
+                                      #               c("Right_leaning", "Left_leaning"),
+                                      #               c("Earliest", "Mid", "0", "Mid", "Latest")),
+                                      
+                                      variables = c("Militant", "Affiliation_Contrast", "Date_Index"),
+                                      
+                                      levels = list(c(-0.5, 0.5),
+                                                    c(-0.5, 0.5),
+                                                    c(-360, -180, 0, 181, 362)),
+                                      
+                                      labels = list(c("IDF", "Hamas"),
+                                                    c("Right_leaning", "Left_leaning"),
+                                                    c("Earliest", "Mid", "0", "Mid", "Latest")),
+                                      
+                                      categorical = c(FALSE, FALSE, FALSE)
+)
+
+write.csv(Incomp_militant_results$significant_slopes,file="Incompetence_Militant_stats_results.csv", row.names=FALSE, na=)

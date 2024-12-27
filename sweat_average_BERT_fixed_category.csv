@@ -1,5 +1,0 @@
-category,group_attributes,difference,standard_dev,effect_size,Pleft,Pright,Ptot
-['Warm'],"['Israeli/Jewish', 'Arabic/Muslim']",0.011157,0.007889,1.414214,1.0,0.48951,0.48951
-['Cold'],"['Israeli/Jewish', 'Arabic/Muslim']",0.006646,0.004699,1.414214,1.0,0.526474,1.0
-['Competence'],"['Israeli/Jewish', 'Arabic/Muslim']",0.011715,0.008284,1.414214,1.0,0.487512,0.487512
-['Incompetence'],"['Israeli/Jewish', 'Arabic/Muslim']",0.007973,0.005638,1.414214,1.0,0.524476,1.0

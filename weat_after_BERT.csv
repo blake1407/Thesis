@@ -1,7 +1,0 @@
-category,group_attributes,difference,standard_dev,effect_size,Pleft,Pright,Ptot,se
-"['Israeli', 'Arabic']","['Warm', 'Cold']",0.00055,0.014638,0.037553,0.000999,1.0,0.000999,0.00237
-"['Israeli', 'Arabic']","['Competence', 'Incompetence']",0.001405,0.015173,0.092613,1.0,0.000999,0.000999,0.002336
-"['IDF', 'Hamas']","['Warm', 'Cold']",-0.000991,0.019909,-0.049791,0.000999,1.0,0.000999,0.003819
-"['IDF', 'Hamas']","['Competence', 'Incompetence']",-0.002778,0.020188,-0.137589,0.000999,1.0,0.000999,0.004193
-"['Jewish', 'Muslim']","['Warm', 'Cold']",0.003931,0.014732,0.266848,1.0,0.000999,0.000999,0.004114
-"['Jewish', 'Muslim']","['Competence', 'Incompetence']",0.002779,0.014687,0.18919,1.0,0.000999,0.000999,0.004188

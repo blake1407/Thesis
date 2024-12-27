@@ -1,0 +1,25 @@
+Reference,Contrast,B,SE,df,95% CI,t-value,p-value
+Ethnorace_Israeli_Jewish Affiliation_Contrast_Right_leaning,Date_Index,0,0,538.783,"[0, 0]",-1.202,0.23
+Ethnorace_Israeli_Jewish Affiliation_Contrast_Left_leaning,Date_Index,0,0,520.995,"[0, 0]",1.882,0.06
+Ethnorace_Arabic_Muslim Affiliation_Contrast_Right_leaning,Date_Index,0,0,542.58,"[0, 0]",-0.622,0.534
+Ethnorace_Arabic_Muslim Affiliation_Contrast_Left_leaning,Date_Index,0,0,506.677,"[0, 0]",0.563,0.574
+Ethnorace_Israeli_Jewish Date_Index_Earliest,Affiliation_Contrast,-0.008,0.004,352.139,"[-0.016, 0]",-2.075,0.039
+Ethnorace_Israeli_Jewish Date_Index_Mid,Affiliation_Contrast,0.001,0.002,11.917,"[-0.002, 0.004]",0.622,0.546
+Ethnorace_Israeli_Jewish Date_Index_0,Affiliation_Contrast,-0.002,0.002,23.223,"[-0.005, 0.001]",-1.225,0.233
+Ethnorace_Israeli_Jewish Date_Index_Mid,Affiliation_Contrast,0.001,0.002,11.917,"[-0.002, 0.004]",0.622,0.546
+Ethnorace_Israeli_Jewish Date_Index_Latest,Affiliation_Contrast,0.004,0.002,46.299,"[0, 0.009]",1.675,0.101
+Ethnorace_Arabic_Muslim Date_Index_Earliest,Affiliation_Contrast,-0.006,0.008,420.118,"[-0.02, 0.009]",-0.742,0.458
+Ethnorace_Arabic_Muslim Date_Index_Mid,Affiliation_Contrast,0.001,0.002,40.52,"[-0.003, 0.005]",0.542,0.591
+Ethnorace_Arabic_Muslim Date_Index_0,Affiliation_Contrast,-0.001,0.003,78.947,"[-0.006, 0.004]",-0.416,0.678
+Ethnorace_Arabic_Muslim Date_Index_Mid,Affiliation_Contrast,0.001,0.002,40.52,"[-0.003, 0.005]",0.542,0.591
+Ethnorace_Arabic_Muslim Date_Index_Latest,Affiliation_Contrast,0.003,0.004,274.841,"[-0.004, 0.011]",0.841,0.401
+Affiliation_Contrast_Right_leaning Date_Index_Earliest,Ethnorace,-0.001,0.005,541.028,"[-0.012, 0.009]",-0.261,0.794
+Affiliation_Contrast_Right_leaning Date_Index_Mid,Ethnorace,-0.001,0.002,510.409,"[-0.004, 0.002]",-0.674,0.5
+Affiliation_Contrast_Right_leaning Date_Index_0,Ethnorace,-0.001,0.002,546.928,"[-0.005, 0.002]",-0.626,0.531
+Affiliation_Contrast_Right_leaning Date_Index_Mid,Ethnorace,-0.001,0.002,510.409,"[-0.004, 0.002]",-0.674,0.5
+Affiliation_Contrast_Right_leaning Date_Index_Latest,Ethnorace,-0.001,0.003,505.183,"[-0.007, 0.005]",-0.302,0.763
+Affiliation_Contrast_Left_leaning Date_Index_Earliest,Ethnorace,0.001,0.007,515.989,"[-0.011, 0.014]",0.213,0.832
+Affiliation_Contrast_Left_leaning Date_Index_Mid,Ethnorace,-0.001,0.002,415.527,"[-0.004, 0.002]",-0.514,0.607
+Affiliation_Contrast_Left_leaning Date_Index_0,Ethnorace,0,0.002,527.378,"[-0.005, 0.004]",-0.056,0.956
+Affiliation_Contrast_Left_leaning Date_Index_Mid,Ethnorace,-0.001,0.002,415.527,"[-0.004, 0.002]",-0.514,0.607
+Affiliation_Contrast_Left_leaning Date_Index_Latest,Ethnorace,-0.002,0.003,434.9,"[-0.008, 0.005]",-0.482,0.63
