@@ -34,7 +34,7 @@ This repository contains a suite of scripts designed for scraping, processing, a
 - WEAT implementation from Charlesworth et al. (2021)
 
 ## Usage
-1. Run ```MINVERA_AdvancedScrape_X.ipynb``` to collect tweets.
+1. Run ```MINVERA_AdvancedScrape_X.ipynb``` to collect tweets. To start the script, fill in your X login information in ```your_email```, ```your_username```, ```your_password``` in the the 5th code block.
 - Already scraped tweets that are relevant to the 2023 Israel-Hamas Conflict from selected political influencers are available in the ```Raw Data``` folder.
 - Full list of influencers used are available in ```Supplementary Materials/Followers List & Categories - Accounts Kept.csv```.
 3. Use ```Parsing_Script_for_Raw_HTML.ipynb``` to extract and anonymize data.
