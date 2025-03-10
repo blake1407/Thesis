@@ -14,17 +14,17 @@ This repository contains a suite of scripts designed for scraping, processing, a
 - Tweets are then anonymized and concatenated into two time periods: before and after 10/07/23.
 
 3. **Tokenize Text**:
-- ```Generating Tokens Details.ipynb``` further removes mentioned usernames, punctuations, stop words and apply sentence markers.
-- Tweets are then tokenized and supplemented with tokens IDs (unique ID for each word in a corpus) and segment IDs (unique ID for each sentence in a corpus).
+- ```Generating Tokens Details.ipynb``` further removes mentioned usernames, punctuations, stop words and apply sentence markers. Tweets are then tokenized and supplemented with tokens IDs (unique ID for each word in a corpus) and segment IDs (unique ID for each sentence in a corpus).
+- ```Tokenized Data/BERT - Getting Embeddings.ipynb``` and ```Tokenized Data/BERT - Getting Embeddings.ipynb``` are then used to generate BERT and word2vec embeddings, using the pre-trained model available on [Hugging Face](https://huggingface.co/google-bert/bert-base-uncased).
 
 4. **Sentiment Analysis**:
-- **Dictionary creation of stereotype-indicating words**:
-  - ```Create Dictionary/Data compiling.ipynb``` is a modified SADCAT script that was adapted from R to Python (Gautam et al., under review).
+- Dictionary creation of stereotype-indicating words: ```Create Dictionary/Data compiling.ipynb``` is a modified SADCAT script that was adapted from R to Python (Gautam et al., under review).
   > From the list of base stereotypes created by Kurdi et al. (2019), words within the category of “warm”, “cold”, “incompetence”, “competence”, “Jewish”, “Muslim”, “Arabic”, and “Israeli” were processed to find their synonyms and antonyms using SADCAT (Semi-Automated Dictionary Creation for Analyzing Text; Nicolas et al., 2019; Nicolas et al., 2021; [https://github.com/gandalfnicolas/SADCAT](https://github.com/gandalfnicolas/SADCAT).
-- **Sentiment proportion generation**:
-  - Positive and negative words are identified using the Linguistic Inquiry and Word Count toolbox (LIWC; Cohn et al., 2004).
+- Sentiment proportion generation: Positive and negative words are identified using the Linguistic Inquiry and Word Count toolbox (LIWC; Cohn et al., 2004).
+- ```R Codes/Finalizing_models.R``` are to create hierarchical models to predict interactions of influencers' political affiliationa and their expressed sentiments and biases  throughout the timeline of the conflict.
+- Models with significant interactions are decomposed and analyzed using ```R Codes/get_simslopes.R```, developed by Richa Gautam. 
 
-6. **Implicit Association Analysis**:
+5. **Implicit Association Analysis**:
 - ```WEAT.ipynb``` (Word Embedding Association Test), sourced from Charlesworth et al. (2021), applies the method from Caliskan et al. (2017) to examine implicit biases and stereotype associations in tweets.
   
 ## Dependencies
@@ -38,7 +38,8 @@ This repository contains a suite of scripts designed for scraping, processing, a
 - Already scraped tweets that are relevant to the 2023 Israel-Hamas Conflict from selected political influencers are available in the ```Raw Data``` folder.
 - Full list of influencers used are available in ```Supplementary Materials/Followers List & Categories - Accounts Kept.csv```.
 3. Use ```Parsing_Script_for_Raw_HTML.ipynb``` to extract and anonymize data.
-4. Apply WEAT to analyze implicit associations in the processed text.
+4. Tokenize text (using ```Generating Tokens Details.ipynb```) and generate BERT/word2vec word embeddings via ```Tokenized Data/BERT - Getting Embeddings.ipynb``` or ```Tokenized Data/BERT - Getting Embeddings.ipynb```. 
+5. Apply WEAT to analyze implicit associations in the processed text.
 
 ## References
 1. Caliskan, A., Bryson, J. J., & Narayanan, A. (2017). Semantics derived automatically from language corpora contain human-like biases. Science, 356(6334), 183–186. [https://doi.org/10.1126/science.aal4230](https://doi.org/10.1126/science.aal4230)
