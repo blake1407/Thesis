@@ -1,47 +1,75 @@
-## Overview
-This repository contains a suite of scripts designed for scraping, processing, and analyzing tweets from selected X (formerly Twitter) accounts. The full thesis is available [here](https://udspace.udel.edu/items/692735ef-30b7-4223-b711-d0a60b6ff014). The workflow involves:
+This repository contains a suite of scripts designed for scraping, processing, and analyzing tweets from selected X (formerly Twitter) accounts focusing on the 2023 Israel-Hamas Conflict. The project aims to analyze sentiment and implicit bias in social media discourse. The full thesis is available [here](https://udspace.udel.edu/items/692735ef-30b7-4223-b711-d0a60b6ff014).
 
-0. **Supplementary Materials Preparation**:
-- ```NYT Metadata/NYT API - Metadata Scraper.ipynb``` collects metadata (e.g., people, places, and organizations mentioned) from articles published by NYT, created using the NYT API. Then, ```NYT Metadata/Creating List of Keywords.ipynb``` is used to display the top 10 most mentioned people, places, and organizations. This is crucial to further filter out irrelevant articles from other types of genre (e.g., economics, stocks reporting).
-- ```X Trending Before and After/Selenium for Archive Twitter.ipynb``` scrapes top 5 trending terms and hashtags on X within a certain timeframe, automated using Selenium and BeautifulSoup. All information are scraped via [https://archive.twitter-trending.com](https://archive.twitter-trending.com).
+## 📋 Overview
+The workflow consists of several integrated components:
+1. **Data Collection** - Scraping tweets and supplementary data
+2. **Data Processing** - Parsing, anonymizing, and tokenizing text
+3. **Semantic Analysis** - Generating embeddings and analyzing sentiment
+4. **Bias Assessment** - Calculate implicit associations in discourse
 
-1. **Tweet Scraping**:
-- ```MINVERA_AdvancedScrape_X.ipynb``` scrapes tweets from provided X accounts, containing specified keywords and minimum number of likes within a certain frame. 
-- Each scrape outputs a structured JSON file.
+## 🔧 Components
+1. **Supplementary Materials Preparation**:
+- **NYT Metadata Collection**
+  - ```NYT Metadata/NYT API - Metadata Scraper.ipynb``` - Collects metadata from NYT articles using NYT API
+  - ```NYT Metadata/Creating List of Keywords.ipynb``` - Identifies top mentioned entities for filtering
+- - **NYT Metadata Collection**
+  - ```X Trending Before and After/Selenium for Archive Twitter.ipynb``` - Scrapes trending terms using Selenium and BeautifulSoup from [https://archive.twitter-trending.com](https://archive.twitter-trending.com)
 
-2. **Data Parsing and Anonymization**:
-- ```Parsing_Script_for_Raw_HTML.ipynb``` extracts and processes relevant tweet data (likes, replies, retweets, views) from raw JSON files.
-- Tweets are then anonymized and concatenated into two time periods: before and after 10/07/23.
+2. **Tweet Collection**:
+- ```MINVERA_AdvancedScrape_X.ipynb``` - Scrapes tweets containing specified keywords with minimum engagement metrics
+  - Outputs structured JSON files for further processing
 
-3. **Tokenize Text**:
-- ```Generating Tokens Details.ipynb``` further removes mentioned usernames, punctuations, stop words and apply sentence markers. Tweets are then tokenized and supplemented with tokens IDs (unique ID for each word in a corpus) and segment IDs (unique ID for each sentence in a corpus).
-- ```Tokenized Data/BERT - Getting Embeddings.ipynb``` and ```Tokenized Data/BERT - Getting Embeddings.ipynb``` are then used to generate BERT and word2vec embeddings, using the pre-trained model available on [Hugging Face](https://huggingface.co/google-bert/bert-base-uncased).
+3. **Data Processing**:
+- ```Parsing_Script_for_Raw_HTML.ipynb``` - Extracts and processes tweet data (likes, replies, retweets, views)
+  - Anonymizes content and organizes by time period (before/after Oct 7, 2023)
+- ```Generating Tokens Details.ipynb``` - Text preprocessing pipeline:
+  - Removes usernames, punctuation, and stop words
+  - Applies sentence markers
+  - Tokenizes text with unique token and segment IDs
 
-4. **Sentiment Analysis**:
-- Dictionary creation of stereotype-indicating words: ```Create Dictionary/Data compiling.ipynb``` is a modified SADCAT script that was adapted from R to Python (Gautam et al., under review).
-  > From the list of base stereotypes created by Kurdi et al. (2019), words within the category of “warm”, “cold”, “incompetence”, “competence”, “Jewish”, “Muslim”, “Arabic”, and “Israeli” were processed to find their synonyms and antonyms using SADCAT (Semi-Automated Dictionary Creation for Analyzing Text; Nicolas et al., 2019; Nicolas et al., 2021; [https://github.com/gandalfnicolas/SADCAT](https://github.com/gandalfnicolas/SADCAT).
-- Sentiment proportion generation: Positive and negative words are identified using the Linguistic Inquiry and Word Count toolbox (LIWC; Cohn et al., 2004).
-- ```R Codes/Finalizing_models.R``` are to create hierarchical models to predict interactions of influencers' political affiliationa and their expressed sentiments and biases  throughout the timeline of the conflict.
-- Models with significant interactions are decomposed and analyzed using ```R Codes/get_simslopes.R```, developed by Richa Gautam. 
+4. **Embedding Generation**:
+- ```Tokenized Data/BERT - Getting Embeddings.ipynb``` - Generates BERT embeddings, using the pre-trained model available on [Hugging Face](https://huggingface.co/google-bert/bert-base-uncased).
+- ```Tokenized Data/word2vec - Getting Embeddings.ipynb``` - Generates word2vec embeddings
 
-5. **Implicit Association Analysis**:
-- ```WEAT.ipynb``` (Word Embedding Association Test), sourced from Charlesworth et al. (2021), applies the method from Caliskan et al. (2017) to examine implicit biases and stereotype associations in tweets.
-  
-## Dependencies
+5. **Sentiment Analysis**:
+- **Dictionary Creation**
+  - ```Create Dictionary/Data compiling.ipynb``` is a modified SADCAT script (Semi-Automated Dictionary Creation for Analyzing Text; Nicolas et al., 2019; Nicolas et al., 2021; [https://github.com/gandalfnicolas/SADCAT](https://github.com/gandalfnicolas/SADCAT) that was adapted from R to Python (Gautam et al., under review).
+  - Based on Kurdi et al. (2019) stereotype categories: warm, cold, incompetence, competence, Jewish, Muslim, Arabic, Israeli.
+- **Sentiment proportion generation**
+  - Positive and negative words are identified using the Linguistic Inquiry and Word Count toolbox (LIWC; Cohn et al., 2004).
+- **Satistical Modeling**
+  - ```R Codes/Finalizing_models.R``` - Creates hierarchical models to analyze sentiment patterns
+  - ```R Codes/get_simslopes.R``` - Decomposes significant interactions (developed by Richa Gautam)
+
+6. **Implicit Association Analysis**:
+- ```WEAT.ipynb``` - Implements Word Embedding Association Test based on Caliskan et al. (2017) and Charlesworth et al. (2021)
+  - Examines implicit biases and stereotype associations in tweet content
+    
+## 📦 Dependencies
 - Python 3.x
-- Selenium, BeautifulSoup (for scraping)
-- Transformers (for BERT embeddings)
+- Data colection: Selenium, BeautifulSoup
+- NLP processing: Transformers (for BERT embeddings)
+- Statistical analysis: R libraries for hierarchical modeling
 - WEAT implementation from Charlesworth et al. (2021)
 
-## Usage
-1. Run ```MINVERA_AdvancedScrape_X.ipynb``` to collect tweets. To start the script, fill in your X login information in ```your_email```, ```your_username```, ```your_password``` in the the 5th code block.
-- Already scraped tweets that are relevant to the 2023 Israel-Hamas Conflict from selected political influencers are available in the ```Raw Data``` folder.
-- Full list of influencers used are available in ```Supplementary Materials/Followers List & Categories - Accounts Kept.csv```.
-3. Use ```Parsing_Script_for_Raw_HTML.ipynb``` to extract and anonymize data.
-4. Tokenize text (using ```Generating Tokens Details.ipynb```) and generate BERT/word2vec word embeddings via ```Tokenized Data/BERT - Getting Embeddings.ipynb``` or ```Tokenized Data/BERT - Getting Embeddings.ipynb```. 
-5. Apply WEAT to analyze implicit associations in the processed text.
+## 🚀 Usage
+1. **Data Collection**
+- Run ```MINVERA_AdvancedScrape_X.ipynb``` to collect tweets
+- Configure X login credentials in the 5th code block (``your_email``, ```your_username```, ```your_password```)
+2. **Data Processing**
+- Use ```Parsing_Script_for_Raw_HTML.ipynb``` to extract and anonymize collected data
+- Process text with ```Generating Tokens Details.ipynb```
+3. **Generate Embeddings**
+- Use either BERT or word2vec embedding notebooks
+4. **Analysis**
+- Apply WEAT for implicit association analysis
+- Use R scripts for statistical modeling of sentiment patterns
 
-## References
+## 📁 Available Resources
+- Pre-scraped tweets related to the 2023 Israel-Hamas Conflict are available in the ```Raw Data``` folder
+- Full list of analyzed influencers available in ```Supplementary Materials/Followers List & Categories - Accounts Kept.csv```
+
+## 📚 References
 1. Caliskan, A., Bryson, J. J., & Narayanan, A. (2017). Semantics derived automatically from language corpora contain human-like biases. Science, 356(6334), 183–186. [https://doi.org/10.1126/science.aal4230](https://doi.org/10.1126/science.aal4230)
 2. Charlesworth, T. E. S., Yang, V., Mann, T. C., Kurdi, B., & Banaji, M. R. (2021). Gender Stereotypes in Natural Language: Word Embeddings Show Robust Consistency Across Child and Adult Language Corpora of More Than 65 Million Words. Psychological Science, 32(2), 218–240. [https://doi.org/10.1177/0956797620963619](https://doi.org/10.1177/0956797620963619)
 3. Cohn, M. A., Mehl, M. R., & Pennebaker, J. W. (2004). Linguistic Markers of Psychological Change Surrounding September 11, 2001. Psychological Science, 15(10), 687–693. [https://doi.org/10.1111/j.0956-7976.2004.00741.x](https://doi.org/10.1111/j.0956-7976.2004.00741.x)
