@@ -12,7 +12,7 @@ The workflow consists of several integrated components:
 - **NYT Metadata Collection**
   - ```NYT Metadata/NYT API - Metadata Scraper.ipynb``` - Collects metadata from NYT articles using NYT API
   - ```NYT Metadata/Creating List of Keywords.ipynb``` - Identifies top mentioned entities for filtering
-- - **NYT Metadata Collection**
+- **NYT Metadata Collection**
   - ```X Trending Before and After/Selenium for Archive Twitter.ipynb``` - Scrapes trending terms using Selenium and BeautifulSoup from [https://archive.twitter-trending.com](https://archive.twitter-trending.com)
 
 2. **Tweet Collection**:
@@ -33,7 +33,7 @@ The workflow consists of several integrated components:
 
 5. **Sentiment Analysis**:
 - **Dictionary Creation**
-  - ```Create Dictionary/Data compiling.ipynb``` is a modified SADCAT script (Semi-Automated Dictionary Creation for Analyzing Text; Nicolas et al., 2019; Nicolas et al., 2021; [https://github.com/gandalfnicolas/SADCAT](https://github.com/gandalfnicolas/SADCAT) that was adapted from R to Python (Gautam et al., under review).
+  - ```Create Dictionary/Data compiling.ipynb``` is a modified SADCAT script (Semi-Automated Dictionary Creation for Analyzing Text; Nicolas et al., 2019; Nicolas et al., 2021; [https://github.com/gandalfnicolas/SADCAT](https://github.com/gandalfnicolas/SADCAT)) that was adapted from R to Python (Gautam et al., under review).
   - Based on Kurdi et al. (2019) stereotype categories: warm, cold, incompetence, competence, Jewish, Muslim, Arabic, Israeli.
 - **Sentiment proportion generation**
   - Positive and negative words are identified using the Linguistic Inquiry and Word Count toolbox (LIWC; Cohn et al., 2004).
