@@ -1,4 +1,4 @@
-This repository contains a suite of scripts designed for scraping, processing, and analyzing tweets from selected X (formerly Twitter) accounts focusing on the 2023 Israel-Hamas Conflict. The project aims to analyze sentiment and implicit bias in social media discourse. The full thesis is available [here](https://udspace.udel.edu/items/692735ef-30b7-4223-b711-d0a60b6ff014).
+This repository contains a suite of scripts designed for scraping, processing, and analyzing tweets from selected X (formerly Twitter) accounts focusing on the 2023 Israel-Hamas Conflict. The project aims to analyze sentiment and implicit bias in social media discourse. The full thesis is available [here](https://udspace.udel.edu/items/692735ef-30b7-4223-b711-d0a60b6ff014). An in-depth overview of the data analysis pipeline and results is available [here](https://blaketrn.notion.site/A-Psycholinguistic-Analysis-Of-Changes-In-Stereotypes-And-Hate-Speech-Associated-With-Muslim-And-Or--1beb8fab88a7800998a1db848f6e43c9).
 
 ## 📋 Overview
 The workflow consists of several integrated components:
