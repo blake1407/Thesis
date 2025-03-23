@@ -21,7 +21,7 @@ The workflow consists of several integrated components:
 
 3. **Data Processing**:
 - ```Parsing_Script_for_Raw_HTML.ipynb``` - Extracts and processes tweet data (likes, replies, retweets, views)
-  - Anonymizes content and organizes by time period (before/after Oct 7, 2023)
+- ```Concatenate Parsed Data.ipynb``` - Anonymizes content and organizes by time period (before/after Oct 7, 2023)
 - ```Generating Tokens Details.ipynb``` - Text preprocessing pipeline:
   - Removes usernames, punctuation, and stop words
   - Applies sentence markers
