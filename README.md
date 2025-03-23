@@ -58,7 +58,7 @@ The workflow consists of several integrated components:
 - Configure X login credentials in the 5th code block (``your_email``, ```your_username```, ```your_password```)
 2. **Data Processing**
 - Use ```Parsing_Script_for_Raw_HTML.ipynb``` to extract and anonymize collected data
-- Process text with ```Generating Tokens Details.ipynb```
+- Process text with ```Concatenate Parsed Data.ipynb```, then ```Generating Tokens Details.ipynb```
 3. **Generate Embeddings**
 - Use either BERT or word2vec embedding notebooks
 4. **Analysis**
