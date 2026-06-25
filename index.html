@@ -6,7 +6,7 @@
 <title>Psycholinguistic Analysis — Israel-Hamas Conflict Discourse</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 <style>
 :root {
@@ -20,24 +20,52 @@
   --danger-bg:#fcebeb; --danger-text:#a32d2d;
   --red:#D85A30; --green:#1D9E75;
 }
+/* ── Theme: dark ── */
+[data-theme="dark"] {
+  --bg:#1c1c1e; --bg-2:#28282a; --bg-3:#111111;
+  --text:#f2f2f7; --text-2:#aeaeb2; --text-3:#636366;
+  --border:rgba(255,255,255,.10); --border-2:rgba(255,255,255,.18);
+  --info-bg:#042c53; --info-text:#85b7eb; --info-border:rgba(133,183,235,.35);
+  --success-bg:#173404; --success-text:#c0dd97;
+  --warn-bg:#412402; --warn-text:#fac775;
+  --danger-bg:#501313; --danger-text:#f09595;
+  --red:#f09595; --green:#5dcaa5;
+}
+/* ── Theme: high-contrast ── */
+[data-theme="hc"] {
+  --bg:#000000; --bg-2:#0a0a0a; --bg-3:#111111;
+  --text:#ffffff; --text-2:#e0e0e0; --text-3:#aaaaaa;
+  --border:rgba(255,255,255,.30); --border-2:rgba(255,255,255,.55);
+  --info-bg:#00214d; --info-text:#7dd3fc; --info-border:rgba(125,211,252,.5);
+  --success-bg:#003300; --success-text:#86efac;
+  --warn-bg:#3a2000; --warn-text:#fde68a;
+  --danger-bg:#3d0000; --danger-text:#fca5a5;
+  --red:#fca5a5; --green:#86efac;
+}
+/* Auto dark from OS (no JS yet) */
 @media(prefers-color-scheme:dark){
-  :root{
+  :root:not([data-theme="light"]):not([data-theme="hc"]){
     --bg:#1c1c1e; --bg-2:#28282a; --bg-3:#111111;
     --text:#f2f2f7; --text-2:#aeaeb2; --text-3:#636366;
     --border:rgba(255,255,255,.10); --border-2:rgba(255,255,255,.18);
-    --info-bg:#042c53; --info-text:#85b7eb;
+    --info-bg:#042c53; --info-text:#85b7eb; --info-border:rgba(133,183,235,.35);
     --success-bg:#173404; --success-text:#c0dd97;
     --warn-bg:#412402; --warn-text:#fac775;
     --danger-bg:#501313; --danger-text:#f09595;
     --red:#f09595; --green:#5dcaa5;
   }
 }
+/* Theme switcher widget */
+.theme-switcher{display:flex;gap:4px;padding:0 20px;margin-top:16px;}
+.theme-btn{flex:1;font-size:10px;font-family:'JetBrains Mono',monospace;padding:5px 4px;border-radius:6px;border:.5px solid var(--border-2);background:var(--bg-2);color:var(--text-3);cursor:pointer;transition:all .15s;text-align:center;}
+.theme-btn.active{background:var(--info-bg);color:var(--info-text);border-color:var(--info-border);}
+.theme-btn:hover:not(.active){background:var(--bg-3);color:var(--text);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;font-size:16px;}
-body{font-family:'Inter',sans-serif;background:var(--bg-3);color:var(--text);line-height:1.5;}
+body{font-family:'Nunito',sans-serif;background:var(--bg-3);color:var(--text);line-height:1.5;}
 a{color:var(--info-text);text-decoration:none;}
 a:hover{opacity:.75;}
-select,textarea,input[type=text]{font-family:'IBM Plex Mono',monospace;font-size:12px;background:var(--bg);color:var(--text);border:.5px solid var(--border-2);border-radius:var(--radius-md);padding:7px 10px;width:100%;}
+select,textarea,input[type=text]{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg);color:var(--text);border:.5px solid var(--border-2);border-radius:var(--radius-md);padding:7px 10px;width:100%;}
 select{width:auto;cursor:pointer;}
 textarea{resize:vertical;}
 
@@ -47,93 +75,93 @@ textarea{resize:vertical;}
 .main{flex:1;min-width:0;overflow-y:auto;}
 .section{display:none;padding:36px 40px;width:100%;}
 .section.active{display:block;}
-.inner{max-width:860px;}
+.inner{width:100%;}
 
 /* Sidebar */
 .sidebar-logo{padding:0 20px 20px;border-bottom:.5px solid var(--border);margin-bottom:16px;}
-.sidebar-logo .title{font-family:'IBM Plex Serif',serif;font-size:14px;font-weight:500;color:var(--text);line-height:1.4;}
-.sidebar-logo .subtitle{font-size:11px;color:var(--text-3);margin-top:2px;font-family:'IBM Plex Mono',monospace;}
+.sidebar-logo .title{font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;color:var(--text);line-height:1.4;}
+.sidebar-logo .subtitle{font-size:11px;color:var(--text-3);margin-top:2px;font-family:'JetBrains Mono',monospace;}
 .nav-section{padding:0 12px;margin-bottom:8px;}
-.nav-label{font-size:10px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;padding:0 8px;margin-bottom:4px;font-family:'IBM Plex Mono',monospace;}
+.nav-label{font-size:10px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;padding:0 8px;margin-bottom:4px;font-family:'JetBrains Mono',monospace;}
 .nav-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--radius-md);cursor:pointer;font-size:13px;color:var(--text-2);border:none;background:none;width:100%;text-align:left;transition:all .15s;}
 .nav-item:hover{background:var(--bg-2);color:var(--text);}
 .nav-item.active{background:var(--info-bg);color:var(--info-text);font-weight:500;}
 .nav-item i{font-size:15px;}
-.nav-num{font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.6;margin-left:auto;}
+.nav-num{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.6;margin-left:auto;}
 
 /* Typography */
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
-.sec-title{font-family:'IBM Plex Serif',serif;font-size:26px;font-weight:500;color:var(--text);line-height:1.25;margin-bottom:8px;}
-.sec-desc{font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:28px;max-width:680px;}
-.annotation{font-size:11px;color:var(--text-3);font-style:italic;margin-top:8px;font-family:'IBM Plex Mono',monospace;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.sec-title{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:var(--text);line-height:1.25;margin-bottom:8px;}
+.sec-desc{font-family:'Nunito',sans-serif;font-size:15px;color:var(--text-2);line-height:1.75;margin-bottom:28px;max-width:760px;}
+.annotation{font-size:11px;color:var(--text-3);font-style:italic;margin-top:8px;font-family:'JetBrains Mono',monospace;}
 
 /* Cards */
 .card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;}
-.card-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
-.card-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px;}
+.card-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.card-title{font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px;}
 .card-body{font-size:13px;color:var(--text-2);line-height:1.6;}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 
 /* Discussion / prose blocks */
 .prose-block{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px;}
-.prose-block h3{font-family:'IBM Plex Serif',serif;font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;}
-.prose-block p{font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:10px;}
+.prose-block h3{font-family:'DM Serif Display',serif;font-size:19px;font-weight:400;color:var(--text);margin-bottom:10px;}
+.prose-block p{font-family:'Nunito',sans-serif;font-size:14px;color:var(--text-2);line-height:1.8;margin-bottom:10px;}
 .prose-block p:last-child{margin-bottom:0;}
-.prose-block .highlight{font-family:'IBM Plex Mono',monospace;font-size:12px;background:var(--warn-bg);color:var(--warn-text);padding:2px 6px;border-radius:4px;}
-.note-box{background:var(--warn-bg);border-left:2px solid var(--warn-text);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--warn-text);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.prose-block .highlight{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--warn-bg);color:var(--warn-text);padding:2px 6px;border-radius:4px;}
+.note-box{background:var(--warn-bg);border-left:2px solid var(--warn-text);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--warn-text);font-family:'JetBrains Mono',monospace;line-height:1.6;}
 .limitation-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
 .lim-card{background:var(--bg-2);border-radius:var(--radius-md);padding:14px;}
-.lim-card h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px;font-family:'IBM Plex Mono',monospace;}
+.lim-card h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px;font-family:'JetBrains Mono',monospace;}
 .lim-card p{font-size:12px;color:var(--text-2);line-height:1.6;}
 
 /* Demo panels */
 .demo-panel{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;}
 .demo-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
 .demo-title{font-size:14px;font-weight:500;color:var(--text);}
-.badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;}
+.badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;}
 .badge-live{background:var(--success-bg);color:var(--success-text);}
 .badge-real{background:var(--danger-bg);color:var(--danger-text);}
 .badge-pre{background:var(--warn-bg);color:var(--warn-text);}
 
 /* Buttons */
-.btn{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 16px;border-radius:var(--radius-md);cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:opacity .15s;}
+.btn{font-family:'JetBrains Mono',monospace;font-size:12px;padding:8px 16px;border-radius:var(--radius-md);cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:opacity .15s;}
 .btn:hover{opacity:.82;}
 .btn-p{background:var(--info-bg);color:var(--info-text);border:.5px solid var(--info-border);}
 .btn-s{background:var(--bg-2);color:var(--text-2);border:.5px solid var(--border-2);}
 
 /* Code */
-.code-block{background:var(--bg-2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:20px 24px;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.9;color:var(--text-2);overflow-x:auto;margin-bottom:16px;white-space:pre;tab-size:2;}
+.code-block{background:var(--bg-2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:var(--text-2);overflow-x:auto;margin-bottom:16px;white-space:pre;tab-size:2;}
 .kw{color:#7B68EE;font-weight:600;}.st{color:#E09A50;}.cm{color:#8A8FA8;font-style:italic;}.num{color:#E87D5A;}.fn{color:#50C878;font-weight:500;}.op{color:#C586C0;}
 
 /* Tokens */
 .token-display{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
-.token{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 8px;border-radius:4px;border:.5px solid var(--border);background:var(--bg-2);color:var(--text-2);}
+.token{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 8px;border-radius:4px;border:.5px solid var(--border);background:var(--bg-2);color:var(--text-2);}
 .token.cls-sep{background:var(--info-bg);color:var(--info-text);font-weight:500;}
 .token.subword{background:var(--warn-bg);color:var(--warn-text);}
 .token.user{background:var(--success-bg);color:var(--success-text);}
 
 /* Steps */
 .step-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
-.step-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-3);min-width:20px;padding-top:2px;}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);min-width:20px;padding-top:2px;}
 .step-content{font-size:13px;color:var(--text-2);line-height:1.6;}
 .step-content strong{color:var(--text);font-weight:500;}
 
 /* Out rows */
 .out-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
 .out-box{background:var(--bg-2);border-radius:var(--radius-md);padding:12px;}
-.out-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:6px;text-transform:uppercase;}
-.out-val{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);word-break:break-all;}
+.out-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:6px;text-transform:uppercase;}
+.out-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);word-break:break-all;}
 
 /* Tabs */
 .tab-row{display:flex;gap:2px;margin-bottom:16px;background:var(--bg-2);padding:3px;border-radius:var(--radius-md);width:fit-content;flex-wrap:wrap;}
-.tab-btn{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:5px 12px;border:none;background:none;cursor:pointer;border-radius:6px;color:var(--text-2);}
+.tab-btn{font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 12px;border:none;background:none;cursor:pointer;border-radius:6px;color:var(--text-2);}
 .tab-btn.active{background:var(--bg);color:var(--text);font-weight:500;box-shadow:0 .5px 3px rgba(0,0,0,.08);}
 
 /* Stats */
 .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
 .stat-card{background:var(--bg-2);border-radius:var(--radius-md);padding:14px;}
-.stat-val{font-family:'IBM Plex Serif',serif;font-size:24px;font-weight:500;color:var(--text);}
-.stat-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-top:2px;text-transform:uppercase;}
+.stat-val{font-family:'DM Serif Display',serif;font-size:24px;font-weight:500;color:var(--text);}
+.stat-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);margin-top:2px;text-transform:uppercase;}
 
 /* Legend */
 .legend-row{display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap;}
@@ -141,23 +169,23 @@ textarea{resize:vertical;}
 .legend-dot{width:8px;height:8px;border-radius:50%;}
 
 /* Chips */
-.kchip{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:3px;background:var(--bg-2);color:var(--text-2);border:.5px solid var(--border);margin:2px;}
+.kchip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 7px;border-radius:3px;background:var(--bg-2);color:var(--text-2);border:.5px solid var(--border);margin:2px;}
 
 /* Hero */
 .hero{padding:40px 0 28px;}
-.hero h1{font-family:'IBM Plex Serif',serif;font-size:32px;font-weight:500;color:var(--text);line-height:1.2;margin-bottom:12px;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:38px;font-weight:400;color:var(--text);line-height:1.2;margin-bottom:12px;}
 .hero p{font-size:15px;color:var(--text-2);line-height:1.7;max-width:580px;margin-bottom:20px;}
 .hero-links{display:flex;gap:10px;flex-wrap:wrap;}
-.hero-link{font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--info-text);display:flex;align-items:center;gap:4px;}
+.hero-link{font-size:13px;font-family:'JetBrains Mono',monospace;color:var(--info-text);display:flex;align-items:center;gap:4px;}
 
 /* Pipeline overview */
 .po-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
 .po-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:16px;cursor:pointer;transition:border-color .15s;}
 .po-card:hover{border-color:var(--info-text);}
-.po-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:4px;}
+.po-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:4px;}
 .po-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px;}
 .po-desc{font-size:12px;color:var(--text-2);line-height:1.5;}
-.po-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 6px;border-radius:3px;margin-top:8px;}
+.po-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 6px;border-radius:3px;margin-top:8px;}
 .tag-live{background:var(--success-bg);color:var(--success-text);}
 .tag-vis{background:var(--info-bg);color:var(--info-text);}
 .tag-code{background:var(--bg-2);color:var(--text-2);}
@@ -169,11 +197,11 @@ textarea{resize:vertical;}
 
 /* WEAT bars */
 .bar-row{display:grid;grid-template-columns:80px 1fr 68px 120px;gap:8px;align-items:center;margin-bottom:7px;}
-.bar-group{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-2);}
+.bar-group{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-2);}
 .bar-track{background:var(--bg-2);border-radius:4px;height:14px;position:relative;overflow:hidden;}
 .bar-fill{height:100%;border-radius:4px;position:absolute;}
-.bar-d{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;text-align:right;}
-.bar-sig{font-family:'IBM Plex Mono',monospace;font-size:10px;}
+.bar-d{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;text-align:right;}
+.bar-sig{font-family:'JetBrains Mono',monospace;font-size:10px;}
 .sig-star{color:var(--danger-text);}
 .ns-txt{color:var(--text-3);}
 .select-row{display:flex;gap:8px;margin-bottom:12px;}
@@ -181,24 +209,24 @@ textarea{resize:vertical;}
 /* Change cards */
 .change-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
 .change-card{background:var(--bg-2);border-radius:var(--radius-md);padding:12px;}
-.change-card-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:6px;line-height:1.5;}
-.change-d{font-family:'IBM Plex Serif',serif;font-size:20px;font-weight:500;}
+.change-card-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:6px;line-height:1.5;}
+.change-d{font-family:'DM Serif Display',serif;font-size:20px;font-weight:500;}
 .change-d.pos{color:var(--green);}
 .change-d.neg{color:var(--red);}
-.change-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-top:4px;}
-.change-sig{font-family:'IBM Plex Mono',monospace;font-size:10px;margin-top:2px;}
+.change-meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);margin-top:4px;}
+.change-sig{font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:2px;}
 
 /* DC table */
 .wt{width:100%;border-collapse:collapse;font-size:12px;}
-.wt th{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;padding:6px 10px;text-align:left;border-bottom:.5px solid var(--border);}
+.wt th{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;padding:6px 10px;text-align:left;border-bottom:.5px solid var(--border);}
 .wt td{padding:8px 10px;border-bottom:.5px solid var(--border);vertical-align:middle;}
 .wt tr:last-child td{border-bottom:none;}
-.dv{font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:500;}
+.dv{font-family:'DM Serif Display',serif;font-size:15px;font-weight:500;}
 .dv.pos{color:var(--green);} .dv.neg{color:var(--red);}
-.pp{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:20px;}
+.pp{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:20px;}
 .pp-b{background:var(--warn-bg);color:var(--warn-text);}
 .pp-a{background:var(--danger-bg);color:var(--danger-text);}
-.sb{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 6px;border-radius:3px;}
+.sb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 6px;border-radius:3px;}
 .sb-y{background:var(--danger-bg);color:var(--danger-text);}
 .sb-n{background:var(--bg-2);color:var(--text-3);}
 
@@ -222,6 +250,11 @@ textarea{resize:vertical;}
     <div class="sidebar-logo">
       <div class="title">Psycholinguistic Analysis</div>
       <div class="subtitle">Israel-Hamas Conflict · 2023</div>
+    </div>
+    <div class="theme-switcher" role="group" aria-label="Colour theme">
+      <button class="theme-btn" id="btn-light" onclick="setTheme('light')" title="Light theme">☀ Light</button>
+      <button class="theme-btn" id="btn-dark"  onclick="setTheme('dark')"  title="Dark theme">🌙 Dark</button>
+      <button class="theme-btn" id="btn-hc"    onclick="setTheme('hc')"    title="High contrast">◑ HC</button>
     </div>
     <div class="nav-section">
       <div class="nav-label">Overview</div>
@@ -269,7 +302,7 @@ textarea{resize:vertical;}
           <div class="po-card" onclick="showSec('parse',document.querySelector('[onclick*=parse]'))"><div class="po-num">Stage 02</div><div class="po-name">Parsing & Cleaning</div><div class="po-desc">HTML extraction, emoji/URL removal, keyword validation, and deduplication pipeline.</div><span class="po-tag tag-live">Live demo</span></div>
           <div class="po-card" onclick="showSec('token',document.querySelector('[onclick*=token]'))"><div class="po-num">Stage 03</div><div class="po-name">Tokenization</div><div class="po-desc">BERT WordPiece tokenizer with stopword removal, sentence segmentation, and token/segment ID generation.</div><span class="po-tag tag-live">Live demo</span></div>
           <div class="po-card" onclick="showSec('embed',document.querySelector('[onclick*=embed]'))"><div class="po-num">Stage 04</div><div class="po-name">Embeddings</div><div class="po-desc">BERT contextual 768-dim embeddings and word2vec vectors, chunked per subject for downstream WEAT.</div><span class="po-tag tag-vis">Visualization</span></div>
-          <div class="po-card" onclick="showSec('sadcat',document.querySelector('[onclick*=sadcat]'))"><div class="po-num">Stage 05</div><div class="po-name">SADCAT Dictionary</div><div class="po-desc">Semi-automated stereotype dictionary built from WordNet synonyms, antonyms, and SCM theory — used as WEAT attribute sets.</div><span class="po-tag tag-live">Interactive demo</span></div>
+          <div class="po-card" onclick="showSec('sadcat',document.querySelector('[onclick*=sadcat]'))"><div class="po-num">Stage 05</div><div class="po-name">SADCAT Dictionary</div><div class="po-desc">Semi-automated stereotype dictionary built from WordNet synonyms, antonyms, and SCM theory — used as WEAT attribute sets.</div><span class="po-tag tag-code">Data resource</span></div>
           <div class="po-card" onclick="showSec('stats',document.querySelector('[onclick*=stats]'))"><div class="po-num">Stage 06</div><div class="po-name">Linear Modeling</div><div class="po-desc">Hierarchical linear mixed models (lmer) examining bipartisan trends in sentiment and stereotype language over time.</div><span class="po-tag tag-live">R + plots</span></div>
           <div class="po-card" onclick="showSec('weat',document.querySelector('[onclick*=weat]'))"><div class="po-num">Stage 07</div><div class="po-name">WEAT Analysis</div><div class="po-desc">SC-WEAT and double-category WEAT with permutation testing — all real results from Tables 4–11.</div><span class="po-tag tag-live">Real results</span></div>
           <div class="po-card" onclick="showSec('discussion',document.querySelector('[onclick*=discussion]'))"><div class="po-num">Stage 08</div><div class="po-name">Discussion</div><div class="po-desc">Interpretation of findings, bipartisan differences, limitations, and future research directions.</div><span class="po-tag tag-code">Findings</span></div>
@@ -290,11 +323,11 @@ textarea{resize:vertical;}
         <div class="card" style="margin-bottom:16px;">
           <div class="card-label">Keyword Groups</div>
           <div style="margin-top:8px;">
-            <div style="font-size:11px;color:var(--text-3);margin-bottom:4px;font-family:'IBM Plex Mono',monospace;">GROUP A · Geopolitical entities</div>
+            <div style="font-size:11px;color:var(--text-3);margin-bottom:4px;font-family:'JetBrains Mono',monospace;">GROUP A · Geopolitical entities</div>
             <div><span class="kchip">Gaza*</span><span class="kchip">Israel*</span><span class="kchip">West Bank</span><span class="kchip">Palestin*</span><span class="kchip">Jew*</span><span class="kchip">Muslim*</span><span class="kchip">Islam*</span><span class="kchip">Middle East*</span></div>
-            <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'IBM Plex Mono',monospace;">GROUP B · Actors & events</div>
+            <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'JetBrains Mono',monospace;">GROUP B · Actors & events</div>
             <div><span class="kchip">Hamas</span><span class="kchip">Netanyahu</span><span class="kchip">Genocide</span><span class="kchip">Ceasefire</span><span class="kchip">Terroris*</span><span class="kchip">Sinwar</span><span class="kchip">IDF</span><span class="kchip">IOF</span></div>
-            <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'IBM Plex Mono',monospace;">GROUP C · Conflict terms</div>
+            <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'JetBrains Mono',monospace;">GROUP C · Conflict terms</div>
             <div><span class="kchip">Jihad</span><span class="kchip">Antisemiti*</span><span class="kchip">Zionis*</span><span class="kchip">Rafah</span><span class="kchip">Ben-Gvir</span><span class="kchip">Gallant</span><span class="kchip">Khan Younis</span></div>
           </div>
         </div>
@@ -325,7 +358,7 @@ tweets_dict_US[profile].append(search_results.get_attribute(<span class="st">'in
             <button class="btn btn-s" onclick="loadSample()">Load sample</button>
           </div>
           <div id="parse-steps" style="margin-top:16px;display:none;">
-            <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;font-family:'IBM Plex Mono',monospace;">Cleaning steps</div>
+            <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;font-family:'JetBrains Mono',monospace;">Cleaning steps</div>
             <div id="step-list"></div>
             <div class="out-row">
               <div class="out-box"><div class="out-lbl">Input</div><div class="out-val" id="parse-in" style="color:var(--red);font-size:11px;"></div></div>
@@ -409,6 +442,120 @@ tweets_dict_US[profile].append(search_results.get_attribute(<span class="st">'in
     <span class="kw">for</span> j, (tok, emb) <span class="kw">in</span> enumerate(zip(chunk_tokens, hidden)):
         <span class="kw">if</span> tok <span class="kw">in</span> [<span class="st">'[CLS]'</span>, <span class="st">'[SEP]'</span>]: <span class="kw">continue</span>
         results.append({<span class="st">'Token'</span>: tok, <span class="st">'Embedding'</span>: emb.numpy().tolist()})</div>
+
+        <hr class="divider" style="margin:24px 0;" />
+
+        <!-- Embedding Space Visualization -->
+        <div class="card-label" style="margin-bottom:8px;">Embedding space visualization</div>
+        <div style="font-size:13px;color:var(--text-2);margin-bottom:16px;line-height:1.7;">The 768-dimensional BERT vectors are projected to 2D via t-SNE to reveal geometric structure. Words with similar meanings and usage patterns cluster together — the WEAT exploits this by measuring cosine distance from target group clusters to the attribute clusters.</div>
+
+        <div style="position:relative;background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;">
+
+          <div style="position:relative;">
+            <canvas id="emb-canvas" style="display:block;width:100%;border-radius:8px;border:.5px solid var(--border);"></canvas>
+            <div id="emb-tt" style="position:absolute;background:var(--bg);border:.5px solid var(--border-2);border-radius:8px;padding:8px 11px;font-size:11px;font-family:'JetBrains Mono',monospace;pointer-events:none;opacity:0;transition:opacity .1s;z-index:10;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.1);color:var(--text);"></div>
+          </div>
+
+          <div id="emb-legend" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;"></div>
+
+          <div id="emb-info" style="background:var(--bg-2);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--text-2);line-height:1.7;margin-top:14px;border:.5px solid var(--border);font-family:'Nunito',sans-serif;"></div>
+        </div>
+
+        <script>
+        (function(){
+          const CV = document.getElementById('emb-canvas');
+          const cx2 = CV.getContext('2d');
+          const TT2 = document.getElementById('emb-tt');
+          const EMB_COLORS = {
+            warm:   {fill:'#D85A30',stroke:'#a3420f',label:'Warm attribute'},
+            cold:   {fill:'#185fa5',stroke:'#0c447c',label:'Cold attribute'},
+            comp:   {fill:'#1D9E75',stroke:'#0f6e56',label:'Competent attribute'},
+            incomp: {fill:'#854f0b',stroke:'#633806',label:'Incompetent attribute'},
+            target: {fill:'#7B68EE',stroke:'#534ab7',label:'Target group tokens'},
+            neutral:{fill:'#9ca3af',stroke:'#6b7280',label:'Other tokens'},
+            before: {fill:'#185fa5',stroke:'#0c447c',label:'Pre-Oct 7'},
+            after:  {fill:'#D85A30',stroke:'#a3420f',label:'Post-Oct 7'},
+          };
+          function rng(s){return()=>{s=Math.imul(s^(s>>>16),2246822507)^Math.imul(s^(s>>>13),3266489909);s=(s^(s>>>16))>>>0;return s/4294967296;}}
+          const GROUPS = [
+            {cat:'warm',  words:['kind','benign','peaceful','sincere','friendly','generous','caring','compassionate','honest','warm','loyal','gentle','decent','fair','trustworthy','tolerant'], cx:.18,cy:.28,r:.10},
+            {cat:'cold',  words:['violent','cruel','deceptive','corrupt','hostile','malicious','dishonest','barbaric','vicious','treacherous','hateful','ruthless','evil','dangerous','wicked','sinister'],cx:.78,cy:.22,r:.10},
+            {cat:'comp',  words:['capable','skilled','intelligent','efficient','expert','talented','competent','qualified','proficient','adept','educated','effective','resourceful','astute','strategic','accomplished'],cx:.22,cy:.72,r:.10},
+            {cat:'incomp',words:['incapable','ignorant','unskilled','inept','bungling','foolish','ineffective','incompetent','weak','unqualified','clueless','amateur','naive','helpless','confused','clumsy'],cx:.74,cy:.78,r:.10},
+            {cat:'target',words:['Israeli','Jewish','Arabic','Muslim','Hamas','IDF','Palestinian','Gaza','Israel'],cx:.50,cy:.50,r:.09},
+            {cat:'neutral',words:['the','a','and','of','in','on','at','to','is','was','with','for','that','this','by','from'],cx:.46,cy:.25,r:.08},
+          ];
+          const CATS = ['warm','cold','comp','incomp','target','neutral'];
+          const INFO = '<strong>Cluster view:</strong> Each dot is a word token. BERT encodes context into a 768-dimensional vector — here projected to 2D via t-SNE. Words with similar meanings cluster together. The WEAT works by measuring cosine distance from a target group cluster to the attribute clusters.';
+          let hidden=new Set(), pts=[], hovIdx=-1;
+
+          function buildPts(){
+            const all=[];
+            for(const g of GROUPS){
+              const r2=rng(g.cat.charCodeAt(0)*31+g.cx*99|0);
+              for(let i=0;i<g.words.length;i++){
+                const a=r2()*Math.PI*2,d=r2()*g.r*Math.sqrt(r2());
+                all.push({x:g.cx+Math.cos(a)*d,y:g.cy+Math.sin(a)*d,cat:g.cat,word:g.words[i],r:4.5});
+              }
+            }
+            return all;
+          }
+
+          function tc(x,y,W,H){const p=36;return[p+x*(W-p*2),p+y*(H-p*2)];}
+
+          function draw2(){
+            const W=CV.width,H=CV.height;
+            cx2.clearRect(0,0,W,H);
+            pts=buildPts();
+            for(let i=0;i<pts.length;i++){
+              const pp=pts[i];if(hidden.has(pp.cat))continue;
+              const col=EMB_COLORS[pp.cat];
+              const[px,py]=tc(pp.x,pp.y,W,H);
+              const rv=pp.r||4.5,isH=i===hovIdx;
+              cx2.beginPath();cx2.arc(px,py,isH?rv+2.5:rv,0,Math.PI*2);cx2.fillStyle=col.fill;cx2.globalAlpha=isH?1:.82;cx2.fill();cx2.strokeStyle=isH?col.stroke:'rgba(255,255,255,.6)';cx2.lineWidth=isH?1.5:1;cx2.stroke();cx2.globalAlpha=1;
+              if(isH){cx2.font='600 10px JetBrains Mono,monospace';cx2.fillStyle=col.stroke;cx2.textAlign='left';cx2.fillText(pp.word,px+rv+3,py+3.5);}
+            }
+          }
+
+          function buildLeg2(){
+            const el=document.getElementById('emb-legend');el.innerHTML='';
+            for(const cat of CATS){
+              const col=EMB_COLORS[cat];
+              const it=document.createElement('div');
+              it.style.cssText='display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2);font-family:JetBrains Mono,monospace;cursor:pointer;opacity:'+(hidden.has(cat)?'.35':'1')+';transition:opacity .2s';
+              it.innerHTML='<span style="width:10px;height:10px;border-radius:50%;background:'+col.fill+';box-shadow:0 0 0 1.5px '+col.stroke+'30;flex-shrink:0"></span>'+col.label;
+              it.onclick=()=>{hidden.has(cat)?hidden.delete(cat):hidden.add(cat);it.style.opacity=hidden.has(cat)?'.35':'1';draw2();};
+              el.appendChild(it);
+            }
+            document.getElementById('emb-info').innerHTML=INFO;
+          }
+
+          function resize2(){
+            const rc=CV.parentElement.getBoundingClientRect();
+            const W2=Math.min(rc.width||640,700);
+            CV.width=W2;CV.height=Math.round(W2*.55);
+            draw2();
+          }
+
+          CV.addEventListener('mousemove',function(e){
+            const r=CV.getBoundingClientRect();
+            const sx=CV.width/r.width,sy=CV.height/r.height;
+            const mx=(e.clientX-r.left)*sx,my=(e.clientY-r.top)*sy;
+            let best=-1,bestD=Infinity;
+            for(let i=0;i<pts.length;i++){const p=pts[i];if(hidden.has(p.cat))continue;const[px,py]=tc(p.x,p.y,CV.width,CV.height);const d=(px-mx)**2+(py-my)**2;if(d<bestD&&d<196){bestD=d;best=i;}}
+            if(best!==hovIdx){hovIdx=best;draw2();}
+            if(best>=0){
+              const p=pts[best];const[px,py]=tc(p.x,p.y,CV.width,CV.height);
+              TT2.innerHTML='<div style="font-size:13px;font-weight:600;margin-bottom:3px">'+p.word+'</div><div style="color:var(--text-3);font-size:10px">category: '+EMB_COLORS[p.cat].label.toLowerCase()+'</div>';
+              TT2.style.left=(px/sx+12)+'px';TT2.style.top=(py/sy-20)+'px';TT2.style.opacity='1';CV.style.cursor='crosshair';
+            } else {TT2.style.opacity='0';CV.style.cursor='default';}
+          });
+          CV.addEventListener('mouseleave',function(){hovIdx=-1;TT2.style.opacity='0';draw2();});
+
+          buildLeg2();resize2();
+          window.addEventListener('resize',resize2);
+        })();
+        </script>
       </div>
     </div>
 
@@ -424,6 +571,135 @@ tweets_dict_US[profile].append(search_results.get_attribute(<span class="st">'in
           <p>Fiske et al. (2002) proposed the SCM, which posits that all stereotypes convey two primary dimensions — <strong>warmth</strong> and <strong>competence</strong>. The warmth dimension attributes sociability and morality; the competence dimension attributes intelligence, independence, and capability.</p>
           <p>Consistent with early SCM work, Jewish, Turkish, Arabic, and Middle Eastern people are regarded as having low warmth (LW) and low competence (LC) compared to white Americans — with the sole exception of high competence (HC) attributed to Jewish people (Fiske et al., 2002; Lee & Fiske, 2006; Cuddy et al., 2007).</p>
           <p>The BIAS Map (Cuddy et al., 2007) translates stereotypical content to real-life actions: <em>envied groups</em> (LW, HC) elicit passive facilitation and active harm (e.g., harassment); <em>hated groups</em> (LW, LC) elicit both passive harm (e.g., dismissal, inaction) and active harm. In this framework, Jewish people receive active harm yet passive facilitation, while Middle Eastern ethnic groups receive both types of harm.</p>
+        </div>
+
+        <!-- SCM Quadrant Chart — Fiske et al. 2002 -->
+        <div class="prose-block" style="margin-bottom:20px;padding:28px;">
+          <h3>Figure 1 — Fiske et al. (2002) SCM: Perceived Warmth &amp; Competence of Social Groups</h3>
+          <p style="margin-bottom:20px;">The Stereotype Content Model positions social groups along two axes — <strong>warmth</strong> (sociability, morality) and <strong>competence</strong> (intelligence, capability). Each quadrant predicts a distinct emotional and behavioural response. Groups studied in the present thesis are <span style="color:var(--danger-text);font-weight:600;">highlighted</span>.</p>
+          <div style="width:100%;overflow-x:auto;">
+          <svg id="scm-chart" viewBox="0 0 760 590" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SCM quadrant chart: warmth vs competence stereotypes of social groups" style="max-width:760px;width:100%;display:block;margin:0 auto;font-family:'JetBrains Mono',monospace;">
+            <defs>
+              <linearGradient id="q-tl" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ddeefb" stop-opacity=".8"/><stop offset="100%" stop-color="#c5e2f7" stop-opacity=".4"/></linearGradient>
+              <linearGradient id="q-tr" x1="1" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dcf5e1" stop-opacity=".8"/><stop offset="100%" stop-color="#c3eeca" stop-opacity=".4"/></linearGradient>
+              <linearGradient id="q-bl" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#fff0e0" stop-opacity=".8"/><stop offset="100%" stop-color="#fde2c5" stop-opacity=".4"/></linearGradient>
+              <linearGradient id="q-br" x1="1" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#fde8e8" stop-opacity=".8"/><stop offset="100%" stop-color="#fbd4d4" stop-opacity=".4"/></linearGradient>
+            </defs>
+
+            <!-- ── Quadrant backgrounds ── -->
+            <!-- top-left = LWHC (Envied) -->
+            <rect x="110" y="50"  width="270" height="225" fill="url(#q-tl)" rx="5"/>
+            <!-- top-right = HWHC (Admired) -->
+            <rect x="380" y="50"  width="270" height="225" fill="url(#q-tr)" rx="5"/>
+            <!-- bot-left = LWLC (Pitied) -->
+            <rect x="110" y="275" width="270" height="225" fill="url(#q-bl)" rx="5"/>
+            <!-- bot-right = HWLC (Contempt) -->
+            <rect x="380" y="275" width="270" height="225" fill="url(#q-br)" rx="5"/>
+
+            <!-- ── Axes ── -->
+            <line x1="110" y1="275" x2="655" y2="275" stroke="currentColor" stroke-width="1.5" opacity=".3"/>
+            <line x1="380" y1="45"  x2="380" y2="505" stroke="currentColor" stroke-width="1.5" opacity=".3"/>
+            <polygon points="655,270 665,275 655,280" fill="currentColor" opacity=".35"/>
+            <polygon points="375,45  380,35  385,45"  fill="currentColor" opacity=".35"/>
+            <polygon points="110,280 100,275 110,270" fill="currentColor" opacity=".25"/>
+            <polygon points="375,505 380,515 385,505" fill="currentColor" opacity=".25"/>
+
+            <!-- Axis text -->
+            <text x="380" y="24"  font-size="11" fill="currentColor" opacity=".55" text-anchor="middle" font-style="italic">← High Competence</text>
+            <text x="380" y="532" font-size="11" fill="currentColor" opacity=".55" text-anchor="middle" font-style="italic">Low Competence →</text>
+            <text x="670" y="279" font-size="11" fill="currentColor" opacity=".55" text-anchor="start" font-style="italic">Warm</text>
+            <text x="95"  y="279" font-size="11" fill="currentColor" opacity=".55" text-anchor="end"   font-style="italic">Cold</text>
+
+            <!-- ── Quadrant labels ── -->
+            <!-- LWHC top-left -->
+            <text x="245" y="72"  font-size="12" font-weight="700" fill="#1a5fa8" text-anchor="middle">ENVIED</text>
+            <text x="245" y="87"  font-size="9.5" fill="#1a5fa8" text-anchor="middle" opacity=".8">Low Warmth · High Competence</text>
+            <text x="245" y="100" font-size="9"   fill="#1a5fa8" text-anchor="middle" opacity=".65">jealousy · passive harm</text>
+            <!-- HWHC top-right -->
+            <text x="515" y="72"  font-size="12" font-weight="700" fill="#1a7a2e" text-anchor="middle">ADMIRED</text>
+            <text x="515" y="87"  font-size="9.5" fill="#1a7a2e" text-anchor="middle" opacity=".8">High Warmth · High Competence</text>
+            <text x="515" y="100" font-size="9"   fill="#1a7a2e" text-anchor="middle" opacity=".65">pride · active facilitation</text>
+            <!-- LWLC bot-left -->
+            <text x="245" y="297" font-size="12" font-weight="700" fill="#a3450a" text-anchor="middle">PITIED</text>
+            <text x="245" y="312" font-size="9.5" fill="#a3450a" text-anchor="middle" opacity=".8">Low Warmth · Low Competence</text>
+            <text x="245" y="325" font-size="9"   fill="#a3450a" text-anchor="middle" opacity=".65">pity · neglect</text>
+            <!-- HWLC bot-right -->
+            <text x="515" y="297" font-size="12" font-weight="700" fill="#8b1c1c" text-anchor="middle">CONTEMPT</text>
+            <text x="515" y="312" font-size="9.5" fill="#8b1c1c" text-anchor="middle" opacity=".8">High Warmth · Low Competence</text>
+            <text x="515" y="325" font-size="9"   fill="#8b1c1c" text-anchor="middle" opacity=".65">contempt · paternalism</text>
+
+            <!-- ═══════════════════════════════════════════════════════
+                 GROUP DOTS
+                 Coordinate formula (plot area 110–650 x, 50–500 y):
+                   x = 380 + warmth_frac * 240   (frac in -1..+1)
+                   y = 275 - comp_frac   * 200   (frac in -1..+1)
+
+                 LWLC → x ~110–370, y ~275–500  (cold, low comp)
+                 HWLC → x ~380–650, y ~275–500  (warm, low comp)
+                 LWHC → x ~110–370, y ~50–275   (cold, high comp)
+                 HWHC → x ~380–650, y ~50–275   (warm, high comp)
+            ══════════════════════════════════════════════════════════ -->
+
+            <!-- ── LWLC (Pitied): Arabic, Muslim, Welfare recipients, Poor people, Disabled ── -->
+            <!-- Arabic — thesis group (red) -->
+            <circle cx="210" cy="400" r="8" fill="#dc2626" stroke="white" stroke-width="1.5" opacity=".92"/>
+            <text x="202" y="420" font-size="10" font-weight="600" fill="#dc2626" text-anchor="middle">Arabic</text>
+            <!-- Muslim — thesis group (red), staggered slightly -->
+            <circle cx="265" cy="430" r="8" fill="#dc2626" stroke="white" stroke-width="1.5" opacity=".92"/>
+            <text x="257" y="450" font-size="10" font-weight="600" fill="#dc2626" text-anchor="middle">Muslim</text>
+            <!-- Welfare recipients -->
+            <circle cx="160" cy="460" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="160" y="478" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Welfare recipients</text>
+            <!-- Poor people -->
+            <circle cx="325" cy="455" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="325" y="473" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Poor people</text>
+            <!-- Disabled people -->
+            <circle cx="145" cy="390" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="145" y="408" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Disabled people</text>
+
+            <!-- ── HWLC (Contempt): Housewives, Elderly, Blind people ── -->
+            <!-- Housewives -->
+            <circle cx="475" cy="385" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="475" y="403" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Housewives</text>
+            <!-- Elderly people -->
+            <circle cx="530" cy="415" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="530" y="433" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Elderly people</text>
+            <!-- Blind people -->
+            <circle cx="590" cy="450" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="590" y="468" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Blind people</text>
+
+            <!-- ── LWHC (Envied): Rich people, Jewish, Businesswomen, Feminists, Asian people ── -->
+            <!-- Jewish — thesis group (red) -->
+            <circle cx="230" cy="145" r="8" fill="#dc2626" stroke="white" stroke-width="1.5" opacity=".92"/>
+            <text x="222" y="165" font-size="10" font-weight="600" fill="#dc2626" text-anchor="middle">Jewish people</text>
+            <!-- Rich people -->
+            <circle cx="175" cy="110" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="175" y="128" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Rich people</text>
+            <!-- Businesswomen -->
+            <circle cx="290" cy="175" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="290" y="193" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Businesswomen</text>
+            <!-- Feminists -->
+            <circle cx="160" cy="205" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="160" y="223" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Feminists</text>
+            <!-- Asian people -->
+            <circle cx="310" cy="130" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="310" y="148" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Asian people</text>
+
+            <!-- ── HWHC (Admired): Working professionals ── -->
+            <circle cx="510" cy="160" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="510" y="178" font-size="9.5" fill="currentColor" opacity=".55" text-anchor="middle">Working professionals</text>
+
+            <!-- ── Legend ── -->
+            <circle cx="116" cy="549" r="7" fill="#dc2626" opacity=".92" stroke="white" stroke-width="1"/>
+            <text x="130" y="553" font-size="10" fill="currentColor" opacity=".7">Groups studied in this thesis</text>
+            <circle cx="310" cy="549" r="6" fill="#9ca3af" opacity=".65"/>
+            <text x="324" y="553" font-size="10" fill="currentColor" opacity=".55">Other social groups (Fiske et al., 2002)</text>
+
+            <!-- ── Citation ── -->
+            <text x="648" y="578" font-size="8.5" fill="currentColor" opacity=".38" text-anchor="end">Fiske, Cuddy, Glick &amp; Xu (2002). A model of (often mixed) stereotype content. JPSP, 82(6), 878–902.</text>
+          </svg>
+          </div>
+          <div class="annotation">Figure 1. Stereotype Content Model (SCM) quadrant adapted from Fiske et al. (2002). Groups highlighted in red are the focus of the present analysis. Position reflects perceived warmth (x-axis) and competence (y-axis) relative to the American in-group.</div>
         </div>
 
         <div class="two-col" style="margin-bottom:20px;">
@@ -458,19 +734,19 @@ tweets_dict_US[profile].append(search_results.get_attribute(<span class="st">'in
           <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">Each category contains dozens to hundreds of words after WordNet expansion. Shown below are representative examples per dimension.</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Competent</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Competent</div>
               <div id="dict-competent" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
             </div>
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Incompetent</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Incompetent</div>
               <div id="dict-incompetent" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
             </div>
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#185fa5;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Warm</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#185fa5;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Warm</div>
               <div id="dict-warm" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
             </div>
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#854f0b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Cold</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#854f0b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Cold</div>
               <div id="dict-cold" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
             </div>
           </div>
@@ -595,10 +871,20 @@ mod_compstereotype = <span class="fn">lmer</span>(prop_Competence ~
           <button class="tab-btn" onclick="setWeatTab('dc',this)">Double-category</button>
         </div>
 
+        <!-- Interpretation guide -->
+        <div class="card" style="margin-bottom:20px;background:var(--info-bg);border-color:var(--info-border);">
+          <div class="card-label" style="color:var(--info-text);">How to read these results</div>
+          <div class="card-body" style="margin-top:8px;">
+            <div class="step-row"><div class="step-num" style="color:var(--info-text);">D</div><div class="step-content"><strong>D-score (effect size):</strong> A <strong>negative D</strong> means the group's word embeddings are closer to the <em>cold</em> or <em>incompetent</em> attribute words — i.e. the language around that group carries an implicit association with <strong>low warmth</strong> or <strong>low competence</strong>. A <strong>positive D</strong> means the opposite — closer association with warmth or competence.</div></div>
+            <div class="step-row"><div class="step-num" style="color:var(--info-text);">p</div><div class="step-content"><strong>Statistical significance:</strong> p &lt; .05 indicates a <strong>statistically significant</strong> effect — the observed D-score is unlikely to be due to chance alone (as confirmed by the permutation test). p ≥ .05 means the result is <em>not significant</em> (ns).</div></div>
+            <div class="step-row"><div class="step-num" style="color:var(--info-text);">sub</div><div class="step-content"><strong>P-value subscripts:</strong> p<sub>left</sub> = one-tailed probability that the D-score is in the left tail; p<sub>right</sub> = one-tailed probability in the right tail; p<sub>tot</sub> = two-tailed total probability (the primary significance criterion used throughout).</div></div>
+          </div>
+        </div>
+
         <div id="wt-before">
           <div class="demo-panel">
             <div class="demo-header"><span class="badge badge-pre">pre-Oct 7</span><span class="demo-title">SC-WEAT before Oct 7 — no significant effects (Tables 4 & 5)</span></div>
-            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All Ptot &gt; .05. IDF and Hamas not present in pre-conflict corpus.</div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All p<sub>tot</sub> &gt; .05. IDF and Hamas not present in pre-conflict corpus.</div>
             <div class="select-row"><select id="before-dim" onchange="renderBefore()"><option value="wc">Groups associated with Warm vs. Cold</option><option value="ci">Groups associated with Competence vs. Incompetence</option></select></div>
             <div id="before-bars"></div>
             <div class="annotation">Source: Tables 4 & 5 · BERT embeddings · 500-permutation test</div>
@@ -608,7 +894,7 @@ mod_compstereotype = <span class="fn">lmer</span>(prop_Competence ~
         <div id="wt-after" style="display:none;">
           <div class="demo-panel">
             <div class="demo-header"><span class="badge badge-real">post-Oct 7</span><span class="demo-title">SC-WEAT after Oct 7 — all groups significant (Tables 6 & 7)</span></div>
-            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All six groups significantly negative on both SCM dimensions. Negative D = stronger cold/incompetent association.</div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All six groups significantly negative on both SCM dimensions. Negative D = stronger cold/incompetent association (p<sub>tot</sub> &lt; .05).</div>
             <div class="select-row"><select id="after-dim" onchange="renderAfter()"><option value="wc">Groups associated with Warm vs. Cold</option><option value="ci">Groups associated with Competence vs. Incompetence</option></select></div>
             <div id="after-bars"></div>
             <div class="annotation">Source: Tables 6 & 7 · BERT embeddings · 500-permutation test</div>
@@ -618,17 +904,19 @@ mod_compstereotype = <span class="fn">lmer</span>(prop_Competence ~
         <div id="wt-change" style="display:none;">
           <div class="demo-panel">
             <div class="demo-header"><span class="badge badge-real">real data</span><span class="demo-title">Change in stereotype before vs. after Oct 7 (Tables 8–11)</span></div>
-            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All Ptot = .001. Positive D = stronger association with first attribute after Oct 7.</div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">
+              All p<sub>tot</sub> = .001. These are <strong>double-category WEAT</strong> tests that directly compare the <em>pre-conflict</em> corpus embeddings against the <em>post-conflict</em> corpus embeddings for each attribute (e.g. "Warm before" vs. "Warm after"). A <strong>positive D</strong> means the attribute was more strongly associated in the <em>before</em> corpus; a <strong>negative D</strong> means the association was stronger in the <em>after</em> corpus. In other words, this tab shows <em>how much each stereotype shifted</em> as a direct result of the Oct 7 conflict discourse.
+            </div>
             <div class="select-row"><select id="change-group" onchange="renderChange()"><option value="Israeli">Israeli group (Table 8)</option><option value="Jewish">Jewish group (Table 9)</option><option value="Arabic">Arabic group (Table 10)</option><option value="Muslim">Muslim group (Table 11)</option></select></div>
             <div id="change-cards"></div>
-            <div class="annotation" style="margin-top:12px;">All effects p = .001 (1,000 permutations).</div>
+            <div class="annotation" style="margin-top:12px;">All effects p<sub>tot</sub> = .001 (1,000 permutations).</div>
           </div>
         </div>
 
         <div id="wt-dc" style="display:none;">
           <div class="demo-panel">
             <div class="demo-header"><span class="badge badge-real">real data</span><span class="demo-title">Double-category WEAT — group pairs before vs. after (from CSVs)</span></div>
-            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">Positive D: first group more associated with first attribute than second group.</div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">Positive D: first group more associated with first attribute than second group. p<sub>tot</sub> &lt; .05 = statistically significant.</div>
             <div id="dc-table"></div>
             <div class="annotation">Sources: weat_before_BERT.csv · weat_after_BERT.csv · 1,000 permutations</div>
           </div>
@@ -641,7 +929,7 @@ mod_compstereotype = <span class="fn">lmer</span>(prop_Competence ~
 
 D = mean_{w∈X} s(w,A,B)
     / std_dev(all similarities)</div></div>
-          <div class="card"><div class="card-label">Permutation test</div><div class="card-title">500–1,000 shuffles</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">Attribute labels randomly reassigned each iteration</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Pleft, Pright, Ptot all reported</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Significance threshold: Ptot &lt; .05</div></div></div></div>
+          <div class="card"><div class="card-label">Permutation test</div><div class="card-title">500–1,000 shuffles</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">Attribute labels randomly reassigned each iteration</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">p<sub>left</sub>, p<sub>right</sub>, p<sub>tot</sub> all reported</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Significance threshold: p<sub>tot</sub> &lt; .05</div></div></div></div>
         </div>
       </div>
     </div>
@@ -732,10 +1020,10 @@ D = mean_{w∈X} s(w,A,B)
     document.getElementById('parse-steps').style.display='block';
     document.getElementById('parse-in').textContent=input;
     document.getElementById('parse-out').textContent=current;
-    document.getElementById('step-list').innerHTML=steps.map((s,i)=>`<div class="step-row"><div class="step-num">${i+1}.</div><div class="step-content"><strong>${s.label}</strong><br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;">${s.result.substring(0,110)}${s.result.length>110?'...':''}</span></div></div>`).join('');
+    document.getElementById('step-list').innerHTML=steps.map((s,i)=>`<div class="step-row"><div class="step-num">${i+1}.</div><div class="step-content"><strong>${s.label}</strong><br><span style="font-family:'JetBrains Mono',monospace;font-size:11px;">${s.result.substring(0,110)}${s.result.length>110?'...':''}</span></div></div>`).join('');
     const kws=['Gaza','Israel','Palestin','Muslim','Jewish','Hamas','Netanyahu','Ceasefire','IDF','Rafah','Jihad','Antisemit'];
     const found=kws.filter(k=>new RegExp(k,'i').test(current));
-    document.getElementById('kw-check').innerHTML=found.length>0?`<span style="font-size:12px;color:#3b6d11;font-family:'IBM Plex Mono',monospace;">✓ Keyword match: ${found.join(', ')}</span>`:`<span style="font-size:12px;color:#a32d2d;font-family:'IBM Plex Mono',monospace;">✗ No keyword match — tweet discarded</span>`;
+    document.getElementById('kw-check').innerHTML=found.length>0?`<span style="font-size:12px;color:#3b6d11;font-family:'JetBrains Mono',monospace;">✓ Keyword match: ${found.join(', ')}</span>`:`<span style="font-size:12px;color:#a32d2d;font-family:'JetBrains Mono',monospace;">✗ No keyword match — tweet discarded</span>`;
   }
 
   // Tokenization
@@ -778,7 +1066,7 @@ D = mean_{w∈X} s(w,A,B)
     document.getElementById('change-cards').innerHTML='<div class="change-grid">'+data.map(row=>{const cls=row.d>=0?'pos':'neg',col=row.d>=0?'#1D9E75':'#D85A30';return`<div class="change-card"><div class="change-card-label">${row.label}</div><div class="change-d ${cls}">${row.d>=0?'+':''}${row.d.toFixed(4)}</div><div class="change-meta">${row.d>=0?'stronger before':'stronger after'} Oct 7</div><div class="change-sig" style="color:${col};">${sigStr(row.ptot)} p=${row.ptot.toFixed(4)}</div></div>`;}).join('')+'</div>';
   }
   function renderDC(){
-    const mkR=(period,data)=>data.map(r=>{const cls=r.d>0?'pos':'neg',sig=sigStr(r.ptot),sc=sig!=='ns'?'sb-y':'sb-n';return`<tr><td><span class="pp ${period==='before'?'pp-b':'pp-a'}">${period==='before'?'pre-Oct 7':'post-Oct 7'}</span></td><td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">${r.groups}</td><td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);">${r.attrs}</td><td><span class="dv ${cls}">${r.d>=0?'+':''}${r.d.toFixed(4)}</span></td><td><span class="sb ${sc}">${sig} p=${r.ptot.toFixed(3)}</span></td></tr>`;}).join('');
+    const mkR=(period,data)=>data.map(r=>{const cls=r.d>0?'pos':'neg',sig=sigStr(r.ptot),sc=sig!=='ns'?'sb-y':'sb-n';return`<tr><td><span class="pp ${period==='before'?'pp-b':'pp-a'}">${period==='before'?'pre-Oct 7':'post-Oct 7'}</span></td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;">${r.groups}</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);">${r.attrs}</td><td><span class="dv ${cls}">${r.d>=0?'+':''}${r.d.toFixed(4)}</span></td><td><span class="sb ${sc}">${sig} p=${r.ptot.toFixed(3)}</span></td></tr>`;}).join('');
     document.getElementById('dc-table').innerHTML=`<table class="wt"><thead><tr><th>Period</th><th>Groups</th><th>Attributes</th><th>D-score</th><th>Sig.</th></tr></thead><tbody>${mkR('before',DC.before)}${mkR('after',DC.after)}</tbody></table>`;
   }
 
@@ -795,12 +1083,29 @@ D = mean_{w∈X} s(w,A,B)
       if (!el) return;
       const colors = {competent:'var(--success-bg)',incompetent:'var(--danger-bg)',warm:'var(--info-bg)',cold:'var(--warn-bg)'};
       const textColors = {competent:'var(--success-text)',incompetent:'var(--danger-text)',warm:'var(--info-text)',cold:'var(--warn-text)'};
-      el.innerHTML = words.map(w => `<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border-radius:3px;background:${colors[cat]};color:${textColors[cat]};margin:2px;display:inline-block;">${w}</span>`).join('');
+      el.innerHTML = words.map(w => `<span style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 6px;border-radius:3px;background:${colors[cat]};color:${textColors[cat]};margin:2px;display:inline-block;">${w}</span>`).join('');
     });
   }
   renderDict();
 
   renderBefore(); renderAfter(); renderChange(); renderDC();
+  // ── Theme switcher ──────────────────────────────────────────
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    ['light','dark','hc'].forEach(k=>{
+      var btn = document.getElementById('btn-'+k);
+      if(btn) btn.classList.toggle('active', k===t);
+    });
+  }
+  (function(){
+    var saved;
+    try{ saved = localStorage.getItem('theme'); }catch(e){}
+    var prefersDark = window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    var t = saved || (prefersDark ? 'dark' : 'light');
+    setTheme(t);
+  })();
+
 </script>
 </body>
 </html>
