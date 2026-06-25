@@ -9,225 +9,214 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 <style>
-  /* ── Design tokens — light mode ────────────────────────────────────────── */
-  :root {
-    --bg:        #ffffff;
-    --bg-2:      #f5f5f4;
-    --bg-3:      #f0efee;
-    --text:      #1c1c1e;
-    --text-2:    #4a5568;
-    --text-3:    #9ca3af;
-    --border:    rgba(0,0,0,0.10);
-    --border-2:  rgba(0,0,0,0.18);
-    --radius-md: 8px;
-    --radius-lg: 12px;
-
-    /* semantic */
-    --info-bg:    #e6f1fb; --info-text:   #185fa5; --info-border: rgba(24,95,165,.35);
-    --success-bg: #eaf3de; --success-text:#3b6d11; --success-border:rgba(59,109,17,.3);
-    --warn-bg:    #faeeda; --warn-text:   #854f0b; --warn-border:  rgba(133,79,11,.3);
-    --danger-bg:  #fcebeb; --danger-text: #a32d2d; --danger-border:rgba(163,45,45,.35);
-    --red:   #D85A30;
-    --green: #1D9E75;
-    --gray:  #888780;
+:root {
+  --bg:#ffffff; --bg-2:#f5f5f4; --bg-3:#eeede9;
+  --text:#1c1c1e; --text-2:#4a5568; --text-3:#9ca3af;
+  --border:rgba(0,0,0,.10); --border-2:rgba(0,0,0,.18);
+  --radius-md:8px; --radius-lg:12px;
+  --info-bg:#e6f1fb; --info-text:#185fa5; --info-border:rgba(24,95,165,.35);
+  --success-bg:#eaf3de; --success-text:#3b6d11;
+  --warn-bg:#faeeda; --warn-text:#854f0b;
+  --danger-bg:#fcebeb; --danger-text:#a32d2d;
+  --red:#D85A30; --green:#1D9E75;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#1c1c1e; --bg-2:#28282a; --bg-3:#111111;
+    --text:#f2f2f7; --text-2:#aeaeb2; --text-3:#636366;
+    --border:rgba(255,255,255,.10); --border-2:rgba(255,255,255,.18);
+    --info-bg:#042c53; --info-text:#85b7eb;
+    --success-bg:#173404; --success-text:#c0dd97;
+    --warn-bg:#412402; --warn-text:#fac775;
+    --danger-bg:#501313; --danger-text:#f09595;
+    --red:#f09595; --green:#5dcaa5;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:     #1c1c1e; --bg-2:   #28282a; --bg-3:   #111111;
-      --text:   #f2f2f7; --text-2: #aeaeb2; --text-3: #636366;
-      --border: rgba(255,255,255,.10); --border-2: rgba(255,255,255,.18);
-      --info-bg:#042c53;  --info-text:#85b7eb;  --info-border:rgba(133,183,235,.3);
-      --success-bg:#173404; --success-text:#c0dd97; --success-border:rgba(192,221,151,.25);
-      --warn-bg:#412402;  --warn-text:#fac775;  --warn-border:rgba(250,199,117,.25);
-      --danger-bg:#501313; --danger-text:#f09595; --danger-border:rgba(240,149,149,.25);
-      --red:  #f09595; --green:#5dcaa5; --gray:#b4b2a9;
-    }
-  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg-3);color:var(--text);line-height:1.5;}
+a{color:var(--info-text);text-decoration:none;}
+a:hover{opacity:.75;}
+select,textarea,input[type=text]{font-family:'IBM Plex Mono',monospace;font-size:12px;background:var(--bg);color:var(--text);border:.5px solid var(--border-2);border-radius:var(--radius-md);padding:7px 10px;width:100%;}
+select{width:auto;cursor:pointer;}
+textarea{resize:vertical;}
 
-  /* ── Reset & base ───────────────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 16px; }
-  body { font-family: 'Inter', sans-serif; background: var(--bg-3); color: var(--text); line-height: 1.5; }
-  a { color: var(--info-text); text-decoration: none; }
-  a:hover { opacity: .75; }
-  select, textarea, input[type=text] {
-    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
-    background: var(--bg); color: var(--text); border: .5px solid var(--border-2);
-    border-radius: var(--radius-md); padding: 7px 10px; width: 100%;
-  }
-  select { width: auto; cursor: pointer; }
-  textarea { resize: vertical; }
+/* Layout — full width, no outer padding */
+.app{display:flex;min-height:100vh;width:100%;}
+.sidebar{width:224px;min-width:224px;flex-shrink:0;background:var(--bg);border-right:.5px solid var(--border);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.main{flex:1;min-width:0;overflow-y:auto;}
+.section{display:none;padding:36px 40px;width:100%;}
+.section.active{display:block;}
+.inner{max-width:860px;}
 
-  /* ── Layout ─────────────────────────────────────────────────────────────── */
-  .app { display: flex; min-height: 100vh; }
-  .sidebar {
-    width: 224px; min-width: 224px; background: var(--bg);
-    border-right: .5px solid var(--border); padding: 24px 0;
-    position: sticky; top: 0; height: 100vh; overflow-y: auto;
-  }
-  .main { flex: 1; overflow-y: auto; }
-  .section { display: none; padding: 36px 32px; max-width: 880px; }
-  .section.active { display: block; }
+/* Sidebar */
+.sidebar-logo{padding:0 20px 20px;border-bottom:.5px solid var(--border);margin-bottom:16px;}
+.sidebar-logo .title{font-family:'IBM Plex Serif',serif;font-size:14px;font-weight:500;color:var(--text);line-height:1.4;}
+.sidebar-logo .subtitle{font-size:11px;color:var(--text-3);margin-top:2px;font-family:'IBM Plex Mono',monospace;}
+.nav-section{padding:0 12px;margin-bottom:8px;}
+.nav-label{font-size:10px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;padding:0 8px;margin-bottom:4px;font-family:'IBM Plex Mono',monospace;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--radius-md);cursor:pointer;font-size:13px;color:var(--text-2);border:none;background:none;width:100%;text-align:left;transition:all .15s;}
+.nav-item:hover{background:var(--bg-2);color:var(--text);}
+.nav-item.active{background:var(--info-bg);color:var(--info-text);font-weight:500;}
+.nav-item i{font-size:15px;}
+.nav-num{font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.6;margin-left:auto;}
 
-  /* ── Sidebar ─────────────────────────────────────────────────────────────── */
-  .sidebar-logo { padding: 0 20px 20px; border-bottom: .5px solid var(--border); margin-bottom: 16px; }
-  .sidebar-logo .title { font-family: 'IBM Plex Serif', serif; font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; }
-  .sidebar-logo .subtitle { font-size: 11px; color: var(--text-3); margin-top: 2px; font-family: 'IBM Plex Mono', monospace; }
-  .nav-section { padding: 0 12px; margin-bottom: 8px; }
-  .nav-label { font-size: 10px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .08em; padding: 0 8px; margin-bottom: 4px; font-family: 'IBM Plex Mono', monospace; }
-  .nav-item {
-    display: flex; align-items: center; gap: 8px; padding: 7px 8px;
-    border-radius: var(--radius-md); cursor: pointer; font-size: 13px;
-    color: var(--text-2); border: none; background: none; width: 100%; text-align: left; transition: all .15s;
-  }
-  .nav-item:hover { background: var(--bg-2); color: var(--text); }
-  .nav-item.active { background: var(--info-bg); color: var(--info-text); font-weight: 500; }
-  .nav-item i { font-size: 15px; }
-  .nav-num { font-family: 'IBM Plex Mono', monospace; font-size: 10px; opacity: .6; margin-left: auto; }
+/* Typography */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.sec-title{font-family:'IBM Plex Serif',serif;font-size:26px;font-weight:500;color:var(--text);line-height:1.25;margin-bottom:8px;}
+.sec-desc{font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:28px;max-width:680px;}
+.annotation{font-size:11px;color:var(--text-3);font-style:italic;margin-top:8px;font-family:'IBM Plex Mono',monospace;}
 
-  /* ── Typography helpers ─────────────────────────────────────────────────── */
-  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
-  .sec-title { font-family: 'IBM Plex Serif', serif; font-size: 26px; font-weight: 500; color: var(--text); line-height: 1.25; margin-bottom: 8px; }
-  .sec-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 28px; max-width: 640px; }
-  .annotation { font-size: 11px; color: var(--text-3); font-style: italic; margin-top: 8px; font-family: 'IBM Plex Mono', monospace; }
+/* Cards */
+.card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;}
+.card-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.card-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px;}
+.card-body{font-size:13px;color:var(--text-2);line-height:1.6;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 
-  /* ── Cards ──────────────────────────────────────────────────────────────── */
-  .card { background: var(--bg); border: .5px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
-  .card-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
-  .card-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
-  .card-body { font-size: 13px; color: var(--text-2); line-height: 1.6; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+/* Discussion / prose blocks */
+.prose-block{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px;}
+.prose-block h3{font-family:'IBM Plex Serif',serif;font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;}
+.prose-block p{font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:10px;}
+.prose-block p:last-child{margin-bottom:0;}
+.prose-block .highlight{font-family:'IBM Plex Mono',monospace;font-size:12px;background:var(--warn-bg);color:var(--warn-text);padding:2px 6px;border-radius:4px;}
+.note-box{background:var(--warn-bg);border-left:2px solid var(--warn-text);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--warn-text);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.limitation-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.lim-card{background:var(--bg-2);border-radius:var(--radius-md);padding:14px;}
+.lim-card h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px;font-family:'IBM Plex Mono',monospace;}
+.lim-card p{font-size:12px;color:var(--text-2);line-height:1.6;}
 
-  /* ── Demo panels ─────────────────────────────────────────────────────────── */
-  .demo-panel { background: var(--bg); border: .5px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; }
-  .demo-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-  .demo-title { font-size: 14px; font-weight: 500; color: var(--text); }
-  .badge { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 20px; }
-  .badge-live { background: var(--success-bg); color: var(--success-text); }
-  .badge-real { background: var(--danger-bg); color: var(--danger-text); }
-  .badge-pre  { background: var(--warn-bg);   color: var(--warn-text); }
+/* Demo panels */
+.demo-panel{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;}
+.demo-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.demo-title{font-size:14px;font-weight:500;color:var(--text);}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;}
+.badge-live{background:var(--success-bg);color:var(--success-text);}
+.badge-real{background:var(--danger-bg);color:var(--danger-text);}
+.badge-pre{background:var(--warn-bg);color:var(--warn-text);}
 
-  /* ── Buttons ─────────────────────────────────────────────────────────────── */
-  .btn { font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 8px 16px; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: opacity .15s; }
-  .btn:hover { opacity: .82; }
-  .btn-p { background: var(--info-bg); color: var(--info-text); border: .5px solid var(--info-border); }
-  .btn-s { background: var(--bg-2); color: var(--text-2); border: .5px solid var(--border-2); }
+/* Buttons */
+.btn{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 16px;border-radius:var(--radius-md);cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:opacity .15s;}
+.btn:hover{opacity:.82;}
+.btn-p{background:var(--info-bg);color:var(--info-text);border:.5px solid var(--info-border);}
+.btn-s{background:var(--bg-2);color:var(--text-2);border:.5px solid var(--border-2);}
 
-  /* ── Code blocks ─────────────────────────────────────────────────────────── */
-  .code-block { background: var(--bg-2); border: .5px solid var(--border); border-radius: var(--radius-md); padding: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.7; color: var(--text-2); overflow-x: auto; margin-bottom: 16px; }
-  .kw  { color: #534AB7; } .st { color: #854F0B; } .cm { color: var(--text-3); font-style: italic; } .num { color: #993C1D; } .fn { color: #0F6E56; }
+/* Code */
+.code-block{background:var(--bg-2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;color:var(--text-2);overflow-x:auto;margin-bottom:16px;}
+.kw{color:#534AB7;}.st{color:#854F0B;}.cm{color:var(--text-3);font-style:italic;}.num{color:#993C1D;}.fn{color:#0F6E56;}
 
-  /* ── Tokens ──────────────────────────────────────────────────────────────── */
-  .token-display { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-  .token { font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 4px; border: .5px solid var(--border); background: var(--bg-2); color: var(--text-2); }
-  .token.cls-sep { background: var(--info-bg); color: var(--info-text); font-weight: 500; }
-  .token.subword { background: var(--warn-bg); color: var(--warn-text); }
-  .token.user    { background: var(--success-bg); color: var(--success-text); }
+/* Tokens */
+.token-display{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.token{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 8px;border-radius:4px;border:.5px solid var(--border);background:var(--bg-2);color:var(--text-2);}
+.token.cls-sep{background:var(--info-bg);color:var(--info-text);font-weight:500;}
+.token.subword{background:var(--warn-bg);color:var(--warn-text);}
+.token.user{background:var(--success-bg);color:var(--success-text);}
 
-  /* ── Steps ───────────────────────────────────────────────────────────────── */
-  .step-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
-  .step-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-3); min-width: 20px; padding-top: 2px; }
-  .step-content { font-size: 13px; color: var(--text-2); line-height: 1.6; }
-  .step-content strong { color: var(--text); font-weight: 500; }
+/* Steps */
+.step-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.step-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-3);min-width:20px;padding-top:2px;}
+.step-content{font-size:13px;color:var(--text-2);line-height:1.6;}
+.step-content strong{color:var(--text);font-weight:500;}
 
-  /* ── Output rows ─────────────────────────────────────────────────────────── */
-  .out-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
-  .out-box { background: var(--bg-2); border-radius: var(--radius-md); padding: 12px; }
-  .out-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); margin-bottom: 6px; text-transform: uppercase; }
-  .out-val { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text); word-break: break-all; }
+/* Out rows */
+.out-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.out-box{background:var(--bg-2);border-radius:var(--radius-md);padding:12px;}
+.out-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:6px;text-transform:uppercase;}
+.out-val{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);word-break:break-all;}
 
-  /* ── Tabs ────────────────────────────────────────────────────────────────── */
-  .tab-row { display: flex; gap: 2px; margin-bottom: 16px; background: var(--bg-2); padding: 3px; border-radius: var(--radius-md); width: fit-content; flex-wrap: wrap; }
-  .tab-btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 5px 12px; border: none; background: none; cursor: pointer; border-radius: 6px; color: var(--text-2); }
-  .tab-btn.active { background: var(--bg); color: var(--text); font-weight: 500; box-shadow: 0 .5px 3px rgba(0,0,0,.08); }
+/* Tabs */
+.tab-row{display:flex;gap:2px;margin-bottom:16px;background:var(--bg-2);padding:3px;border-radius:var(--radius-md);width:fit-content;flex-wrap:wrap;}
+.tab-btn{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:5px 12px;border:none;background:none;cursor:pointer;border-radius:6px;color:var(--text-2);}
+.tab-btn.active{background:var(--bg);color:var(--text);font-weight:500;box-shadow:0 .5px 3px rgba(0,0,0,.08);}
 
-  /* ── Stat grid ───────────────────────────────────────────────────────────── */
-  .stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
-  .stat-card { background: var(--bg-2); border-radius: var(--radius-md); padding: 14px; }
-  .stat-val { font-family: 'IBM Plex Serif', serif; font-size: 24px; font-weight: 500; color: var(--text); }
-  .stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); margin-top: 2px; text-transform: uppercase; }
+/* Stats */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.stat-card{background:var(--bg-2);border-radius:var(--radius-md);padding:14px;}
+.stat-val{font-family:'IBM Plex Serif',serif;font-size:24px;font-weight:500;color:var(--text);}
+.stat-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-top:2px;text-transform:uppercase;}
 
-  /* ── Legend ──────────────────────────────────────────────────────────────── */
-  .legend-row { display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-2); }
-  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+/* Legend */
+.legend-row{display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2);}
+.legend-dot{width:8px;height:8px;border-radius:50%;}
 
-  /* ── Keyword chips ───────────────────────────────────────────────────────── */
-  .kchip { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 3px; background: var(--bg-2); color: var(--text-2); border: .5px solid var(--border); margin: 2px; }
+/* Chips */
+.kchip{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:3px;background:var(--bg-2);color:var(--text-2);border:.5px solid var(--border);margin:2px;}
 
-  /* ── Hero ────────────────────────────────────────────────────────────────── */
-  .hero { padding: 40px 0 28px; }
-  .hero h1 { font-family: 'IBM Plex Serif', serif; font-size: 32px; font-weight: 500; color: var(--text); line-height: 1.2; margin-bottom: 12px; }
-  .hero p { font-size: 15px; color: var(--text-2); line-height: 1.7; max-width: 580px; margin-bottom: 20px; }
-  .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
-  .hero-link { font-size: 13px; font-family: 'IBM Plex Mono', monospace; color: var(--info-text); display: flex; align-items: center; gap: 4px; }
-  .hero-link:hover { opacity: .75; }
+/* Hero */
+.hero{padding:40px 0 28px;}
+.hero h1{font-family:'IBM Plex Serif',serif;font-size:32px;font-weight:500;color:var(--text);line-height:1.2;margin-bottom:12px;}
+.hero p{font-size:15px;color:var(--text-2);line-height:1.7;max-width:580px;margin-bottom:20px;}
+.hero-links{display:flex;gap:10px;flex-wrap:wrap;}
+.hero-link{font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--info-text);display:flex;align-items:center;gap:4px;}
 
-  /* ── Pipeline overview cards ─────────────────────────────────────────────── */
-  .po-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-  .po-card { background: var(--bg); border: .5px solid var(--border); border-radius: var(--radius-lg); padding: 16px; cursor: pointer; transition: border-color .15s; }
-  .po-card:hover { border-color: var(--info-text); }
-  .po-num  { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); margin-bottom: 4px; }
-  .po-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-  .po-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
-  .po-tag  { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 2px 6px; border-radius: 3px; margin-top: 8px; }
-  .tag-live { background: var(--success-bg); color: var(--success-text); }
-  .tag-vis  { background: var(--info-bg);    color: var(--info-text); }
-  .tag-code { background: var(--bg-2);       color: var(--text-2); }
+/* Pipeline overview */
+.po-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+.po-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:16px;cursor:pointer;transition:border-color .15s;}
+.po-card:hover{border-color:var(--info-text);}
+.po-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:4px;}
+.po-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.po-desc{font-size:12px;color:var(--text-2);line-height:1.5;}
+.po-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 6px;border-radius:3px;margin-top:8px;}
+.tag-live{background:var(--success-bg);color:var(--success-text);}
+.tag-vis{background:var(--info-bg);color:var(--info-text);}
+.tag-code{background:var(--bg-2);color:var(--text-2);}
 
-  /* ── Finding boxes ───────────────────────────────────────────────────────── */
-  .finding-box { background: var(--bg-2); border-left: 2px solid var(--info-text); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 12px 16px; margin-bottom: 10px; }
-  .finding-box p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
-  .finding-box strong { color: var(--text); }
+/* Finding boxes */
+.finding-box{background:var(--bg-2);border-left:2px solid var(--info-text);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:12px 16px;margin-bottom:10px;}
+.finding-box p{font-size:13px;color:var(--text-2);line-height:1.6;}
+.finding-box strong{color:var(--text);}
 
-  /* ── WEAT bars ───────────────────────────────────────────────────────────── */
-  .bar-row { display: grid; grid-template-columns: 76px 1fr 68px 110px; gap: 8px; align-items: center; margin-bottom: 6px; }
-  .bar-group { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-2); }
-  .bar-track { background: var(--bg-2); border-radius: 4px; height: 14px; position: relative; overflow: hidden; }
-  .bar-fill  { height: 100%; border-radius: 4px; position: absolute; }
-  .bar-d     { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-align: right; }
-  .bar-sig   { font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
-  .sig-star  { color: var(--danger-text); }
-  .ns-txt    { color: var(--text-3); }
-  .select-row { display: flex; gap: 8px; margin-bottom: 12px; }
+/* WEAT bars */
+.bar-row{display:grid;grid-template-columns:80px 1fr 68px 120px;gap:8px;align-items:center;margin-bottom:7px;}
+.bar-group{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-2);}
+.bar-track{background:var(--bg-2);border-radius:4px;height:14px;position:relative;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;position:absolute;}
+.bar-d{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;text-align:right;}
+.bar-sig{font-family:'IBM Plex Mono',monospace;font-size:10px;}
+.sig-star{color:var(--danger-text);}
+.ns-txt{color:var(--text-3);}
+.select-row{display:flex;gap:8px;margin-bottom:12px;}
 
-  /* ── Change cards ────────────────────────────────────────────────────────── */
-  .change-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 4px; }
-  .change-card { background: var(--bg-2); border-radius: var(--radius-md); padding: 12px; }
-  .change-card-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); margin-bottom: 6px; line-height: 1.5; }
-  .change-d   { font-family: 'IBM Plex Serif', serif; font-size: 20px; font-weight: 500; }
-  .change-d.pos { color: var(--green); }
-  .change-d.neg { color: var(--red); }
-  .change-meta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); margin-top: 4px; }
-  .change-sig  { font-family: 'IBM Plex Mono', monospace; font-size: 10px; margin-top: 2px; }
+/* Change cards */
+.change-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.change-card{background:var(--bg-2);border-radius:var(--radius-md);padding:12px;}
+.change-card-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-bottom:6px;line-height:1.5;}
+.change-d{font-family:'IBM Plex Serif',serif;font-size:20px;font-weight:500;}
+.change-d.pos{color:var(--green);}
+.change-d.neg{color:var(--red);}
+.change-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);margin-top:4px;}
+.change-sig{font-family:'IBM Plex Mono',monospace;font-size:10px;margin-top:2px;}
 
-  /* ── DC table ────────────────────────────────────────────────────────────── */
-  .wt { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .wt th { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; padding: 6px 10px; text-align: left; border-bottom: .5px solid var(--border); }
-  .wt td { padding: 8px 10px; border-bottom: .5px solid var(--border); vertical-align: middle; }
-  .wt tr:last-child td { border-bottom: none; }
-  .dv { font-family: 'IBM Plex Serif', serif; font-size: 15px; font-weight: 500; }
-  .dv.pos { color: var(--green); } .dv.neg { color: var(--red); }
-  .pp { display: inline-flex; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 2px 7px; border-radius: 20px; }
-  .pp-b { background: var(--warn-bg);   color: var(--warn-text); }
-  .pp-a { background: var(--danger-bg); color: var(--danger-text); }
-  .sb { font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 2px 6px; border-radius: 3px; }
-  .sb-y { background: var(--danger-bg); color: var(--danger-text); }
-  .sb-n { background: var(--bg-2); color: var(--text-3); }
+/* DC table */
+.wt{width:100%;border-collapse:collapse;font-size:12px;}
+.wt th{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;padding:6px 10px;text-align:left;border-bottom:.5px solid var(--border);}
+.wt td{padding:8px 10px;border-bottom:.5px solid var(--border);vertical-align:middle;}
+.wt tr:last-child td{border-bottom:none;}
+.dv{font-family:'IBM Plex Serif',serif;font-size:15px;font-weight:500;}
+.dv.pos{color:var(--green);} .dv.neg{color:var(--red);}
+.pp{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:20px;}
+.pp-b{background:var(--warn-bg);color:var(--warn-text);}
+.pp-a{background:var(--danger-bg);color:var(--danger-text);}
+.sb{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 6px;border-radius:3px;}
+.sb-y{background:var(--danger-bg);color:var(--danger-text);}
+.sb-n{background:var(--bg-2);color:var(--text-3);}
 
-  /* ── Responsive ──────────────────────────────────────────────────────────── */
-  @media (max-width: 700px) {
-    .sidebar { display: none; }
-    .section { padding: 20px 16px; }
-    .two-col, .po-grid, .out-row, .change-grid, .stat-grid { grid-template-columns: 1fr; }
-    .bar-row { grid-template-columns: 60px 1fr 54px; }
-    .bar-sig { display: none; }
-  }
+/* Divider */
+.divider{border:none;border-top:.5px solid var(--border);margin:28px 0;}
+
+/* Responsive */
+@media(max-width:700px){
+  .sidebar{display:none;}
+  .section{padding:20px 16px;}
+  .two-col,.po-grid,.out-row,.change-grid,.stat-grid,.limitation-grid{grid-template-columns:1fr;}
+  .bar-row{grid-template-columns:60px 1fr 54px;} .bar-sig{display:none;}
+}
 </style>
 </head>
 <body>
-
 <div class="app">
+
   <!-- SIDEBAR -->
   <nav class="sidebar" aria-label="Site navigation">
     <div class="sidebar-logo">
@@ -245,62 +234,67 @@
       <button class="nav-item" onclick="showSec('token',this)"><i class="ti ti-letter-case" aria-hidden="true"></i> Tokenization <span class="nav-num">03</span></button>
       <button class="nav-item" onclick="showSec('embed',this)"><i class="ti ti-vector" aria-hidden="true"></i> Embeddings <span class="nav-num">04</span></button>
       <button class="nav-item" onclick="showSec('weat',this)"><i class="ti ti-chart-dots" aria-hidden="true"></i> WEAT Analysis <span class="nav-num">05</span></button>
+      <button class="nav-item" onclick="showSec('discussion',this)"><i class="ti ti-notes" aria-hidden="true"></i> Discussion <span class="nav-num">06</span></button>
     </div>
   </nav>
 
   <main class="main">
 
-    <!-- ── HOME ─────────────────────────────────────────────────────────────── -->
+    <!-- HOME -->
     <div id="sec-home" class="section active">
-      <div class="hero">
-        <div class="eyebrow">Senior Thesis · University of Delaware</div>
-        <h1>Stereotypes & Hate Speech<br>in Conflict Discourse</h1>
-        <p>A psycholinguistic analysis of implicit bias in tweets from 50+ political influencers before and after October 7, 2023 — using BERT embeddings, word2vec, and the Word Embedding Association Test (WEAT).</p>
-        <div class="hero-links">
-          <a class="hero-link" href="https://drive.google.com/file/d/1CidLbhxRulkqy-qBkN1-FLi34bgl32X5/view?usp=sharing" target="_blank"><i class="ti ti-file-description" aria-hidden="true"></i> Full Thesis</a>
-          <a class="hero-link" href="https://blaketrn.notion.site/A-Psycholinguistic-Analysis-Of-Changes-In-Stereotypes-And-Hate-Speech-Associated-With-Muslim-And-Or--1beb8fab88a7800998a1db848f6e43c9" target="_blank"><i class="ti ti-brand-notion" aria-hidden="true"></i> Data Overview</a>
+      <div class="inner">
+        <div class="hero">
+          <div class="eyebrow">Senior Thesis · University of Delaware</div>
+          <h1>Stereotypes & Hate Speech<br>in Conflict Discourse</h1>
+          <p>A psycholinguistic analysis of implicit bias in tweets from 50+ political influencers before and after October 7, 2023 — using BERT embeddings, word2vec, and the Word Embedding Association Test (WEAT).</p>
+          <div class="hero-links">
+            <a class="hero-link" href="https://drive.google.com/file/d/1CidLbhxRulkqy-qBkN1-FLi34bgl32X5/view?usp=sharing" target="_blank"><i class="ti ti-file-description" aria-hidden="true"></i> Full Thesis</a>
+            <a class="hero-link" href="https://blaketrn.notion.site/A-Psycholinguistic-Analysis-Of-Changes-In-Stereotypes-And-Hate-Speech-Associated-With-Muslim-And-Or--1beb8fab88a7800998a1db848f6e43c9" target="_blank"><i class="ti ti-brand-notion" aria-hidden="true"></i> Data Overview</a>
+          </div>
         </div>
-      </div>
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-val">50+</div><div class="stat-lbl">Influencer accounts</div></div>
-        <div class="stat-card"><div class="stat-val">2</div><div class="stat-lbl">Corpora (pre / post Oct 7)</div></div>
-        <div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Stereotype categories</div></div>
-      </div>
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-label">Research Question</div>
-        <div class="card-title">Did implicit stereotypes about Muslim/Arab and Israeli/Jewish groups shift in political discourse following the Hamas attack on October 7, 2023?</div>
-        <div class="card-body" style="margin-top:8px;">Stereotype categories — drawn from Kurdi et al. (2019) — span warmth, coldness, competence, and incompetence, applied across group pairs using cosine-similarity-based WEAT association scores (Caliskan et al., 2017).</div>
-      </div>
-      <div class="po-grid">
-        <div class="po-card" onclick="showSec('collect',document.querySelector('[onclick*=collect]'))"><div class="po-num">Stage 01</div><div class="po-name">Data Collection</div><div class="po-desc">Selenium + BeautifulSoup scraper targeting X's advanced search with keyword filtering and engagement thresholds.</div><span class="po-tag tag-code">Annotated code</span></div>
-        <div class="po-card" onclick="showSec('parse',document.querySelector('[onclick*=parse]'))"><div class="po-num">Stage 02</div><div class="po-name">Parsing & Cleaning</div><div class="po-desc">HTML extraction, emoji/URL removal, keyword validation, and deduplication pipeline.</div><span class="po-tag tag-live">Live demo</span></div>
-        <div class="po-card" onclick="showSec('token',document.querySelector('[onclick*=token]'))"><div class="po-num">Stage 03</div><div class="po-name">Tokenization</div><div class="po-desc">BERT WordPiece tokenizer with stopword removal, sentence segmentation, and token/segment ID generation.</div><span class="po-tag tag-live">Live demo</span></div>
-        <div class="po-card" onclick="showSec('embed',document.querySelector('[onclick*=embed]'))"><div class="po-num">Stage 04</div><div class="po-name">Embeddings</div><div class="po-desc">BERT contextual 768-dim embeddings and word2vec vectors, chunked per subject for downstream WEAT.</div><span class="po-tag tag-vis">Visualization</span></div>
-        <div class="po-card" onclick="showSec('weat',document.querySelector('[onclick*=weat]'))"><div class="po-num">Stage 05</div><div class="po-name">WEAT Analysis</div><div class="po-desc">SC-WEAT and double-category WEAT with permutation testing — all real results from Tables 4–11.</div><span class="po-tag tag-live">Real results</span></div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-val">50+</div><div class="stat-lbl">Influencer accounts</div></div>
+          <div class="stat-card"><div class="stat-val">2</div><div class="stat-lbl">Corpora (pre / post Oct 7)</div></div>
+          <div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Stereotype categories</div></div>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-label">Research Question</div>
+          <div class="card-title">Did implicit stereotypes about Muslim/Arab and Israeli/Jewish groups shift in political discourse following the Hamas attack on October 7, 2023?</div>
+          <div class="card-body" style="margin-top:8px;">Stereotype categories — drawn from Kurdi et al. (2019) — span warmth, coldness, competence, and incompetence, applied across group pairs using cosine-similarity-based WEAT association scores (Caliskan et al., 2017).</div>
+        </div>
+        <div class="po-grid">
+          <div class="po-card" onclick="showSec('collect',document.querySelector('[onclick*=collect]'))"><div class="po-num">Stage 01</div><div class="po-name">Data Collection</div><div class="po-desc">Selenium + BeautifulSoup scraper targeting X's advanced search with keyword filtering and engagement thresholds.</div><span class="po-tag tag-code">Annotated code</span></div>
+          <div class="po-card" onclick="showSec('parse',document.querySelector('[onclick*=parse]'))"><div class="po-num">Stage 02</div><div class="po-name">Parsing & Cleaning</div><div class="po-desc">HTML extraction, emoji/URL removal, keyword validation, and deduplication pipeline.</div><span class="po-tag tag-live">Live demo</span></div>
+          <div class="po-card" onclick="showSec('token',document.querySelector('[onclick*=token]'))"><div class="po-num">Stage 03</div><div class="po-name">Tokenization</div><div class="po-desc">BERT WordPiece tokenizer with stopword removal, sentence segmentation, and token/segment ID generation.</div><span class="po-tag tag-live">Live demo</span></div>
+          <div class="po-card" onclick="showSec('embed',document.querySelector('[onclick*=embed]'))"><div class="po-num">Stage 04</div><div class="po-name">Embeddings</div><div class="po-desc">BERT contextual 768-dim embeddings and word2vec vectors, chunked per subject for downstream WEAT.</div><span class="po-tag tag-vis">Visualization</span></div>
+          <div class="po-card" onclick="showSec('weat',document.querySelector('[onclick*=weat]'))"><div class="po-num">Stage 05</div><div class="po-name">WEAT Analysis</div><div class="po-desc">SC-WEAT and double-category WEAT with permutation testing — all real results from Tables 4–11.</div><span class="po-tag tag-live">Real results</span></div>
+          <div class="po-card" onclick="showSec('discussion',document.querySelector('[onclick*=discussion]'))"><div class="po-num">Stage 06</div><div class="po-name">Discussion</div><div class="po-desc">Interpretation of findings, bipartisan differences, limitations, and future research directions.</div><span class="po-tag tag-code">Findings</span></div>
+        </div>
       </div>
     </div>
 
-    <!-- ── DATA COLLECTION ───────────────────────────────────────────────────── -->
+    <!-- COLLECT -->
     <div id="sec-collect" class="section">
-      <div class="eyebrow">Stage 01 · MINVERA_AdvancedScrape_X.ipynb</div>
-      <div class="sec-title">Data Collection</div>
-      <div class="sec-desc">Selenium automates login and X's advanced search across 365 daily windows per account. Rate-limit handling, retry logic, and keyword-group rotation are built in.</div>
-      <div class="two-col">
-        <div class="card"><div class="card-label">Approach</div><div class="card-title">Advanced Search + Keyword Filtering</div><div class="card-body">Each account queried across daily windows using three keyword groups. Min 1,000 faves threshold filters for high-engagement content only.</div></div>
-        <div class="card"><div class="card-label">Anti-rate-limit strategy</div><div class="card-title">Adaptive sleep + retry</div><div class="card-body">Sleeps 3 min every 10 searches. On Retry button detection, waits 10 min and re-attempts. Unprocessed accounts logged for re-runs.</div></div>
-      </div>
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-label">Keyword Groups</div>
-        <div style="margin-top:8px;">
-          <div style="font-size:11px;color:var(--text-3);margin-bottom:4px;font-family:'IBM Plex Mono',monospace;">GROUP A · Geopolitical entities</div>
-          <div><span class="kchip">Gaza*</span><span class="kchip">Israel*</span><span class="kchip">West Bank</span><span class="kchip">Palestin*</span><span class="kchip">Jew*</span><span class="kchip">Muslim*</span><span class="kchip">Islam*</span><span class="kchip">Middle East*</span></div>
-          <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'IBM Plex Mono',monospace;">GROUP B · Actors & events</div>
-          <div><span class="kchip">Hamas</span><span class="kchip">Netanyahu</span><span class="kchip">Genocide</span><span class="kchip">Ceasefire</span><span class="kchip">Terroris*</span><span class="kchip">Sinwar</span><span class="kchip">IDF</span><span class="kchip">IOF</span></div>
-          <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'IBM Plex Mono',monospace;">GROUP C · Conflict terms</div>
-          <div><span class="kchip">Jihad</span><span class="kchip">Antisemiti*</span><span class="kchip">Zionis*</span><span class="kchip">Rafah</span><span class="kchip">Ben-Gvir</span><span class="kchip">Gallant</span><span class="kchip">Khan Younis</span></div>
+      <div class="inner">
+        <div class="eyebrow">Stage 01 · MINVERA_AdvancedScrape_X.ipynb</div>
+        <div class="sec-title">Data Collection</div>
+        <div class="sec-desc">Selenium automates login and X's advanced search across 365 daily windows per account. Rate-limit handling, retry logic, and keyword-group rotation are built in.</div>
+        <div class="two-col">
+          <div class="card"><div class="card-label">Approach</div><div class="card-title">Advanced Search + Keyword Filtering</div><div class="card-body">Each account queried across daily windows using three keyword groups. Min 1,000 faves threshold filters for high-engagement content only.</div></div>
+          <div class="card"><div class="card-label">Anti-rate-limit strategy</div><div class="card-title">Adaptive sleep + retry</div><div class="card-body">Sleeps 3 min every 10 searches. On Retry button detection, waits 10 min and re-attempts. Unprocessed accounts logged for re-runs.</div></div>
         </div>
-      </div>
-      <div class="code-block"><span class="cm"># Per account, per day — three keyword group passes</span>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-label">Keyword Groups</div>
+          <div style="margin-top:8px;">
+            <div style="font-size:11px;color:var(--text-3);margin-bottom:4px;font-family:'IBM Plex Mono',monospace;">GROUP A · Geopolitical entities</div>
+            <div><span class="kchip">Gaza*</span><span class="kchip">Israel*</span><span class="kchip">West Bank</span><span class="kchip">Palestin*</span><span class="kchip">Jew*</span><span class="kchip">Muslim*</span><span class="kchip">Islam*</span><span class="kchip">Middle East*</span></div>
+            <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'IBM Plex Mono',monospace;">GROUP B · Actors & events</div>
+            <div><span class="kchip">Hamas</span><span class="kchip">Netanyahu</span><span class="kchip">Genocide</span><span class="kchip">Ceasefire</span><span class="kchip">Terroris*</span><span class="kchip">Sinwar</span><span class="kchip">IDF</span><span class="kchip">IOF</span></div>
+            <div style="font-size:11px;color:var(--text-3);margin:10px 0 4px;font-family:'IBM Plex Mono',monospace;">GROUP C · Conflict terms</div>
+            <div><span class="kchip">Jihad</span><span class="kchip">Antisemiti*</span><span class="kchip">Zionis*</span><span class="kchip">Rafah</span><span class="kchip">Ben-Gvir</span><span class="kchip">Gallant</span><span class="kchip">Khan Younis</span></div>
+          </div>
+        </div>
+        <div class="code-block"><span class="cm"># Per account, per day — three keyword group passes</span>
 search_query.send_keys(
   <span class="st">f'{keyword1} {hashtags} (from:@{</span>profile<span class="st">})'</span>
   <span class="st">f' min_faves:<span class="num">1000</span> until:{</span>until<span class="st">} since:{</span>since<span class="st">}'</span>
@@ -310,92 +304,98 @@ search_results = driver.find_element(
   By.CSS_SELECTOR, <span class="st">'[aria-label="Timeline: Search timeline"]'</span>
 )
 tweets_dict_US[profile].append(search_results.get_attribute(<span class="st">'innerHTML'</span>))</div>
+      </div>
     </div>
 
-    <!-- ── PARSING ───────────────────────────────────────────────────────────── -->
+    <!-- PARSE -->
     <div id="sec-parse" class="section">
-      <div class="eyebrow">Stage 02 · Parsing_Script_for_Raw_HTML.ipynb</div>
-      <div class="sec-title">Parsing & Cleaning</div>
-      <div class="sec-desc">BeautifulSoup extracts tweet text and engagement metrics from raw innerHTML. A multi-step cleaning function strips emojis, URLs, HTML artifacts, and non-ASCII characters before keyword validation and CSV export.</div>
-      <div class="demo-panel">
-        <div class="demo-header"><span class="badge badge-live">live demo</span><span class="demo-title">Text cleaning pipeline — remove_extras()</span></div>
-        <textarea id="parse-input" rows="3" placeholder="Paste a tweet, e.g.: 🚨 Netanyahu's gov't EXPOSED!! https://t.co/xyz — @user says #Gaza is burning rn... [thread]"></textarea>
-        <div style="display:flex;gap:8px;margin-top:8px;">
-          <button class="btn btn-p" onclick="runParsing()"><i class="ti ti-player-play" aria-hidden="true"></i> Run cleaning</button>
-          <button class="btn btn-s" onclick="loadSample()">Load sample</button>
-        </div>
-        <div id="parse-steps" style="margin-top:16px;display:none;">
-          <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;font-family:'IBM Plex Mono',monospace;">Cleaning steps</div>
-          <div id="step-list"></div>
-          <div class="out-row">
-            <div class="out-box"><div class="out-lbl">Input</div><div class="out-val" id="parse-in" style="color:var(--red);font-size:11px;"></div></div>
-            <div class="out-box"><div class="out-lbl">Cleaned</div><div class="out-val" id="parse-out" style="color:var(--green);font-size:11px;"></div></div>
+      <div class="inner">
+        <div class="eyebrow">Stage 02 · Parsing_Script_for_Raw_HTML.ipynb</div>
+        <div class="sec-title">Parsing & Cleaning</div>
+        <div class="sec-desc">BeautifulSoup extracts tweet text and engagement metrics from raw innerHTML. A multi-step cleaning function strips emojis, URLs, HTML artifacts, and non-ASCII characters before keyword validation and CSV export.</div>
+        <div class="demo-panel">
+          <div class="demo-header"><span class="badge badge-live">live demo</span><span class="demo-title">Text cleaning pipeline — remove_extras()</span></div>
+          <textarea id="parse-input" rows="3" placeholder="Paste a tweet, e.g.: 🚨 Netanyahu's gov't EXPOSED!! https://t.co/xyz — @user says #Gaza is burning rn... [thread]"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button class="btn btn-p" onclick="runParsing()"><i class="ti ti-player-play" aria-hidden="true"></i> Run cleaning</button>
+            <button class="btn btn-s" onclick="loadSample()">Load sample</button>
           </div>
-          <div id="kw-check" style="margin-top:8px;"></div>
+          <div id="parse-steps" style="margin-top:16px;display:none;">
+            <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;font-family:'IBM Plex Mono',monospace;">Cleaning steps</div>
+            <div id="step-list"></div>
+            <div class="out-row">
+              <div class="out-box"><div class="out-lbl">Input</div><div class="out-val" id="parse-in" style="color:var(--red);font-size:11px;"></div></div>
+              <div class="out-box"><div class="out-lbl">Cleaned</div><div class="out-val" id="parse-out" style="color:var(--green);font-size:11px;"></div></div>
+            </div>
+            <div id="kw-check" style="margin-top:8px;"></div>
+          </div>
         </div>
-      </div>
-      <div class="two-col">
-        <div class="card"><div class="card-label">Metrics extracted</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Likes, replies, retweets, views</strong> — from aria-label attributes on engagement divs</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Timestamp</strong> — from &lt;time&gt; datetime ISO attribute</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Tweet text</strong> — from data-testid="tweetText"</div></div></div></div>
-        <div class="card"><div class="card-label">Quality filters</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>37 keyword patterns</strong> must match (regex)</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Deduplication</strong> — exact text matches discarded</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Likes &gt; 1,000</strong> engagement threshold</div></div></div></div>
+        <div class="two-col">
+          <div class="card"><div class="card-label">Metrics extracted</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Likes, replies, retweets, views</strong> — from aria-label attributes on engagement divs</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Timestamp</strong> — from &lt;time&gt; datetime ISO attribute</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Tweet text</strong> — from data-testid="tweetText"</div></div></div></div>
+          <div class="card"><div class="card-label">Quality filters</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>37 keyword patterns</strong> must match (regex)</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Deduplication</strong> — exact text matches discarded</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content"><strong>Likes &gt; 1,000</strong> engagement threshold</div></div></div></div>
+        </div>
       </div>
     </div>
 
-    <!-- ── TOKENIZATION ──────────────────────────────────────────────────────── -->
+    <!-- TOKEN -->
     <div id="sec-token" class="section">
-      <div class="eyebrow">Stage 03 · Generating Tokens Details.ipynb</div>
-      <div class="sec-title">Tokenization</div>
-      <div class="sec-desc">Cleaned tweets pass through a five-step preprocessing pipeline then are tokenized with BERT's WordPiece tokenizer (bert-base-uncased). Each sentence gets [CLS]/[SEP] markers, token IDs, and segment IDs.</div>
-      <div class="demo-panel">
-        <div class="demo-header"><span class="badge badge-live">live demo</span><span class="demo-title">BERT tokenization pipeline</span></div>
-        <div class="tab-row">
-          <button class="tab-btn active" onclick="setTab('full',this)">Full pipeline</button>
-          <button class="tab-btn" onclick="setTab('bert',this)">Subword demo</button>
-        </div>
-        <div id="tok-full">
-          <input type="text" id="token-input" placeholder="Netanyahu called for ceasefire after IDF strikes in Rafah @realuser" style="margin-bottom:8px;" />
-          <button class="btn btn-p" onclick="runTokenization()"><i class="ti ti-player-play" aria-hidden="true"></i> Tokenize</button>
-          <div id="token-output" style="display:none;margin-top:16px;">
-            <div class="legend-row" style="margin-bottom:8px;">
-              <div class="legend-item"><div class="legend-dot" style="background:#534AB7"></div>[CLS]/[SEP]</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#854F0B"></div>subword (##)</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#3b6d11"></div>@user</div>
-              <div class="legend-item"><div class="legend-dot" style="background:var(--border-2)"></div>word token</div>
-            </div>
-            <div class="token-display" id="token-list"></div>
-            <div class="out-row" style="margin-top:14px;">
-              <div class="out-box"><div class="out-lbl">Marked sentence</div><div class="out-val" id="cleaned-sent" style="font-size:11px;"></div></div>
-              <div class="out-box"><div class="out-lbl">Token IDs (first 10)</div><div class="out-val" id="token-ids" style="font-size:11px;"></div></div>
-            </div>
-            <div class="annotation" id="token-count"></div>
+      <div class="inner">
+        <div class="eyebrow">Stage 03 · Generating Tokens Details.ipynb</div>
+        <div class="sec-title">Tokenization</div>
+        <div class="sec-desc">Cleaned tweets pass through a five-step preprocessing pipeline then are tokenized with BERT's WordPiece tokenizer (bert-base-uncased). Each sentence gets [CLS]/[SEP] markers, token IDs, and segment IDs.</div>
+        <div class="demo-panel">
+          <div class="demo-header"><span class="badge badge-live">live demo</span><span class="demo-title">BERT tokenization pipeline</span></div>
+          <div class="tab-row">
+            <button class="tab-btn active" onclick="setTab('full',this)">Full pipeline</button>
+            <button class="tab-btn" onclick="setTab('bert',this)">Subword demo</button>
           </div>
-        </div>
-        <div id="tok-bert" style="display:none;">
-          <div class="card-body" style="margin-bottom:12px;">WordPiece splits morphologically complex words into subword units prefixed with <code>##</code>, letting BERT handle out-of-vocabulary terms without losing context.</div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
-            <button class="btn btn-s" onclick="demoWord('antisemitism')">antisemitism</button>
-            <button class="btn btn-s" onclick="demoWord('ceasefire')">ceasefire</button>
-            <button class="btn btn-s" onclick="demoWord('dehumanization')">dehumanization</button>
-            <button class="btn btn-s" onclick="demoWord('Netanyahu')">Netanyahu</button>
-            <button class="btn btn-s" onclick="demoWord('zionism')">zionism</button>
+          <div id="tok-full">
+            <input type="text" id="token-input" placeholder="Netanyahu called for ceasefire after IDF strikes in Rafah @realuser" style="margin-bottom:8px;" />
+            <button class="btn btn-p" onclick="runTokenization()"><i class="ti ti-player-play" aria-hidden="true"></i> Tokenize</button>
+            <div id="token-output" style="display:none;margin-top:16px;">
+              <div class="legend-row" style="margin-bottom:8px;">
+                <div class="legend-item"><div class="legend-dot" style="background:#534AB7"></div>[CLS]/[SEP]</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#854F0B"></div>subword (##)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#3b6d11"></div>@user</div>
+                <div class="legend-item"><div class="legend-dot" style="background:rgba(0,0,0,.18)"></div>word token</div>
+              </div>
+              <div class="token-display" id="token-list"></div>
+              <div class="out-row" style="margin-top:14px;">
+                <div class="out-box"><div class="out-lbl">Marked sentence</div><div class="out-val" id="cleaned-sent" style="font-size:11px;"></div></div>
+                <div class="out-box"><div class="out-lbl">Token IDs (first 10)</div><div class="out-val" id="token-ids" style="font-size:11px;"></div></div>
+              </div>
+              <div class="annotation" id="token-count"></div>
+            </div>
           </div>
-          <div id="bert-word-output" style="display:none;">
-            <div class="token-display" id="bert-tokens"></div>
-            <div class="annotation" id="bert-note" style="margin-top:8px;"></div>
+          <div id="tok-bert" style="display:none;">
+            <div class="card-body" style="margin-bottom:12px;">WordPiece splits morphologically complex words into subword units prefixed with <code>##</code>, letting BERT handle out-of-vocabulary terms without losing context.</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+              <button class="btn btn-s" onclick="demoWord('antisemitism')">antisemitism</button>
+              <button class="btn btn-s" onclick="demoWord('ceasefire')">ceasefire</button>
+              <button class="btn btn-s" onclick="demoWord('dehumanization')">dehumanization</button>
+              <button class="btn btn-s" onclick="demoWord('Netanyahu')">Netanyahu</button>
+              <button class="btn btn-s" onclick="demoWord('zionism')">zionism</button>
+            </div>
+            <div id="bert-word-output" style="display:none;">
+              <div class="token-display" id="bert-tokens"></div>
+              <div class="annotation" id="bert-note" style="margin-top:8px;"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── EMBEDDINGS ─────────────────────────────────────────────────────────── -->
+    <!-- EMBED -->
     <div id="sec-embed" class="section">
-      <div class="eyebrow">Stage 04 · BERT - Getting Embeddings.ipynb</div>
-      <div class="sec-title">Embedding Generation</div>
-      <div class="sec-desc">BERT (bert-base-uncased) generates 768-dimensional contextual embeddings per token. Sequences exceeding 512 tokens are chunked with re-injected [CLS]/[SEP] markers. Outputs exported per Subject_ID for WEAT analysis.</div>
-      <div class="two-col" style="margin-bottom:16px;">
-        <div class="card"><div class="card-label">BERT architecture</div><div class="card-title">12-layer transformer</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">30,522 token vocabulary</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">768-dim hidden states (last layer)</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">12 attention heads per layer</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Max 512 token sequence length</div></div></div></div>
-        <div class="card"><div class="card-label">Processing strategy</div><div class="card-title">Chunk + export per subject</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">All tokens per subject_id concatenated</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Split into 512-token windows, CLS/SEP re-injected at boundaries</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Special tokens excluded from final output vectors</div></div></div></div>
-      </div>
-      <div class="code-block"><span class="cm"># Chunk, embed, exclude special tokens</span>
+      <div class="inner">
+        <div class="eyebrow">Stage 04 · BERT - Getting Embeddings.ipynb</div>
+        <div class="sec-title">Embedding Generation</div>
+        <div class="sec-desc">BERT (bert-base-uncased) generates 768-dimensional contextual embeddings per token. Sequences exceeding 512 tokens are chunked with re-injected [CLS]/[SEP] markers. Outputs exported per Subject_ID for WEAT analysis.</div>
+        <div class="two-col" style="margin-bottom:16px;">
+          <div class="card"><div class="card-label">BERT architecture</div><div class="card-title">12-layer transformer</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">30,522 token vocabulary</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">768-dim hidden states (last layer)</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">12 attention heads per layer</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Max 512 token sequence length</div></div></div></div>
+          <div class="card"><div class="card-label">Processing strategy</div><div class="card-title">Chunk + export per subject</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">All tokens per subject_id concatenated</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Split into 512-token windows, CLS/SEP re-injected at boundaries</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Special tokens excluded from final output vectors</div></div></div></div>
+        </div>
+        <div class="code-block"><span class="cm"># Chunk, embed, exclude special tokens</span>
 <span class="kw">for</span> chunk_tokens, chunk_ids, chunk_segs <span class="kw">in</span> <span class="fn">chunk_long_sequences</span>(
     all_tokens, all_token_ids, all_segment_ids, max_length=<span class="num">512</span>
 ):
@@ -405,67 +405,141 @@ tweets_dict_US[profile].append(search_results.get_attribute(<span class="st">'in
     <span class="kw">for</span> j, (tok, emb) <span class="kw">in</span> enumerate(zip(chunk_tokens, hidden)):
         <span class="kw">if</span> tok <span class="kw">in</span> [<span class="st">'[CLS]'</span>, <span class="st">'[SEP]'</span>]: <span class="kw">continue</span>
         results.append({<span class="st">'Token'</span>: tok, <span class="st">'Embedding'</span>: emb.numpy().tolist()})</div>
+      </div>
     </div>
 
-    <!-- ── WEAT ───────────────────────────────────────────────────────────────── -->
+    <!-- WEAT -->
     <div id="sec-weat" class="section">
-      <div class="eyebrow">Stage 05 · WEAT.ipynb · Tables 4–11 from thesis</div>
-      <div class="sec-title">WEAT Analysis</div>
-      <div class="sec-desc">SC-WEAT and double-category WEAT quantify implicit stereotypes by comparing cosine similarities between target groups and SCM attribute pairs using permutation testing on BERT embeddings.</div>
-      <div style="margin-bottom:24px;">
-        <div class="finding-box"><p><strong>Before Oct 7 (Tables 4 & 5):</strong> No significant effects across Israeli, Jewish, Arabic, Muslim groups. IDF/Hamas absent from pre-conflict corpus entirely.</p></div>
-        <div class="finding-box" style="border-color:var(--danger-text);"><p><strong>After Oct 7 (Tables 6 & 7):</strong> All six groups showed significant negative D-scores on both SCM dimensions — cold and incompetent stereotypes applied indiscriminately across all groups.</p></div>
-        <div class="finding-box" style="border-color:var(--warn-text);"><p><strong>Change over time (Tables 8–11):</strong> Double-category WEAT comparing before vs. after embeddings reveals significant shifts — e.g. Israeli group became less warm (D = −0.507 on Cold dimension) while Arabic group became significantly colder (D = +1.080).</p></div>
-      </div>
-      <div class="tab-row">
-        <button class="tab-btn active" onclick="setWeatTab('before',this)">Before Oct 7</button>
-        <button class="tab-btn" onclick="setWeatTab('after',this)">After Oct 7</button>
-        <button class="tab-btn" onclick="setWeatTab('change',this)">Change over time</button>
-        <button class="tab-btn" onclick="setWeatTab('dc',this)">Double-category</button>
-      </div>
-      <div id="wt-before">
-        <div class="demo-panel">
-          <div class="demo-header"><span class="badge badge-pre">pre-Oct 7</span><span class="demo-title">SC-WEAT before Oct 7 — no significant effects (Tables 4 & 5)</span></div>
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All Ptot &gt; .05. IDF and Hamas not present in pre-conflict corpus.</div>
-          <div class="select-row"><select id="before-dim" onchange="renderBefore()"><option value="wc">Groups associated with Warm vs. Cold</option><option value="ci">Groups associated with Competence vs. Incompetence</option></select></div>
-          <div id="before-bars"></div>
-          <div class="annotation">Source: Tables 4 & 5 · BERT embeddings · 500-permutation test</div>
+      <div class="inner">
+        <div class="eyebrow">Stage 05 · WEAT.ipynb · Tables 4–11 from thesis</div>
+        <div class="sec-title">WEAT Analysis</div>
+        <div class="sec-desc">SC-WEAT and double-category WEAT quantify implicit stereotypes by comparing cosine similarities between target groups and SCM attribute pairs (Warm/Cold, Competence/Incompetence) using permutation testing on BERT embeddings.</div>
+
+        <div class="note-box">⚠ IDF was not mentioned by any influencer in the "Before" period (10/07/22–10/06/23), so SC-WEAT could not be performed for this group pre-conflict. In the "After" period, Hamas was discussed substantially more (n = 375 tweets) compared to IDF (n = 17 tweets).</div>
+
+        <div style="margin-bottom:24px;">
+          <div class="finding-box"><p><strong>Before Oct 7 (Tables 4 & 5):</strong> No significant effects across Israeli, Jewish, Arabic, Muslim groups. IDF and Hamas absent from pre-conflict corpus entirely.</p></div>
+          <div class="finding-box" style="border-color:var(--danger-text);"><p><strong>After Oct 7 (Tables 6 & 7):</strong> All six groups showed significant negative D-scores on both SCM dimensions — cold and incompetent stereotypes applied indiscriminately across all groups in conflict discourse.</p></div>
+          <div class="finding-box" style="border-color:var(--warn-text);"><p><strong>Change over time (Tables 8–11):</strong> Double-category WEAT comparing before vs. after embeddings reveals significant shifts — e.g. Israeli group became less warm (D = −0.507 on Cold dimension) while Arabic group became significantly colder (D = +1.080). All effects p = .001.</p></div>
         </div>
-      </div>
-      <div id="wt-after" style="display:none;">
-        <div class="demo-panel">
-          <div class="demo-header"><span class="badge badge-real">post-Oct 7</span><span class="demo-title">SC-WEAT after Oct 7 — all groups significant (Tables 6 & 7)</span></div>
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All six groups significantly negative on both SCM dimensions. Negative D = stronger cold/incompetent association.</div>
-          <div class="select-row"><select id="after-dim" onchange="renderAfter()"><option value="wc">Groups associated with Warm vs. Cold</option><option value="ci">Groups associated with Competence vs. Incompetence</option></select></div>
-          <div id="after-bars"></div>
-          <div class="annotation">Source: Tables 6 & 7 · BERT embeddings · 500-permutation test</div>
+
+        <div class="tab-row">
+          <button class="tab-btn active" onclick="setWeatTab('before',this)">Before Oct 7</button>
+          <button class="tab-btn" onclick="setWeatTab('after',this)">After Oct 7</button>
+          <button class="tab-btn" onclick="setWeatTab('change',this)">Change over time</button>
+          <button class="tab-btn" onclick="setWeatTab('dc',this)">Double-category</button>
         </div>
-      </div>
-      <div id="wt-change" style="display:none;">
-        <div class="demo-panel">
-          <div class="demo-header"><span class="badge badge-real">real data</span><span class="demo-title">Change in stereotype before vs. after Oct 7 (Tables 8–11)</span></div>
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All Ptot = .001. Positive D = stronger association with first attribute after Oct 7.</div>
-          <div class="select-row"><select id="change-group" onchange="renderChange()"><option value="Israeli">Israeli group (Table 8)</option><option value="Jewish">Jewish group (Table 9)</option><option value="Arabic">Arabic group (Table 10)</option><option value="Muslim">Muslim group (Table 11)</option></select></div>
-          <div id="change-cards"></div>
-          <div class="annotation" style="margin-top:12px;">All effects p = .001 (1,000 permutations).</div>
+
+        <div id="wt-before">
+          <div class="demo-panel">
+            <div class="demo-header"><span class="badge badge-pre">pre-Oct 7</span><span class="demo-title">SC-WEAT before Oct 7 — no significant effects (Tables 4 & 5)</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All Ptot &gt; .05. IDF and Hamas not present in pre-conflict corpus.</div>
+            <div class="select-row"><select id="before-dim" onchange="renderBefore()"><option value="wc">Groups associated with Warm vs. Cold</option><option value="ci">Groups associated with Competence vs. Incompetence</option></select></div>
+            <div id="before-bars"></div>
+            <div class="annotation">Source: Tables 4 & 5 · BERT embeddings · 500-permutation test</div>
+          </div>
         </div>
-      </div>
-      <div id="wt-dc" style="display:none;">
-        <div class="demo-panel">
-          <div class="demo-header"><span class="badge badge-real">real data</span><span class="demo-title">Double-category WEAT — group pairs before vs. after (from CSVs)</span></div>
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">Positive D: first group more associated with first attribute than second group.</div>
-          <div id="dc-table"></div>
-          <div class="annotation">Sources: weat_before_BERT.csv · weat_after_BERT.csv · 1,000 permutations</div>
+
+        <div id="wt-after" style="display:none;">
+          <div class="demo-panel">
+            <div class="demo-header"><span class="badge badge-real">post-Oct 7</span><span class="demo-title">SC-WEAT after Oct 7 — all groups significant (Tables 6 & 7)</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All six groups significantly negative on both SCM dimensions. Negative D = stronger cold/incompetent association.</div>
+            <div class="select-row"><select id="after-dim" onchange="renderAfter()"><option value="wc">Groups associated with Warm vs. Cold</option><option value="ci">Groups associated with Competence vs. Incompetence</option></select></div>
+            <div id="after-bars"></div>
+            <div class="annotation">Source: Tables 6 & 7 · BERT embeddings · 500-permutation test</div>
+          </div>
         </div>
-      </div>
-      <div class="two-col" style="margin-top:8px;">
-        <div class="card"><div class="card-label">SC-WEAT formula</div><div class="code-block" style="margin-bottom:0;margin-top:8px;font-size:11px;">s(w, A, B) =
+
+        <div id="wt-change" style="display:none;">
+          <div class="demo-panel">
+            <div class="demo-header"><span class="badge badge-real">real data</span><span class="demo-title">Change in stereotype before vs. after Oct 7 (Tables 8–11)</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">All Ptot = .001. Positive D = stronger association with first attribute after Oct 7.</div>
+            <div class="select-row"><select id="change-group" onchange="renderChange()"><option value="Israeli">Israeli group (Table 8)</option><option value="Jewish">Jewish group (Table 9)</option><option value="Arabic">Arabic group (Table 10)</option><option value="Muslim">Muslim group (Table 11)</option></select></div>
+            <div id="change-cards"></div>
+            <div class="annotation" style="margin-top:12px;">All effects p = .001 (1,000 permutations).</div>
+          </div>
+        </div>
+
+        <div id="wt-dc" style="display:none;">
+          <div class="demo-panel">
+            <div class="demo-header"><span class="badge badge-real">real data</span><span class="demo-title">Double-category WEAT — group pairs before vs. after (from CSVs)</span></div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:14px;">Positive D: first group more associated with first attribute than second group.</div>
+            <div id="dc-table"></div>
+            <div class="annotation">Sources: weat_before_BERT.csv · weat_after_BERT.csv · 1,000 permutations</div>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top:8px;">
+          <div class="card"><div class="card-label">SC-WEAT formula</div><div class="code-block" style="margin-bottom:0;margin-top:8px;font-size:11px;">s(w, A, B) =
   mean_{a∈A} cos(w,a)
   − mean_{b∈B} cos(w,b)
 
 D = mean_{w∈X} s(w,A,B)
     / std_dev(all similarities)</div></div>
-        <div class="card"><div class="card-label">Permutation test</div><div class="card-title">500–1,000 shuffles</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">Attribute labels randomly reassigned each iteration</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Pleft, Pright, Ptot all reported</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Significance threshold: Ptot &lt; .05</div></div></div></div>
+          <div class="card"><div class="card-label">Permutation test</div><div class="card-title">500–1,000 shuffles</div><div class="card-body"><div class="step-row"><div class="step-num">·</div><div class="step-content">Attribute labels randomly reassigned each iteration</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Pleft, Pright, Ptot all reported</div></div><div class="step-row"><div class="step-num">·</div><div class="step-content">Significance threshold: Ptot &lt; .05</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCUSSION -->
+    <div id="sec-discussion" class="section">
+      <div class="inner">
+        <div class="eyebrow">Stage 06 · Results interpretation</div>
+        <div class="sec-title">Discussion</div>
+        <div class="sec-desc">Interpretation of SC-WEAT findings, bipartisan differences in stereotype language, limitations of the study, and directions for future research.</div>
+
+        <div class="prose-block">
+          <h3>3.1 Single-Category WEAT — Key Findings</h3>
+          <p>BERT embeddings found no statistical significance in the effect sizes of all social groups and SCM attribute combinations in the "Before" period. However, in the "After" period, SC-WEAT using BERT vectors revealed highly significant associations of all six target groups with <em>low warmth</em> and <em>low competence</em>:</p>
+          <p>
+            <span class="highlight">Israeli</span> low warmth (D = −0.242; p = .005) and low competence (D = −0.346; p = .004) ·
+            <span class="highlight">IDF</span> low warmth (D = −0.211; p = .012) and low competence (D = −0.339; p = .006) ·
+            <span class="highlight">Jewish</span> low warmth (D = −0.261; p = .003) and low competence (D = −0.348; p = .002) ·
+            <span class="highlight">Arabic</span> low warmth (D = −0.228; p = .006) and low competence (D = −0.340; p = .005) ·
+            <span class="highlight">Hamas</span> low warmth (D = −0.208; p = .01) and low competence (D = −0.319; p = .007) ·
+            <span class="highlight">Muslim</span> low warmth (D = −0.294; p &lt; .001) and low competence (D = −0.360; p = .005).
+          </p>
+          <p>The study revealed significant, negative consequences of the conflict narrative on social media regarding stereotype and implicit association of the implicated social groups. While there were bipartisan differences in advocacy for international policies regarding the conflict in the Gaza Strip, support and non-support of influencers for Israeli and/or Jewish or Arabic and/or Muslim people were both accompanied by implicit association with low warmth and low competence after the start of the war.</p>
+          <p>However, it is unclear whether these associations were a natural consequence of the turmoil and distress around wartime, or reflected the influencers' implicit opinions. It is also important to note that these associations cannot be generalized to the larger population in the U.S. that used X around the time of the conflict, as readers' perception or action beyond seeing such tweets are beyond the scope of the study.</p>
+        </div>
+
+        <div class="prose-block">
+          <h3>Bipartisan Differences</h3>
+          <p>Bipartisan differences in how Israeli and/or Jewish, Arabic and/or Muslim, IDF, and Hamas were described were consistent with the broad stance of the political parties in America. As the majority of right-leaning adults were surveyed to be more sympathetic towards Israel and its objectives compared to that of Palestinians (AP-NORC Center for Public Affairs Research, 2024), the stereotypical language of right-leaning influencers became consistently less critical compared to that of left-leaning influencers after the start of the conflict in the Competence dimension.</p>
+          <p>However, as the conflict progresses, it is difficult to explain how the significant difference in negativity in discussing the IDF compared to Hamas for right-leaning influencers arises. Within the timeline of the conflict, negative sentiment can be diversely utilized in discussions of grief, humanitarian crises, national security concerns, and in critiques of the opposing party's opinions.</p>
+          <p>In contrast, left-leaning influencers were observed to have a significant difference in their language when discussing the IDF and Hamas in the Competence dimension, where IDF was explicitly regarded as both more competent and incompetent after the start of the conflict. These polarizing opinions can be due to the internal division of the left wing regarding the stance of the U.S. on the conflict (Kamarck et al., 2024).</p>
+          <p>Since Hamas was discussed more frequently by the influencers in the study (n<sub>Hamas</sub> = 375 vs. n<sub>IDF</sub> = 17), future research should examine the bipartisan differences in how the IDF and Hamas were portrayed with a different group of political influencers.</p>
+        </div>
+
+        <div class="prose-block">
+          <h3>Limitations & Future Directions</h3>
+          <div class="limitation-grid">
+            <div class="lim-card">
+              <h4>Small corpora & unequal mentions</h4>
+              <p>The study used a limited number of influencers and the natural noise of social data from X, with unequal mentions of all social groups implicated in the conflict.</p>
+            </div>
+            <div class="lim-card">
+              <h4>Platform algorithmic bias</h4>
+              <p>Textual data was heavily reliant on results displayed by X's Advanced Search tools and X's own algorithmic bias per platform policy.</p>
+            </div>
+            <div class="lim-card">
+              <h4>Computational language lag</h4>
+              <p>Computational methods always lag behind the development of human natural language. More sophisticated measures for topical categorization of tweets should be considered in future work.</p>
+            </div>
+            <div class="lim-card">
+              <h4>Cross-platform generalizability</h4>
+              <p>Future research should explore whether these implicit associations were present equally across different social media platforms throughout the timeline of the conflict.</p>
+            </div>
+            <div class="lim-card">
+              <h4>Longitudinal scope</h4>
+              <p>More in-depth, extended longitudinal studies of the social groups implicated would offer insights into how stereotype content fluctuates during high and low-tension intergroup contact.</p>
+            </div>
+            <div class="lim-card">
+              <h4>IDF / Hamas imbalance</h4>
+              <p>IDF was absent from the pre-conflict corpus entirely, and mentioned only 17 times post-conflict vs. 375 for Hamas. Future studies should use a different influencer sample to better balance these groups.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -473,12 +547,12 @@ D = mean_{w∈X} s(w,A,B)
 </div>
 
 <script>
-  // ── Nav ───────────────────────────────────────────────────────────────────
+  // Nav
   function showSec(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');if(btn)btn.classList.add('active');}
   function setTab(tab,btn){document.querySelectorAll('#sec-token .tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('tok-full').style.display=tab==='full'?'block':'none';document.getElementById('tok-bert').style.display=tab==='bert'?'block':'none';}
   function setWeatTab(tab,btn){document.querySelectorAll('#sec-weat .tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');['before','after','change','dc'].forEach(t=>document.getElementById('wt-'+t).style.display=t===tab?'block':'none');}
 
-  // ── Parse demo ────────────────────────────────────────────────────────────
+  // Parse demo
   function loadSample(){document.getElementById('parse-input').value='🚨BREAKING: Netanyahu\'s regime EXPOSED!! https://t.co/abc — @realUser says #Gaza is being DESTROYED rn... [thread] 🔥';runParsing();}
   function runParsing(){
     const input=document.getElementById('parse-input').value.trim();if(!input)return;
@@ -498,7 +572,7 @@ D = mean_{w∈X} s(w,A,B)
     document.getElementById('kw-check').innerHTML=found.length>0?`<span style="font-size:12px;color:#3b6d11;font-family:'IBM Plex Mono',monospace;">✓ Keyword match: ${found.join(', ')}</span>`:`<span style="font-size:12px;color:#a32d2d;font-family:'IBM Plex Mono',monospace;">✗ No keyword match — tweet discarded</span>`;
   }
 
-  // ── Tokenization ──────────────────────────────────────────────────────────
+  // Tokenization
   const SW=new Set(['i','me','my','we','our','you','your','he','him','his','she','her','it','its','they','them','their','what','which','who','this','that','these','those','am','is','are','was','were','be','been','have','has','had','do','does','did','a','an','the','and','but','if','or','because','as','until','of','at','by','for','with','about','between','into','through','before','after','above','below','to','from','up','down','in','out','on','off','over','then','here','there','when','where','how','all','both','each','more','most','other','some','no','not','only','so','than','too','very','can','will','just','should','now']);
   const SUBS={antisemitism:['anti','##se','##mit','##ism'],antisemitic:['anti','##se','##mit','##ic'],ceasefire:['cease','##fire'],dehumanization:['de','##human','##ization'],netanyahu:['net','##anya','##hu'],genocide:['gen','##ocide'],zionism:['zion','##ism'],terrorism:['terror','##ism'],incompetence:['in','##comp','##eten','##ce'],competence:['comp','##eten','##ce']};
   const VOCAB={101:'[cls]',102:'[sep]',3956:'israel',6943:'gaza',4921:'muslim',2798:'jewish',14005:'hamas',4469:'terror',3424:'anti',11336:'cease',2085:'net'};
@@ -522,20 +596,14 @@ D = mean_{w∈X} s(w,A,B)
     document.getElementById('bert-note').textContent=`"${word}" → ${tokens.length} subword token${tokens.length>1?'s':''} (${tokens.filter(t=>t.startsWith('##')).length} with ## prefix)`;
   }
 
-  // ── WEAT data ─────────────────────────────────────────────────────────────
+  // WEAT data
   const BEFORE={wc:[{group:'Israeli',d:0.677040,ptot:0.187812},{group:'Jewish',d:0.577184,ptot:0.277722},{group:'Arabic',d:-0.185277,ptot:0.712288},{group:'Hamas',d:0.549490,ptot:0.277722},{group:'Muslim',d:0.595590,ptot:0.278721}],ci:[{group:'Israeli',d:0.037300,ptot:0.974026},{group:'Jewish',d:0.210545,ptot:0.764236},{group:'Arabic',d:-0.453478,ptot:0.503497},{group:'Hamas',d:-0.106947,ptot:0.838162},{group:'Muslim',d:0.126387,ptot:0.891109}]};
   const AFTER={wc:[{group:'Israeli',d:-0.24199,ptot:0.004995},{group:'IDF',d:-0.210953,ptot:0.010989},{group:'Jewish',d:-0.260898,ptot:0.002997},{group:'Arabic',d:-0.228402,ptot:0.005994},{group:'Hamas',d:-0.20816,ptot:0.009990},{group:'Muslim',d:-0.293814,ptot:0.000999}],ci:[{group:'Israeli',d:-0.346355,ptot:0.003996},{group:'IDF',d:-0.338454,ptot:0.005994},{group:'Jewish',d:-0.34796,ptot:0.001998},{group:'Arabic',d:-0.340196,ptot:0.004995},{group:'Hamas',d:-0.318678,ptot:0.006993},{group:'Muslim',d:-0.360367,ptot:0.004995}]};
   const CHANGE={Israeli:[{label:'Warm (before) / Warm (after)',d:1.099121,ptot:0.000999},{label:'Cold (before) / Cold (after)',d:-0.507410,ptot:0.000999},{label:'Competence (before) / Competence (after)',d:-0.389440,ptot:0.000999},{label:'Incompetence (before) / Incompetence (after)',d:-0.118020,ptot:0.000999}],Jewish:[{label:'Warm (before) / Warm (after)',d:-0.169090,ptot:0.000999},{label:'Cold (before) / Cold (after)',d:0.304392,ptot:0.000999},{label:'Competence (before) / Competence (after)',d:-0.051890,ptot:0.000999},{label:'Incompetence (before) / Incompetence (after)',d:0.349479,ptot:0.000999}],Arabic:[{label:'Warm (before) / Warm (after)',d:-0.867900,ptot:0.000999},{label:'Cold (before) / Cold (after)',d:1.079903,ptot:0.000999},{label:'Competence (before) / Competence (after)',d:-0.870770,ptot:0.000999},{label:'Incompetence (before) / Incompetence (after)',d:0.733529,ptot:0.000999}],Muslim:[{label:'Warm (before) / Warm (after)',d:0.809538,ptot:0.000999},{label:'Cold (before) / Cold (after)',d:-0.967050,ptot:0.000999},{label:'Competence (before) / Competence (after)',d:-0.191350,ptot:0.000999},{label:'Incompetence (before) / Incompetence (after)',d:-0.230550,ptot:0.000999}]};
   const DC={before:[{groups:'Israeli vs Arabic',attrs:'Warm vs Cold',d:1.331872,ptot:0.000999},{groups:'Israeli vs Arabic',attrs:'Competence vs Incompetence',d:0.578397,ptot:0.000999},{groups:'Jewish vs Muslim',attrs:'Warm vs Cold',d:-0.687531,ptot:0.000999},{groups:'Jewish vs Muslim',attrs:'Competence vs Incompetence',d:-0.025995,ptot:0.187812}],after:[{groups:'Israeli vs Arabic',attrs:'Warm vs Cold',d:0.037553,ptot:0.000999},{groups:'Israeli vs Arabic',attrs:'Competence vs Incompetence',d:0.092613,ptot:0.000999},{groups:'IDF vs Hamas',attrs:'Warm vs Cold',d:-0.049791,ptot:0.000999},{groups:'IDF vs Hamas',attrs:'Competence vs Incompetence',d:-0.137589,ptot:0.000999},{groups:'Jewish vs Muslim',attrs:'Warm vs Cold',d:0.266848,ptot:0.000999},{groups:'Jewish vs Muslim',attrs:'Competence vs Incompetence',d:0.189190,ptot:0.000999}]};
 
   function sigStr(p){if(p<=0.001)return'***';if(p<=0.01)return'**';if(p<=0.05)return'*';return'ns';}
-
-  function barRows(data,maxD){
-    return data.map(row=>{
-      const pct=Math.abs(row.d)/maxD*100,left=row.d>=0?50:(50-pct),col=row.d<0?'#D85A30':'#1D9E75',sig=sigStr(row.ptot),sigEl=sig!=='ns'?`<span class="sig-star">${sig}</span>`:`<span class="ns-txt">ns</span>`;
-      return `<div class="bar-row"><div class="bar-group">${row.group}</div><div class="bar-track"><div style="position:absolute;left:50%;top:0;width:.5px;height:100%;background:var(--border-2);"></div><div class="bar-fill" style="left:${left}%;width:${pct}%;background:${col};"></div></div><div class="bar-d" style="color:${col};">${row.d>=0?'+':''}${row.d.toFixed(4)}</div><div class="bar-sig">${sigEl} p=${row.ptot.toFixed(4)}</div></div>`;
-    }).join('');
-  }
+  function barRows(data,maxD){return data.map(row=>{const pct=Math.abs(row.d)/maxD*100,left=row.d>=0?50:(50-pct),col=row.d<0?'#D85A30':'#1D9E75',sig=sigStr(row.ptot),sigEl=sig!=='ns'?`<span class="sig-star">${sig}</span>`:`<span class="ns-txt">ns</span>`;return`<div class="bar-row"><div class="bar-group">${row.group}</div><div class="bar-track"><div style="position:absolute;left:50%;top:0;width:.5px;height:100%;background:rgba(0,0,0,.15);"></div><div class="bar-fill" style="left:${left}%;width:${pct}%;background:${col};"></div></div><div class="bar-d" style="color:${col};">${row.d>=0?'+':''}${row.d.toFixed(4)}</div><div class="bar-sig">${sigEl} p=${row.ptot.toFixed(4)}</div></div>`;}).join('');}
 
   function renderBefore(){document.getElementById('before-bars').innerHTML=barRows(BEFORE[document.getElementById('before-dim').value],1.0);}
   function renderAfter(){document.getElementById('after-bars').innerHTML=barRows(AFTER[document.getElementById('after-dim').value],0.42);}
@@ -544,7 +612,7 @@ D = mean_{w∈X} s(w,A,B)
     document.getElementById('change-cards').innerHTML='<div class="change-grid">'+data.map(row=>{const cls=row.d>=0?'pos':'neg',col=row.d>=0?'#1D9E75':'#D85A30';return`<div class="change-card"><div class="change-card-label">${row.label}</div><div class="change-d ${cls}">${row.d>=0?'+':''}${row.d.toFixed(4)}</div><div class="change-meta">${row.d>=0?'stronger before':'stronger after'} Oct 7</div><div class="change-sig" style="color:${col};">${sigStr(row.ptot)} p=${row.ptot.toFixed(4)}</div></div>`;}).join('')+'</div>';
   }
   function renderDC(){
-    const mkR=(period,data)=>data.map(r=>{const cls=r.d>0?'pos':'neg',sig=sigStr(r.ptot),sigCls=sig!=='ns'?'sb-y':'sb-n';return`<tr><td><span class="pp ${period==='before'?'pp-b':'pp-a'}">${period==='before'?'pre-Oct 7':'post-Oct 7'}</span></td><td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">${r.groups}</td><td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);">${r.attrs}</td><td><span class="dv ${cls}">${r.d>=0?'+':''}${r.d.toFixed(4)}</span></td><td><span class="sb ${sigCls}">${sig} p=${r.ptot.toFixed(3)}</span></td></tr>`;}).join('');
+    const mkR=(period,data)=>data.map(r=>{const cls=r.d>0?'pos':'neg',sig=sigStr(r.ptot),sc=sig!=='ns'?'sb-y':'sb-n';return`<tr><td><span class="pp ${period==='before'?'pp-b':'pp-a'}">${period==='before'?'pre-Oct 7':'post-Oct 7'}</span></td><td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">${r.groups}</td><td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-3);">${r.attrs}</td><td><span class="dv ${cls}">${r.d>=0?'+':''}${r.d.toFixed(4)}</span></td><td><span class="sb ${sc}">${sig} p=${r.ptot.toFixed(3)}</span></td></tr>`;}).join('');
     document.getElementById('dc-table').innerHTML=`<table class="wt"><thead><tr><th>Period</th><th>Groups</th><th>Attributes</th><th>D-score</th><th>Sig.</th></tr></thead><tbody>${mkR('before',DC.before)}${mkR('after',DC.after)}</tbody></table>`;
   }
 
